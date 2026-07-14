@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../core/constants/app_colors.dart';
+import '../../../../shared/widgets/borderless_input_decoration.dart';
 import '../state/auth_notifier.dart';
 
 class PhoneScreen extends ConsumerStatefulWidget {
@@ -107,11 +108,10 @@ class _PhoneScreenState extends ConsumerState<PhoneScreen> {
                                   fontWeight: FontWeight.w600,
                                   color: AppColors.textPrimary,
                                 ),
-                                decoration: const InputDecoration(
-                                  border: InputBorder.none,
+                                decoration: borderlessInputDecoration(
                                   isDense: true,
                                   hintText: 'Enter Your Number',
-                                  hintStyle: TextStyle(
+                                  hintStyle: const TextStyle(
                                     color: AppColors.textTertiary,
                                   ),
                                 ),

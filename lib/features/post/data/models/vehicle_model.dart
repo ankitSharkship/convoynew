@@ -1,27 +1,19 @@
-import 'dart:convert';
+import '../../domain/entities/vehicle_entity.dart';
 
-class VehicleModel {
-  final String number;
-  final String type;
-  final String capacity;
-
+class VehicleModel extends VehicleEntity {
   const VehicleModel({
-    required this.number,
-    required this.type,
-    required this.capacity,
+    required super.id,
+    required super.vehicleNumber,
+    required super.truckType,
+    required super.capacity,
+    required super.verificationStatus,
   });
 
   factory VehicleModel.fromJson(Map<String, dynamic> json) => VehicleModel(
-        number: json['number'] as String,
-        type: json['type'] as String,
-        capacity: json['capacity'] as String,
+        id: json['_id'] as String,
+        vehicleNumber: json['vehicleNumber'] as String,
+        truckType: json['truckType'] as String,
+        capacity: (json['capacity'] as num?)?.toInt() ?? 0,
+        verificationStatus: json['verificationStatus'] as String? ?? 'pending',
       );
-
-  Map<String, dynamic> toJson() => {
-        'number': number,
-        'type': type,
-        'capacity': capacity,
-      };
-
-  String toJsonString() => jsonEncode(toJson());
 }

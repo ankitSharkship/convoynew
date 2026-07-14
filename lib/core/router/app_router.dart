@@ -7,7 +7,10 @@ import '../../features/auth/presentation/screens/otp_screen.dart';
 import '../../features/auth/presentation/screens/phone_screen.dart';
 import '../../features/call/presentation/screens/call_screen.dart';
 import '../../features/home/presentation/screens/home_screen.dart';
+import '../../features/kyc/presentation/screens/kyc_otp_screen.dart';
+import '../../features/kyc/presentation/screens/kyc_screen.dart';
 import '../../features/onboarding/presentation/screens/onboarding_screen.dart';
+import '../../features/post/presentation/screens/my_trucks_screen.dart';
 import '../../features/post/presentation/screens/post_form_screen.dart';
 import '../../features/post/presentation/screens/post_success_screen.dart';
 import '../../features/profile/presentation/screens/profile_screen.dart';
@@ -65,6 +68,20 @@ GoRouter appRouter(AppRouterRef ref) {
       GoRoute(
         path: '/search/results',
         builder: (_, __) => const SearchResultsScreen(),
+      ),
+      GoRoute(
+        path: '/profile/vehicles',
+        builder: (_, __) => const MyTrucksScreen(),
+      ),
+      GoRoute(
+        path: '/kyc',
+        builder: (_, __) => const KycScreen(),
+        routes: [
+          GoRoute(
+            path: 'otp',
+            builder: (_, __) => const KycOtpScreen(),
+          ),
+        ],
       ),
       StatefulShellRoute.indexedStack(
         builder: (context, state, navigationShell) =>

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../core/constants/app_colors.dart';
+import '../../../kyc/presentation/navigation/post_truck_gate.dart';
 
-class PostSuccessScreen extends StatelessWidget {
+class PostSuccessScreen extends ConsumerWidget {
   final String truckType;
   final String capacity;
   final String origin;
@@ -15,7 +17,7 @@ class PostSuccessScreen extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       backgroundColor: AppColors.white,
       body: SafeArea(
@@ -79,7 +81,7 @@ class PostSuccessScreen extends StatelessWidget {
               ),
               const SizedBox(height: 12),
               TextButton(
-                onPressed: () => context.go('/post'),
+                onPressed: () => navigateToPostTruck(context, ref),
                 child: const Text('Post another truck'),
               ),
               const SizedBox(height: 24),

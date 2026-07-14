@@ -1,3 +1,4 @@
+import '../../../search/domain/entities/location_entity.dart';
 import '../entities/post_entity.dart';
 import '../repositories/post_repository.dart';
 
@@ -7,17 +8,19 @@ class SubmitPostUseCase {
   SubmitPostUseCase(this._repository);
 
   Future<PostEntity> execute({
-    required String truckType,
-    required String capacity,
-    required String origin,
-    required String destination,
-    required String vehicleNumber,
+    required String userId,
+    required String vehicleId,
+    required LocationEntity origin,
+    required List<LocationEntity> destinations,
+    required LocationEntity currentLocation,
+    required DateTime availableDate,
   }) =>
       _repository.submitPost(
-        truckType: truckType,
-        capacity: capacity,
+        userId: userId,
+        vehicleId: vehicleId,
         origin: origin,
-        destination: destination,
-        vehicleNumber: vehicleNumber,
+        destinations: destinations,
+        currentLocation: currentLocation,
+        availableDate: availableDate,
       );
 }

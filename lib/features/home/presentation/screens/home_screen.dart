@@ -5,6 +5,7 @@ import '../../../../core/constants/app_colors.dart';
 import '../../../../shared/widgets/loader.dart';
 import '../../domain/entities/home_data_entity.dart';
 import '../../domain/entities/truck_listing_entity.dart';
+import '../../../kyc/presentation/navigation/post_truck_gate.dart';
 import '../../../profile/presentation/state/profile_notifier.dart';
 import '../../../../shared/widgets/truck_card.dart';
 import '../state/home_notifier.dart';
@@ -29,17 +30,17 @@ class HomeScreen extends ConsumerWidget {
   }
 }
 
-class _HomeContent extends StatefulWidget {
+class _HomeContent extends ConsumerStatefulWidget {
   final HomeDataEntity data;
   final String userName;
 
   const _HomeContent({required this.data, required this.userName});
 
   @override
-  State<_HomeContent> createState() => _HomeContentState();
+  ConsumerState<_HomeContent> createState() => _HomeContentState();
 }
 
-class _HomeContentState extends State<_HomeContent> {
+class _HomeContentState extends ConsumerState<_HomeContent> {
   int _selectedTab = 0;
 
   @override
@@ -92,7 +93,7 @@ class _HomeContentState extends State<_HomeContent> {
                   ),
                   const SizedBox(height: 20),
 
-                  const _HeroBanner(),
+                  _HeroBanner(onPostTap: () => navigateToPostTruck(context, ref)),
                   const SizedBox(height: 24),
 
                   const Text(
@@ -113,7 +114,7 @@ class _HomeContentState extends State<_HomeContent> {
                           iconBackground: AppColors.primaryBlueLight,
                           title: 'Post New Truck',
                           subtitle: 'Ready in 30 seconds',
-                          onTap: () => context.go('/post'),
+                          onTap: () => navigateToPostTruck(context, ref),
                         ),
                       ),
                       const SizedBox(width: 12),
@@ -241,7 +242,9 @@ class _IconButton extends StatelessWidget {
 // ─── Hero banner ────────────────────────────────────────────────────────────
 
 class _HeroBanner extends StatelessWidget {
-  const _HeroBanner();
+  final VoidCallback onPostTap;
+
+  const _HeroBanner({required this.onPostTap});
 
   @override
   Widget build(BuildContext context) {
@@ -290,7 +293,7 @@ class _HeroBanner extends StatelessWidget {
                   ),
                   const SizedBox(height: 14),
                   ElevatedButton(
-                    onPressed: () => context.go('/post'),
+                    onPressed: onPostTap,
                     style: ElevatedButton.styleFrom(
                       minimumSize: const Size(0, 40),
                       padding: const EdgeInsets.symmetric(horizontal: 16),

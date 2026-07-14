@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../core/constants/app_colors.dart';
+import '../../../../shared/widgets/borderless_input_decoration.dart';
 import '../../domain/entities/location_entity.dart';
 import '../state/search_notifier.dart';
 
@@ -368,8 +369,7 @@ class _LocationField extends StatelessWidget {
                       fontWeight: FontWeight.w600,
                       color: AppColors.textPrimary,
                     ),
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
+                    decoration: borderlessInputDecoration(
                       hintText: hintText,
                       hintStyle: const TextStyle(
                         color: AppColors.textTertiary,

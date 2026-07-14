@@ -6,26 +6,26 @@ part of 'post_notifier.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$postLocalDataSourceHash() =>
-    r'1bb0a5383aaf3bdec8524a64dcf53cbf2b61cfa5';
+String _$postRemoteDataSourceHash() =>
+    r'b272bd1a1f76b5818d9d47bfa43e23fede05d8aa';
 
-/// See also [postLocalDataSource].
-@ProviderFor(postLocalDataSource)
-final postLocalDataSourceProvider =
-    AutoDisposeProvider<PostLocalDataSource>.internal(
-      postLocalDataSource,
-      name: r'postLocalDataSourceProvider',
+/// See also [postRemoteDataSource].
+@ProviderFor(postRemoteDataSource)
+final postRemoteDataSourceProvider =
+    AutoDisposeProvider<PostRemoteDataSource>.internal(
+      postRemoteDataSource,
+      name: r'postRemoteDataSourceProvider',
       debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
           ? null
-          : _$postLocalDataSourceHash,
+          : _$postRemoteDataSourceHash,
       dependencies: null,
       allTransitiveDependencies: null,
     );
 
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
-typedef PostLocalDataSourceRef = AutoDisposeProviderRef<PostLocalDataSource>;
-String _$postRepositoryHash() => r'f3b28c6f5d7ac3f621a99b3bea88ea545eb26961';
+typedef PostRemoteDataSourceRef = AutoDisposeProviderRef<PostRemoteDataSource>;
+String _$postRepositoryHash() => r'0d568f4bcb5e1cb320c285f00e8c55a625e2e4d1';
 
 /// See also [postRepository].
 @ProviderFor(postRepository)
@@ -60,12 +60,12 @@ final submitPostUseCaseProvider =
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef SubmitPostUseCaseRef = AutoDisposeProviderRef<SubmitPostUseCase>;
-String _$postNotifierHash() => r'2be41c6582ee6c493870bfa59fc58fdf517ff7ed';
+String _$postNotifierHash() => r'8a28eaa3a45ea877d73252ff5f361466db27d4e7';
 
 /// See also [PostNotifier].
 @ProviderFor(PostNotifier)
 final postNotifierProvider =
-    AutoDisposeNotifierProvider<PostNotifier, PostState>.internal(
+    AutoDisposeNotifierProvider<PostNotifier, PostFormState>.internal(
       PostNotifier.new,
       name: r'postNotifierProvider',
       debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -75,6 +75,6 @@ final postNotifierProvider =
       allTransitiveDependencies: null,
     );
 
-typedef _$PostNotifier = AutoDisposeNotifier<PostState>;
+typedef _$PostNotifier = AutoDisposeNotifier<PostFormState>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

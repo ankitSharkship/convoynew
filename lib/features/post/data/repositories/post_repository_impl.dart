@@ -1,25 +1,28 @@
+import '../../../search/domain/entities/location_entity.dart';
 import '../../domain/entities/post_entity.dart';
 import '../../domain/repositories/post_repository.dart';
-import '../datasources/post_local_datasource.dart';
+import '../datasources/post_remote_datasource.dart';
 
 class PostRepositoryImpl implements PostRepository {
-  final PostLocalDataSource _dataSource;
+  final PostRemoteDataSource _remote;
 
-  PostRepositoryImpl(this._dataSource);
+  PostRepositoryImpl(this._remote);
 
   @override
   Future<PostEntity> submitPost({
-    required String truckType,
-    required String capacity,
-    required String origin,
-    required String destination,
-    required String vehicleNumber,
+    required String userId,
+    required String vehicleId,
+    required LocationEntity origin,
+    required List<LocationEntity> destinations,
+    required LocationEntity currentLocation,
+    required DateTime availableDate,
   }) =>
-      _dataSource.submitPost(
-        truckType: truckType,
-        capacity: capacity,
+      _remote.submitPost(
+        userId: userId,
+        vehicleId: vehicleId,
         origin: origin,
-        destination: destination,
-        vehicleNumber: vehicleNumber,
+        destinations: destinations,
+        currentLocation: currentLocation,
+        availableDate: availableDate,
       );
 }
