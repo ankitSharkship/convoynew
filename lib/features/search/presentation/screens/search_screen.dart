@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../core/constants/app_colors.dart';
+import '../../../../l10n/generated/app_localizations.dart';
+import '../../../../shared/utils/truck_type_i18n.dart';
 import '../../../../shared/widgets/borderless_input_decoration.dart';
+import '../../../../shared/widgets/language_switcher_button.dart';
 import '../../domain/entities/location_entity.dart';
 import '../state/search_notifier.dart';
 
@@ -16,20 +19,6 @@ class SearchScreen extends ConsumerStatefulWidget {
 class _SearchScreenState extends ConsumerState<SearchScreen> {
   final _originController = TextEditingController();
   final _destinationController = TextEditingController();
-
-  static const _truckTypes = [
-    'Open Body',
-    'Closed Body',
-    'Container 20ft',
-    'Container 32ft',
-    'Tipper',
-    'Sidewall Trailer',
-    'Flat Bed Trailer',
-    'Bulker',
-    'Tanker',
-  ];
-
-  static final _capacities = List.generate(30, (i) => '${i + 6} Ton');
 
   @override
   void dispose() {
@@ -71,6 +60,9 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
       }
     });
 
+    final l10n = AppLocalizations.of(context)!;
+    final capacities = List.generate(30, (i) => l10n.capacityTon(i + 6));
+
     return Scaffold(
       backgroundColor: AppColors.primaryBlueLight,
       body: SafeArea(
@@ -82,22 +74,22 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Expanded(
+                  Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Search Trucks',
-                          style: TextStyle(
+                          l10n.searchTitle,
+                          style: const TextStyle(
                             fontSize: 22,
                             fontWeight: FontWeight.w700,
                             color: AppColors.textPrimary,
                           ),
                         ),
-                        SizedBox(height: 2),
+                        const SizedBox(height: 2),
                         Text(
-                          'Find the right truck for your load',
-                          style: TextStyle(
+                          l10n.searchSubtitle,
+                          style: const TextStyle(
                             fontSize: 13,
                             color: AppColors.textSecondary,
                           ),
@@ -105,7 +97,8 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                       ],
                     ),
                   ),
-                  _SortButton(onTap: () {}),
+
+                  const LanguageSwitcherButton(),
                 ],
               ),
               const SizedBox(height: 20),
@@ -126,11 +119,11 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const _FieldLabel('Origin'),
+                    _FieldLabel(l10n.searchOriginLabel),
                     const SizedBox(height: 8),
                     _LocationField(
                       controller: _originController,
-                      hintText: 'Select Origin',
+                      hintText: l10n.searchOriginHint,
                       markerColor: AppColors.green,
                       markerIsRing: true,
                       loading: state.originLocating,
@@ -150,11 +143,11 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                         color: AppColors.textTertiary.withValues(alpha: 0.4),
                       ),
                     ),
-                    const _FieldLabel('Destination'),
+                    _FieldLabel(l10n.searchDestinationLabel),
                     const SizedBox(height: 8),
                     _LocationField(
                       controller: _destinationController,
-                      hintText: 'Select Destination',
+                      hintText: l10n.searchDestinationHint,
                       markerColor: AppColors.red,
                       markerIsRing: false,
                       loading: state.destinationLocating,
@@ -175,12 +168,13 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              const _FieldLabel('Truck Type'),
+                              _FieldLabel(l10n.searchTruckTypeLabel),
                               const SizedBox(height: 8),
                               _DropdownField(
-                                hintText: 'Select Truck',
+                                hintText: l10n.searchSelectTruckHint,
                                 value: state.selectedTruckType,
-                                items: _truckTypes,
+                                items: truckTypes,
+                                itemLabel: (t) => truckTypeLabel(context, t),
                                 onChanged: notifier.selectTruckType,
                               ),
                             ],
@@ -191,12 +185,12 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              const _FieldLabel('Capacity'),
+                              _FieldLabel(l10n.searchCapacityLabel),
                               const SizedBox(height: 8),
                               _DropdownField(
-                                hintText: 'Select',
+                                hintText: l10n.searchSelectHint,
                                 value: state.selectedCapacity,
-                                items: _capacities,
+                                items: capacities,
                                 onChanged: notifier.selectCapacity,
                               ),
                             ],
@@ -235,12 +229,12 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                                   color: AppColors.white,
                                 ),
                               )
-                            : const Row(
+                            : Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text(
-                                    'Find Trucks',
-                                    style: TextStyle(
+                                    l10n.searchFindTrucksButton,
+                                    style: const TextStyle(
                                       fontSize: 16,
                                       fontWeight: FontWeight.w700,
                                     ),
@@ -511,12 +505,14 @@ class _DropdownField extends StatelessWidget {
   final String? value;
   final List<String> items;
   final ValueChanged<String?> onChanged;
+  final String Function(String)? itemLabel;
 
   const _DropdownField({
     required this.hintText,
     required this.value,
     required this.items,
     required this.onChanged,
+    this.itemLabel,
   });
 
   @override
@@ -555,7 +551,12 @@ class _DropdownField extends StatelessWidget {
         color: AppColors.textPrimary,
       ),
       items: items
-          .map((i) => DropdownMenuItem(value: i, child: Text(i)))
+          .map(
+            (i) => DropdownMenuItem(
+              value: i,
+              child: Text(itemLabel != null ? itemLabel!(i) : i),
+            ),
+          )
           .toList(),
       onChanged: onChanged,
     );

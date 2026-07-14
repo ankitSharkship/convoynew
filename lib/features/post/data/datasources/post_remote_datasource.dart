@@ -12,6 +12,8 @@ abstract class PostRemoteDataSource {
     required List<LocationEntity> destinations,
     required LocationEntity currentLocation,
     required DateTime availableDate,
+    String? contactName,
+    String? contactNumber,
   });
 }
 
@@ -28,6 +30,8 @@ class PostRemoteDataSourceImpl implements PostRemoteDataSource {
     required List<LocationEntity> destinations,
     required LocationEntity currentLocation,
     required DateTime availableDate,
+    String? contactName,
+    String? contactNumber,
   }) async {
     try {
       final response = await _dio.post(
@@ -38,6 +42,8 @@ class PostRemoteDataSourceImpl implements PostRemoteDataSource {
           'destinations': destinations.map((d) => d.toRequestJson()).toList(),
           'currentLocation': currentLocation.toRequestJson(),
           'available_date': _formatDate(availableDate),
+          'contactName': ?contactName,
+          'contactNumber': ?contactNumber,
         },
       );
       final data = response.data as Map<String, dynamic>;

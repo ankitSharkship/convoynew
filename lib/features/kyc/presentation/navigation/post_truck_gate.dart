@@ -29,7 +29,9 @@ Future<void> navigateToPostTruck(BuildContext context, WidgetRef ref) async {
   try {
     final userId = await ref.read(tokenStorageProvider).getUserId();
     if (userId != null) {
-      final status = await ref.read(getKycStatusUseCaseProvider).execute(userId);
+      final status = await ref
+          .read(getKycStatusUseCaseProvider)
+          .execute(userId);
       isApproved = status.isApproved;
     }
   } catch (_) {

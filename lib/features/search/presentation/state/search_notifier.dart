@@ -94,8 +94,9 @@ class SearchState {
     DateTime? lastSearchedDate,
   }) {
     return SearchState(
-      originLocation:
-          clearOriginLocation ? null : (originLocation ?? this.originLocation),
+      originLocation: clearOriginLocation
+          ? null
+          : (originLocation ?? this.originLocation),
       destinationLocation: clearDestinationLocation
           ? null
           : (destinationLocation ?? this.destinationLocation),
@@ -183,10 +184,13 @@ class SearchNotifier extends _$SearchNotifier {
 
     state = isOrigin
         ? state.copyWith(
-            originSuggestions: results, originSuggestionsLoading: false)
+            originSuggestions: results,
+            originSuggestionsLoading: false,
+          )
         : state.copyWith(
             destinationSuggestions: results,
-            destinationSuggestionsLoading: false);
+            destinationSuggestionsLoading: false,
+          );
   }
 
   void selectOriginSuggestion(LocationEntity location) {
@@ -206,7 +210,9 @@ class SearchNotifier extends _$SearchNotifier {
   Future<void> useCurrentOriginLocation() async {
     state = state.copyWith(originLocating: true);
     try {
-      final current = await ref.read(locationServiceProvider).getCurrentLocation();
+      final current = await ref
+          .read(locationServiceProvider)
+          .getCurrentLocation();
       selectOriginSuggestion(_toLocationEntity(current));
     } finally {
       state = state.copyWith(originLocating: false);
@@ -216,7 +222,9 @@ class SearchNotifier extends _$SearchNotifier {
   Future<void> useCurrentDestinationLocation() async {
     state = state.copyWith(destinationLocating: true);
     try {
-      final current = await ref.read(locationServiceProvider).getCurrentLocation();
+      final current = await ref
+          .read(locationServiceProvider)
+          .getCurrentLocation();
       selectDestinationSuggestion(_toLocationEntity(current));
     } finally {
       state = state.copyWith(destinationLocating: false);
@@ -224,15 +232,15 @@ class SearchNotifier extends _$SearchNotifier {
   }
 
   LocationEntity _toLocationEntity(CurrentLocation current) => LocationEntity(
-        id: 'current',
-        name: current.name,
-        lat: current.lat,
-        lng: current.lng,
-        type: 'current',
-        city: current.city,
-        state: current.state,
-        pincode: current.pincode,
-      );
+    id: 'current',
+    name: current.name,
+    lat: current.lat,
+    lng: current.lng,
+    type: 'current',
+    city: current.city,
+    state: current.state,
+    pincode: current.pincode,
+  );
 
   void selectTruckType(String? type) {
     state = state.copyWith(selectedTruckType: type);
@@ -275,7 +283,9 @@ class SearchNotifier extends _$SearchNotifier {
     state = state.copyWith(searching: true, clearSearchError: true);
 
     try {
-      final resultPage = await ref.read(searchTrucksUseCaseProvider).execute(
+      final resultPage = await ref
+          .read(searchTrucksUseCaseProvider)
+          .execute(
             origin: origin,
             destination: destination,
             truckType: state.selectedTruckType,

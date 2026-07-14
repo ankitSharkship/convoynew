@@ -47,7 +47,8 @@ class KycRemoteDataSourceImpl implements KycRemoteDataSource {
         data: {'aadhaarNumber': aadhaarNumber},
       );
       return SendAadhaarOtpResultModel.fromJson(
-          response.data as Map<String, dynamic>);
+        response.data as Map<String, dynamic>,
+      );
     } on DioException catch (e) {
       throw ApiException.fromDioException(e);
     } catch (_) {
@@ -65,14 +66,11 @@ class KycRemoteDataSourceImpl implements KycRemoteDataSource {
     try {
       final response = await _dio.post(
         '/api/kyc/aadhaar/verify/$userId',
-        data: {
-          'refId': refId,
-          'otp': otp,
-          'aadhaarNumber': aadhaarNumber,
-        },
+        data: {'refId': refId, 'otp': otp, 'aadhaarNumber': aadhaarNumber},
       );
       return VerifyAadhaarOtpResultModel.fromJson(
-          response.data as Map<String, dynamic>);
+        response.data as Map<String, dynamic>,
+      );
     } on DioException catch (e) {
       throw ApiException.fromDioException(e);
     } catch (_) {

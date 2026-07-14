@@ -4,7 +4,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../core/constants/app_colors.dart';
+import '../../../../l10n/generated/app_localizations.dart';
 import '../../../../shared/widgets/borderless_input_decoration.dart';
+import '../../../../shared/widgets/language_switcher_button.dart';
 import '../state/auth_notifier.dart';
 
 class OtpScreen extends ConsumerStatefulWidget {
@@ -89,6 +91,7 @@ class _OtpScreenState extends ConsumerState<OtpScreen> {
     final authState = ref.watch(authNotifierProvider);
     final isLoading = authState is AuthLoading;
     final otpStr = _otpController.text;
+    final l10n = AppLocalizations.of(context)!;
 
     return Scaffold(
       backgroundColor: AppColors.primaryDark,
@@ -111,13 +114,18 @@ class _OtpScreenState extends ConsumerState<OtpScreen> {
                     size: 20,
                   ),
                   const SizedBox(width: 6),
-                  const Text(
-                    'Convoy',
-                    style: TextStyle(
+                  Text(
+                    l10n.appName,
+                    style: const TextStyle(
                       color: AppColors.white,
                       fontWeight: FontWeight.w700,
                       fontSize: 16,
                     ),
+                  ),
+                  const Spacer(),
+                  const LanguageSwitcherButton(
+                    card: false,
+                    iconColor: AppColors.white,
                   ),
                 ],
               ),
@@ -127,9 +135,9 @@ class _OtpScreenState extends ConsumerState<OtpScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
-                    'Enter the 4-digit code',
-                    style: TextStyle(
+                  Text(
+                    l10n.otpTitle,
+                    style: const TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.w700,
                       color: AppColors.white,
@@ -137,7 +145,7 @@ class _OtpScreenState extends ConsumerState<OtpScreen> {
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    'Sent to +91 ${widget.phone}',
+                    l10n.otpSentTo(widget.phone),
                     style: const TextStyle(fontSize: 14, color: Colors.white70),
                   ),
                 ],
@@ -248,7 +256,7 @@ class _OtpScreenState extends ConsumerState<OtpScreen> {
                           const SizedBox(width: 6),
                           Expanded(
                             child: Text(
-                              'Didn\'t receive it? Check the number and try resending.',
+                              l10n.otpHelperText,
                               style: const TextStyle(
                                 fontSize: 12,
                                 color: AppColors.textSecondary,
@@ -274,7 +282,7 @@ class _OtpScreenState extends ConsumerState<OtpScreen> {
                                   strokeWidth: 2,
                                 ),
                               )
-                            : const Text('OK'),
+                            : Text(l10n.ok),
                       ),
                     ),
                     GestureDetector(
@@ -283,8 +291,10 @@ class _OtpScreenState extends ConsumerState<OtpScreen> {
                         padding: const EdgeInsets.only(bottom: 24),
                         child: Text(
                           _resendSeconds > 0
-                              ? "Didn't get it? Resend in 0:${_resendSeconds.toString().padLeft(2, '0')}"
-                              : 'Resend code',
+                              ? l10n.otpResendIn(
+                                  _resendSeconds.toString().padLeft(2, '0'),
+                                )
+                              : l10n.otpResendCode,
                           style: TextStyle(
                             fontSize: 13,
                             color: _resendSeconds > 0

@@ -25,7 +25,8 @@ TruckSearchDestinationEntity _destinationFromJson(Map<String, dynamic> json) =>
     );
 
 MatchedDestinationEntity? _matchedDestinationFromJson(
-    Map<String, dynamic>? json) {
+  Map<String, dynamic>? json,
+) {
   if (json == null) return null;
   return MatchedDestinationEntity(
     id: json['_id'] as String,
@@ -52,18 +53,23 @@ TruckSearchResultEntity truckSearchResultFromJson(Map<String, dynamic> json) {
     originDistanceKm: (json['origin_distance_km'] as num?)?.toDouble() ?? 0,
     availableDate: json['available_date'] as String,
     status: json['status'] as String,
-    originLocation:
-        _locationFromJson(json['originLocation'] as Map<String, dynamic>),
-    currentLocation:
-        _locationFromJson(json['currentLocation'] as Map<String, dynamic>),
+    originLocation: _locationFromJson(
+      json['originLocation'] as Map<String, dynamic>,
+    ),
+    currentLocation: _locationFromJson(
+      json['currentLocation'] as Map<String, dynamic>,
+    ),
     destinations: (json['destinations'] as List<dynamic>? ?? [])
         .map((e) => _destinationFromJson(e as Map<String, dynamic>))
         .toList(),
     matchedDestination: _matchedDestinationFromJson(
-        json['matchedDestination'] as Map<String, dynamic>?),
+      json['matchedDestination'] as Map<String, dynamic>?,
+    ),
     userName: json['userName'] as String? ?? '',
     userPhoto: json['userPhoto'] as String?,
     userMobile: json['userMobile'] as String? ?? '',
+    contactName: json['contactName'] as String?,
+    contactNumber: json['contactNumber'] as String?,
     mutualsCount: (mutuals['count'] as num?)?.toInt() ?? 0,
     mutualNames: (mutuals['names'] as List<dynamic>? ?? []).cast<String>(),
     createdAt: DateTime.parse(json['createdAt'] as String),
@@ -71,8 +77,7 @@ TruckSearchResultEntity truckSearchResultFromJson(Map<String, dynamic> json) {
   );
 }
 
-TruckSearchResultPage truckSearchResultPageFromJson(
-    Map<String, dynamic> json) {
+TruckSearchResultPage truckSearchResultPageFromJson(Map<String, dynamic> json) {
   final posts = (json['posts'] as List<dynamic>? ?? [])
       .map((e) => truckSearchResultFromJson(e as Map<String, dynamic>))
       .toList();

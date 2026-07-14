@@ -20,12 +20,12 @@ class LocationEntity {
   });
 
   Map<String, dynamic> toRequestJson() => {
-        'name': name,
-        'lat': lat,
-        'lng': lng,
-        'type': type,
-        'pincode': pincode,
-        'city': city,
-        'state': state,
-      };
+    'name': name,
+    'lat': lat,
+    'lng': lng,
+    'type': type,
+    'pincode': pincode,
+    'city': city,
+    'state': state,
+  };
 }

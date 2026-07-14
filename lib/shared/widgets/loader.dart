@@ -20,9 +20,6 @@ class FullPageLoader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      backgroundColor: AppColors.white,
-      body: AppLoader(),
-    );
+    return const Scaffold(backgroundColor: AppColors.white, body: AppLoader());
   }
 }

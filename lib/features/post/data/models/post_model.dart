@@ -12,6 +12,8 @@ class PostModel extends PostEntity {
     required super.availableDate,
     required super.status,
     required super.createdAt,
+    super.contactName,
+    super.contactNumber,
   });
 
   factory PostModel.fromJson(Map<String, dynamic> json) {
@@ -22,7 +24,8 @@ class PostModel extends PostEntity {
       vehicleNumber: json['vehicleNumber'] as String,
       truckType: json['truckType'] as String,
       capacity: (json['capacity'] as num?)?.toInt() ?? 0,
-      originName: json['originName'] as String? ??
+      originName:
+          json['originName'] as String? ??
           (json['origin'] as Map<String, dynamic>?)?['name'] as String? ??
           '',
       destinationNames: destinations
@@ -32,6 +35,8 @@ class PostModel extends PostEntity {
       availableDate: json['availableDate'] as String,
       status: json['status'] as String,
       createdAt: DateTime.parse(json['createdAt'] as String),
+      contactName: json['contactName'] as String?,
+      contactNumber: json['contactNumber'] as String?,
     );
   }
 }

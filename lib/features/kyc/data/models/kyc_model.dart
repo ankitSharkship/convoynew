@@ -31,7 +31,8 @@ class VerifyAadhaarOtpResultModel extends VerifyAadhaarOtpResultEntity {
 
   factory VerifyAadhaarOtpResultModel.fromJson(Map<String, dynamic> json) {
     final user = json['user'] as Map<String, dynamic>?;
-    final status = user?['kycStatus'] as String? ??
+    final status =
+        user?['kycStatus'] as String? ??
         json['status'] as String? ??
         'approved';
     return VerifyAadhaarOtpResultModel(status: status);

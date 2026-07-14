@@ -14,8 +14,7 @@ class KycRepositoryImpl implements KycRepository {
   Future<SendAadhaarOtpResultEntity> sendAadhaarOtp({
     required String userId,
     required String aadhaarNumber,
-  }) =>
-      _remote.sendAadhaarOtp(userId: userId, aadhaarNumber: aadhaarNumber);
+  }) => _remote.sendAadhaarOtp(userId: userId, aadhaarNumber: aadhaarNumber);
 
   @override
   Future<VerifyAadhaarOtpResultEntity> verifyAadhaarOtp({
@@ -23,11 +22,10 @@ class KycRepositoryImpl implements KycRepository {
     required String refId,
     required String otp,
     required String aadhaarNumber,
-  }) =>
-      _remote.verifyAadhaarOtp(
-        userId: userId,
-        refId: refId,
-        otp: otp,
-        aadhaarNumber: aadhaarNumber,
-      );
+  }) => _remote.verifyAadhaarOtp(
+    userId: userId,
+    refId: refId,
+    otp: otp,
+    aadhaarNumber: aadhaarNumber,
+  );
 }

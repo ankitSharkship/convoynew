@@ -60,7 +60,7 @@ final submitPostUseCaseProvider =
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef SubmitPostUseCaseRef = AutoDisposeProviderRef<SubmitPostUseCase>;
-String _$postNotifierHash() => r'8a28eaa3a45ea877d73252ff5f361466db27d4e7';
+String _$postNotifierHash() => r'0c3f0b2aecc7c8593f65f5a720aed912d6cdabc5';
 
 /// See also [PostNotifier].
 @ProviderFor(PostNotifier)

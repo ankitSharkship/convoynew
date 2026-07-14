@@ -1,28 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../../../core/constants/app_colors.dart';
+import '../../../../l10n/generated/app_localizations.dart';
+import '../../../../shared/utils/truck_type_i18n.dart';
+import '../../../../shared/widgets/language_switcher_button.dart';
 import '../../domain/entities/truck_search_result_entity.dart';
 import '../state/search_notifier.dart';
 
-const _months = [
-  'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-  'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
-];
-
-String _formatDate(DateTime? date) {
+String _formatDate(BuildContext context, DateTime? date) {
   if (date == null) return '';
-  return '${date.day} ${_months[date.month - 1]} ${date.year}';
+  return DateFormat.yMMMd(
+    Localizations.localeOf(context).toString(),
+  ).format(date);
 }
 
 Future<void> _callNumber(BuildContext context, String phone) async {
   final uri = Uri(scheme: 'tel', path: phone);
-  final launched =
-      await canLaunchUrl(uri) && await launchUrl(uri);
+  final launched = await canLaunchUrl(uri) && await launchUrl(uri);
   if (!launched && context.mounted) {
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Could not open the phone dialer')),
+      SnackBar(
+        content: Text(AppLocalizations.of(context)!.resultsCallDialerError),
+      ),
     );
   }
 }
@@ -59,12 +61,13 @@ class _SearchResultsScreenState extends ConsumerState<SearchResultsScreen>
     final state = ref.watch(searchNotifierProvider);
     final notifier = ref.read(searchNotifierProvider.notifier);
     final resultPage = state.resultPage;
+    final l10n = AppLocalizations.of(context)!;
 
     final subtitle = state.searching
-        ? 'Searching…'
+        ? l10n.resultsSearching
         : resultPage != null
-            ? '${resultPage.totalCount} truck${resultPage.totalCount == 1 ? '' : 's'} found'
-            : 'Your search results';
+        ? l10n.resultsFoundCount(resultPage.totalCount)
+        : l10n.resultsYourResults;
 
     return Scaffold(
       backgroundColor: AppColors.primaryBlueLight,
@@ -87,12 +90,12 @@ class _SearchResultsScreenState extends ConsumerState<SearchResultsScreen>
               else if (state.searchError != null)
                 _ErrorState(message: state.searchError!)
               else if (resultPage == null)
-                const _EmptyState(message: 'Run a search to see results')
+                _EmptyState(message: l10n.resultsRunSearch)
               else ...[
                 _SummaryCard(state: state),
                 const SizedBox(height: 20),
                 if (resultPage.posts.isEmpty)
-                  const _EmptyState(message: 'No trucks found nearby')
+                  _EmptyState(message: l10n.resultsNoneNearby)
                 else
                   ...resultPage.posts.map(
                     (post) => Padding(
@@ -134,18 +137,15 @@ class _Header extends StatelessWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        _HeaderIconButton(
-          icon: Icons.arrow_back,
-          onTap: () => context.pop(),
-        ),
+        _HeaderIconButton(icon: Icons.arrow_back, onTap: () => context.pop()),
         const SizedBox(width: 12),
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
-                'Search Results',
-                style: TextStyle(
+              Text(
+                AppLocalizations.of(context)!.resultsTitle,
+                style: const TextStyle(
                   fontSize: 22,
                   fontWeight: FontWeight.w700,
                   color: AppColors.textPrimary,
@@ -162,6 +162,7 @@ class _Header extends StatelessWidget {
             ],
           ),
         ),
+        const LanguageSwitcherButton(),
       ],
     );
   }
@@ -206,6 +207,7 @@ class _SummaryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Container(
       padding: const EdgeInsets.all(18),
       decoration: BoxDecoration(
@@ -235,8 +237,9 @@ class _SummaryCard extends StatelessWidget {
                     _RouteRow(
                       markerIsRing: true,
                       markerColor: AppColors.green,
-                      title: state.originLocation?.name ?? 'Any origin',
-                      label: 'ORIGIN',
+                      title:
+                          state.originLocation?.name ?? l10n.resultsAnyOrigin,
+                      label: l10n.resultsOriginLabel,
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 10),
@@ -250,8 +253,9 @@ class _SummaryCard extends StatelessWidget {
                       markerIsRing: false,
                       markerColor: AppColors.red,
                       title:
-                          state.destinationLocation?.name ?? 'Any destination',
-                      label: 'DESTINATION',
+                          state.destinationLocation?.name ??
+                          l10n.resultsAnyDestination,
+                      label: l10n.resultsDestinationLabel,
                     ),
                   ],
                 ),
@@ -265,8 +269,11 @@ class _SummaryCard extends StatelessWidget {
                     color: AppColors.primaryBlue.withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  child: const Icon(Icons.edit_outlined,
-                      size: 16, color: AppColors.primaryBlue),
+                  child: const Icon(
+                    Icons.edit_outlined,
+                    size: 16,
+                    color: AppColors.primaryBlue,
+                  ),
                 ),
               ),
             ],
@@ -278,18 +285,20 @@ class _SummaryCard extends StatelessWidget {
             children: [
               _MetaColumn(
                 icon: Icons.local_shipping_outlined,
-                label: 'Truck Type',
-                value: state.selectedTruckType ?? 'Any',
+                label: l10n.searchTruckTypeLabel,
+                value: state.selectedTruckType != null
+                    ? truckTypeLabel(context, state.selectedTruckType!)
+                    : l10n.resultsAny,
               ),
               _MetaColumn(
                 icon: Icons.fitness_center,
-                label: 'Capacity',
-                value: state.selectedCapacity ?? 'Any',
+                label: l10n.searchCapacityLabel,
+                value: state.selectedCapacity ?? l10n.resultsAny,
               ),
               _MetaColumn(
                 icon: Icons.calendar_today_outlined,
-                label: 'Date',
-                value: _formatDate(state.lastSearchedDate),
+                label: l10n.resultsDateLabel,
+                value: _formatDate(context, state.lastSearchedDate),
               ),
             ],
           ),
@@ -412,13 +421,16 @@ class _ResultCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final initials = result.userName
+    final l10n = AppLocalizations.of(context)!;
+    final displayName = result.displayContactName;
+    final initials = displayName
         .split(' ')
         .where((w) => w.isNotEmpty)
         .take(2)
         .map((w) => w[0].toUpperCase())
         .join();
-    final destinationName = result.matchedDestination?.name ??
+    final destinationName =
+        result.matchedDestination?.name ??
         (result.destinations.isNotEmpty ? result.destinations.first.name : '');
 
     return Container(
@@ -446,7 +458,7 @@ class _ResultCard extends StatelessWidget {
                   children: [
                     Flexible(
                       child: Text(
-                        result.userName,
+                        displayName,
                         style: const TextStyle(
                           fontWeight: FontWeight.w700,
                           fontSize: 16,
@@ -455,14 +467,19 @@ class _ResultCard extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                       ),
                     ),
-                    const SizedBox(width: 4),
-                    const Icon(Icons.verified,
-                        size: 16, color: AppColors.primaryBlue),
+                    if (!result.hasAlternateContact) ...[
+                      const SizedBox(width: 4),
+                      const Icon(
+                        Icons.verified,
+                        size: 16,
+                        color: AppColors.primaryBlue,
+                      ),
+                    ],
                   ],
                 ),
               ),
               GestureDetector(
-                onTap: () => _callNumber(context, result.userMobile),
+                onTap: () => _callNumber(context, result.displayContactNumber),
                 child: Container(
                   width: 40,
                   height: 40,
@@ -470,8 +487,11 @@ class _ResultCard extends StatelessWidget {
                     color: AppColors.primaryBlue.withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(12),
                   ),
-                  child: const Icon(Icons.phone,
-                      size: 18, color: AppColors.primaryBlue),
+                  child: const Icon(
+                    Icons.phone,
+                    size: 18,
+                    color: AppColors.primaryBlue,
+                  ),
                 ),
               ),
             ],
@@ -534,17 +554,19 @@ class _ResultCard extends StatelessWidget {
             children: [
               _MetaColumn(
                 icon: Icons.local_shipping_outlined,
-                label: 'Truck Type',
-                value: result.truckType,
+                label: l10n.searchTruckTypeLabel,
+                value: truckTypeLabel(context, result.truckType),
               ),
               _MetaColumn(
                 icon: Icons.fitness_center,
-                label: 'Capacity',
-                value: result.capacity > 0 ? '${result.capacity} Ton' : '—',
+                label: l10n.searchCapacityLabel,
+                value: result.capacity > 0
+                    ? l10n.capacityTon(result.capacity)
+                    : '—',
               ),
               _MetaColumn(
                 icon: Icons.calendar_today_outlined,
-                label: 'Date',
+                label: l10n.resultsDateLabel,
                 value: result.availableDate,
               ),
             ],
@@ -620,10 +642,7 @@ class _ResultsSkeleton extends StatelessWidget {
     return AnimatedBuilder(
       animation: pulse,
       builder: (context, child) {
-        return Opacity(
-          opacity: 0.4 + (pulse.value * 0.4),
-          child: child,
-        );
+        return Opacity(opacity: 0.4 + (pulse.value * 0.4), child: child);
       },
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -777,7 +796,7 @@ class _PaginationBar extends StatelessWidget {
                   ),
                 )
               : Text(
-                  'Page $page of $totalPages',
+                  AppLocalizations.of(context)!.resultsPageOf(page, totalPages),
                   style: const TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w700,
@@ -836,8 +855,11 @@ class _ErrorState extends StatelessWidget {
         padding: const EdgeInsets.only(top: 40),
         child: Column(
           children: [
-            const Icon(Icons.error_outline,
-                size: 32, color: AppColors.textTertiary),
+            const Icon(
+              Icons.error_outline,
+              size: 32,
+              color: AppColors.textTertiary,
+            ),
             const SizedBox(height: 8),
             Text(
               message,

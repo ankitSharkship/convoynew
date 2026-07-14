@@ -1,0 +1,219 @@
+{
+  "@@locale": "en",
+
+  "appName": "Convoy",
+  "languageSelectTitle": "Select Language",
+  "languageEnglish": "English",
+  "languageHindi": "हिंदी",
+  "languageMarathi": "मराठी",
+  "somethingWentWrong": "Something went wrong",
+  "tryAgain": "Try again",
+  "cancel": "Cancel",
+  "delete": "Delete",
+  "ok": "OK",
+
+  "truckTypeOpenBody": "Open Body",
+  "truckTypeClosedBody": "Closed Body",
+  "truckTypeContainer20Ft": "Container 20ft",
+  "truckTypeContainer32Ft": "Container 32ft",
+  "truckTypeTipper": "Tipper",
+  "truckTypeSidewallTrailer": "Sidewall Trailer",
+  "truckTypeFlatBedTrailer": "Flat Bed Trailer",
+  "truckTypeBulker": "Bulker",
+  "truckTypeTanker": "Tanker",
+
+  "onboardingSkip": "Skip",
+  "onboardingNext": "Next",
+  "onboardingGetStarted": "Get Started",
+  "onboardingPage1Title": "Find & post trucks\nin seconds",
+  "onboardingPage1Subtitle": "A simpler home for truck availability — no more endless WhatsApp groups.",
+  "onboardingPage2Title": "No typing needed —\njust speak",
+  "onboardingPage2Subtitle": "Post your truck by voice in your own language. Built for the road.",
+  "onboardingPage3Title": "Call drivers &\nloads directly",
+  "onboardingPage3Subtitle": "See who has a truck, tap once, and the call connects. Simple.",
+
+  "phoneEnterNumberHint": "Enter Your Number",
+  "phoneContinueButton": "Continue with Mobile Number",
+
+  "otpTitle": "Enter the 4-digit code",
+  "otpSentTo": "Sent to +91 {phone}",
+  "@otpSentTo": {
+    "placeholders": { "phone": { "type": "String" } }
+  },
+  "otpHelperText": "Didn't receive it? Check the number and try resending.",
+  "otpResendIn": "Didn't get it? Resend in 0:{seconds}",
+  "@otpResendIn": {
+    "placeholders": { "seconds": { "type": "String" } }
+  },
+  "otpResendCode": "Resend code",
+
+  "callDialerHint": "Opens your phone dialer",
+  "callCalling": "Calling…",
+  "callConnected": "Connected · {duration}",
+  "@callConnected": {
+    "placeholders": { "duration": { "type": "String" } }
+  },
+  "callDisclaimer": "Convoy has no in-app calling. Tapping Call\nopens your phone dialer and logs it for your records.",
+
+  "homeHello": "Hello",
+  "homeHeroTitle": "Your truck is ready\nto earn 💰",
+  "homeHeroSubtitle": "Post now and get verified load requests instantly.",
+  "homeHeroButton": "Post Truck Now",
+  "homeQuickActions": "Quick Actions",
+  "homePostNewTruck": "Post New Truck",
+  "homePostNewTruckSubtitle": "Ready in 30 seconds",
+  "homeSearchTrucks": "Search Trucks",
+  "homeSearchTrucksSubtitle": "Find available vehicles",
+  "homeManageSection": "Manage Post & Searches",
+  "homeRecentPosts": "Recent Posts",
+  "homeRecentSearch": "Recent Search",
+  "homeNoRecentPosts": "No recent posts",
+  "homeNoRecentSearches": "No recent searches",
+  "homeRepost": "Repost",
+  "homeErrorPrefix": "Error: {error}",
+  "@homeErrorPrefix": {
+    "placeholders": { "error": { "type": "String" } }
+  },
+
+  "kycVerifyTitle": "Verify Aadhar Card",
+  "kycAadhaarHint": "XXXX XXXX XXXX",
+  "kycVerifyButton": "Verify Aadhar",
+  "kycPendingTitle": "Your KYC is Pending",
+  "kycPendingSubtitle": "We are verifying your details. Please complete\nyour KYC to continue using Sharkship services.",
+  "kycWhatsNext": "What happens next?",
+  "kycWhatsNextSubtitle": "We'll notify you as soon as your KYC is verified.",
+  "kycIdCardLabel": "KYC",
+  "kycIdCardBrand": "Sharkship",
+  "kycOtpHelperText": "OTP has been sent to your Aadhaar-linked mobile number. Please enter it to verify.",
+  "kycOtpVerifyButton": "Verify OTP",
+  "kycThankYou": "Thank You",
+  "kycSuccessMessage": "eKYC Process Successfully Completed",
+
+  "postScreenTitle": "Post your truck",
+  "postRouteSectionLabel": "ROUTE",
+  "postSelectTruckSectionLabel": "SELECT TRUCK",
+  "postOriginLabel": "From (current location)",
+  "postOriginHint": "Tap the locate button to detect",
+  "postGpsAutoDetected": "GPS Auto-detected",
+  "postDestinationLabel": "Destination {number}",
+  "@postDestinationLabel": {
+    "placeholders": { "number": { "type": "int" } }
+  },
+  "postDestinationHint": "Enter destination",
+  "postCouldNotLoadTrucks": "Could not load your trucks",
+  "postSelectTruckHint": "Select a truck",
+  "postAddNewTruck": "Add New Truck",
+  "postSubmitButton": "Post a Truck",
+  "postAddTruckSheetTitle": "Add a Truck",
+  "postTruckNumberLabel": "Truck Number",
+  "postTruckNumberHint": "e.g. MH04AB1234",
+  "postTruckTypeLabel": "Truck Type",
+  "postSelectTypeHint": "Select type",
+  "postCapacityLabel": "Capacity",
+  "postSelectCapacityHint": "Select capacity",
+  "postAddTruckButton": "Add Truck",
+
+  "postContactSectionTitle": "Who should we contact?",
+  "postContactMe": "Me",
+  "postContactSomeoneElse": "Someone else",
+  "postContactNameLabel": "Contact name",
+  "postContactNameHint": "Enter contact name",
+  "postContactNumberLabel": "Contact number",
+  "postContactNumberHint": "10-digit mobile number",
+  "postContactNumberError": "Enter a valid 10-digit mobile number",
+
+  "postSuccessTitle": "Your truck is posted!",
+  "postSuccessSubtitle": "Load owners near you can now see it and call you directly.",
+  "postSuccessTruckTypeLabel": "Truck type",
+  "postSuccessPickupLabel": "Pickup location",
+  "postSuccessGoToDashboard": "Go to Dashboard",
+  "postSuccessPostAnother": "Post another truck",
+
+  "myTrucksTitle": "My Trucks",
+  "myTrucksDeleteTitle": "Delete truck",
+  "myTrucksDeleteMessage": "Remove {vehicleNumber} from your trucks? This cannot be undone.",
+  "@myTrucksDeleteMessage": {
+    "placeholders": { "vehicleNumber": { "type": "String" } }
+  },
+  "myTrucksNoTrucks": "No trucks added yet",
+
+  "profileTitle": "Profile",
+  "profileLogoutTitle": "Logout",
+  "profileLogoutConfirm": "Are you sure you want to logout?",
+  "profileKycLabel": "KYC",
+  "profileKycVerified": "Verified",
+  "profileKycInReview": "In Review",
+  "profileKycRejected": "Rejected",
+  "profileKycPending": "Pending",
+  "profileMyVehicles": "My Vehicles",
+  "profileVehicleCount": "{count, plural, one{1 vehicle added} other{{count} vehicles added}}",
+  "@profileVehicleCount": {
+    "placeholders": { "count": { "type": "int" } }
+  },
+  "profileTerms": "Terms & Conditions",
+  "profilePrivacy": "Privacy & Policy",
+  "profileHelp": "Help & Support",
+  "profileHelpSubtitle": "Chat, call or email us",
+  "profileAccountStatusPrefix": "Account {status}",
+  "@profileAccountStatusPrefix": {
+    "placeholders": { "status": { "type": "String" } }
+  },
+  "profileAccountSuspended": "suspended",
+  "profileAccountBlocked": "blocked",
+  "profileAccountInactive": "inactive",
+
+  "searchTitle": "Search Trucks",
+  "searchSubtitle": "Find the right truck for your load",
+  "searchOriginLabel": "Origin",
+  "searchOriginHint": "Select Origin",
+  "searchDestinationLabel": "Destination",
+  "searchDestinationHint": "Select Destination",
+  "searchTruckTypeLabel": "Truck Type",
+  "searchSelectTruckHint": "Select Truck",
+  "searchCapacityLabel": "Capacity",
+  "searchSelectHint": "Select",
+  "searchFindTrucksButton": "Find Trucks",
+
+  "resultsTitle": "Search Results",
+  "resultsSearching": "Searching…",
+  "resultsFoundCount": "{count, plural, one{1 truck found} other{{count} trucks found}}",
+  "@resultsFoundCount": {
+    "placeholders": { "count": { "type": "int" } }
+  },
+  "resultsYourResults": "Your search results",
+  "resultsRunSearch": "Run a search to see results",
+  "resultsNoneNearby": "No trucks found nearby",
+  "resultsAnyOrigin": "Any origin",
+  "resultsAnyDestination": "Any destination",
+  "resultsOriginLabel": "ORIGIN",
+  "resultsDestinationLabel": "DESTINATION",
+  "resultsDateLabel": "Date",
+  "resultsAny": "Any",
+  "resultsCallDialerError": "Could not open the phone dialer",
+  "resultsCallNow": "Call Now",
+  "resultsPageOf": "Page {page} of {totalPages}",
+  "@resultsPageOf": {
+    "placeholders": {
+      "page": { "type": "int" },
+      "totalPages": { "type": "int" }
+    }
+  },
+  "resultsMutualCount": "{count} mutual",
+  "@resultsMutualCount": {
+    "placeholders": { "count": { "type": "int" } }
+  },
+
+  "navHome": "Home",
+  "navSearch": "Search",
+  "navProfile": "Profile",
+
+  "truckCardMoreDestinations": "+{count} more",
+  "@truckCardMoreDestinations": {
+    "placeholders": { "count": { "type": "int" } }
+  },
+
+  "capacityTon": "{capacity} Ton",
+  "@capacityTon": {
+    "placeholders": { "capacity": { "type": "int" } }
+  }
+}

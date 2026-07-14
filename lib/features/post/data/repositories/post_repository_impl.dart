@@ -16,13 +16,16 @@ class PostRepositoryImpl implements PostRepository {
     required List<LocationEntity> destinations,
     required LocationEntity currentLocation,
     required DateTime availableDate,
-  }) =>
-      _remote.submitPost(
-        userId: userId,
-        vehicleId: vehicleId,
-        origin: origin,
-        destinations: destinations,
-        currentLocation: currentLocation,
-        availableDate: availableDate,
-      );
+    String? contactName,
+    String? contactNumber,
+  }) => _remote.submitPost(
+    userId: userId,
+    vehicleId: vehicleId,
+    origin: origin,
+    destinations: destinations,
+    currentLocation: currentLocation,
+    availableDate: availableDate,
+    contactName: contactName,
+    contactNumber: contactNumber,
+  );
 }

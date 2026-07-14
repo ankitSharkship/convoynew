@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../core/constants/app_colors.dart';
+import '../../../../l10n/generated/app_localizations.dart';
+import '../../../../shared/widgets/language_switcher_button.dart';
 import '../state/onboarding_notifier.dart';
 
 class OnboardingScreen extends ConsumerStatefulWidget {
@@ -15,26 +17,28 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   final _pageController = PageController();
   int _currentPage = 0;
 
-  static const _pages = [
+  static const _pageCount = 3;
+
+  List<_OnboardingPage> _pages(AppLocalizations l10n) => [
     _OnboardingPage(
       icon: Icons.local_shipping_outlined,
-      title: 'Find & post trucks\nin seconds',
-      subtitle: 'A simpler home for truck availability — no more endless WhatsApp groups.',
+      title: l10n.onboardingPage1Title,
+      subtitle: l10n.onboardingPage1Subtitle,
     ),
     _OnboardingPage(
       icon: Icons.mic,
-      title: 'No typing needed —\njust speak',
-      subtitle: 'Post your truck by voice in your own language. Built for the road.',
+      title: l10n.onboardingPage2Title,
+      subtitle: l10n.onboardingPage2Subtitle,
     ),
     _OnboardingPage(
       icon: Icons.phone_in_talk_outlined,
-      title: 'Call drivers &\nloads directly',
-      subtitle: 'See who has a truck, tap once, and the call connects. Simple.',
+      title: l10n.onboardingPage3Title,
+      subtitle: l10n.onboardingPage3Subtitle,
     ),
   ];
 
   Future<void> _onNext() async {
-    if (_currentPage < _pages.length - 1) {
+    if (_currentPage < _pageCount - 1) {
       _pageController.nextPage(
         duration: const Duration(milliseconds: 300),
         curve: Curves.easeInOut,
@@ -58,6 +62,9 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    final pages = _pages(l10n);
+
     return Scaffold(
       backgroundColor: AppColors.primaryDark,
       body: SafeArea(
@@ -67,23 +74,34 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
               child: Row(
                 children: [
-                  const Icon(Icons.local_shipping, color: AppColors.white, size: 22),
+                  const Icon(
+                    Icons.local_shipping,
+                    color: AppColors.white,
+                    size: 22,
+                  ),
                   const SizedBox(width: 8),
-                  const Text(
-                    'Convoy',
-                    style: TextStyle(
+                  Text(
+                    l10n.appName,
+                    style: const TextStyle(
                       color: AppColors.white,
                       fontSize: 18,
                       fontWeight: FontWeight.w700,
                     ),
                   ),
                   const Spacer(),
-                  if (_currentPage < _pages.length - 1)
+                  const LanguageSwitcherButton(
+                    card: false,
+                    iconColor: AppColors.white,
+                  ),
+                  if (_currentPage < _pageCount - 1)
                     TextButton(
                       onPressed: _onSkip,
-                      child: const Text(
-                        'Skip',
-                        style: TextStyle(color: AppColors.white, fontSize: 14),
+                      child: Text(
+                        l10n.onboardingSkip,
+                        style: const TextStyle(
+                          color: AppColors.white,
+                          fontSize: 14,
+                        ),
                       ),
                     ),
                 ],
@@ -92,9 +110,9 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
             Expanded(
               child: PageView.builder(
                 controller: _pageController,
-                itemCount: _pages.length,
+                itemCount: pages.length,
                 onPageChanged: (i) => setState(() => _currentPage = i),
-                itemBuilder: (context, index) => _pages[index],
+                itemBuilder: (context, index) => pages[index],
               ),
             ),
             Padding(
@@ -102,7 +120,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: List.generate(
-                  _pages.length,
+                  _pageCount,
                   (i) => AnimatedContainer(
                     duration: const Duration(milliseconds: 250),
                     margin: const EdgeInsets.symmetric(horizontal: 4),
@@ -134,7 +152,9 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      _currentPage < _pages.length - 1 ? 'Next' : 'Get Started',
+                      _currentPage < _pageCount - 1
+                          ? l10n.onboardingNext
+                          : l10n.onboardingGetStarted,
                       style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w600,
@@ -146,19 +166,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 24),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  _LangChip(label: 'English', selected: true),
-                  const SizedBox(width: 8),
-                  _LangChip(label: 'हि', selected: false),
-                  const SizedBox(width: 8),
-                  _LangChip(label: 'मर', selected: false),
-                ],
-              ),
-            ),
+            const SizedBox(height: 24),
           ],
         ),
       ),
@@ -215,37 +223,6 @@ class _OnboardingPage extends StatelessWidget {
             ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class _LangChip extends StatelessWidget {
-  final String label;
-  final bool selected;
-
-  const _LangChip({required this.label, required this.selected});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      decoration: BoxDecoration(
-        color: selected
-            ? AppColors.white.withOpacity(0.2)
-            : Colors.transparent,
-        borderRadius: BorderRadius.circular(20),
-        border: Border.all(
-          color: AppColors.white.withOpacity(selected ? 0 : 0.3),
-        ),
-      ),
-      child: Text(
-        label,
-        style: TextStyle(
-          color: AppColors.white.withOpacity(selected ? 1 : 0.6),
-          fontSize: 13,
-          fontWeight: selected ? FontWeight.w600 : FontWeight.w400,
-        ),
       ),
     );
   }

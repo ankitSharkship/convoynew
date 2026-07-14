@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../core/constants/app_colors.dart';
 import '../../features/home/domain/entities/truck_listing_entity.dart';
+import '../../l10n/generated/app_localizations.dart';
+import '../utils/truck_type_i18n.dart';
 
 class TruckCard extends StatelessWidget {
   final TruckListingEntity truck;
@@ -10,7 +12,10 @@ class TruckCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final firstDest = truck.destinations.isNotEmpty ? truck.destinations.first : '';
+    final l10n = AppLocalizations.of(context)!;
+    final firstDest = truck.destinations.isNotEmpty
+        ? truck.destinations.first
+        : '';
     final extraCount = truck.destinations.length - 1;
 
     return Container(
@@ -32,11 +37,14 @@ class TruckCard extends StatelessWidget {
             padding: const EdgeInsets.fromLTRB(16, 14, 16, 12),
             child: Row(
               children: [
-                const Icon(Icons.local_shipping_outlined,
-                    size: 16, color: AppColors.textSecondary),
+                const Icon(
+                  Icons.local_shipping_outlined,
+                  size: 16,
+                  color: AppColors.textSecondary,
+                ),
                 const SizedBox(width: 6),
                 Text(
-                  truck.truckType,
+                  truckTypeLabel(context, truck.truckType),
                   style: const TextStyle(
                     fontSize: 13,
                     fontWeight: FontWeight.w600,
@@ -53,8 +61,11 @@ class TruckCard extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(width: 10),
-                const Icon(Icons.fitness_center,
-                    size: 14, color: AppColors.textSecondary),
+                const Icon(
+                  Icons.fitness_center,
+                  size: 14,
+                  color: AppColors.textSecondary,
+                ),
                 const SizedBox(width: 4),
                 Text(
                   truck.capacity,
@@ -83,8 +94,7 @@ class TruckCard extends StatelessWidget {
                       width: 22,
                       height: 22,
                       decoration: BoxDecoration(
-                        border: Border.all(
-                            color: AppColors.green, width: 2.5),
+                        border: Border.all(color: AppColors.green, width: 2.5),
                         shape: BoxShape.circle,
                       ),
                     ),
@@ -117,8 +127,11 @@ class TruckCard extends StatelessWidget {
                 // Destination
                 Row(
                   children: [
-                    const Icon(Icons.location_on,
-                        size: 22, color: AppColors.red),
+                    const Icon(
+                      Icons.location_on,
+                      size: 22,
+                      color: AppColors.red,
+                    ),
                     const SizedBox(width: 12),
                     Expanded(
                       child: Text(
@@ -133,15 +146,18 @@ class TruckCard extends StatelessWidget {
                     if (extraCount > 0)
                       Container(
                         padding: const EdgeInsets.symmetric(
-                            horizontal: 8, vertical: 3),
+                          horizontal: 8,
+                          vertical: 3,
+                        ),
                         decoration: BoxDecoration(
                           color: const Color(0xFFEEF5FC),
                           borderRadius: BorderRadius.circular(20),
                           border: Border.all(
-                              color: AppColors.primaryBlue.withValues(alpha: 0.3)),
+                            color: AppColors.primaryBlue.withValues(alpha: 0.3),
+                          ),
                         ),
                         child: Text(
-                          '+$extraCount more',
+                          l10n.truckCardMoreDestinations(extraCount),
                           style: const TextStyle(
                             fontSize: 11,
                             fontWeight: FontWeight.w600,
@@ -199,16 +215,22 @@ class TruckCard extends StatelessWidget {
                           ),
                           if (truck.isVerified) ...[
                             const SizedBox(width: 4),
-                            const Icon(Icons.verified,
-                                size: 13, color: AppColors.primaryBlue),
+                            const Icon(
+                              Icons.verified,
+                              size: 13,
+                              color: AppColors.primaryBlue,
+                            ),
                           ],
                         ],
                       ),
                       const SizedBox(height: 2),
                       Row(
                         children: [
-                          const Icon(Icons.star_rounded,
-                              size: 13, color: Color(0xFFF59E0B)),
+                          const Icon(
+                            Icons.star_rounded,
+                            size: 13,
+                            color: Color(0xFFF59E0B),
+                          ),
                           const SizedBox(width: 3),
                           Text(
                             truck.rating.toStringAsFixed(1),
@@ -230,7 +252,7 @@ class TruckCard extends StatelessWidget {
                             ),
                             const SizedBox(width: 6),
                             Text(
-                              '${truck.mutualConnections} mutual',
+                              l10n.resultsMutualCount(truck.mutualConnections),
                               style: const TextStyle(
                                 fontSize: 12,
                                 color: AppColors.textSecondary,
@@ -251,16 +273,18 @@ class TruckCard extends StatelessWidget {
                     backgroundColor: AppColors.primaryBlue,
                     foregroundColor: AppColors.white,
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 20, vertical: 10),
+                      horizontal: 20,
+                      vertical: 10,
+                    ),
                     minimumSize: Size.zero,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
                     elevation: 0,
                   ),
-                  child: const Text(
-                    'Call Now',
-                    style: TextStyle(
+                  child: Text(
+                    l10n.resultsCallNow,
+                    style: const TextStyle(
                       fontSize: 13,
                       fontWeight: FontWeight.w700,
                     ),

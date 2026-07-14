@@ -15,14 +15,13 @@ class SearchTrucksUseCase {
     required DateTime availableDate,
     required int page,
     required int? capacity,
-  }) =>
-      _repository.searchTrucks(
-        origin: origin,
-        destination: destination,
-        truckType: truckType,
-        radiusKm: radiusKm,
-        availableDate: availableDate,
-        page: page,
-        capacity: capacity,
-      );
+  }) => _repository.searchTrucks(
+    origin: origin,
+    destination: destination,
+    truckType: truckType,
+    radiusKm: radiusKm,
+    availableDate: availableDate,
+    page: page,
+    capacity: capacity,
+  );
 }

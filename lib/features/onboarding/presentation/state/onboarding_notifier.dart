@@ -10,7 +10,8 @@ part 'onboarding_notifier.g.dart';
 
 @riverpod
 OnboardingLocalDataSource onboardingLocalDataSource(
-    OnboardingLocalDataSourceRef ref) {
+  OnboardingLocalDataSourceRef ref,
+) {
   final prefs = ref.watch(sharedPreferencesProvider);
   return OnboardingLocalDataSourceImpl(prefs);
 }
@@ -22,13 +23,15 @@ OnboardingRepositoryImpl onboardingRepository(OnboardingRepositoryRef ref) {
 
 @riverpod
 CheckOnboardingSeenUseCase checkOnboardingSeenUseCase(
-    CheckOnboardingSeenUseCaseRef ref) {
+  CheckOnboardingSeenUseCaseRef ref,
+) {
   return CheckOnboardingSeenUseCase(ref.watch(onboardingRepositoryProvider));
 }
 
 @riverpod
 MarkOnboardingSeenUseCase markOnboardingSeenUseCase(
-    MarkOnboardingSeenUseCaseRef ref) {
+  MarkOnboardingSeenUseCaseRef ref,
+) {
   return MarkOnboardingSeenUseCase(ref.watch(onboardingRepositoryProvider));
 }
 

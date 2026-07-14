@@ -6,8 +6,18 @@ import '../datasources/profile_remote_datasource.dart';
 import '../models/profile_model.dart';
 
 const _months = [
-  'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-  'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
+  'Jan',
+  'Feb',
+  'Mar',
+  'Apr',
+  'May',
+  'Jun',
+  'Jul',
+  'Aug',
+  'Sep',
+  'Oct',
+  'Nov',
+  'Dec',
 ];
 
 class ProfileRepositoryImpl implements ProfileRepository {

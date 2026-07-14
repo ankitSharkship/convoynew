@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../core/constants/app_colors.dart';
+import '../../../../l10n/generated/app_localizations.dart';
 import '../../../../shared/widgets/borderless_input_decoration.dart';
 import '../state/kyc_notifier.dart';
 import '../widgets/kyc_hero_banner.dart';
@@ -42,6 +43,7 @@ class _KycScreenState extends ConsumerState<KycScreen> {
   Widget build(BuildContext context) {
     final state = ref.watch(kycNotifierProvider);
     final canSubmit = _digitsOnly.length == 12 && !state.sendingOtp;
+    final l10n = AppLocalizations.of(context)!;
 
     return Scaffold(
       backgroundColor: AppColors.background,
@@ -58,9 +60,9 @@ class _KycScreenState extends ConsumerState<KycScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
-                    'Verify Aadhar Card',
-                    style: TextStyle(
+                  Text(
+                    l10n.kycVerifyTitle,
+                    style: const TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.w700,
                       color: AppColors.textPrimary,
@@ -92,7 +94,7 @@ class _KycScreenState extends ConsumerState<KycScreen> {
                         _AadhaarGroupFormatter(),
                       ],
                       decoration: borderlessInputDecoration(
-                        hintText: 'XXXX XXXX XXXX',
+                        hintText: l10n.kycAadhaarHint,
                         hintStyle: const TextStyle(
                           color: AppColors.textTertiary,
                           fontWeight: FontWeight.normal,
@@ -144,12 +146,12 @@ class _KycScreenState extends ConsumerState<KycScreen> {
                                 color: AppColors.white,
                               ),
                             )
-                          : const Row(
+                          : Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  'Verify Aadhar',
-                                  style: TextStyle(
+                                  l10n.kycVerifyButton,
+                                  style: const TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.w700,
                                   ),

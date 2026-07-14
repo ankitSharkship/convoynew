@@ -6,5 +6,6 @@ class GetKycStatusUseCase {
 
   GetKycStatusUseCase(this._repository);
 
-  Future<KycStatusEntity> execute(String userId) => _repository.getStatus(userId);
+  Future<KycStatusEntity> execute(String userId) =>
+      _repository.getStatus(userId);
 }

@@ -15,6 +15,5 @@ class VehicleRepositoryImpl implements VehicleRepository {
   Future<void> deleteVehicle({
     required String userId,
     required String vehicleId,
-  }) =>
-      _remote.deleteVehicle(userId: userId, vehicleId: vehicleId);
+  }) => _remote.deleteVehicle(userId: userId, vehicleId: vehicleId);
 }

@@ -10,7 +10,9 @@ import '../../domain/usecases/get_vehicles_usecase.dart';
 part 'vehicle_notifier.g.dart';
 
 @riverpod
-VehicleRemoteDataSource vehicleRemoteDataSource(VehicleRemoteDataSourceRef ref) {
+VehicleRemoteDataSource vehicleRemoteDataSource(
+  VehicleRemoteDataSourceRef ref,
+) {
   return VehicleRemoteDataSourceImpl(ref.watch(dioProvider));
 }
 
@@ -42,10 +44,9 @@ class VehicleNotifier extends _$VehicleNotifier {
     final userId = await ref.read(tokenStorageProvider).getUserId();
     if (userId == null) throw const ApiException();
 
-    await ref.read(deleteVehicleUseCaseProvider).execute(
-          userId: userId,
-          vehicleId: vehicleId,
-        );
+    await ref
+        .read(deleteVehicleUseCaseProvider)
+        .execute(userId: userId, vehicleId: vehicleId);
 
     final current = await future;
     state = AsyncData(current.where((v) => v.id != vehicleId).toList());

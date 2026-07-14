@@ -2,6 +2,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../core/constants/app_colors.dart';
+import '../../../../l10n/generated/app_localizations.dart';
+import '../../../../shared/widgets/language_switcher_button.dart';
 
 class CallScreen extends StatefulWidget {
   final String driverName;
@@ -45,6 +47,8 @@ class _CallScreenState extends State<CallScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+
     return Scaffold(
       backgroundColor: AppColors.primaryDark,
       body: SafeArea(
@@ -55,11 +59,16 @@ class _CallScreenState extends State<CallScreen> {
               child: Row(
                 children: [
                   Text(
-                    'Opens your phone dialer',
+                    l10n.callDialerHint,
                     style: TextStyle(
                       color: AppColors.white.withOpacity(0.6),
                       fontSize: 12,
                     ),
+                  ),
+                  const Spacer(),
+                  const LanguageSwitcherButton(
+                    card: false,
+                    iconColor: AppColors.white,
                   ),
                 ],
               ),
@@ -113,7 +122,9 @@ class _CallScreenState extends State<CallScreen> {
                 ),
                 const SizedBox(width: 6),
                 Text(
-                  _seconds < 3 ? 'Calling…' : 'Connected · $_duration',
+                  _seconds < 3
+                      ? l10n.callCalling
+                      : l10n.callConnected(_duration),
                   style: TextStyle(
                     color: AppColors.white.withOpacity(0.8),
                     fontSize: 14,
@@ -123,7 +134,7 @@ class _CallScreenState extends State<CallScreen> {
             ),
             const SizedBox(height: 12),
             Text(
-              'Convoy has no in-app calling. Tapping Call\nopens your phone dialer and logs it for your records.',
+              l10n.callDisclaimer,
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: AppColors.white.withOpacity(0.45),
@@ -141,8 +152,11 @@ class _CallScreenState extends State<CallScreen> {
                   color: AppColors.red,
                   shape: BoxShape.circle,
                 ),
-                child: const Icon(Icons.call_end,
-                    color: AppColors.white, size: 32),
+                child: const Icon(
+                  Icons.call_end,
+                  color: AppColors.white,
+                  size: 32,
+                ),
               ),
             ),
             const SizedBox(height: 48),

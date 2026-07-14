@@ -11,11 +11,10 @@ class VerifyAadhaarOtpUseCase {
     required String refId,
     required String otp,
     required String aadhaarNumber,
-  }) =>
-      _repository.verifyAadhaarOtp(
-        userId: userId,
-        refId: refId,
-        otp: otp,
-        aadhaarNumber: aadhaarNumber,
-      );
+  }) => _repository.verifyAadhaarOtp(
+    userId: userId,
+    refId: refId,
+    otp: otp,
+    aadhaarNumber: aadhaarNumber,
+  );
 }

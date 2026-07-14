@@ -14,13 +14,16 @@ class SubmitPostUseCase {
     required List<LocationEntity> destinations,
     required LocationEntity currentLocation,
     required DateTime availableDate,
-  }) =>
-      _repository.submitPost(
-        userId: userId,
-        vehicleId: vehicleId,
-        origin: origin,
-        destinations: destinations,
-        currentLocation: currentLocation,
-        availableDate: availableDate,
-      );
+    String? contactName,
+    String? contactNumber,
+  }) => _repository.submitPost(
+    userId: userId,
+    vehicleId: vehicleId,
+    origin: origin,
+    destinations: destinations,
+    currentLocation: currentLocation,
+    availableDate: availableDate,
+    contactName: contactName,
+    contactNumber: contactNumber,
+  );
 }

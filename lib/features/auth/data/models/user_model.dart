@@ -16,30 +16,30 @@ class UserModel extends UserEntity {
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
-        id: json['id'] as String,
-        name: json['name'] as String,
-        phone: json['phone'] as String,
-        memberSince: json['memberSince'] as String,
-        rating: (json['rating'] as num).toDouble(),
-        totalPosts: json['totalPosts'] as int,
-        activePosts: json['activePosts'] as int,
-        mutualConnections: json['mutualConnections'] as int,
-        callsMade: json['callsMade'] as int,
-        responseRate: json['responseRate'] as int,
-      );
+    id: json['id'] as String,
+    name: json['name'] as String,
+    phone: json['phone'] as String,
+    memberSince: json['memberSince'] as String,
+    rating: (json['rating'] as num).toDouble(),
+    totalPosts: json['totalPosts'] as int,
+    activePosts: json['activePosts'] as int,
+    mutualConnections: json['mutualConnections'] as int,
+    callsMade: json['callsMade'] as int,
+    responseRate: json['responseRate'] as int,
+  );
 
   Map<String, dynamic> toJson() => {
-        'id': id,
-        'name': name,
-        'phone': phone,
-        'memberSince': memberSince,
-        'rating': rating,
-        'totalPosts': totalPosts,
-        'activePosts': activePosts,
-        'mutualConnections': mutualConnections,
-        'callsMade': callsMade,
-        'responseRate': responseRate,
-      };
+    'id': id,
+    'name': name,
+    'phone': phone,
+    'memberSince': memberSince,
+    'rating': rating,
+    'totalPosts': totalPosts,
+    'activePosts': activePosts,
+    'mutualConnections': mutualConnections,
+    'callsMade': callsMade,
+    'responseRate': responseRate,
+  };
 
   String toJsonString() => jsonEncode(toJson());
 

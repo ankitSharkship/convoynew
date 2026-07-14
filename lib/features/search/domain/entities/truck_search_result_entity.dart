@@ -69,6 +69,8 @@ class TruckSearchResultEntity {
   final String userName;
   final String? userPhoto;
   final String userMobile;
+  final String? contactName;
+  final String? contactNumber;
   final int mutualsCount;
   final List<String> mutualNames;
   final DateTime createdAt;
@@ -91,11 +93,28 @@ class TruckSearchResultEntity {
     required this.userName,
     this.userPhoto,
     required this.userMobile,
+    this.contactName,
+    this.contactNumber,
     required this.mutualsCount,
     required this.mutualNames,
     required this.createdAt,
     required this.expiresAt,
   });
+
+  /// The name to display and call for this listing — the designated
+  /// contact person if one was set when posting, otherwise the poster.
+  String get displayContactName =>
+      (contactName != null && contactName!.isNotEmpty)
+      ? contactName!
+      : userName;
+
+  String get displayContactNumber =>
+      (contactNumber != null && contactNumber!.isNotEmpty)
+      ? contactNumber!
+      : userMobile;
+
+  bool get hasAlternateContact =>
+      contactName != null && contactName!.isNotEmpty;
 }
 
 class TruckSearchResultPage {

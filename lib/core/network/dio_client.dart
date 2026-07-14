@@ -11,10 +11,7 @@ const _connectTimeout = Duration(seconds: 15);
 const _sendTimeout = Duration(seconds: 15);
 const _receiveTimeout = Duration(seconds: 15);
 
-const _unauthenticatedPaths = [
-  '/api/auth/send-otp',
-  '/api/auth/verify-otp',
-];
+const _unauthenticatedPaths = ['/api/auth/send-otp', '/api/auth/verify-otp'];
 
 @riverpod
 TokenStorage tokenStorage(TokenStorageRef ref) {
@@ -47,8 +44,9 @@ Dio dio(DioRef ref) {
         // logged out instead of silently retrying with a dead token.
         // Login itself is unauthenticated, so a 401 there (e.g. a wrong/
         // expired OTP) must not clear an unrelated, still-valid session.
-        final isUnauthenticatedEndpoint = _unauthenticatedPaths
-            .any((path) => error.requestOptions.path.contains(path));
+        final isUnauthenticatedEndpoint = _unauthenticatedPaths.any(
+          (path) => error.requestOptions.path.contains(path),
+        );
         if (error.response?.statusCode == 401 && !isUnauthenticatedEndpoint) {
           await storage.clear();
         }

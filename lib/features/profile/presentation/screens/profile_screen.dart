@@ -5,6 +5,8 @@ import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/network/api_exception.dart';
+import '../../../../l10n/generated/app_localizations.dart';
+import '../../../../shared/widgets/language_switcher_button.dart';
 import '../../../../shared/widgets/loader.dart';
 import '../../../auth/presentation/state/auth_notifier.dart';
 import '../../../post/presentation/state/vehicle_notifier.dart';
@@ -18,12 +20,14 @@ class ProfileScreen extends ConsumerWidget {
     final profileAsync = ref.watch(profileNotifierProvider);
     final vehicleCount =
         ref.watch(vehicleNotifierProvider).valueOrNull?.length ?? 0;
+    final l10n = AppLocalizations.of(context)!;
 
     return Scaffold(
       backgroundColor: AppColors.background,
       appBar: AppBar(
-        title: const Text('Profile'),
+        title: Text(l10n.profileTitle),
         backgroundColor: AppColors.white,
+        actions: const [LanguageSwitcherButton(card: false)],
       ),
       body: profileAsync.when(
         loading: () => const FullPageLoader(),
@@ -47,7 +51,7 @@ class ProfileScreen extends ConsumerWidget {
                 const SizedBox(height: 16),
                 OutlinedButton(
                   onPressed: () => ref.invalidate(profileNotifierProvider),
-                  child: const Text('Try again'),
+                  child: Text(l10n.tryAgain),
                 ),
               ],
             ),
@@ -84,18 +88,18 @@ class ProfileScreen extends ConsumerWidget {
             final confirmed = await showDialog<bool>(
               context: context,
               builder: (context) => AlertDialog(
-                title: const Text('Logout'),
-                content: const Text('Are you sure you want to logout?'),
+                title: Text(l10n.profileLogoutTitle),
+                content: Text(l10n.profileLogoutConfirm),
                 actions: [
                   TextButton(
                     onPressed: () => Navigator.pop(context, false),
-                    child: const Text('Cancel'),
+                    child: Text(l10n.cancel),
                   ),
                   TextButton(
                     onPressed: () => Navigator.pop(context, true),
-                    child: const Text(
-                      'Logout',
-                      style: TextStyle(color: AppColors.red),
+                    child: Text(
+                      l10n.profileLogoutTitle,
+                      style: const TextStyle(color: AppColors.red),
                     ),
                   ),
                 ],
@@ -148,6 +152,7 @@ class _ProfileContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final initials = name
         .split(' ')
         .where((w) => w.isNotEmpty)
@@ -236,16 +241,16 @@ class _ProfileContent extends StatelessWidget {
                     color: AppColors.textSecondary,
                   ),
                 ),
-                if (memberSince.isNotEmpty) ...[
-                  const SizedBox(height: 4),
-                  Text(
-                    'Member since $memberSince',
-                    style: const TextStyle(
-                      fontSize: 12,
-                      color: AppColors.textTertiary,
-                    ),
-                  ),
-                ],
+                // if (memberSince.isNotEmpty) ...[
+                //   const SizedBox(height: 4),
+                //   Text(
+                //     'Member since $memberSince',
+                //     style: const TextStyle(
+                //       fontSize: 12,
+                //       color: AppColors.textTertiary,
+                //     ),
+                //   ),
+                // ],
                 if (accountStatus != 'active') ...[
                   const SizedBox(height: 12),
                   Container(
@@ -267,7 +272,9 @@ class _ProfileContent extends StatelessWidget {
                         ),
                         const SizedBox(width: 6),
                         Text(
-                          'Account ${_accountStatusLabel(accountStatus)}',
+                          l10n.profileAccountStatusPrefix(
+                            _accountStatusLabel(l10n, accountStatus),
+                          ),
                           style: const TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.w600,
@@ -278,26 +285,27 @@ class _ProfileContent extends StatelessWidget {
                     ),
                   ),
                 ],
-                const SizedBox(height: 20),
-                Container(
-                  padding: const EdgeInsets.all(16),
-                  decoration: BoxDecoration(
-                    color: AppColors.primaryBlueLight,
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      _Stat(label: 'Rating', value: rating.toString()),
-                      _VertDivider(),
-                      _Stat(label: 'Total Posts', value: '$totalPosts'),
-                      _VertDivider(),
-                      _Stat(label: 'Calls Made', value: '$callsMade'),
-                      _VertDivider(),
-                      _Stat(label: 'Response\nRate', value: '$responseRate%'),
-                    ],
-                  ),
-                ),
+
+                // const SizedBox(height: 20),
+                // Container(
+                //   padding: const EdgeInsets.all(16),
+                //   decoration: BoxDecoration(
+                //     color: AppColors.primaryBlueLight,
+                //     borderRadius: BorderRadius.circular(12),
+                //   ),
+                //   child: Row(
+                //     mainAxisAlignment: MainAxisAlignment.spaceAround,
+                //     children: [
+                //       _Stat(label: 'Rating', value: rating.toString()),
+                //       _VertDivider(),
+                //       _Stat(label: 'Total Posts', value: '$totalPosts'),
+                //       _VertDivider(),
+                //       _Stat(label: 'Calls Made', value: '$callsMade'),
+                //       _VertDivider(),
+                //       _Stat(label: 'Response\nRate', value: '$responseRate%'),
+                //     ],
+                //   ),
+                // ),
               ],
             ),
           ),
@@ -308,35 +316,32 @@ class _ProfileContent extends StatelessWidget {
               children: [
                 _ProfileItem(
                   icon: Icons.verified_user_outlined,
-                  label: 'KYC',
-
-                  badge: _kycBadgeLabel(kycStatus),
+                  label: l10n.profileKycLabel,
+                  badge: _kycBadgeLabel(l10n, kycStatus),
                   badgeColor: _kycBadgeColor(kycStatus),
                 ),
                 _Divider(),
                 _ProfileItem(
                   icon: Icons.local_shipping_outlined,
-                  label: 'My Vehicles',
-                  sublabel: vehicleCount == 1
-                      ? '1 vehicle added'
-                      : '$vehicleCount vehicles added',
+                  label: l10n.profileMyVehicles,
+                  sublabel: l10n.profileVehicleCount(vehicleCount),
                   onTap: onTapVehicles,
                 ),
                 _Divider(),
                 _ProfileItem(
                   icon: Icons.description_outlined,
-                  label: 'Terms & Conditions',
+                  label: l10n.profileTerms,
                 ),
                 _Divider(),
                 _ProfileItem(
                   icon: Icons.privacy_tip_outlined,
-                  label: 'Privacy & Policy',
+                  label: l10n.profilePrivacy,
                 ),
                 _Divider(),
                 _ProfileItem(
                   icon: Icons.headset_mic_outlined,
-                  label: 'Help & Support',
-                  sublabel: 'Chat, call or email us',
+                  label: l10n.profileHelp,
+                  sublabel: l10n.profileHelpSubtitle,
                 ),
               ],
             ),
@@ -346,7 +351,7 @@ class _ProfileContent extends StatelessWidget {
             color: AppColors.white,
             child: _ProfileItem(
               icon: Icons.logout,
-              label: 'Logout',
+              label: l10n.profileLogoutTitle,
               iconColor: AppColors.red,
               labelColor: AppColors.red,
               onTap: onLogout,
@@ -359,28 +364,28 @@ class _ProfileContent extends StatelessWidget {
   }
 }
 
-String _kycBadgeLabel(String kycStatus) {
+String _kycBadgeLabel(AppLocalizations l10n, String kycStatus) {
   switch (kycStatus) {
     case 'approved':
     case 'verified':
-      return 'Verified';
+      return l10n.profileKycVerified;
     case 'in_review':
-      return 'In Review';
+      return l10n.profileKycInReview;
     case 'rejected':
-      return 'Rejected';
+      return l10n.profileKycRejected;
     default:
-      return 'Pending';
+      return l10n.profileKycPending;
   }
 }
 
-String _accountStatusLabel(String accountStatus) {
+String _accountStatusLabel(AppLocalizations l10n, String accountStatus) {
   switch (accountStatus) {
     case 'suspended':
-      return 'suspended';
+      return l10n.profileAccountSuspended;
     case 'blocked':
-      return 'blocked';
+      return l10n.profileAccountBlocked;
     case 'inactive':
-      return 'inactive';
+      return l10n.profileAccountInactive;
     default:
       return accountStatus;
   }

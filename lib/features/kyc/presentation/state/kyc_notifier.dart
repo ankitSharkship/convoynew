@@ -32,7 +32,8 @@ SendAadhaarOtpUseCase sendAadhaarOtpUseCase(SendAadhaarOtpUseCaseRef ref) {
 
 @riverpod
 VerifyAadhaarOtpUseCase verifyAadhaarOtpUseCase(
-    VerifyAadhaarOtpUseCaseRef ref) {
+  VerifyAadhaarOtpUseCaseRef ref,
+) {
   return VerifyAadhaarOtpUseCase(ref.watch(kycRepositoryProvider));
 }
 
@@ -84,10 +85,9 @@ class KycNotifier extends _$KycNotifier {
       final userId = await ref.read(tokenStorageProvider).getUserId();
       if (userId == null) throw const ApiException();
 
-      final result = await ref.read(sendAadhaarOtpUseCaseProvider).execute(
-            userId: userId,
-            aadhaarNumber: aadhaarNumber,
-          );
+      final result = await ref
+          .read(sendAadhaarOtpUseCaseProvider)
+          .execute(userId: userId, aadhaarNumber: aadhaarNumber);
       state = state.copyWith(
         sendingOtp: false,
         refId: result.refId,
@@ -113,7 +113,9 @@ class KycNotifier extends _$KycNotifier {
       final userId = await ref.read(tokenStorageProvider).getUserId();
       if (userId == null) throw const ApiException();
 
-      await ref.read(verifyAadhaarOtpUseCaseProvider).execute(
+      await ref
+          .read(verifyAadhaarOtpUseCaseProvider)
+          .execute(
             userId: userId,
             refId: refId,
             otp: otp,

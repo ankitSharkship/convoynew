@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../core/constants/app_colors.dart';
+import '../../../../l10n/generated/app_localizations.dart';
+import '../../../../shared/widgets/language_switcher_button.dart';
 import '../../../../shared/widgets/loader.dart';
 import '../../domain/entities/home_data_entity.dart';
 import '../../domain/entities/truck_listing_entity.dart';
@@ -23,7 +25,9 @@ class HomeScreen extends ConsumerWidget {
       backgroundColor: AppColors.primaryBlueLight,
       body: homeAsync.when(
         loading: () => const FullPageLoader(),
-        error: (e, _) => Center(child: Text('Error: $e')),
+        error: (e, _) => Center(
+          child: Text(AppLocalizations.of(context)!.homeErrorPrefix('$e')),
+        ),
         data: (data) => _HomeContent(data: data, userName: displayName),
       ),
     );
@@ -46,6 +50,7 @@ class _HomeContentState extends ConsumerState<_HomeContent> {
   @override
   Widget build(BuildContext context) {
     final firstName = widget.userName.split(' ').first;
+    final l10n = AppLocalizations.of(context)!;
 
     return SafeArea(
       child: CustomScrollView(
@@ -64,9 +69,9 @@ class _HomeContentState extends ConsumerState<_HomeContent> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Text(
-                              'Hello',
-                              style: TextStyle(
+                            Text(
+                              l10n.homeHello,
+                              style: const TextStyle(
                                 fontSize: 13,
                                 color: AppColors.textSecondary,
                               ),
@@ -83,7 +88,7 @@ class _HomeContentState extends ConsumerState<_HomeContent> {
                           ],
                         ),
                       ),
-                      const _IconButton(icon: Icons.translate),
+                      const LanguageSwitcherButton(),
                       // const SizedBox(width: 10),
                       // const _IconButton(
                       //   icon: Icons.notifications_none_rounded,
@@ -93,12 +98,14 @@ class _HomeContentState extends ConsumerState<_HomeContent> {
                   ),
                   const SizedBox(height: 20),
 
-                  _HeroBanner(onPostTap: () => navigateToPostTruck(context, ref)),
+                  _HeroBanner(
+                    onPostTap: () => navigateToPostTruck(context, ref),
+                  ),
                   const SizedBox(height: 24),
 
-                  const Text(
-                    'Quick Actions',
-                    style: TextStyle(
+                  Text(
+                    l10n.homeQuickActions,
+                    style: const TextStyle(
                       fontSize: 17,
                       fontWeight: FontWeight.w700,
                       color: AppColors.textPrimary,
@@ -112,8 +119,8 @@ class _HomeContentState extends ConsumerState<_HomeContent> {
                           icon: Icons.add,
                           iconColor: AppColors.primaryBlue,
                           iconBackground: AppColors.primaryBlueLight,
-                          title: 'Post New Truck',
-                          subtitle: 'Ready in 30 seconds',
+                          title: l10n.homePostNewTruck,
+                          subtitle: l10n.homePostNewTruckSubtitle,
                           onTap: () => navigateToPostTruck(context, ref),
                         ),
                       ),
@@ -125,8 +132,8 @@ class _HomeContentState extends ConsumerState<_HomeContent> {
                           iconBackground: AppColors.primaryDark.withValues(
                             alpha: 0.1,
                           ),
-                          title: 'Search Trucks',
-                          subtitle: 'Find available vehicles',
+                          title: l10n.homeSearchTrucks,
+                          subtitle: l10n.homeSearchTrucksSubtitle,
                           onTap: () => context.go('/search'),
                         ),
                       ),
@@ -134,9 +141,9 @@ class _HomeContentState extends ConsumerState<_HomeContent> {
                   ),
                   const SizedBox(height: 24),
 
-                  const Text(
-                    'Manage Post & Searches',
-                    style: TextStyle(
+                  Text(
+                    l10n.homeManageSection,
+                    style: const TextStyle(
                       fontSize: 17,
                       fontWeight: FontWeight.w700,
                       color: AppColors.textPrimary,
@@ -162,12 +169,12 @@ class _HomeContentState extends ConsumerState<_HomeContent> {
                     child: Row(
                       children: [
                         _TabItem(
-                          label: 'Recent Posts',
+                          label: l10n.homeRecentPosts,
                           selected: _selectedTab == 0,
                           onTap: () => setState(() => _selectedTab = 0),
                         ),
                         _TabItem(
-                          label: 'Recent Search',
+                          label: l10n.homeRecentSearch,
                           selected: _selectedTab == 1,
                           onTap: () => setState(() => _selectedTab = 1),
                         ),
@@ -187,52 +194,6 @@ class _HomeContentState extends ConsumerState<_HomeContent> {
                 ? _RecentPostsSliver(posts: widget.data.recentPosts)
                 : _RecentSearchSliver(trucks: widget.data.nearbyTrucks),
           ),
-        ],
-      ),
-    );
-  }
-}
-
-// ─── Header icon button ─────────────────────────────────────────────────────
-
-class _IconButton extends StatelessWidget {
-  final IconData icon;
-  final bool showBadge;
-
-  const _IconButton({required this.icon, this.showBadge = false});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 40,
-      height: 40,
-      decoration: BoxDecoration(
-        color: AppColors.white,
-        borderRadius: BorderRadius.circular(12),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.04),
-            blurRadius: 8,
-            offset: const Offset(0, 2),
-          ),
-        ],
-      ),
-      child: Stack(
-        children: [
-          Center(child: Icon(icon, size: 20, color: AppColors.textPrimary)),
-          if (showBadge)
-            Positioned(
-              top: 9,
-              right: 9,
-              child: Container(
-                width: 8,
-                height: 8,
-                decoration: const BoxDecoration(
-                  color: AppColors.red,
-                  shape: BoxShape.circle,
-                ),
-              ),
-            ),
         ],
       ),
     );
@@ -273,9 +234,9 @@ class _HeroBanner extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
-                    'Your truck is ready\nto earn 💰',
-                    style: TextStyle(
+                  Text(
+                    AppLocalizations.of(context)!.homeHeroTitle,
+                    style: const TextStyle(
                       color: AppColors.white,
                       fontSize: 18,
                       fontWeight: FontWeight.w700,
@@ -283,9 +244,9 @@ class _HeroBanner extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 8),
-                  const Text(
-                    'Post now and get verified load requests instantly.',
-                    style: TextStyle(
+                  Text(
+                    AppLocalizations.of(context)!.homeHeroSubtitle,
+                    style: const TextStyle(
                       color: Colors.white70,
                       fontSize: 12,
                       height: 1.3,
@@ -298,12 +259,15 @@ class _HeroBanner extends StatelessWidget {
                       minimumSize: const Size(0, 40),
                       padding: const EdgeInsets.symmetric(horizontal: 16),
                     ),
-                    child: const Row(
+                    child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Text('Post Truck Now', style: TextStyle(fontSize: 13)),
-                        SizedBox(width: 6),
-                        Icon(Icons.arrow_forward, size: 16),
+                        Text(
+                          AppLocalizations.of(context)!.homeHeroButton,
+                          style: const TextStyle(fontSize: 13),
+                        ),
+                        const SizedBox(width: 6),
+                        const Icon(Icons.arrow_forward, size: 16),
                       ],
                     ),
                   ),
@@ -439,8 +403,10 @@ class _RecentPostsSliver extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (posts.isEmpty) {
-      return const SliverToBoxAdapter(
-        child: Center(child: Text('No recent posts')),
+      return SliverToBoxAdapter(
+        child: Center(
+          child: Text(AppLocalizations.of(context)!.homeNoRecentPosts),
+        ),
       );
     }
 
@@ -505,7 +471,10 @@ class _PostCard extends StatelessWidget {
               minimumSize: const Size(0, 36),
               padding: const EdgeInsets.symmetric(horizontal: 18),
             ),
-            child: const Text('Repost', style: TextStyle(fontSize: 13)),
+            child: Text(
+              AppLocalizations.of(context)!.homeRepost,
+              style: const TextStyle(fontSize: 13),
+            ),
           ),
         ],
       ),
@@ -525,8 +494,10 @@ class _RecentSearchSliver extends StatelessWidget {
     final list = trucks.take(3).toList();
 
     if (list.isEmpty) {
-      return const SliverToBoxAdapter(
-        child: Center(child: Text('No recent searches')),
+      return SliverToBoxAdapter(
+        child: Center(
+          child: Text(AppLocalizations.of(context)!.homeNoRecentSearches),
+        ),
       );
     }
 

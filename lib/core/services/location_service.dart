@@ -63,9 +63,12 @@ class LocationService {
 
     final place = placemarks.first;
     final city = place.locality?.isNotEmpty == true ? place.locality : null;
-    final state =
-        place.administrativeArea?.isNotEmpty == true ? place.administrativeArea : null;
-    final pincode = place.postalCode?.isNotEmpty == true ? place.postalCode : null;
+    final state = place.administrativeArea?.isNotEmpty == true
+        ? place.administrativeArea
+        : null;
+    final pincode = place.postalCode?.isNotEmpty == true
+        ? place.postalCode
+        : null;
 
     final nameParts = [city, state].whereType<String>().toList();
     final name = nameParts.isNotEmpty

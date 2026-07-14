@@ -13,13 +13,13 @@ class LocationModel extends LocationEntity {
   });
 
   factory LocationModel.fromJson(Map<String, dynamic> json) => LocationModel(
-        id: json['_id'] as String,
-        name: json['name'] as String,
-        lat: (json['lat'] as num).toDouble(),
-        lng: (json['lng'] as num).toDouble(),
-        type: json['type'] as String? ?? 'google',
-        pincode: json['pincode'] as String?,
-        city: json['city'] as String?,
-        state: json['state'] as String?,
-      );
+    id: json['_id'] as String,
+    name: json['name'] as String,
+    lat: (json['lat'] as num).toDouble(),
+    lng: (json['lng'] as num).toDouble(),
+    type: json['type'] as String? ?? 'google',
+    pincode: json['pincode'] as String?,
+    city: json['city'] as String?,
+    state: json['state'] as String?,
+  );
 }

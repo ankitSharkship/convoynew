@@ -12,7 +12,9 @@ import '../../domain/usecases/update_profile_usecase.dart';
 part 'profile_notifier.g.dart';
 
 @riverpod
-ProfileRemoteDataSource profileRemoteDataSource(ProfileRemoteDataSourceRef ref) {
+ProfileRemoteDataSource profileRemoteDataSource(
+  ProfileRemoteDataSourceRef ref,
+) {
   return ProfileRemoteDataSourceImpl(ref.watch(dioProvider));
 }
 
@@ -37,13 +39,16 @@ GetProfileUseCase getProfileUseCase(GetProfileUseCaseRef ref) {
 }
 
 @riverpod
-GetCachedProfileUseCase getCachedProfileUseCase(GetCachedProfileUseCaseRef ref) {
+GetCachedProfileUseCase getCachedProfileUseCase(
+  GetCachedProfileUseCaseRef ref,
+) {
   return GetCachedProfileUseCase(ref.watch(profileRepositoryProvider));
 }
 
 @riverpod
 UpdateProfilePhotoUseCase updateProfilePhotoUseCase(
-    UpdateProfilePhotoUseCaseRef ref) {
+  UpdateProfilePhotoUseCaseRef ref,
+) {
   return UpdateProfilePhotoUseCase(ref.watch(profileRepositoryProvider));
 }
 

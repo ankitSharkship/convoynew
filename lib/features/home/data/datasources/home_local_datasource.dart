@@ -8,9 +8,6 @@ class HomeLocalDataSourceImpl implements HomeLocalDataSource {
   @override
   Future<HomeDataEntity> getHomeData() async {
     await Future.delayed(const Duration(milliseconds: 400));
-    return const HomeDataEntity(
-      nearbyTrucks: [],
-      recentPosts: [],
-    );
+    return const HomeDataEntity(nearbyTrucks: [], recentPosts: []);
   }
 }

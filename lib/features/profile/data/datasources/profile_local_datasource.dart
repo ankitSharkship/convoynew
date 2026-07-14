@@ -41,7 +41,8 @@ class ProfileLocalDataSourceImpl implements ProfileLocalDataSource {
     if (raw == null) return null;
     try {
       return ProfileModel.fromCacheJson(
-          jsonDecode(raw) as Map<String, dynamic>);
+        jsonDecode(raw) as Map<String, dynamic>,
+      );
     } catch (_) {
       return null;
     }

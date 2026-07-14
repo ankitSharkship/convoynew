@@ -67,7 +67,8 @@ class SearchRemoteDataSourceImpl implements SearchRemoteDataSource {
         },
       );
       return truckSearchResultPageFromJson(
-          response.data as Map<String, dynamic>);
+        response.data as Map<String, dynamic>,
+      );
     } on DioException catch (e) {
       throw ApiException.fromDioException(e);
     } catch (_) {

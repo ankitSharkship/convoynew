@@ -9,6 +9,8 @@ class PostEntity {
   final String availableDate;
   final String status;
   final DateTime createdAt;
+  final String? contactName;
+  final String? contactNumber;
 
   const PostEntity({
     required this.id,
@@ -21,5 +23,7 @@ class PostEntity {
     required this.availableDate,
     required this.status,
     required this.createdAt,
+    this.contactName,
+    this.contactNumber,
   });
 }

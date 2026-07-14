@@ -55,11 +55,11 @@ GoRouter appRouter(AppRouterRef ref) {
           GoRoute(
             path: 'success',
             builder: (context, state) {
-              final extra = state.extra as Map<String, String>? ?? {};
+              final extra = state.extra as Map<String, dynamic>? ?? {};
               return PostSuccessScreen(
-                truckType: extra['truckType'] ?? 'Open Body',
-                capacity: extra['capacity'] ?? '9 Ton',
-                origin: extra['origin'] ?? 'Bhiwandi, MH',
+                truckType: extra['truckType'] as String? ?? 'Open Body',
+                capacity: extra['capacity'] as int? ?? 9,
+                origin: extra['origin'] as String? ?? 'Bhiwandi, MH',
               );
             },
           ),
@@ -77,10 +77,7 @@ GoRouter appRouter(AppRouterRef ref) {
         path: '/kyc',
         builder: (_, __) => const KycScreen(),
         routes: [
-          GoRoute(
-            path: 'otp',
-            builder: (_, __) => const KycOtpScreen(),
-          ),
+          GoRoute(path: 'otp', builder: (_, __) => const KycOtpScreen()),
         ],
       ),
       StatefulShellRoute.indexedStack(

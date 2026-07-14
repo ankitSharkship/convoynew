@@ -3,7 +3,10 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../core/constants/app_colors.dart';
+import '../../../../l10n/generated/app_localizations.dart';
+import '../../../../shared/utils/phone_number_formatter.dart';
 import '../../../../shared/widgets/borderless_input_decoration.dart';
+import '../../../../shared/widgets/language_switcher_button.dart';
 import '../state/auth_notifier.dart';
 
 class PhoneScreen extends ConsumerStatefulWidget {
@@ -48,6 +51,7 @@ class _PhoneScreenState extends ConsumerState<PhoneScreen> {
     final authState = ref.watch(authNotifierProvider);
     final isLoading = authState is AuthLoading;
     final phoneDigits = _controller.text.replaceAll(' ', '');
+    final l10n = AppLocalizations.of(context)!;
 
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle.light,
@@ -57,10 +61,24 @@ class _PhoneScreenState extends ConsumerState<PhoneScreen> {
           children: [
             Expanded(
               flex: 5,
-              child: Image.asset(
-                'assets/images/truck4.png',
-                width: double.infinity,
-                fit: BoxFit.cover,
+              child: Stack(
+                children: [
+                  Image.asset(
+                    'assets/images/truck4.png',
+                    width: double.infinity,
+                    height: double.infinity,
+                    fit: BoxFit.cover,
+                  ),
+                  SafeArea(
+                    child: Padding(
+                      padding: const EdgeInsets.all(16),
+                      child: const Align(
+                        alignment: Alignment.topRight,
+                        child: LanguageSwitcherButton(),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
             Expanded(
@@ -110,12 +128,12 @@ class _PhoneScreenState extends ConsumerState<PhoneScreen> {
                                 ),
                                 decoration: borderlessInputDecoration(
                                   isDense: true,
-                                  hintText: 'Enter Your Number',
+                                  hintText: l10n.phoneEnterNumberHint,
                                   hintStyle: const TextStyle(
                                     color: AppColors.textTertiary,
                                   ),
                                 ),
-                                inputFormatters: [_PhoneNumberFormatter()],
+                                inputFormatters: [PhoneNumberFormatter()],
                                 onChanged: (_) => setState(() {}),
                               ),
                             ),
@@ -136,9 +154,9 @@ class _PhoneScreenState extends ConsumerState<PhoneScreen> {
                                   strokeWidth: 2,
                                 ),
                               )
-                            : const Row(
+                            : Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
-                                children: [Text('Continue with Mobile Number')],
+                                children: [Text(l10n.phoneContinueButton)],
                               ),
                       ),
                       if (authState is AuthError) ...[
@@ -169,26 +187,6 @@ class _PhoneScreenState extends ConsumerState<PhoneScreen> {
           ],
         ),
       ),
-    );
-  }
-}
-
-class _PhoneNumberFormatter extends TextInputFormatter {
-  @override
-  TextEditingValue formatEditUpdate(
-    TextEditingValue oldValue,
-    TextEditingValue newValue,
-  ) {
-    final digits = newValue.text.replaceAll(RegExp(r'\D'), '');
-    final limited = digits.length > 10 ? digits.substring(0, 10) : digits;
-    final buffer = StringBuffer();
-    for (var i = 0; i < limited.length; i++) {
-      if (i == 5) buffer.write(' ');
-      buffer.write(limited[i]);
-    }
-    return TextEditingValue(
-      text: buffer.toString(),
-      selection: TextSelection.collapsed(offset: buffer.length),
     );
   }
 }

@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../core/constants/app_colors.dart';
+import '../../../../l10n/generated/app_localizations.dart';
+import '../../../../shared/utils/truck_type_i18n.dart';
+import '../../../../shared/widgets/language_switcher_button.dart';
 import '../../../kyc/presentation/navigation/post_truck_gate.dart';
 
 class PostSuccessScreen extends ConsumerWidget {
   final String truckType;
-  final String capacity;
+  final int capacity;
   final String origin;
 
   const PostSuccessScreen({
@@ -18,6 +21,7 @@ class PostSuccessScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       backgroundColor: AppColors.white,
       body: SafeArea(
@@ -25,6 +29,10 @@ class PostSuccessScreen extends ConsumerWidget {
           padding: const EdgeInsets.symmetric(horizontal: 24),
           child: Column(
             children: [
+              const Align(
+                alignment: Alignment.topRight,
+                child: LanguageSwitcherButton(),
+              ),
               const Spacer(),
               Container(
                 width: 80,
@@ -33,13 +41,16 @@ class PostSuccessScreen extends ConsumerWidget {
                   color: AppColors.greenLight,
                   shape: BoxShape.circle,
                 ),
-                child: const Icon(Icons.check_circle,
-                    size: 48, color: AppColors.green),
+                child: const Icon(
+                  Icons.check_circle,
+                  size: 48,
+                  color: AppColors.green,
+                ),
               ),
               const SizedBox(height: 24),
-              const Text(
-                'Your truck is posted!',
-                style: TextStyle(
+              Text(
+                l10n.postSuccessTitle,
+                style: const TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.w700,
                   color: AppColors.textPrimary,
@@ -48,8 +59,8 @@ class PostSuccessScreen extends ConsumerWidget {
               ),
               const SizedBox(height: 8),
               Text(
-                'Load owners near you can now see it and call you directly.',
-                style: TextStyle(
+                l10n.postSuccessSubtitle,
+                style: const TextStyle(
                   fontSize: 14,
                   color: AppColors.textSecondary,
                   height: 1.5,
@@ -65,11 +76,20 @@ class PostSuccessScreen extends ConsumerWidget {
                 ),
                 child: Column(
                   children: [
-                    _DetailRow(label: 'Truck type', value: truckType),
+                    _DetailRow(
+                      label: l10n.postSuccessTruckTypeLabel,
+                      value: truckTypeLabel(context, truckType),
+                    ),
                     const SizedBox(height: 10),
-                    _DetailRow(label: 'Capacity', value: capacity),
+                    _DetailRow(
+                      label: l10n.postCapacityLabel,
+                      value: capacity > 0 ? l10n.capacityTon(capacity) : '—',
+                    ),
                     const SizedBox(height: 10),
-                    _DetailRow(label: 'Pickup location', value: origin),
+                    _DetailRow(
+                      label: l10n.postSuccessPickupLabel,
+                      value: origin,
+                    ),
                   ],
                 ),
               ),
@@ -77,12 +97,12 @@ class PostSuccessScreen extends ConsumerWidget {
               ElevatedButton.icon(
                 onPressed: () => context.go('/home'),
                 icon: const Icon(Icons.search, size: 18),
-                label: const Text('Go to Dashboard'),
+                label: Text(l10n.postSuccessGoToDashboard),
               ),
               const SizedBox(height: 12),
               TextButton(
                 onPressed: () => navigateToPostTruck(context, ref),
-                child: const Text('Post another truck'),
+                child: Text(l10n.postSuccessPostAnother),
               ),
               const SizedBox(height: 24),
             ],
@@ -106,10 +126,7 @@ class _DetailRow extends StatelessWidget {
       children: [
         Text(
           label,
-          style: const TextStyle(
-            fontSize: 13,
-            color: AppColors.textSecondary,
-          ),
+          style: const TextStyle(fontSize: 13, color: AppColors.textSecondary),
         ),
         Text(
           value,

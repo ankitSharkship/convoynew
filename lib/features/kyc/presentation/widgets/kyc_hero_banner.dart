@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../../core/constants/app_colors.dart';
+import '../../../../l10n/generated/app_localizations.dart';
+import '../../../../shared/widgets/language_switcher_button.dart';
 
 class KycHeroBanner extends StatelessWidget {
   final VoidCallback onBack;
@@ -8,6 +10,7 @@ class KycHeroBanner extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Container(
       width: double.infinity,
       decoration: const BoxDecoration(
@@ -33,25 +36,29 @@ class KycHeroBanner extends StatelessWidget {
                     onPressed: onBack,
                     icon: const Icon(Icons.arrow_back, color: AppColors.white),
                   ),
+                  const Spacer(),
+                  const LanguageSwitcherButton(
+                    card: false,
+                    iconColor: AppColors.white,
+                  ),
                 ],
               ),
               const SizedBox(height: 4),
               const _KycIdCard(),
               const SizedBox(height: 20),
-              const Text(
-                'Your KYC is Pending',
-                style: TextStyle(
+              Text(
+                l10n.kycPendingTitle,
+                style: const TextStyle(
                   color: AppColors.white,
                   fontSize: 20,
                   fontWeight: FontWeight.w700,
                 ),
               ),
               const SizedBox(height: 6),
-              const Text(
-                'We are verifying your details. Please complete\n'
-                'your KYC to continue using Sharkship services.',
+              Text(
+                l10n.kycPendingSubtitle,
                 textAlign: TextAlign.center,
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.white70,
                   fontSize: 12,
                   height: 1.4,
@@ -74,25 +81,28 @@ class KycHeroBanner extends StatelessWidget {
                         color: AppColors.primaryBlue.withValues(alpha: 0.12),
                         shape: BoxShape.circle,
                       ),
-                      child: const Icon(Icons.access_time,
-                          size: 16, color: AppColors.primaryBlue),
+                      child: const Icon(
+                        Icons.access_time,
+                        size: 16,
+                        color: AppColors.primaryBlue,
+                      ),
                     ),
                     const SizedBox(width: 12),
-                    const Expanded(
+                    Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'What happens next?',
-                            style: TextStyle(
+                            l10n.kycWhatsNext,
+                            style: const TextStyle(
                               fontSize: 13,
                               fontWeight: FontWeight.w700,
                               color: AppColors.textPrimary,
                             ),
                           ),
                           Text(
-                            "We'll notify you as soon as your KYC is verified.",
-                            style: TextStyle(
+                            l10n.kycWhatsNextSubtitle,
+                            style: const TextStyle(
                               fontSize: 11,
                               color: AppColors.textSecondary,
                             ),
@@ -116,6 +126,7 @@ class _KycIdCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return SizedBox(
       width: 220,
       height: 130,
@@ -143,14 +154,16 @@ class _KycIdCard extends StatelessWidget {
                   children: [
                     Container(
                       padding: const EdgeInsets.symmetric(
-                          horizontal: 10, vertical: 3),
+                        horizontal: 10,
+                        vertical: 3,
+                      ),
                       decoration: BoxDecoration(
                         color: AppColors.primaryDark,
                         borderRadius: BorderRadius.circular(4),
                       ),
-                      child: const Text(
-                        'KYC',
-                        style: TextStyle(
+                      child: Text(
+                        l10n.kycIdCardLabel,
+                        style: const TextStyle(
                           color: AppColors.white,
                           fontSize: 11,
                           fontWeight: FontWeight.w700,
@@ -159,11 +172,14 @@ class _KycIdCard extends StatelessWidget {
                     ),
                     Row(
                       children: [
-                        const Icon(Icons.local_shipping,
-                            size: 12, color: AppColors.primaryBlue),
+                        const Icon(
+                          Icons.local_shipping,
+                          size: 12,
+                          color: AppColors.primaryBlue,
+                        ),
                         const SizedBox(width: 3),
                         Text(
-                          'Sharkship',
+                          l10n.kycIdCardBrand,
                           style: TextStyle(
                             fontSize: 10,
                             fontWeight: FontWeight.w700,
@@ -186,8 +202,11 @@ class _KycIdCard extends StatelessWidget {
                         color: AppColors.chipBackground,
                         borderRadius: BorderRadius.circular(8),
                       ),
-                      child: const Icon(Icons.person,
-                          size: 20, color: AppColors.textTertiary),
+                      child: const Icon(
+                        Icons.person,
+                        size: 20,
+                        color: AppColors.textTertiary,
+                      ),
                     ),
                     const SizedBox(width: 10),
                     Expanded(
@@ -218,8 +237,11 @@ class _KycIdCard extends StatelessWidget {
                 shape: BoxShape.circle,
                 border: Border.all(color: AppColors.red, width: 2),
               ),
-              child: const Icon(Icons.priority_high,
-                  size: 18, color: AppColors.red),
+              child: const Icon(
+                Icons.priority_high,
+                size: 18,
+                color: AppColors.red,
+              ),
             ),
           ),
         ],

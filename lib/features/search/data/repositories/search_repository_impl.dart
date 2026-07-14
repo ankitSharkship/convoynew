@@ -21,14 +21,13 @@ class SearchRepositoryImpl implements SearchRepository {
     required DateTime availableDate,
     required int page,
     required int? capacity,
-  }) =>
-      _remote.searchTrucks(
-        origin: origin,
-        destination: destination,
-        truckType: truckType,
-        radiusKm: radiusKm,
-        availableDate: availableDate,
-        page: page,
-        capacity: capacity,
-      );
+  }) => _remote.searchTrucks(
+    origin: origin,
+    destination: destination,
+    truckType: truckType,
+    radiusKm: radiusKm,
+    availableDate: availableDate,
+    page: page,
+    capacity: capacity,
+  );
 }

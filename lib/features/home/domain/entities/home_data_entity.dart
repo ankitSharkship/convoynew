@@ -4,10 +4,7 @@ class HomeDataEntity {
   final List<TruckListingEntity> nearbyTrucks;
   final List<RecentPostEntity> recentPosts;
 
-  const HomeDataEntity({
-    required this.nearbyTrucks,
-    required this.recentPosts,
-  });
+  const HomeDataEntity({required this.nearbyTrucks, required this.recentPosts});
 }
 
 class RecentPostEntity {

@@ -79,11 +79,16 @@ class PostError extends PostState {
   const PostError(this.message);
 }
 
+enum ContactMode { me, someoneElse }
+
 class PostFormState {
   final LocationEntity? origin;
   final bool originLocating;
   final List<DestinationField> destinations;
   final String? selectedVehicleId;
+  final ContactMode contactMode;
+  final String contactName;
+  final String contactNumber;
   final PostState submission;
 
   const PostFormState({
@@ -91,16 +96,26 @@ class PostFormState {
     this.originLocating = false,
     this.destinations = const [DestinationField()],
     this.selectedVehicleId,
+    this.contactMode = ContactMode.me,
+    this.contactName = '',
+    this.contactNumber = '',
     this.submission = const PostIdle(),
   });
 
   bool get canAddDestination => destinations.length < _maxDestinations;
+
+  bool get contactNumberValid => contactNumber.length == 10;
+
+  bool get contactValid =>
+      contactMode == ContactMode.me ||
+      (contactName.trim().isNotEmpty && contactNumberValid);
 
   bool get canSubmit =>
       origin != null &&
       destinations.isNotEmpty &&
       destinations.first.location != null &&
       selectedVehicleId != null &&
+      contactValid &&
       submission is! PostSubmitting;
 
   PostFormState copyWith({
@@ -109,6 +124,9 @@ class PostFormState {
     bool? originLocating,
     List<DestinationField>? destinations,
     String? selectedVehicleId,
+    ContactMode? contactMode,
+    String? contactName,
+    String? contactNumber,
     PostState? submission,
   }) {
     return PostFormState(
@@ -116,6 +134,9 @@ class PostFormState {
       originLocating: originLocating ?? this.originLocating,
       destinations: destinations ?? this.destinations,
       selectedVehicleId: selectedVehicleId ?? this.selectedVehicleId,
+      contactMode: contactMode ?? this.contactMode,
+      contactName: contactName ?? this.contactName,
+      contactNumber: contactNumber ?? this.contactNumber,
       submission: submission ?? this.submission,
     );
   }
@@ -145,7 +166,9 @@ class PostNotifier extends _$PostNotifier {
   Future<void> useCurrentOriginLocation() async {
     state = state.copyWith(originLocating: true);
     try {
-      final current = await ref.read(locationServiceProvider).getCurrentLocation();
+      final current = await ref
+          .read(locationServiceProvider)
+          .getCurrentLocation();
       state = state.copyWith(origin: _toLocationEntity(current));
     } finally {
       state = state.copyWith(originLocating: false);
@@ -226,20 +249,38 @@ class PostNotifier extends _$PostNotifier {
   }
 
   LocationEntity _toLocationEntity(CurrentLocation current) => LocationEntity(
-        id: 'current',
-        name: current.name,
-        lat: current.lat,
-        lng: current.lng,
-        type: 'current',
-        city: current.city,
-        state: current.state,
-        pincode: current.pincode,
-      );
+    id: 'current',
+    name: current.name,
+    lat: current.lat,
+    lng: current.lng,
+    type: 'current',
+    city: current.city,
+    state: current.state,
+    pincode: current.pincode,
+  );
 
   // ── Vehicle ─────────────────────────────────────────────────────────────
 
   void selectVehicle(String? vehicleId) {
     state = state.copyWith(selectedVehicleId: vehicleId);
+  }
+
+  // ── Contact ─────────────────────────────────────────────────────────────
+
+  void setContactMode(ContactMode mode) {
+    state = state.copyWith(
+      contactMode: mode,
+      contactName: mode == ContactMode.me ? '' : state.contactName,
+      contactNumber: mode == ContactMode.me ? '' : state.contactNumber,
+    );
+  }
+
+  void updateContactName(String value) {
+    state = state.copyWith(contactName: value);
+  }
+
+  void updateContactNumber(String value) {
+    state = state.copyWith(contactNumber: value.replaceAll(RegExp(r'\D'), ''));
   }
 
   // ── Submit ──────────────────────────────────────────────────────────────
@@ -252,27 +293,33 @@ class PostNotifier extends _$PostNotifier {
         .whereType<LocationEntity>()
         .toList();
     if (origin == null || vehicleId == null || destinations.isEmpty) return;
+    if (!state.contactValid) return;
+
+    final isAltContact = state.contactMode == ContactMode.someoneElse;
 
     state = state.copyWith(submission: const PostSubmitting());
     try {
       final userId = await ref.read(tokenStorageProvider).getUserId();
       if (userId == null) throw const ApiException();
 
-      final post = await ref.read(submitPostUseCaseProvider).execute(
+      final post = await ref
+          .read(submitPostUseCaseProvider)
+          .execute(
             userId: userId,
             vehicleId: vehicleId,
             origin: origin,
             destinations: destinations,
             currentLocation: origin,
             availableDate: DateTime.now(),
+            contactName: isAltContact ? state.contactName.trim() : null,
+            contactNumber: isAltContact ? state.contactNumber : null,
           );
       state = state.copyWith(submission: PostDone(post));
     } catch (e) {
-      state = state.copyWith(
-        submission: PostError(ApiException.messageFor(e)),
-      );
+      state = state.copyWith(submission: PostError(ApiException.messageFor(e)));
     }
   }
 
-  void resetSubmission() => state = state.copyWith(submission: const PostIdle());
+  void resetSubmission() =>
+      state = state.copyWith(submission: const PostIdle());
 }

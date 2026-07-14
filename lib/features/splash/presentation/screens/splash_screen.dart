@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../core/constants/app_colors.dart';
+import '../../../../l10n/generated/app_localizations.dart';
 import '../../../auth/presentation/state/auth_notifier.dart';
 import '../../../onboarding/presentation/state/onboarding_notifier.dart';
 
@@ -44,24 +46,20 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      backgroundColor: AppColors.primaryDark,
-      body: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Icon(Icons.local_shipping, size: 64, color: AppColors.white),
-            SizedBox(height: 16),
-            Text(
-              'Convoy',
-              style: TextStyle(
-                color: AppColors.white,
-                fontSize: 32,
-                fontWeight: FontWeight.w700,
-                letterSpacing: 0.5,
-              ),
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: SystemUiOverlayStyle.dark,
+      child: Scaffold(
+        backgroundColor: AppColors.white,
+        body: Center(
+          child: Text(
+            AppLocalizations.of(context)!.appName,
+            style: const TextStyle(
+              color: AppColors.primaryBlue,
+              fontSize: 44,
+              fontWeight: FontWeight.w900,
+              letterSpacing: -0.5,
             ),
-          ],
+          ),
         ),
       ),
     );

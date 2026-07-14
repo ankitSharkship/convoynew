@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../core/constants/app_colors.dart';
+import '../../../../l10n/generated/app_localizations.dart';
 import '../../../../shared/widgets/borderless_input_decoration.dart';
 import '../state/kyc_notifier.dart';
 import '../widgets/kyc_hero_banner.dart';
@@ -42,10 +43,7 @@ class _KycOtpScreenState extends ConsumerState<KycOtpScreen> {
 
     final success = await ref.read(kycNotifierProvider.notifier).verifyOtp(otp);
     if (success && mounted) {
-      await showKycSuccessDialog(
-        context,
-        onDismiss: () => context.go('/post'),
-      );
+      await showKycSuccessDialog(context, onDismiss: () => context.go('/post'));
     }
   }
 
@@ -54,6 +52,7 @@ class _KycOtpScreenState extends ConsumerState<KycOtpScreen> {
     final state = ref.watch(kycNotifierProvider);
     final otpStr = _otpController.text;
     final canVerify = otpStr.length == _otpLength && !state.verifyingOtp;
+    final l10n = AppLocalizations.of(context)!;
 
     return Scaffold(
       backgroundColor: AppColors.background,
@@ -67,9 +66,9 @@ class _KycOtpScreenState extends ConsumerState<KycOtpScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
-                    'Verify Aadhar Card',
-                    style: TextStyle(
+                  Text(
+                    l10n.kycVerifyTitle,
+                    style: const TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.w700,
                       color: AppColors.textPrimary,
@@ -144,10 +143,9 @@ class _KycOtpScreenState extends ConsumerState<KycOtpScreen> {
                     ),
                   ),
                   const SizedBox(height: 16),
-                  const Text(
-                    'OTP has been sent to your Aadhaar-linked mobile number. '
-                    'Please enter it to verify.',
-                    style: TextStyle(
+                  Text(
+                    l10n.kycOtpHelperText,
+                    style: const TextStyle(
                       fontSize: 13,
                       color: AppColors.textSecondary,
                       height: 1.4,
@@ -172,8 +170,8 @@ class _KycOtpScreenState extends ConsumerState<KycOtpScreen> {
                       style: ElevatedButton.styleFrom(
                         backgroundColor: AppColors.primaryBlue,
                         foregroundColor: AppColors.white,
-                        disabledBackgroundColor:
-                            AppColors.primaryBlue.withValues(alpha: 0.4),
+                        disabledBackgroundColor: AppColors.primaryBlue
+                            .withValues(alpha: 0.4),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(14),
                         ),
@@ -188,18 +186,18 @@ class _KycOtpScreenState extends ConsumerState<KycOtpScreen> {
                                 color: AppColors.white,
                               ),
                             )
-                          : const Row(
+                          : Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  'Verify OTP',
-                                  style: TextStyle(
+                                  l10n.kycOtpVerifyButton,
+                                  style: const TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.w700,
                                   ),
                                 ),
-                                SizedBox(width: 8),
-                                Icon(Icons.arrow_forward, size: 18),
+                                const SizedBox(width: 8),
+                                const Icon(Icons.arrow_forward, size: 18),
                               ],
                             ),
                     ),

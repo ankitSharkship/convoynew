@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../core/constants/app_colors.dart';
+import '../../l10n/generated/app_localizations.dart';
 
 class MainShell extends StatelessWidget {
   final StatefulNavigationShell navigationShell;
@@ -9,6 +10,7 @@ class MainShell extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       body: navigationShell,
       bottomNavigationBar: Container(
@@ -31,21 +33,21 @@ class MainShell extends StatelessWidget {
           ),
           unselectedLabelStyle: const TextStyle(fontSize: 11),
           elevation: 0,
-          items: const [
+          items: [
             BottomNavigationBarItem(
-              icon: Icon(Icons.home_outlined),
-              activeIcon: Icon(Icons.home),
-              label: 'Home',
+              icon: const Icon(Icons.home_outlined),
+              activeIcon: const Icon(Icons.home),
+              label: l10n.navHome,
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.search),
-              activeIcon: Icon(Icons.search),
-              label: 'Search',
+              icon: const Icon(Icons.search),
+              activeIcon: const Icon(Icons.search),
+              label: l10n.navSearch,
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.person_outline),
-              activeIcon: Icon(Icons.person),
-              label: 'Profile',
+              icon: const Icon(Icons.person_outline),
+              activeIcon: const Icon(Icons.person),
+              label: l10n.navProfile,
             ),
           ],
         ),
