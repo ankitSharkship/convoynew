@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "flutter-web",
+      "runtimeExecutable": "flutter",
+      "runtimeArgs": ["run", "-d", "chrome", "--web-port", "5678"],
+      "port": 5678
+    },
+    {
+      "name": "flutter-web-static",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "5679", "--directory", "build/web"],
+      "port": 5679
+    }
+  ]
+}

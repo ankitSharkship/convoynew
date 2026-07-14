@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(brew install *)",
+      "Bash(find /Users/ankit/Documents/Sharkship-apps/convoynew -name \".agent\" -o -name \"*.agent\" 2>/dev/null; find /Users/ankit/Documents/Sharkship-apps -maxdepth 3 -name \".agent\" 2>/dev/null)",
+      "Bash(pdftoppm --version)",
+      "Read(//private/tmp/**)",
+      "Bash(python3 -c ' *)",
+      "Bash(pip3 install *)",
+      "Bash(pip install *)",
+      "Bash(python3 -m pip install pdfplumber)",
+      "Bash(pdftoppm -r 72 -png '/Users/ankit/Downloads/Convoy-all-screens.html.html by html.to.design ❤️ FREE version - 15/06/2026, 11_45_23 GMT+5_30.pdf' /tmp/convoy_screen -f 1 -l 1)",
+      "Bash(pdftoppm -r 200 -png '/Users/ankit/Downloads/Convoy-all-screens.html.html by html.to.design ❤️ FREE version - 15/06/2026, 11_45_23 GMT+5_30.pdf' /tmp/convoy_hires -f 1 -l 1)",
+      "mcp__visualize__read_me",
+      "mcp__visualize__show_widget",
+      "Bash(dart analyze *)",
+      "Bash(xargs ls -la)",
+      "Bash(flutter build *)",
+      "Bash(dart run *)"
+    ]
+  }
+}
