@@ -394,18 +394,6 @@ abstract class AppLocalizations {
   /// **'No recent searches'**
   String get homeNoRecentSearches;
 
-  /// No description provided for @homeRepost.
-  ///
-  /// In en, this message translates to:
-  /// **'Repost'**
-  String get homeRepost;
-
-  /// No description provided for @homeErrorPrefix.
-  ///
-  /// In en, this message translates to:
-  /// **'Error: {error}'**
-  String homeErrorPrefix(String error);
-
   /// No description provided for @kycVerifyTitle.
   ///
   /// In en, this message translates to:

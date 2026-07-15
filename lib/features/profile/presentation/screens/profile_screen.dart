@@ -23,7 +23,7 @@ class ProfileScreen extends ConsumerWidget {
     final l10n = AppLocalizations.of(context)!;
 
     return Scaffold(
-      backgroundColor: AppColors.background,
+      backgroundColor: AppColors.primaryBlueLight,
       appBar: AppBar(
         title: Text(l10n.profileTitle),
         backgroundColor: AppColors.white,

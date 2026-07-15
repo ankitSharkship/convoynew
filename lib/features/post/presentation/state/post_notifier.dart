@@ -44,23 +44,30 @@ class DestinationField {
   final LocationEntity? location;
   final List<LocationEntity> suggestions;
   final bool suggestionsLoading;
+  final bool suggestionsDismissed;
 
   const DestinationField({
     this.location,
     this.suggestions = const [],
     this.suggestionsLoading = false,
+    this.suggestionsDismissed = false,
   });
+
+  bool get showSuggestions =>
+      !suggestionsDismissed && (suggestionsLoading || suggestions.isNotEmpty);
 
   DestinationField copyWith({
     LocationEntity? location,
     bool clearLocation = false,
     List<LocationEntity>? suggestions,
     bool? suggestionsLoading,
+    bool? suggestionsDismissed,
   }) {
     return DestinationField(
       location: clearLocation ? null : (location ?? this.location),
       suggestions: suggestions ?? this.suggestions,
       suggestionsLoading: suggestionsLoading ?? this.suggestionsLoading,
+      suggestionsDismissed: suggestionsDismissed ?? this.suggestionsDismissed,
     );
   }
 }
@@ -212,7 +219,10 @@ class PostNotifier extends _$PostNotifier {
   }
 
   void onDestinationQueryChanged(int index, String query) {
-    _setDestinationAt(index, (d) => d.copyWith(clearLocation: true));
+    _setDestinationAt(
+      index,
+      (d) => d.copyWith(clearLocation: true, suggestionsDismissed: false),
+    );
     _destinationDebounces[index]?.cancel();
     if (query.trim().length < _minQueryLength) {
       _setDestinationAt(index, (d) => d.copyWith(suggestions: const []));
@@ -256,6 +266,10 @@ class PostNotifier extends _$PostNotifier {
       index,
       (d) => d.copyWith(clearLocation: true, suggestions: const []),
     );
+  }
+
+  void dismissDestinationSuggestions(int index) {
+    _setDestinationAt(index, (d) => d.copyWith(suggestionsDismissed: true));
   }
 
   void _setDestinationAt(

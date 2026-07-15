@@ -166,14 +166,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get homeNoRecentSearches => 'No recent searches';
 
   @override
-  String get homeRepost => 'Repost';
-
-  @override
-  String homeErrorPrefix(String error) {
-    return 'Error: $error';
-  }
-
-  @override
   String get kycVerifyTitle => 'Verify Aadhar Card';
 
   @override

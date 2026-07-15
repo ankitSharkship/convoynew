@@ -8,7 +8,6 @@ import '../../../../core/network/api_exception.dart';
 import '../../../../l10n/generated/app_localizations.dart';
 import '../../../../shared/utils/truck_type_i18n.dart';
 import '../../../../shared/widgets/language_switcher_button.dart';
-import '../../../../shared/widgets/loader.dart';
 import '../../domain/entities/trip_entity.dart';
 import '../state/trips_notifier.dart';
 
@@ -111,7 +110,7 @@ class MyTripsScreen extends ConsumerWidget {
               const SizedBox(height: 16),
               Expanded(
                 child: tripsAsync.when(
-                  loading: () => const AppLoader(),
+                  loading: () => const _TripsSkeletonList(),
                   error: (e, _) => Center(
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 32),
@@ -382,6 +381,166 @@ class _TripCard extends StatelessWidget {
             ],
           ),
         ],
+      ),
+    );
+  }
+}
+
+// ─── Skeleton loader ─────────────────────────────────────────────────────────
+
+const _skeletonCardCount = 6;
+
+class _TripsSkeletonList extends StatefulWidget {
+  const _TripsSkeletonList();
+
+  @override
+  State<_TripsSkeletonList> createState() => _TripsSkeletonListState();
+}
+
+class _TripsSkeletonListState extends State<_TripsSkeletonList>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _pulseController;
+
+  @override
+  void initState() {
+    super.initState();
+    _pulseController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 900),
+    )..repeat(reverse: true);
+  }
+
+  @override
+  void dispose() {
+    _pulseController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedBuilder(
+      animation: _pulseController,
+      builder: (context, child) {
+        return Opacity(
+          opacity: 0.4 + (_pulseController.value * 0.4),
+          child: child,
+        );
+      },
+      child: ListView.separated(
+        itemCount: _skeletonCardCount,
+        separatorBuilder: (_, _) => const SizedBox(height: 14),
+        itemBuilder: (_, _) => const _TripCardSkeleton(),
+      ),
+    );
+  }
+}
+
+class _TripCardSkeleton extends StatelessWidget {
+  const _TripCardSkeleton();
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: AppColors.white,
+        borderRadius: BorderRadius.circular(16),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.05),
+            blurRadius: 10,
+            offset: const Offset(0, 3),
+          ),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              const _SkeletonBox(width: 84, height: 22, radius: 20),
+              const Spacer(),
+              const _SkeletonBox(width: 64, height: 12),
+            ],
+          ),
+          const SizedBox(height: 16),
+          Row(
+            children: [
+              const _SkeletonCircle(size: 16),
+              const SizedBox(width: 12),
+              Expanded(child: _SkeletonBox(width: double.infinity, height: 14)),
+            ],
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 7),
+            child: Container(
+              width: 2,
+              height: 16,
+              color: AppColors.textTertiary.withValues(alpha: 0.2),
+            ),
+          ),
+          Row(
+            children: [
+              const _SkeletonCircle(size: 16),
+              const SizedBox(width: 10),
+              Expanded(child: _SkeletonBox(width: double.infinity, height: 14)),
+            ],
+          ),
+          const SizedBox(height: 14),
+          const Divider(height: 1, color: Color(0xFFF0F4F8)),
+          const SizedBox(height: 12),
+          const _SkeletonBox(width: 160, height: 12),
+          const SizedBox(height: 12),
+          Row(
+            children: [
+              const _SkeletonBox(width: 38, height: 38, radius: 10),
+              const SizedBox(width: 8),
+              const _SkeletonBox(width: 38, height: 38, radius: 10),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _SkeletonBox extends StatelessWidget {
+  final double width;
+  final double height;
+  final double radius;
+
+  const _SkeletonBox({
+    required this.width,
+    required this.height,
+    this.radius = 6,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: width,
+      height: height,
+      decoration: BoxDecoration(
+        color: AppColors.chipBackground,
+        borderRadius: BorderRadius.circular(radius),
+      ),
+    );
+  }
+}
+
+class _SkeletonCircle extends StatelessWidget {
+  final double size;
+
+  const _SkeletonCircle({required this.size});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: size,
+      height: size,
+      decoration: const BoxDecoration(
+        color: AppColors.chipBackground,
+        shape: BoxShape.circle,
       ),
     );
   }

@@ -56,8 +56,6 @@
   "homeRecentSearch": "अलीकडील शोध",
   "homeNoRecentPosts": "कोणतीही अलीकडील पोस्ट नाही",
   "homeNoRecentSearches": "कोणताही अलीकडील शोध नाही",
-  "homeRepost": "पुन्हा पोस्ट करा",
-  "homeErrorPrefix": "त्रुटी: {error}",
 
   "kycVerifyTitle": "आधार कार्ड सत्यापित करा",
   "kycAadhaarHint": "XXXX XXXX XXXX",

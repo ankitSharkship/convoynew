@@ -65,11 +65,6 @@
   "homeRecentSearch": "Recent Search",
   "homeNoRecentPosts": "No recent posts",
   "homeNoRecentSearches": "No recent searches",
-  "homeRepost": "Repost",
-  "homeErrorPrefix": "Error: {error}",
-  "@homeErrorPrefix": {
-    "placeholders": { "error": { "type": "String" } }
-  },
 
   "kycVerifyTitle": "Verify Aadhar Card",
   "kycAadhaarHint": "XXXX XXXX XXXX",

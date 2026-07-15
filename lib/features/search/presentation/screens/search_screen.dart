@@ -6,6 +6,7 @@ import '../../../../l10n/generated/app_localizations.dart';
 import '../../../../shared/utils/truck_type_i18n.dart';
 import '../../../../shared/widgets/borderless_input_decoration.dart';
 import '../../../../shared/widgets/language_switcher_button.dart';
+import '../../../../shared/widgets/suggestions_overlay.dart';
 import '../../domain/entities/location_entity.dart';
 import '../state/search_notifier.dart';
 
@@ -122,19 +123,27 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                   children: [
                     _FieldLabel(l10n.searchOriginLabel),
                     const SizedBox(height: 8),
-                    _LocationField(
-                      controller: _originController,
-                      hintText: l10n.searchOriginHint,
-                      markerColor: AppColors.green,
-                      markerIsRing: true,
-                      loading: state.originLocating,
-                      onChanged: notifier.onOriginQueryChanged,
-                      onLocate: () => _useCurrentLocation(isOrigin: true),
-                    ),
-                    _SuggestionsList(
-                      suggestions: state.originSuggestions,
-                      loading: state.originSuggestionsLoading,
-                      onSelect: notifier.selectOriginSuggestion,
+                    SuggestionsOverlay(
+                      visible: state.showOriginSuggestions,
+                      onDismissTap: notifier.dismissOriginSuggestions,
+                      overlayBuilder: (_) => _SuggestionsList(
+                        suggestions: state.originSuggestions,
+                        loading: state.originSuggestionsLoading,
+                        onSelect: notifier.selectOriginSuggestion,
+                      ),
+                      field: _LocationField(
+                        controller: _originController,
+                        hintText: l10n.searchOriginHint,
+                        markerColor: AppColors.green,
+                        markerIsRing: true,
+                        loading: state.originLocating,
+                        onChanged: notifier.onOriginQueryChanged,
+                        onLocate: () => _useCurrentLocation(isOrigin: true),
+                        onClear: () {
+                          _originController.clear();
+                          notifier.clearOrigin();
+                        },
+                      ),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 10),
@@ -146,19 +155,27 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                     ),
                     _FieldLabel(l10n.searchDestinationLabel),
                     const SizedBox(height: 8),
-                    _LocationField(
-                      controller: _destinationController,
-                      hintText: l10n.searchDestinationHint,
-                      markerColor: AppColors.red,
-                      markerIsRing: false,
-                      loading: state.destinationLocating,
-                      onChanged: notifier.onDestinationQueryChanged,
-                      onLocate: () => _useCurrentLocation(isOrigin: false),
-                    ),
-                    _SuggestionsList(
-                      suggestions: state.destinationSuggestions,
-                      loading: state.destinationSuggestionsLoading,
-                      onSelect: notifier.selectDestinationSuggestion,
+                    SuggestionsOverlay(
+                      visible: state.showDestinationSuggestions,
+                      onDismissTap: notifier.dismissDestinationSuggestions,
+                      overlayBuilder: (_) => _SuggestionsList(
+                        suggestions: state.destinationSuggestions,
+                        loading: state.destinationSuggestionsLoading,
+                        onSelect: notifier.selectDestinationSuggestion,
+                      ),
+                      field: _LocationField(
+                        controller: _destinationController,
+                        hintText: l10n.searchDestinationHint,
+                        markerColor: AppColors.red,
+                        markerIsRing: false,
+                        loading: state.destinationLocating,
+                        onChanged: notifier.onDestinationQueryChanged,
+                        onLocate: () => _useCurrentLocation(isOrigin: false),
+                        onClear: () {
+                          _destinationController.clear();
+                          notifier.clearDestination();
+                        },
+                      ),
                     ),
                     const SizedBox(height: 12),
 
@@ -318,6 +335,7 @@ class _LocationField extends StatelessWidget {
   final bool loading;
   final ValueChanged<String> onChanged;
   final VoidCallback onLocate;
+  final VoidCallback onClear;
 
   const _LocationField({
     required this.controller,
@@ -327,6 +345,7 @@ class _LocationField extends StatelessWidget {
     required this.loading,
     required this.onChanged,
     required this.onLocate,
+    required this.onClear,
   });
 
   @override
@@ -372,13 +391,18 @@ class _LocationField extends StatelessWidget {
                       ),
                       isDense: true,
                       contentPadding: EdgeInsets.zero,
+                      suffixIcon: controller.text.isNotEmpty
+                          ? GestureDetector(
+                              onTap: onClear,
+                              child: const Icon(
+                                Icons.close,
+                                size: 18,
+                                color: AppColors.textTertiary,
+                              ),
+                            )
+                          : null,
                     ),
                   ),
-                ),
-                const Icon(
-                  Icons.chevron_right,
-                  size: 18,
-                  color: AppColors.textTertiary,
                 ),
               ],
             ),
@@ -434,11 +458,17 @@ class _SuggestionsList extends StatelessWidget {
     if (!loading && suggestions.isEmpty) return const SizedBox.shrink();
 
     return Container(
-      margin: const EdgeInsets.only(left: 26, top: 6),
       decoration: BoxDecoration(
-        color: const Color(0xFFF8FAFC),
+        color: AppColors.white,
         borderRadius: BorderRadius.circular(10),
         border: Border.all(color: AppColors.border),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.12),
+            blurRadius: 16,
+            offset: const Offset(0, 6),
+          ),
+        ],
       ),
       constraints: const BoxConstraints(maxHeight: 220),
       child: loading

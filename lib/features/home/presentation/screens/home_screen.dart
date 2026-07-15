@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:intl/intl.dart';
 import '../../../../core/constants/app_colors.dart';
 import '../../../../l10n/generated/app_localizations.dart';
+import '../../../../shared/utils/truck_type_i18n.dart';
 import '../../../../shared/widgets/language_switcher_button.dart';
-import '../../../../shared/widgets/loader.dart';
-import '../../domain/entities/home_data_entity.dart';
-import '../../domain/entities/truck_listing_entity.dart';
+import '../../../post/domain/entities/trip_entity.dart';
+import '../../../search/domain/entities/search_history_entity.dart';
+import '../../../search/presentation/state/search_notifier.dart';
 import '../../../kyc/presentation/navigation/post_truck_gate.dart';
 import '../../../profile/presentation/state/profile_notifier.dart';
-import '../../../../shared/widgets/truck_card.dart';
 import '../state/home_notifier.dart';
 
 class HomeScreen extends ConsumerWidget {
@@ -17,28 +18,25 @@ class HomeScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final homeAsync = ref.watch(homeNotifierProvider);
     final profileAsync = ref.watch(profileNotifierProvider);
     final displayName = profileAsync.valueOrNull?.name ?? 'Pilot';
 
+    // No full-page loading/error gate here: the greeting, hero banner and
+    // quick actions don't depend on any of this screen's remote data, so
+    // they always render immediately. Only the "Manage Post & Searches"
+    // section below watches its own (independent, per-tab) history
+    // providers and shows its own loading/error state, scoped to itself.
     return Scaffold(
       backgroundColor: AppColors.primaryBlueLight,
-      body: homeAsync.when(
-        loading: () => const FullPageLoader(),
-        error: (e, _) => Center(
-          child: Text(AppLocalizations.of(context)!.homeErrorPrefix('$e')),
-        ),
-        data: (data) => _HomeContent(data: data, userName: displayName),
-      ),
+      body: _HomeContent(userName: displayName),
     );
   }
 }
 
 class _HomeContent extends ConsumerStatefulWidget {
-  final HomeDataEntity data;
   final String userName;
 
-  const _HomeContent({required this.data, required this.userName});
+  const _HomeContent({required this.userName});
 
   @override
   ConsumerState<_HomeContent> createState() => _HomeContentState();
@@ -191,8 +189,8 @@ class _HomeContentState extends ConsumerState<_HomeContent> {
           SliverPadding(
             padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
             sliver: _selectedTab == 0
-                ? _RecentPostsSliver(posts: widget.data.recentPosts)
-                : _RecentSearchSliver(trucks: widget.data.nearbyTrucks),
+                ? const _PostHistorySliver()
+                : const _SearchHistorySliver(),
           ),
         ],
       ),
@@ -393,16 +391,114 @@ class _TabItem extends StatelessWidget {
   }
 }
 
+// ─── Section-scoped async wrappers ──────────────────────────────────────────
+//
+// Each section watches its own history provider independently, so a failure
+// fetching one list only replaces that section's content with a small
+// "something went wrong" state — the rest of the Home screen is unaffected.
+
+class _PostHistorySliver extends ConsumerWidget {
+  const _PostHistorySliver();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final postsAsync = ref.watch(postHistoryNotifierProvider);
+    return postsAsync.when(
+      loading: () => const _SectionLoadingSliver(),
+      error: (e, _) => _SectionErrorSliver(
+        onRetry: () => ref.invalidate(postHistoryNotifierProvider),
+      ),
+      data: (posts) => _RecentPostsSliver(posts: posts),
+    );
+  }
+}
+
+class _SearchHistorySliver extends ConsumerWidget {
+  const _SearchHistorySliver();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final searchesAsync = ref.watch(searchHistoryNotifierProvider);
+    return searchesAsync.when(
+      loading: () => const _SectionLoadingSliver(),
+      error: (e, _) => _SectionErrorSliver(
+        onRetry: () => ref.invalidate(searchHistoryNotifierProvider),
+      ),
+      data: (searches) => _RecentSearchSliver(searches: searches),
+    );
+  }
+}
+
+class _SectionLoadingSliver extends StatelessWidget {
+  const _SectionLoadingSliver();
+
+  @override
+  Widget build(BuildContext context) {
+    return const SliverToBoxAdapter(
+      child: Padding(
+        padding: EdgeInsets.symmetric(vertical: 24),
+        child: Center(
+          child: SizedBox(
+            width: 22,
+            height: 22,
+            child: CircularProgressIndicator(
+              strokeWidth: 2.5,
+              color: AppColors.primaryBlue,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _SectionErrorSliver extends StatelessWidget {
+  final VoidCallback onRetry;
+
+  const _SectionErrorSliver({required this.onRetry});
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    return SliverToBoxAdapter(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 20),
+        child: Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Icon(
+                Icons.error_outline,
+                size: 28,
+                color: AppColors.textTertiary,
+              ),
+              const SizedBox(height: 8),
+              Text(
+                l10n.somethingWentWrong,
+                style: const TextStyle(color: AppColors.textSecondary),
+              ),
+              const SizedBox(height: 10),
+              OutlinedButton(onPressed: onRetry, child: Text(l10n.tryAgain)),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 // ─── Recent posts sliver ────────────────────────────────────────────────────
 
 class _RecentPostsSliver extends StatelessWidget {
-  final List<RecentPostEntity> posts;
+  final List<TripEntity> posts;
 
   const _RecentPostsSliver({required this.posts});
 
   @override
   Widget build(BuildContext context) {
-    if (posts.isEmpty) {
+    final list = posts.take(3).toList();
+
+    if (list.isEmpty) {
       return SliverToBoxAdapter(
         child: Center(
           child: Text(AppLocalizations.of(context)!.homeNoRecentPosts),
@@ -413,20 +509,159 @@ class _RecentPostsSliver extends StatelessWidget {
     return SliverList(
       delegate: SliverChildBuilderDelegate((_, i) {
         if (i.isOdd) return const SizedBox(height: 10);
-        final p = posts[i ~/ 2];
-        return _PostCard(post: p);
-      }, childCount: posts.length * 2 - 1),
+        return _PostCard(trip: list[i ~/ 2]);
+      }, childCount: list.length * 2 - 1),
     );
   }
 }
 
 class _PostCard extends StatelessWidget {
-  final RecentPostEntity post;
+  final TripEntity trip;
 
-  const _PostCard({required this.post});
+  const _PostCard({required this.trip});
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    final originLabel = trip.origin.city ?? trip.origin.name;
+    final destinationLabel = trip.destinations.isNotEmpty
+        ? (trip.destinations.first.city ?? trip.destinations.first.name)
+        : l10n.resultsAnyDestination;
+    final dateText = DateFormat(
+      'd MMM y',
+      Localizations.localeOf(context).toString(),
+    ).format(trip.createdAt);
+
+    return GestureDetector(
+      onTap: () => context.push('/profile/trips'),
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: AppColors.white,
+          borderRadius: BorderRadius.circular(14),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.04),
+              blurRadius: 8,
+              offset: const Offset(0, 2),
+            ),
+          ],
+        ),
+        child: Row(
+          children: [
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    '$originLabel → $destinationLabel',
+                    style: const TextStyle(
+                      fontWeight: FontWeight.w700,
+                      fontSize: 15,
+                      color: AppColors.textPrimary,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    '${trip.vehicleNumber} · $dateText',
+                    style: const TextStyle(
+                      fontSize: 12,
+                      color: AppColors.textTertiary,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(width: 8),
+            Container(
+              width: 32,
+              height: 32,
+              decoration: BoxDecoration(
+                color: AppColors.primaryBlue.withValues(alpha: 0.1),
+                shape: BoxShape.circle,
+              ),
+              child: const Icon(
+                Icons.chevron_right,
+                size: 20,
+                color: AppColors.primaryBlue,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+// ─── Recent search sliver ───────────────────────────────────────────────────
+
+class _RecentSearchSliver extends ConsumerWidget {
+  final List<SearchHistoryEntity> searches;
+
+  const _RecentSearchSliver({required this.searches});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final list = searches.take(3).toList();
+
+    if (list.isEmpty) {
+      return SliverToBoxAdapter(
+        child: Center(
+          child: Text(AppLocalizations.of(context)!.homeNoRecentSearches),
+        ),
+      );
+    }
+
+    return SliverList(
+      delegate: SliverChildBuilderDelegate((_, i) {
+        if (i.isOdd) return const SizedBox(height: 10);
+        return _SearchCard(search: list[i ~/ 2]);
+      }, childCount: list.length * 2 - 1),
+    );
+  }
+}
+
+class _SearchCard extends ConsumerWidget {
+  final SearchHistoryEntity search;
+
+  const _SearchCard({required this.search});
+
+  // Navigates immediately and lets the results screen's own skeleton loader
+  // show while the search runs, rather than waiting here before pushing.
+  void _repeat(BuildContext context, WidgetRef ref, AppLocalizations l10n) {
+    ref
+        .read(searchNotifierProvider.notifier)
+        .repeatSearch(
+          origin: search.origin,
+          destination: search.destination,
+          truckType: search.truckType,
+          capacityDisplay: search.capacity != null
+              ? l10n.capacityTon(search.capacity!)
+              : null,
+        );
+    context.push('/search/results');
+  }
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context)!;
+    final originLabel =
+        search.origin?.city ?? search.origin?.name ?? l10n.resultsAnyOrigin;
+    final destinationLabel =
+        search.destination?.city ??
+        search.destination?.name ??
+        l10n.resultsAnyDestination;
+    final dateText = DateFormat(
+      'd MMM y',
+      Localizations.localeOf(context).toString(),
+    ).format(search.searchedAt);
+
+    final metaParts = <String>[
+      if (search.truckType != null) truckTypeLabel(context, search.truckType!),
+      if (search.capacity != null) l10n.capacityTon(search.capacity!),
+      dateText,
+    ];
+
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
@@ -447,7 +682,7 @@ class _PostCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  '${post.origin} → ${post.destination}',
+                  '$originLabel → $destinationLabel',
                   style: const TextStyle(
                     fontWeight: FontWeight.w700,
                     fontSize: 15,
@@ -456,7 +691,7 @@ class _PostCard extends StatelessWidget {
                 ),
                 const SizedBox(height: 4),
                 Text(
-                  '${post.vehicleNumber} · ${post.postedDate}',
+                  metaParts.join(' · '),
                   style: const TextStyle(
                     fontSize: 12,
                     color: AppColors.textTertiary,
@@ -465,47 +700,21 @@ class _PostCard extends StatelessWidget {
               ],
             ),
           ),
-          ElevatedButton(
-            onPressed: () {},
-            style: ElevatedButton.styleFrom(
-              minimumSize: const Size(0, 36),
-              padding: const EdgeInsets.symmetric(horizontal: 18),
-            ),
-            child: Text(
-              AppLocalizations.of(context)!.homeRepost,
-              style: const TextStyle(fontSize: 13),
+          const SizedBox(width: 8),
+          GestureDetector(
+            onTap: () => _repeat(context, ref, l10n),
+            child: Container(
+              width: 40,
+              height: 40,
+              decoration: BoxDecoration(
+                color: AppColors.primaryBlue,
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: const Icon(Icons.search, size: 18, color: AppColors.white),
             ),
           ),
         ],
       ),
-    );
-  }
-}
-
-// ─── Recent search sliver ───────────────────────────────────────────────────
-
-class _RecentSearchSliver extends StatelessWidget {
-  final List<TruckListingEntity> trucks;
-
-  const _RecentSearchSliver({required this.trucks});
-
-  @override
-  Widget build(BuildContext context) {
-    final list = trucks.take(3).toList();
-
-    if (list.isEmpty) {
-      return SliverToBoxAdapter(
-        child: Center(
-          child: Text(AppLocalizations.of(context)!.homeNoRecentSearches),
-        ),
-      );
-    }
-
-    return SliverList(
-      delegate: SliverChildBuilderDelegate((_, i) {
-        if (i.isOdd) return const SizedBox(height: 10);
-        return TruckCard(truck: list[i ~/ 2]);
-      }, childCount: list.length * 2 - 1),
     );
   }
 }

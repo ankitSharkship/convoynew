@@ -166,14 +166,6 @@ class AppLocalizationsMr extends AppLocalizations {
   String get homeNoRecentSearches => 'कोणताही अलीकडील शोध नाही';
 
   @override
-  String get homeRepost => 'पुन्हा पोस्ट करा';
-
-  @override
-  String homeErrorPrefix(String error) {
-    return 'त्रुटी: $error';
-  }
-
-  @override
   String get kycVerifyTitle => 'आधार कार्ड सत्यापित करा';
 
   @override

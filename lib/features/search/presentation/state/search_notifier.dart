@@ -44,6 +44,8 @@ class SearchState {
   final List<LocationEntity> destinationSuggestions;
   final bool originSuggestionsLoading;
   final bool destinationSuggestionsLoading;
+  final bool originSuggestionsDismissed;
+  final bool destinationSuggestionsDismissed;
   final bool originLocating;
   final bool destinationLocating;
   final String? selectedTruckType;
@@ -60,6 +62,8 @@ class SearchState {
     this.destinationSuggestions = const [],
     this.originSuggestionsLoading = false,
     this.destinationSuggestionsLoading = false,
+    this.originSuggestionsDismissed = false,
+    this.destinationSuggestionsDismissed = false,
     this.originLocating = false,
     this.destinationLocating = false,
     this.selectedTruckType,
@@ -73,6 +77,14 @@ class SearchState {
   bool get canSearch =>
       (originLocation != null || destinationLocation != null) && !searching;
 
+  bool get showOriginSuggestions =>
+      !originSuggestionsDismissed &&
+      (originSuggestionsLoading || originSuggestions.isNotEmpty);
+
+  bool get showDestinationSuggestions =>
+      !destinationSuggestionsDismissed &&
+      (destinationSuggestionsLoading || destinationSuggestions.isNotEmpty);
+
   SearchState copyWith({
     LocationEntity? originLocation,
     bool clearOriginLocation = false,
@@ -82,6 +94,8 @@ class SearchState {
     List<LocationEntity>? destinationSuggestions,
     bool? originSuggestionsLoading,
     bool? destinationSuggestionsLoading,
+    bool? originSuggestionsDismissed,
+    bool? destinationSuggestionsDismissed,
     bool? originLocating,
     bool? destinationLocating,
     String? selectedTruckType,
@@ -107,6 +121,11 @@ class SearchState {
           originSuggestionsLoading ?? this.originSuggestionsLoading,
       destinationSuggestionsLoading:
           destinationSuggestionsLoading ?? this.destinationSuggestionsLoading,
+      originSuggestionsDismissed:
+          originSuggestionsDismissed ?? this.originSuggestionsDismissed,
+      destinationSuggestionsDismissed:
+          destinationSuggestionsDismissed ??
+          this.destinationSuggestionsDismissed,
       originLocating: originLocating ?? this.originLocating,
       destinationLocating: destinationLocating ?? this.destinationLocating,
       selectedTruckType: selectedTruckType ?? this.selectedTruckType,
@@ -136,7 +155,10 @@ class SearchNotifier extends _$SearchNotifier {
   }
 
   void onOriginQueryChanged(String query) {
-    state = state.copyWith(clearOriginLocation: true);
+    state = state.copyWith(
+      clearOriginLocation: true,
+      originSuggestionsDismissed: false,
+    );
     _originDebounce?.cancel();
     if (query.trim().length < _minQueryLength) {
       state = state.copyWith(originSuggestions: const []);
@@ -149,7 +171,10 @@ class SearchNotifier extends _$SearchNotifier {
   }
 
   void onDestinationQueryChanged(String query) {
-    state = state.copyWith(clearDestinationLocation: true);
+    state = state.copyWith(
+      clearDestinationLocation: true,
+      destinationSuggestionsDismissed: false,
+    );
     _destinationDebounce?.cancel();
     if (query.trim().length < _minQueryLength) {
       state = state.copyWith(destinationSuggestions: const []);
@@ -158,6 +183,28 @@ class SearchNotifier extends _$SearchNotifier {
     _destinationDebounce = Timer(
       _debounceDuration,
       () => _fetchSuggestions(query: query.trim(), isOrigin: false),
+    );
+  }
+
+  void dismissOriginSuggestions() {
+    state = state.copyWith(originSuggestionsDismissed: true);
+  }
+
+  void dismissDestinationSuggestions() {
+    state = state.copyWith(destinationSuggestionsDismissed: true);
+  }
+
+  void clearOrigin() {
+    state = state.copyWith(
+      clearOriginLocation: true,
+      originSuggestions: const [],
+    );
+  }
+
+  void clearDestination() {
+    state = state.copyWith(
+      clearDestinationLocation: true,
+      destinationSuggestions: const [],
     );
   }
 
@@ -248,6 +295,24 @@ class SearchNotifier extends _$SearchNotifier {
 
   void selectCapacity(String? capacity) {
     state = state.copyWith(selectedCapacity: capacity);
+  }
+
+  /// Re-runs a past search from history. Replaces the whole state (rather
+  /// than merging via copyWith) so stale criteria from an unrelated search
+  /// don't leak into this one.
+  Future<void> repeatSearch({
+    LocationEntity? origin,
+    LocationEntity? destination,
+    String? truckType,
+    String? capacityDisplay,
+  }) async {
+    state = SearchState(
+      originLocation: origin,
+      destinationLocation: destination,
+      selectedTruckType: truckType,
+      selectedCapacity: capacityDisplay,
+    );
+    await findTrucks();
   }
 
   Future<void> findTrucks() async {

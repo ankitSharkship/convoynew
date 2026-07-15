@@ -8,6 +8,7 @@ import '../../../../shared/utils/truck_image.dart';
 import '../../../../shared/utils/truck_type_i18n.dart';
 import '../../../../shared/widgets/borderless_input_decoration.dart';
 import '../../../../shared/widgets/language_switcher_button.dart';
+import '../../../../shared/widgets/suggestions_overlay.dart';
 import '../../../search/domain/entities/location_entity.dart';
 import '../../domain/entities/trip_entity.dart';
 import '../../domain/entities/vehicle_entity.dart';
@@ -189,6 +190,8 @@ class _PostFormScreenState extends ConsumerState<PostFormScreen> {
                           _destControllers[i].clear();
                           notifier.clearDestination(i);
                         },
+                        onDismiss: () =>
+                            notifier.dismissDestinationSuggestions(i),
                         onAdd: notifier.addDestination,
                         onRemove: () => notifier.removeDestination(i),
                       ),
@@ -520,6 +523,7 @@ class _DestinationField extends StatelessWidget {
   final ValueChanged<String> onChanged;
   final ValueChanged<LocationEntity> onSelect;
   final VoidCallback onClear;
+  final VoidCallback onDismiss;
   final VoidCallback onAdd;
   final VoidCallback onRemove;
 
@@ -532,6 +536,7 @@ class _DestinationField extends StatelessWidget {
     required this.onChanged,
     required this.onSelect,
     required this.onClear,
+    required this.onDismiss,
     required this.onAdd,
     required this.onRemove,
   });
@@ -573,74 +578,82 @@ class _DestinationField extends StatelessWidget {
               ),
           ],
         ),
-        Row(
-          children: [
-            const SizedBox(
-              width: 36,
-              height: 36,
-              child: Center(
-                child: Icon(Icons.location_on, size: 26, color: AppColors.red),
-              ),
-            ),
-            const SizedBox(width: 12),
-            Expanded(
-              child: TextField(
-                controller: controller,
-                onChanged: onChanged,
-                style: const TextStyle(
-                  fontWeight: FontWeight.w600,
-                  fontSize: 16,
-                  color: AppColors.textPrimary,
-                ),
-                decoration: borderlessInputDecoration(
-                  hintText: AppLocalizations.of(context)!.postDestinationHint,
-                  hintStyle: const TextStyle(
-                    color: AppColors.textTertiary,
-                    fontWeight: FontWeight.normal,
-                  ),
-                  contentPadding: const EdgeInsets.symmetric(vertical: 10),
-                  suffixIcon: field.location != null
-                      ? GestureDetector(
-                          onTap: onClear,
-                          child: const Icon(
-                            Icons.close,
-                            size: 18,
-                            color: AppColors.textTertiary,
-                          ),
-                        )
-                      : null,
-                ),
-              ),
-            ),
-            if (isFirst) ...[
-              const SizedBox(width: 8),
-              GestureDetector(
-                onTap: canAdd ? onAdd : null,
-                child: Container(
-                  width: 34,
-                  height: 34,
-                  decoration: BoxDecoration(
-                    color: canAdd
-                        ? AppColors.primaryBlue.withValues(alpha: 0.1)
-                        : AppColors.chipBackground,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
+        SuggestionsOverlay(
+          visible: field.showSuggestions,
+          onDismissTap: onDismiss,
+          overlayBuilder: (_) => _SuggestionsList(
+            suggestions: field.suggestions,
+            loading: field.suggestionsLoading,
+            onSelect: onSelect,
+          ),
+          field: Row(
+            children: [
+              const SizedBox(
+                width: 36,
+                height: 36,
+                child: Center(
                   child: Icon(
-                    Icons.add,
-                    size: 18,
-                    color: canAdd
-                        ? AppColors.primaryBlue
-                        : AppColors.textTertiary,
+                    Icons.location_on,
+                    size: 26,
+                    color: AppColors.red,
                   ),
                 ),
               ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: TextField(
+                  controller: controller,
+                  onChanged: onChanged,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 16,
+                    color: AppColors.textPrimary,
+                  ),
+                  decoration: borderlessInputDecoration(
+                    hintText: AppLocalizations.of(context)!.postDestinationHint,
+                    hintStyle: const TextStyle(
+                      color: AppColors.textTertiary,
+                      fontWeight: FontWeight.normal,
+                    ),
+                    contentPadding: const EdgeInsets.symmetric(vertical: 10),
+                    suffixIcon: field.location != null
+                        ? GestureDetector(
+                            onTap: onClear,
+                            child: const Icon(
+                              Icons.close,
+                              size: 18,
+                              color: AppColors.textTertiary,
+                            ),
+                          )
+                        : null,
+                  ),
+                ),
+              ),
+              if (isFirst) ...[
+                const SizedBox(width: 8),
+                GestureDetector(
+                  onTap: canAdd ? onAdd : null,
+                  child: Container(
+                    width: 34,
+                    height: 34,
+                    decoration: BoxDecoration(
+                      color: canAdd
+                          ? AppColors.primaryBlue.withValues(alpha: 0.1)
+                          : AppColors.chipBackground,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Icon(
+                      Icons.add,
+                      size: 18,
+                      color: canAdd
+                          ? AppColors.primaryBlue
+                          : AppColors.textTertiary,
+                    ),
+                  ),
+                ),
+              ],
             ],
-          ],
-        ),
-        _SuggestionsList(
-          suggestions: field.suggestions,
-          loading: field.suggestionsLoading,
-          onSelect: onSelect,
+          ),
         ),
       ],
     );
@@ -665,11 +678,17 @@ class _SuggestionsList extends StatelessWidget {
     if (!loading && suggestions.isEmpty) return const SizedBox.shrink();
 
     return Container(
-      margin: const EdgeInsets.only(left: 48, top: 6),
       decoration: BoxDecoration(
-        color: const Color(0xFFF8FAFC),
+        color: AppColors.white,
         borderRadius: BorderRadius.circular(10),
         border: Border.all(color: AppColors.border),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.12),
+            blurRadius: 16,
+            offset: const Offset(0, 6),
+          ),
+        ],
       ),
       constraints: const BoxConstraints(maxHeight: 200),
       child: loading
