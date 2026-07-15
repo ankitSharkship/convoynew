@@ -592,6 +592,12 @@ abstract class AppLocalizations {
   /// **'Add Truck'**
   String get postAddTruckButton;
 
+  /// No description provided for @postVerifyButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Verify'**
+  String get postVerifyButton;
+
   /// No description provided for @postContactSectionTitle.
   ///
   /// In en, this message translates to:
@@ -772,6 +778,24 @@ abstract class AppLocalizations {
   /// **'Profile'**
   String get profileTitle;
 
+  /// No description provided for @profileAccountSection.
+  ///
+  /// In en, this message translates to:
+  /// **'ACCOUNT'**
+  String get profileAccountSection;
+
+  /// No description provided for @profileVerifiedDriver.
+  ///
+  /// In en, this message translates to:
+  /// **'✓ Verified Driver'**
+  String get profileVerifiedDriver;
+
+  /// No description provided for @profileLanguage.
+  ///
+  /// In en, this message translates to:
+  /// **'Language'**
+  String get profileLanguage;
+
   /// No description provided for @profileLogoutTitle.
   ///
   /// In en, this message translates to:
@@ -787,13 +811,13 @@ abstract class AppLocalizations {
   /// No description provided for @profileKycLabel.
   ///
   /// In en, this message translates to:
-  /// **'KYC'**
+  /// **'KYC Verification'**
   String get profileKycLabel;
 
   /// No description provided for @profileKycVerified.
   ///
   /// In en, this message translates to:
-  /// **'Verified'**
+  /// **'✓ Done'**
   String get profileKycVerified;
 
   /// No description provided for @profileKycInReview.
@@ -820,35 +844,17 @@ abstract class AppLocalizations {
   /// **'My Vehicles'**
   String get profileMyVehicles;
 
-  /// No description provided for @profileVehicleCount.
+  /// No description provided for @profileTermsPrivacy.
   ///
   /// In en, this message translates to:
-  /// **'{count, plural, one{1 vehicle added} other{{count} vehicles added}}'**
-  String profileVehicleCount(int count);
-
-  /// No description provided for @profileTerms.
-  ///
-  /// In en, this message translates to:
-  /// **'Terms & Conditions'**
-  String get profileTerms;
-
-  /// No description provided for @profilePrivacy.
-  ///
-  /// In en, this message translates to:
-  /// **'Privacy & Policy'**
-  String get profilePrivacy;
+  /// **'Terms & Privacy'**
+  String get profileTermsPrivacy;
 
   /// No description provided for @profileHelp.
   ///
   /// In en, this message translates to:
-  /// **'Help & Support'**
+  /// **'24×7 Driver Support'**
   String get profileHelp;
-
-  /// No description provided for @profileHelpSubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Chat, call or email us'**
-  String get profileHelpSubtitle;
 
   /// No description provided for @profileAccountStatusPrefix.
   ///

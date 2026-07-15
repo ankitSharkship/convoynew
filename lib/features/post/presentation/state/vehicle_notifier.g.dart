@@ -82,7 +82,44 @@ final deleteVehicleUseCaseProvider =
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef DeleteVehicleUseCaseRef = AutoDisposeProviderRef<DeleteVehicleUseCase>;
-String _$vehicleNotifierHash() => r'1d9db972e28dd20b175d6733449b11c8cfe76805';
+String _$verifyVehicleUseCaseHash() =>
+    r'53ccedfe99f05608b56cf6990628fc8e7ae71dea';
+
+/// See also [verifyVehicleUseCase].
+@ProviderFor(verifyVehicleUseCase)
+final verifyVehicleUseCaseProvider =
+    AutoDisposeProvider<VerifyVehicleUseCase>.internal(
+      verifyVehicleUseCase,
+      name: r'verifyVehicleUseCaseProvider',
+      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+          ? null
+          : _$verifyVehicleUseCaseHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
+
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef VerifyVehicleUseCaseRef = AutoDisposeProviderRef<VerifyVehicleUseCase>;
+String _$addVehicleUseCaseHash() => r'015f7b38923b3cc2c1f8eb3ec40a7f948ea6fd5c';
+
+/// See also [addVehicleUseCase].
+@ProviderFor(addVehicleUseCase)
+final addVehicleUseCaseProvider =
+    AutoDisposeProvider<AddVehicleUseCase>.internal(
+      addVehicleUseCase,
+      name: r'addVehicleUseCaseProvider',
+      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+          ? null
+          : _$addVehicleUseCaseHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
+
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef AddVehicleUseCaseRef = AutoDisposeProviderRef<AddVehicleUseCase>;
+String _$vehicleNotifierHash() => r'aa4fb17eb9afa37d57f2e4833f3e8a1dec2be05f';
 
 /// See also [VehicleNotifier].
 @ProviderFor(VehicleNotifier)

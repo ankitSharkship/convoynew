@@ -270,6 +270,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get postAddTruckButton => 'Add Truck';
 
   @override
+  String get postVerifyButton => 'Verify';
+
+  @override
   String get postContactSectionTitle => 'Who should we contact?';
 
   @override
@@ -366,16 +369,25 @@ class AppLocalizationsEn extends AppLocalizations {
   String get profileTitle => 'Profile';
 
   @override
+  String get profileAccountSection => 'ACCOUNT';
+
+  @override
+  String get profileVerifiedDriver => '✓ Verified Driver';
+
+  @override
+  String get profileLanguage => 'Language';
+
+  @override
   String get profileLogoutTitle => 'Logout';
 
   @override
   String get profileLogoutConfirm => 'Are you sure you want to logout?';
 
   @override
-  String get profileKycLabel => 'KYC';
+  String get profileKycLabel => 'KYC Verification';
 
   @override
-  String get profileKycVerified => 'Verified';
+  String get profileKycVerified => '✓ Done';
 
   @override
   String get profileKycInReview => 'In Review';
@@ -390,27 +402,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get profileMyVehicles => 'My Vehicles';
 
   @override
-  String profileVehicleCount(int count) {
-    String _temp0 = intl.Intl.pluralLogic(
-      count,
-      locale: localeName,
-      other: '$count vehicles added',
-      one: '1 vehicle added',
-    );
-    return '$_temp0';
-  }
+  String get profileTermsPrivacy => 'Terms & Privacy';
 
   @override
-  String get profileTerms => 'Terms & Conditions';
-
-  @override
-  String get profilePrivacy => 'Privacy & Policy';
-
-  @override
-  String get profileHelp => 'Help & Support';
-
-  @override
-  String get profileHelpSubtitle => 'Chat, call or email us';
+  String get profileHelp => '24×7 Driver Support';
 
   @override
   String profileAccountStatusPrefix(String status) {

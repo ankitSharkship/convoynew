@@ -8,16 +8,16 @@ import '../../../../shared/utils/truck_image.dart';
 import '../../../../shared/utils/truck_type_i18n.dart';
 import '../../../../shared/widgets/borderless_input_decoration.dart';
 import '../../../../shared/widgets/language_switcher_button.dart';
+import '../../../../shared/widgets/sheet_form_field.dart';
 import '../../../../shared/widgets/suggestions_overlay.dart';
 import '../../../search/domain/entities/location_entity.dart';
 import '../../domain/entities/trip_entity.dart';
 import '../../domain/entities/vehicle_entity.dart';
 import '../state/post_notifier.dart';
 import '../state/vehicle_notifier.dart';
+import '../widgets/add_truck_sheet.dart';
 
 const _addNewTruckSentinel = '__add_new_truck__';
-
-final _capacities = List.generate(30, (i) => i + 6);
 
 class PostFormScreen extends ConsumerStatefulWidget {
   final TripEntity? editingTrip;
@@ -39,8 +39,16 @@ class _PostFormScreenState extends ConsumerState<PostFormScreen> {
     super.initState();
     final trip = widget.editingTrip;
     if (trip != null) {
+      // Editing an existing trip already has an origin (from the trip
+      // itself) — don't clobber it with a fresh GPS fetch.
       WidgetsBinding.instance.addPostFrameCallback((_) {
         ref.read(postNotifierProvider.notifier).startEditing(trip);
+      });
+    } else {
+      // New post: fill origin with the user's current location right away
+      // instead of waiting for them to tap the locate button.
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        ref.read(postNotifierProvider.notifier).useCurrentOriginLocation();
       });
     }
   }
@@ -66,12 +74,15 @@ class _PostFormScreenState extends ConsumerState<PostFormScreen> {
   }
 
   Future<void> _showAddTruckSheet() async {
-    await showModalBottomSheet(
+    final vehicle = await showModalBottomSheet<VehicleEntity>(
       context: context,
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
-      builder: (_) => const _AddTruckSheet(),
+      builder: (_) => const AddTruckSheet(),
     );
+    if (vehicle != null && mounted) {
+      ref.read(postNotifierProvider.notifier).selectVehicle(vehicle.id);
+    }
   }
 
   @override
@@ -991,23 +1002,23 @@ class _ContactSection extends StatelessWidget {
         ),
         if (isSomeoneElse) ...[
           const SizedBox(height: 16),
-          _SheetLabel(l10n.postContactNameLabel),
+          SheetLabel(l10n.postContactNameLabel),
           const SizedBox(height: 6),
           TextField(
             controller: nameController,
             textCapitalization: TextCapitalization.words,
             onChanged: onNameChanged,
-            decoration: _inputDecoration(l10n.postContactNameHint),
+            decoration: sheetFieldDecoration(l10n.postContactNameHint),
           ),
           const SizedBox(height: 16),
-          _SheetLabel(l10n.postContactNumberLabel),
+          SheetLabel(l10n.postContactNumberLabel),
           const SizedBox(height: 6),
           TextField(
             controller: numberController,
             keyboardType: TextInputType.phone,
             inputFormatters: [PhoneNumberFormatter()],
             onChanged: onNumberChanged,
-            decoration: _inputDecoration(l10n.postContactNumberHint),
+            decoration: sheetFieldDecoration(l10n.postContactNumberHint),
           ),
           if (contactNumber.isNotEmpty && !contactNumberValid) ...[
             const SizedBox(height: 6),
@@ -1081,170 +1092,4 @@ class _RadioOption extends StatelessWidget {
       ),
     );
   }
-}
-
-// ── Add truck sheet (UI only, no functionality yet) ─────────────────────────
-
-class _AddTruckSheet extends StatefulWidget {
-  const _AddTruckSheet();
-
-  @override
-  State<_AddTruckSheet> createState() => _AddTruckSheetState();
-}
-
-class _AddTruckSheetState extends State<_AddTruckSheet> {
-  final _numberCtrl = TextEditingController();
-  String? _selectedType;
-  int? _selectedCapacity;
-
-  @override
-  void dispose() {
-    _numberCtrl.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context)!;
-    return Padding(
-      padding: EdgeInsets.only(
-        bottom: MediaQuery.of(context).viewInsets.bottom,
-      ),
-      child: Container(
-        decoration: const BoxDecoration(
-          color: AppColors.white,
-          borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-        ),
-        child: SafeArea(
-          child: SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(20, 16, 20, 24),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Center(
-                  child: Container(
-                    width: 36,
-                    height: 4,
-                    decoration: BoxDecoration(
-                      color: AppColors.border,
-                      borderRadius: BorderRadius.circular(2),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 16),
-                Text(
-                  l10n.postAddTruckSheetTitle,
-                  style: const TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w700,
-                    color: AppColors.textPrimary,
-                  ),
-                ),
-                const SizedBox(height: 20),
-                _SheetLabel(l10n.postTruckNumberLabel),
-                const SizedBox(height: 6),
-                TextField(
-                  controller: _numberCtrl,
-                  textCapitalization: TextCapitalization.characters,
-                  decoration: _inputDecoration(l10n.postTruckNumberHint),
-                ),
-                const SizedBox(height: 16),
-                _SheetLabel(l10n.postTruckTypeLabel),
-                const SizedBox(height: 6),
-                DropdownButtonFormField<String>(
-                  value: _selectedType,
-                  decoration: _inputDecoration(l10n.postSelectTypeHint),
-                  items: truckTypes
-                      .map(
-                        (t) => DropdownMenuItem(
-                          value: t,
-                          child: Text(truckTypeLabel(context, t)),
-                        ),
-                      )
-                      .toList(),
-                  onChanged: (v) => setState(() => _selectedType = v),
-                ),
-                const SizedBox(height: 16),
-                _SheetLabel(l10n.postCapacityLabel),
-                const SizedBox(height: 6),
-                DropdownButtonFormField<int>(
-                  value: _selectedCapacity,
-                  decoration: _inputDecoration(l10n.postSelectCapacityHint),
-                  isExpanded: true,
-                  items: _capacities
-                      .map(
-                        (c) => DropdownMenuItem(
-                          value: c,
-                          child: Text(l10n.capacityTon(c)),
-                        ),
-                      )
-                      .toList(),
-                  onChanged: (v) => setState(() => _selectedCapacity = v),
-                ),
-                const SizedBox(height: 28),
-                SizedBox(
-                  width: double.infinity,
-                  height: 50,
-                  child: ElevatedButton(
-                    onPressed: () => Navigator.pop(context),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.primaryDark,
-                      foregroundColor: AppColors.white,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      elevation: 0,
-                    ),
-                    child: Text(
-                      l10n.postAddTruckButton,
-                      style: const TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-InputDecoration _inputDecoration(String hint) => InputDecoration(
-  hintText: hint,
-  hintStyle: const TextStyle(color: AppColors.textTertiary, fontSize: 14),
-  filled: true,
-  fillColor: const Color(0xFFF8FAFC),
-  border: OutlineInputBorder(
-    borderRadius: BorderRadius.circular(10),
-    borderSide: const BorderSide(color: AppColors.border),
-  ),
-  enabledBorder: OutlineInputBorder(
-    borderRadius: BorderRadius.circular(10),
-    borderSide: const BorderSide(color: AppColors.border),
-  ),
-  focusedBorder: OutlineInputBorder(
-    borderRadius: BorderRadius.circular(10),
-    borderSide: const BorderSide(color: AppColors.primaryBlue, width: 1.5),
-  ),
-  contentPadding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
-);
-
-class _SheetLabel extends StatelessWidget {
-  final String text;
-  const _SheetLabel(this.text);
-
-  @override
-  Widget build(BuildContext context) => Text(
-    text,
-    style: const TextStyle(
-      fontSize: 13,
-      fontWeight: FontWeight.w600,
-      color: AppColors.textSecondary,
-    ),
-  );
 }

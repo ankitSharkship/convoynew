@@ -270,6 +270,9 @@ class AppLocalizationsHi extends AppLocalizations {
   String get postAddTruckButton => 'ट्रक जोड़ें';
 
   @override
+  String get postVerifyButton => 'सत्यापित करें';
+
+  @override
   String get postContactSectionTitle => 'किससे संपर्क करें?';
 
   @override
@@ -367,16 +370,25 @@ class AppLocalizationsHi extends AppLocalizations {
   String get profileTitle => 'प्रोफाइल';
 
   @override
+  String get profileAccountSection => 'खाता';
+
+  @override
+  String get profileVerifiedDriver => '✓ सत्यापित ड्राइवर';
+
+  @override
+  String get profileLanguage => 'भाषा';
+
+  @override
   String get profileLogoutTitle => 'लॉगआउट';
 
   @override
   String get profileLogoutConfirm => 'क्या आप वाकई लॉगआउट करना चाहते हैं?';
 
   @override
-  String get profileKycLabel => 'KYC';
+  String get profileKycLabel => 'KYC सत्यापन';
 
   @override
-  String get profileKycVerified => 'सत्यापित';
+  String get profileKycVerified => '✓ पूर्ण';
 
   @override
   String get profileKycInReview => 'समीक्षा में';
@@ -391,27 +403,10 @@ class AppLocalizationsHi extends AppLocalizations {
   String get profileMyVehicles => 'मेरे वाहन';
 
   @override
-  String profileVehicleCount(int count) {
-    String _temp0 = intl.Intl.pluralLogic(
-      count,
-      locale: localeName,
-      other: '$count वाहन जोड़े गए',
-      one: '1 वाहन जोड़ा गया',
-    );
-    return '$_temp0';
-  }
+  String get profileTermsPrivacy => 'नियम व गोपनीयता';
 
   @override
-  String get profileTerms => 'नियम और शर्तें';
-
-  @override
-  String get profilePrivacy => 'गोपनीयता नीति';
-
-  @override
-  String get profileHelp => 'सहायता और समर्थन';
-
-  @override
-  String get profileHelpSubtitle => 'हमसे चैट करें, कॉल करें या ईमेल करें';
+  String get profileHelp => '24×7 ड्राइवर सहायता';
 
   @override
   String profileAccountStatusPrefix(String status) {

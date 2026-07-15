@@ -98,8 +98,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                       ],
                     ),
                   ),
-                  _SortButton(onTap: () {}),
-                  const SizedBox(width: 10),
+
                   const LanguageSwitcherButton(),
                 ],
               ),

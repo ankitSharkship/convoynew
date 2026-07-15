@@ -10,9 +10,19 @@ import '../../../../shared/widgets/language_switcher_button.dart';
 import '../../../../shared/widgets/loader.dart';
 import '../../domain/entities/vehicle_entity.dart';
 import '../state/vehicle_notifier.dart';
+import '../widgets/add_truck_sheet.dart';
 
 class MyTrucksScreen extends ConsumerWidget {
   const MyTrucksScreen({super.key});
+
+  Future<void> _showAddTruckSheet(BuildContext context) async {
+    await showModalBottomSheet<VehicleEntity>(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (_) => const AddTruckSheet(),
+    );
+  }
 
   Future<void> _confirmDelete(
     BuildContext context,
@@ -61,7 +71,12 @@ class MyTrucksScreen extends ConsumerWidget {
     final l10n = AppLocalizations.of(context)!;
 
     return Scaffold(
-      backgroundColor: AppColors.background,
+      backgroundColor: AppColors.primaryBlueLight,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => _showAddTruckSheet(context),
+        backgroundColor: AppColors.primaryBlue,
+        child: const Icon(Icons.add, color: AppColors.white),
+      ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.fromLTRB(20, 16, 20, 20),

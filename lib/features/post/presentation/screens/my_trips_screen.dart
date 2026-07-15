@@ -79,7 +79,7 @@ class MyTripsScreen extends ConsumerWidget {
     final l10n = AppLocalizations.of(context)!;
 
     return Scaffold(
-      backgroundColor: AppColors.background,
+      backgroundColor: AppColors.primaryBlueLight,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.fromLTRB(20, 16, 20, 20),

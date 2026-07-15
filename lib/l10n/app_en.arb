@@ -103,6 +103,7 @@
   "postCapacityLabel": "Capacity",
   "postSelectCapacityHint": "Select capacity",
   "postAddTruckButton": "Add Truck",
+  "postVerifyButton": "Verify",
 
   "postContactSectionTitle": "Who should we contact?",
   "postContactMe": "Me",
@@ -145,22 +146,19 @@
   },
 
   "profileTitle": "Profile",
+  "profileAccountSection": "ACCOUNT",
+  "profileVerifiedDriver": "✓ Verified Driver",
+  "profileLanguage": "Language",
   "profileLogoutTitle": "Logout",
   "profileLogoutConfirm": "Are you sure you want to logout?",
-  "profileKycLabel": "KYC",
-  "profileKycVerified": "Verified",
+  "profileKycLabel": "KYC Verification",
+  "profileKycVerified": "✓ Done",
   "profileKycInReview": "In Review",
   "profileKycRejected": "Rejected",
   "profileKycPending": "Pending",
   "profileMyVehicles": "My Vehicles",
-  "profileVehicleCount": "{count, plural, one{1 vehicle added} other{{count} vehicles added}}",
-  "@profileVehicleCount": {
-    "placeholders": { "count": { "type": "int" } }
-  },
-  "profileTerms": "Terms & Conditions",
-  "profilePrivacy": "Privacy & Policy",
-  "profileHelp": "Help & Support",
-  "profileHelpSubtitle": "Chat, call or email us",
+  "profileTermsPrivacy": "Terms & Privacy",
+  "profileHelp": "24×7 Driver Support",
   "profileAccountStatusPrefix": "Account {status}",
   "@profileAccountStatusPrefix": {
     "placeholders": { "status": { "type": "String" } }
