@@ -11,11 +11,21 @@ import '../../l10n/generated/app_localizations.dart';
 class LanguageSwitcherButton extends ConsumerWidget {
   /// When true, renders as the 40x40 white rounded "card" icon button used
   /// on light-background screens. When false, renders as a bare icon button
-  /// (for dark/gradient headers), tinted with [iconColor].
+  /// (for dark/gradient headers), tinted with [iconColor]. Ignored when
+  /// [trigger] is provided.
   final bool card;
   final Color? iconColor;
 
-  const LanguageSwitcherButton({super.key, this.card = true, this.iconColor});
+  /// A custom widget to use as the popup's trigger instead of the default
+  /// translate icon (e.g. a "Change language" text link).
+  final Widget? trigger;
+
+  const LanguageSwitcherButton({
+    super.key,
+    this.card = true,
+    this.iconColor,
+    this.trigger,
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -28,17 +38,8 @@ class LanguageSwitcherButton extends ConsumerWidget {
       (const Locale('mr'), l10n.languageMarathi),
     ];
 
-    final button = PopupMenuButton<Locale>(
-      icon: Icon(
-        Icons.translate,
-        size: card ? 20 : 22,
-        color: iconColor ?? AppColors.textPrimary,
-      ),
-      tooltip: l10n.languageSelectTitle,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
-      onSelected: (locale) =>
-          ref.read(localeNotifierProvider.notifier).setLocale(locale),
-      itemBuilder: (context) => options.map((option) {
+    List<PopupMenuEntry<Locale>> itemBuilder(BuildContext context) {
+      return options.map((option) {
         final (locale, label) = option;
         final selected = locale.languageCode == current.languageCode;
         return PopupMenuItem(
@@ -62,7 +63,32 @@ class LanguageSwitcherButton extends ConsumerWidget {
             ],
           ),
         );
-      }).toList(),
+      }).toList();
+    }
+
+    void onSelected(Locale locale) =>
+        ref.read(localeNotifierProvider.notifier).setLocale(locale);
+
+    if (trigger != null) {
+      return PopupMenuButton<Locale>(
+        tooltip: l10n.languageSelectTitle,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+        onSelected: onSelected,
+        itemBuilder: itemBuilder,
+        child: trigger,
+      );
+    }
+
+    final button = PopupMenuButton<Locale>(
+      icon: Icon(
+        Icons.translate,
+        size: card ? 20 : 22,
+        color: iconColor ?? AppColors.textPrimary,
+      ),
+      tooltip: l10n.languageSelectTitle,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+      onSelected: onSelected,
+      itemBuilder: itemBuilder,
     );
 
     if (!card) return button;

@@ -69,31 +69,17 @@ class AppLocalizationsMr extends AppLocalizations {
   String get onboardingSkip => 'वगळा';
 
   @override
-  String get onboardingNext => 'पुढे';
-
-  @override
   String get onboardingGetStarted => 'सुरुवात करा';
 
   @override
-  String get onboardingPage1Title => 'काही सेकंदात ट्रक\nशोधा आणि पोस्ट करा';
+  String get onboardingTitle => 'लोड दररोज\nतुमच्याकडे येतात.';
 
   @override
-  String get onboardingPage1Subtitle =>
-      'ट्रक उपलब्धतेसाठी एक सोपे ठिकाण — यापुढे अंतहीन व्हॉट्सअॅप ग्रुप्सची गरज नाही.';
+  String get onboardingSubtitle =>
+      'तुमचा ट्रक एकदा पोस्ट करा. सत्यापित ट्रान्सपोर्टर तुम्हाला कॉल करतील. कोणताही मध्यस्थ नाही, धावपळ नाही.';
 
   @override
-  String get onboardingPage2Title => 'टाइप करण्याची गरज नाही —\nफक्त बोला';
-
-  @override
-  String get onboardingPage2Subtitle =>
-      'तुमच्या स्वतःच्या भाषेत बोलून तुमचा ट्रक पोस्ट करा. रस्त्यासाठी बनवलेले.';
-
-  @override
-  String get onboardingPage3Title => 'ड्रायव्हर आणि लोडला\nथेट कॉल करा';
-
-  @override
-  String get onboardingPage3Subtitle =>
-      'कोणाकडे ट्रक आहे ते पहा, एकदा टॅप करा, आणि कॉल जोडला जातो. सोपे.';
+  String get onboardingChangeLanguage => 'भाषा बदला';
 
   @override
   String get phoneEnterNumberHint => 'तुमचा नंबर टाका';
@@ -316,6 +302,12 @@ class AppLocalizationsMr extends AppLocalizations {
   String get postContactNumberError => 'वैध 10 अंकी मोबाइल क्रमांक टाका';
 
   @override
+  String get postEditTitle => 'ट्रक पोस्ट संपादित करा';
+
+  @override
+  String get postSaveChangesButton => 'बदल जतन करा';
+
+  @override
   String get postSuccessTitle => 'तुमचा ट्रक पोस्ट झाला!';
 
   @override
@@ -347,6 +339,36 @@ class AppLocalizationsMr extends AppLocalizations {
 
   @override
   String get myTrucksNoTrucks => 'अजून कोणताही ट्रक जोडलेला नाही';
+
+  @override
+  String get tripsTitle => 'माझ्या यात्रा';
+
+  @override
+  String get tripsNoTrips => 'अजून कोणतीही यात्रा पोस्ट केलेली नाही';
+
+  @override
+  String get tripsActiveLabel => 'सक्रिय यात्रा';
+
+  @override
+  String get tripsExpiredLabel => 'कालबाह्य';
+
+  @override
+  String get tripsEdit => 'संपादित करा';
+
+  @override
+  String get tripsReactivate => 'पुन्हा सक्रिय करा';
+
+  @override
+  String get tripsDeleteTitle => 'यात्रा हटवा';
+
+  @override
+  String get tripsDeleteMessage =>
+      'ही यात्रा कायमची हटवायची? हे परत करता येणार नाही.';
+
+  @override
+  String tripsMoreDestinations(int count) {
+    return '+$count अधिक';
+  }
 
   @override
   String get profileTitle => 'प्रोफाइल';

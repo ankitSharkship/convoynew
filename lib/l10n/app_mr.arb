@@ -23,14 +23,10 @@
   "truckTypeTanker": "टँकर",
 
   "onboardingSkip": "वगळा",
-  "onboardingNext": "पुढे",
   "onboardingGetStarted": "सुरुवात करा",
-  "onboardingPage1Title": "काही सेकंदात ट्रक\nशोधा आणि पोस्ट करा",
-  "onboardingPage1Subtitle": "ट्रक उपलब्धतेसाठी एक सोपे ठिकाण — यापुढे अंतहीन व्हॉट्सअॅप ग्रुप्सची गरज नाही.",
-  "onboardingPage2Title": "टाइप करण्याची गरज नाही —\nफक्त बोला",
-  "onboardingPage2Subtitle": "तुमच्या स्वतःच्या भाषेत बोलून तुमचा ट्रक पोस्ट करा. रस्त्यासाठी बनवलेले.",
-  "onboardingPage3Title": "ड्रायव्हर आणि लोडला\nथेट कॉल करा",
-  "onboardingPage3Subtitle": "कोणाकडे ट्रक आहे ते पहा, एकदा टॅप करा, आणि कॉल जोडला जातो. सोपे.",
+  "onboardingTitle": "लोड दररोज\nतुमच्याकडे येतात.",
+  "onboardingSubtitle": "तुमचा ट्रक एकदा पोस्ट करा. सत्यापित ट्रान्सपोर्टर तुम्हाला कॉल करतील. कोणताही मध्यस्थ नाही, धावपळ नाही.",
+  "onboardingChangeLanguage": "भाषा बदला",
 
   "phoneEnterNumberHint": "तुमचा नंबर टाका",
   "phoneContinueButton": "मोबाइल नंबरसह पुढे जा",
@@ -107,6 +103,9 @@
   "postContactNumberHint": "10 अंकी मोबाइल क्रमांक",
   "postContactNumberError": "वैध 10 अंकी मोबाइल क्रमांक टाका",
 
+  "postEditTitle": "ट्रक पोस्ट संपादित करा",
+  "postSaveChangesButton": "बदल जतन करा",
+
   "postSuccessTitle": "तुमचा ट्रक पोस्ट झाला!",
   "postSuccessSubtitle": "तुमच्या जवळचे लोड मालक आता तो पाहू शकतात आणि थेट तुम्हाला कॉल करू शकतात.",
   "postSuccessTruckTypeLabel": "ट्रकचा प्रकार",
@@ -118,6 +117,16 @@
   "myTrucksDeleteTitle": "ट्रक हटवा",
   "myTrucksDeleteMessage": "{vehicleNumber} तुमच्या ट्रकमधून काढायचा? हे परत करता येणार नाही.",
   "myTrucksNoTrucks": "अजून कोणताही ट्रक जोडलेला नाही",
+
+  "tripsTitle": "माझ्या यात्रा",
+  "tripsNoTrips": "अजून कोणतीही यात्रा पोस्ट केलेली नाही",
+  "tripsActiveLabel": "सक्रिय यात्रा",
+  "tripsExpiredLabel": "कालबाह्य",
+  "tripsEdit": "संपादित करा",
+  "tripsReactivate": "पुन्हा सक्रिय करा",
+  "tripsDeleteTitle": "यात्रा हटवा",
+  "tripsDeleteMessage": "ही यात्रा कायमची हटवायची? हे परत करता येणार नाही.",
+  "tripsMoreDestinations": "+{count} अधिक",
 
   "profileTitle": "प्रोफाइल",
   "profileLogoutTitle": "लॉगआउट",

@@ -69,31 +69,17 @@ class AppLocalizationsEn extends AppLocalizations {
   String get onboardingSkip => 'Skip';
 
   @override
-  String get onboardingNext => 'Next';
-
-  @override
   String get onboardingGetStarted => 'Get Started';
 
   @override
-  String get onboardingPage1Title => 'Find & post trucks\nin seconds';
+  String get onboardingTitle => 'Loads come\nto you, every day.';
 
   @override
-  String get onboardingPage1Subtitle =>
-      'A simpler home for truck availability — no more endless WhatsApp groups.';
+  String get onboardingSubtitle =>
+      'Post your truck once. Verified transporters call you. No middlemen, no running around.';
 
   @override
-  String get onboardingPage2Title => 'No typing needed —\njust speak';
-
-  @override
-  String get onboardingPage2Subtitle =>
-      'Post your truck by voice in your own language. Built for the road.';
-
-  @override
-  String get onboardingPage3Title => 'Call drivers &\nloads directly';
-
-  @override
-  String get onboardingPage3Subtitle =>
-      'See who has a truck, tap once, and the call connects. Simple.';
+  String get onboardingChangeLanguage => 'Change language';
 
   @override
   String get phoneEnterNumberHint => 'Enter Your Number';
@@ -316,6 +302,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get postContactNumberError => 'Enter a valid 10-digit mobile number';
 
   @override
+  String get postEditTitle => 'Edit truck post';
+
+  @override
+  String get postSaveChangesButton => 'Save Changes';
+
+  @override
   String get postSuccessTitle => 'Your truck is posted!';
 
   @override
@@ -347,6 +339,36 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get myTrucksNoTrucks => 'No trucks added yet';
+
+  @override
+  String get tripsTitle => 'My Trips';
+
+  @override
+  String get tripsNoTrips => 'No trips posted yet';
+
+  @override
+  String get tripsActiveLabel => 'Active Trip';
+
+  @override
+  String get tripsExpiredLabel => 'Expired';
+
+  @override
+  String get tripsEdit => 'Edit';
+
+  @override
+  String get tripsReactivate => 'Reactivate';
+
+  @override
+  String get tripsDeleteTitle => 'Delete trip';
+
+  @override
+  String get tripsDeleteMessage =>
+      'Delete this trip permanently? This cannot be undone.';
+
+  @override
+  String tripsMoreDestinations(int count) {
+    return '+$count more';
+  }
 
   @override
   String get profileTitle => 'Profile';

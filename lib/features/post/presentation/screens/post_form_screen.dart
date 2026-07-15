@@ -9,6 +9,7 @@ import '../../../../shared/utils/truck_type_i18n.dart';
 import '../../../../shared/widgets/borderless_input_decoration.dart';
 import '../../../../shared/widgets/language_switcher_button.dart';
 import '../../../search/domain/entities/location_entity.dart';
+import '../../domain/entities/trip_entity.dart';
 import '../../domain/entities/vehicle_entity.dart';
 import '../state/post_notifier.dart';
 import '../state/vehicle_notifier.dart';
@@ -18,7 +19,9 @@ const _addNewTruckSentinel = '__add_new_truck__';
 final _capacities = List.generate(30, (i) => i + 6);
 
 class PostFormScreen extends ConsumerStatefulWidget {
-  const PostFormScreen({super.key});
+  final TripEntity? editingTrip;
+
+  const PostFormScreen({super.key, this.editingTrip});
 
   @override
   ConsumerState<PostFormScreen> createState() => _PostFormScreenState();
@@ -29,6 +32,17 @@ class _PostFormScreenState extends ConsumerState<PostFormScreen> {
   final _destControllers = <TextEditingController>[TextEditingController()];
   final _contactNameController = TextEditingController();
   final _contactNumberController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    final trip = widget.editingTrip;
+    if (trip != null) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        ref.read(postNotifierProvider.notifier).startEditing(trip);
+      });
+    }
+  }
 
   @override
   void dispose() {
@@ -81,6 +95,13 @@ class _PostFormScreenState extends ConsumerState<PostFormScreen> {
           _destControllers[i].text = location.name;
         }
       }
+      // Only re-sync from state when editing starts (a one-time prefill) —
+      // not on every keystroke, since typing already updates these
+      // controllers directly and the state field mirrors that same text.
+      if (next.editingTripId != previous?.editingTripId) {
+        _contactNameController.text = next.contactName;
+        _contactNumberController.text = formatPhoneDisplay(next.contactNumber);
+      }
       if (next.submission is PostDone) {
         final post = (next.submission as PostDone).post;
         context.pushReplacement(
@@ -91,6 +112,13 @@ class _PostFormScreenState extends ConsumerState<PostFormScreen> {
             'origin': post.originName,
           },
         );
+        notifier.resetSubmission();
+      } else if (next.submission is PostEditSaved) {
+        if (context.canPop()) {
+          context.pop();
+        } else {
+          context.go('/profile/trips');
+        }
         notifier.resetSubmission();
       }
     });
@@ -105,10 +133,11 @@ class _PostFormScreenState extends ConsumerState<PostFormScreen> {
       appBar: AppBar(
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
-          onPressed: () => context.go('/home'),
+          onPressed: () =>
+              context.canPop() ? context.pop() : context.go('/home'),
         ),
         title: Text(
-          l10n.postScreenTitle,
+          state.isEditing ? l10n.postEditTitle : l10n.postScreenTitle,
           style: const TextStyle(fontWeight: FontWeight.w700),
         ),
         centerTitle: false,
@@ -274,7 +303,9 @@ class _PostFormScreenState extends ConsumerState<PostFormScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            l10n.postSubmitButton,
+                            state.isEditing
+                                ? l10n.postSaveChangesButton
+                                : l10n.postSubmitButton,
                             style: const TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.w700,

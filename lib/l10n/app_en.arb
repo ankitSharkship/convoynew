@@ -23,14 +23,10 @@
   "truckTypeTanker": "Tanker",
 
   "onboardingSkip": "Skip",
-  "onboardingNext": "Next",
   "onboardingGetStarted": "Get Started",
-  "onboardingPage1Title": "Find & post trucks\nin seconds",
-  "onboardingPage1Subtitle": "A simpler home for truck availability — no more endless WhatsApp groups.",
-  "onboardingPage2Title": "No typing needed —\njust speak",
-  "onboardingPage2Subtitle": "Post your truck by voice in your own language. Built for the road.",
-  "onboardingPage3Title": "Call drivers &\nloads directly",
-  "onboardingPage3Subtitle": "See who has a truck, tap once, and the call connects. Simple.",
+  "onboardingTitle": "Loads come\nto you, every day.",
+  "onboardingSubtitle": "Post your truck once. Verified transporters call you. No middlemen, no running around.",
+  "onboardingChangeLanguage": "Change language",
 
   "phoneEnterNumberHint": "Enter Your Number",
   "phoneContinueButton": "Continue with Mobile Number",
@@ -122,6 +118,9 @@
   "postContactNumberHint": "10-digit mobile number",
   "postContactNumberError": "Enter a valid 10-digit mobile number",
 
+  "postEditTitle": "Edit truck post",
+  "postSaveChangesButton": "Save Changes",
+
   "postSuccessTitle": "Your truck is posted!",
   "postSuccessSubtitle": "Load owners near you can now see it and call you directly.",
   "postSuccessTruckTypeLabel": "Truck type",
@@ -136,6 +135,19 @@
     "placeholders": { "vehicleNumber": { "type": "String" } }
   },
   "myTrucksNoTrucks": "No trucks added yet",
+
+  "tripsTitle": "My Trips",
+  "tripsNoTrips": "No trips posted yet",
+  "tripsActiveLabel": "Active Trip",
+  "tripsExpiredLabel": "Expired",
+  "tripsEdit": "Edit",
+  "tripsReactivate": "Reactivate",
+  "tripsDeleteTitle": "Delete trip",
+  "tripsDeleteMessage": "Delete this trip permanently? This cannot be undone.",
+  "tripsMoreDestinations": "+{count} more",
+  "@tripsMoreDestinations": {
+    "placeholders": { "count": { "type": "int" } }
+  },
 
   "profileTitle": "Profile",
   "profileLogoutTitle": "Logout",

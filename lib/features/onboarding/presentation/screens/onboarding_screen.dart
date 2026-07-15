@@ -6,6 +6,15 @@ import '../../../../l10n/generated/app_localizations.dart';
 import '../../../../shared/widgets/language_switcher_button.dart';
 import '../state/onboarding_notifier.dart';
 
+// NOTE: content (title/subtitle/copy) is intentionally identical across all
+// three pages for now — only the illustration changes. The images/text will
+// be revisited later.
+const _pageImages = [
+  'assets/images/truck2.png',
+  'assets/images/truck4.png',
+  'assets/images/truck3.png',
+];
+
 class OnboardingScreen extends ConsumerStatefulWidget {
   const OnboardingScreen({super.key});
 
@@ -17,28 +26,8 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   final _pageController = PageController();
   int _currentPage = 0;
 
-  static const _pageCount = 3;
-
-  List<_OnboardingPage> _pages(AppLocalizations l10n) => [
-    _OnboardingPage(
-      icon: Icons.local_shipping_outlined,
-      title: l10n.onboardingPage1Title,
-      subtitle: l10n.onboardingPage1Subtitle,
-    ),
-    _OnboardingPage(
-      icon: Icons.mic,
-      title: l10n.onboardingPage2Title,
-      subtitle: l10n.onboardingPage2Subtitle,
-    ),
-    _OnboardingPage(
-      icon: Icons.phone_in_talk_outlined,
-      title: l10n.onboardingPage3Title,
-      subtitle: l10n.onboardingPage3Subtitle,
-    ),
-  ];
-
-  Future<void> _onNext() async {
-    if (_currentPage < _pageCount - 1) {
+  Future<void> _onGetStarted() async {
+    if (_currentPage < _pageImages.length - 1) {
       _pageController.nextPage(
         duration: const Duration(milliseconds: 300),
         curve: Curves.easeInOut,
@@ -49,7 +38,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
     }
   }
 
-  void _onSkip() async {
+  Future<void> _onSkip() async {
     await ref.read(onboardingNotifierProvider.notifier).markSeen();
     if (mounted) context.go('/auth/phone');
   }
@@ -63,167 +52,178 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
-    final pages = _pages(l10n);
 
     return Scaffold(
-      backgroundColor: AppColors.primaryDark,
-      body: SafeArea(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-              child: Row(
-                children: [
-                  const Icon(
-                    Icons.local_shipping,
-                    color: AppColors.white,
-                    size: 22,
+      backgroundColor: AppColors.primaryBlueLight,
+      body: Column(
+        children: [
+          Expanded(
+            child: Stack(
+              children: [
+                PageView.builder(
+                  controller: _pageController,
+                  itemCount: _pageImages.length,
+                  onPageChanged: (i) => setState(() => _currentPage = i),
+                  itemBuilder: (context, index) => _OnboardingPage(
+                    image: _pageImages[index],
+                    title: l10n.onboardingTitle,
+                    subtitle: l10n.onboardingSubtitle,
                   ),
-                  const SizedBox(width: 8),
-                  Text(
-                    l10n.appName,
-                    style: const TextStyle(
-                      color: AppColors.white,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ),
-                  const Spacer(),
-                  const LanguageSwitcherButton(
-                    card: false,
-                    iconColor: AppColors.white,
-                  ),
-                  if (_currentPage < _pageCount - 1)
-                    TextButton(
-                      onPressed: _onSkip,
+                ),
+                Positioned(
+                  top: MediaQuery.of(context).padding.top + 12,
+                  right: 16,
+                  child: GestureDetector(
+                    onTap: _onSkip,
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 16,
+                        vertical: 8,
+                      ),
+                      decoration: BoxDecoration(
+                        color: AppColors.white.withValues(alpha: 0.85),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
                       child: Text(
                         l10n.onboardingSkip,
                         style: const TextStyle(
-                          color: AppColors.white,
-                          fontSize: 14,
+                          color: AppColors.textPrimary,
+                          fontSize: 13,
+                          fontWeight: FontWeight.w600,
                         ),
                       ),
                     ),
-                ],
-              ),
+                  ),
+                ),
+              ],
             ),
-            Expanded(
-              child: PageView.builder(
-                controller: _pageController,
-                itemCount: pages.length,
-                onPageChanged: (i) => setState(() => _currentPage = i),
-                itemBuilder: (context, index) => pages[index],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(24, 0, 24, 12),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: List.generate(
-                  _pageCount,
-                  (i) => AnimatedContainer(
-                    duration: const Duration(milliseconds: 250),
-                    margin: const EdgeInsets.symmetric(horizontal: 4),
-                    width: i == _currentPage ? 20 : 6,
-                    height: 6,
-                    decoration: BoxDecoration(
-                      color: i == _currentPage
-                          ? AppColors.white
-                          : AppColors.white.withOpacity(0.3),
-                      borderRadius: BorderRadius.circular(3),
-                    ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 16),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: List.generate(
+                _pageImages.length,
+                (i) => AnimatedContainer(
+                  duration: const Duration(milliseconds: 250),
+                  margin: const EdgeInsets.symmetric(horizontal: 4),
+                  width: i == _currentPage ? 20 : 6,
+                  height: 6,
+                  decoration: BoxDecoration(
+                    color: i == _currentPage
+                        ? AppColors.primaryBlue
+                        : AppColors.border,
+                    borderRadius: BorderRadius.circular(3),
                   ),
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(24, 8, 24, 16),
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(24, 0, 24, 12),
+            child: SizedBox(
+              width: double.infinity,
+              height: 54,
               child: ElevatedButton(
-                onPressed: _onNext,
+                onPressed: _onGetStarted,
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppColors.primaryBlue,
                   foregroundColor: AppColors.white,
-                  minimumSize: const Size(double.infinity, 52),
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
+                    borderRadius: BorderRadius.circular(14),
                   ),
+                  elevation: 0,
                 ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      _currentPage < _pageCount - 1
-                          ? l10n.onboardingNext
-                          : l10n.onboardingGetStarted,
-                      style: const TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    const SizedBox(width: 8),
-                    const Icon(Icons.arrow_forward, size: 18),
-                  ],
+                child: Text(
+                  l10n.onboardingGetStarted,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w700,
+                  ),
                 ),
               ),
             ),
-            const SizedBox(height: 24),
-          ],
-        ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 20),
+            child: LanguageSwitcherButton(
+              trigger: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Icon(
+                    Icons.language,
+                    size: 16,
+                    color: AppColors.textSecondary,
+                  ),
+                  const SizedBox(width: 6),
+                  Text(
+                    l10n.onboardingChangeLanguage,
+                    style: const TextStyle(
+                      fontSize: 13,
+                      color: AppColors.textSecondary,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
 }
 
 class _OnboardingPage extends StatelessWidget {
-  final IconData icon;
+  final String image;
   final String title;
   final String subtitle;
 
   const _OnboardingPage({
-    required this.icon,
+    required this.image,
     required this.title,
     required this.subtitle,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 32),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            width: 96,
-            height: 96,
-            decoration: BoxDecoration(
-              color: AppColors.white.withOpacity(0.12),
-              shape: BoxShape.circle,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        AspectRatio(
+          aspectRatio: 1,
+          child: Image.asset(image, fit: BoxFit.cover, width: double.infinity),
+        ),
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(24, 24, 24, 0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: const TextStyle(
+                    color: AppColors.textPrimary,
+                    fontSize: 28,
+                    fontWeight: FontWeight.w800,
+                    height: 1.2,
+                  ),
+                ),
+                const SizedBox(height: 12),
+                Text(
+                  subtitle,
+                  style: const TextStyle(
+                    color: AppColors.textSecondary,
+                    fontSize: 14,
+                    height: 1.5,
+                  ),
+                ),
+              ],
             ),
-            child: Icon(icon, size: 48, color: AppColors.white),
           ),
-          const SizedBox(height: 40),
-          Text(
-            title,
-            textAlign: TextAlign.center,
-            style: const TextStyle(
-              color: AppColors.white,
-              fontSize: 28,
-              fontWeight: FontWeight.w700,
-              height: 1.25,
-            ),
-          ),
-          const SizedBox(height: 16),
-          Text(
-            subtitle,
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: AppColors.white.withOpacity(0.7),
-              fontSize: 15,
-              height: 1.5,
-            ),
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

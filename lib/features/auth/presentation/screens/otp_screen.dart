@@ -102,27 +102,13 @@ class _OtpScreenState extends ConsumerState<OtpScreen> {
             Padding(
               padding: const EdgeInsets.fromLTRB(8, 8, 24, 24),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   IconButton(
                     onPressed: () => context.pop(),
                     icon: const Icon(Icons.arrow_back, color: AppColors.white),
                   ),
-                  const SizedBox(width: 4),
-                  const Icon(
-                    Icons.local_shipping,
-                    color: AppColors.primaryBlue,
-                    size: 20,
-                  ),
-                  const SizedBox(width: 6),
-                  Text(
-                    l10n.appName,
-                    style: const TextStyle(
-                      color: AppColors.white,
-                      fontWeight: FontWeight.w700,
-                      fontSize: 16,
-                    ),
-                  ),
-                  const Spacer(),
+
                   const LanguageSwitcherButton(
                     card: false,
                     iconColor: AppColors.white,

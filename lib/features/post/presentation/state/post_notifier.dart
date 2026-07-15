@@ -9,7 +9,10 @@ import '../../../search/presentation/state/search_notifier.dart';
 import '../../data/datasources/post_remote_datasource.dart';
 import '../../data/repositories/post_repository_impl.dart';
 import '../../domain/entities/post_entity.dart';
+import '../../domain/entities/trip_entity.dart';
+import '../../domain/usecases/edit_trip_usecase.dart';
 import '../../domain/usecases/submit_post_usecase.dart';
+import 'trips_notifier.dart';
 
 part 'post_notifier.g.dart';
 
@@ -30,6 +33,11 @@ PostRepositoryImpl postRepository(PostRepositoryRef ref) {
 @riverpod
 SubmitPostUseCase submitPostUseCase(SubmitPostUseCaseRef ref) {
   return SubmitPostUseCase(ref.watch(postRepositoryProvider));
+}
+
+@riverpod
+EditTripUseCase editTripUseCase(EditTripUseCaseRef ref) {
+  return EditTripUseCase(ref.watch(tripRepositoryProvider));
 }
 
 class DestinationField {
@@ -79,6 +87,12 @@ class PostError extends PostState {
   const PostError(this.message);
 }
 
+/// Emitted after successfully saving changes to an existing trip (edit mode),
+/// as opposed to [PostDone] which is for a newly created post.
+class PostEditSaved extends PostState {
+  const PostEditSaved();
+}
+
 enum ContactMode { me, someoneElse }
 
 class PostFormState {
@@ -90,6 +104,7 @@ class PostFormState {
   final String contactName;
   final String contactNumber;
   final PostState submission;
+  final String? editingTripId;
 
   const PostFormState({
     this.origin,
@@ -100,7 +115,10 @@ class PostFormState {
     this.contactName = '',
     this.contactNumber = '',
     this.submission = const PostIdle(),
+    this.editingTripId,
   });
+
+  bool get isEditing => editingTripId != null;
 
   bool get canAddDestination => destinations.length < _maxDestinations;
 
@@ -128,6 +146,7 @@ class PostFormState {
     String? contactName,
     String? contactNumber,
     PostState? submission,
+    String? editingTripId,
   }) {
     return PostFormState(
       origin: clearOrigin ? null : (origin ?? this.origin),
@@ -138,6 +157,7 @@ class PostFormState {
       contactName: contactName ?? this.contactName,
       contactNumber: contactNumber ?? this.contactNumber,
       submission: submission ?? this.submission,
+      editingTripId: editingTripId ?? this.editingTripId,
     );
   }
 }
@@ -265,6 +285,34 @@ class PostNotifier extends _$PostNotifier {
     state = state.copyWith(selectedVehicleId: vehicleId);
   }
 
+  // ── Edit mode ───────────────────────────────────────────────────────────
+
+  /// Prefills the form from an existing trip so the user can edit it.
+  /// The origin field stays tied to `currentLocation` — refreshing it (GPS)
+  /// re-detects the current location, matching how a fresh post works.
+  void startEditing(TripEntity trip) {
+    final hasContact = trip.contactName != null && trip.contactName!.isNotEmpty;
+    final rawNumber = trip.contactNumber ?? '';
+    final digits = rawNumber.replaceAll(RegExp(r'\D'), '');
+    final contactNumber = digits.length > 10
+        ? digits.substring(digits.length - 10)
+        : digits;
+
+    state = state.copyWith(
+      origin: trip.currentLocation,
+      destinations: trip.destinations.isEmpty
+          ? const [DestinationField()]
+          : trip.destinations
+                .map((d) => DestinationField(location: d))
+                .toList(),
+      selectedVehicleId: trip.vehicleId,
+      contactMode: hasContact ? ContactMode.someoneElse : ContactMode.me,
+      contactName: trip.contactName ?? '',
+      contactNumber: contactNumber,
+      editingTripId: trip.id,
+    );
+  }
+
   // ── Contact ─────────────────────────────────────────────────────────────
 
   void setContactMode(ContactMode mode) {
@@ -296,9 +344,27 @@ class PostNotifier extends _$PostNotifier {
     if (!state.contactValid) return;
 
     final isAltContact = state.contactMode == ContactMode.someoneElse;
+    final contactName = isAltContact ? state.contactName.trim() : null;
+    final contactNumber = isAltContact ? state.contactNumber : null;
+    final editingTripId = state.editingTripId;
 
     state = state.copyWith(submission: const PostSubmitting());
     try {
+      if (editingTripId != null) {
+        await ref
+            .read(editTripUseCaseProvider)
+            .execute(
+              tripId: editingTripId,
+              vehicleId: vehicleId,
+              destinations: destinations,
+              currentLocation: origin,
+              contactName: contactName,
+              contactNumber: contactNumber,
+            );
+        state = state.copyWith(submission: const PostEditSaved());
+        return;
+      }
+
       final userId = await ref.read(tokenStorageProvider).getUserId();
       if (userId == null) throw const ApiException();
 
@@ -311,8 +377,8 @@ class PostNotifier extends _$PostNotifier {
             destinations: destinations,
             currentLocation: origin,
             availableDate: DateTime.now(),
-            contactName: isAltContact ? state.contactName.trim() : null,
-            contactNumber: isAltContact ? state.contactNumber : null,
+            contactName: contactName,
+            contactNumber: contactNumber,
           );
       state = state.copyWith(submission: PostDone(post));
     } catch (e) {

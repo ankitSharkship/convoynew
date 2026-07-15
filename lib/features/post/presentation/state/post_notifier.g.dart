@@ -60,7 +60,24 @@ final submitPostUseCaseProvider =
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef SubmitPostUseCaseRef = AutoDisposeProviderRef<SubmitPostUseCase>;
-String _$postNotifierHash() => r'0c3f0b2aecc7c8593f65f5a720aed912d6cdabc5';
+String _$editTripUseCaseHash() => r'b8e31b31515e2153a260cd930417c6dbca466abb';
+
+/// See also [editTripUseCase].
+@ProviderFor(editTripUseCase)
+final editTripUseCaseProvider = AutoDisposeProvider<EditTripUseCase>.internal(
+  editTripUseCase,
+  name: r'editTripUseCaseProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$editTripUseCaseHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef EditTripUseCaseRef = AutoDisposeProviderRef<EditTripUseCase>;
+String _$postNotifierHash() => r'492d8a78a8da620376e7e8201a0488405ee804ec';
 
 /// See also [PostNotifier].
 @ProviderFor(PostNotifier)

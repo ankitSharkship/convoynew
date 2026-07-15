@@ -10,6 +10,8 @@ import '../../features/home/presentation/screens/home_screen.dart';
 import '../../features/kyc/presentation/screens/kyc_otp_screen.dart';
 import '../../features/kyc/presentation/screens/kyc_screen.dart';
 import '../../features/onboarding/presentation/screens/onboarding_screen.dart';
+import '../../features/post/domain/entities/trip_entity.dart';
+import '../../features/post/presentation/screens/my_trips_screen.dart';
 import '../../features/post/presentation/screens/my_trucks_screen.dart';
 import '../../features/post/presentation/screens/post_form_screen.dart';
 import '../../features/post/presentation/screens/post_success_screen.dart';
@@ -63,6 +65,13 @@ GoRouter appRouter(AppRouterRef ref) {
               );
             },
           ),
+          GoRoute(
+            path: 'edit',
+            builder: (context, state) {
+              final trip = state.extra as TripEntity?;
+              return PostFormScreen(editingTrip: trip);
+            },
+          ),
         ],
       ),
       GoRoute(
@@ -72,6 +81,10 @@ GoRouter appRouter(AppRouterRef ref) {
       GoRoute(
         path: '/profile/vehicles',
         builder: (_, __) => const MyTrucksScreen(),
+      ),
+      GoRoute(
+        path: '/profile/trips',
+        builder: (_, __) => const MyTripsScreen(),
       ),
       GoRoute(
         path: '/kyc',

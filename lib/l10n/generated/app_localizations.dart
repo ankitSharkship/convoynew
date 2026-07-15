@@ -220,53 +220,29 @@ abstract class AppLocalizations {
   /// **'Skip'**
   String get onboardingSkip;
 
-  /// No description provided for @onboardingNext.
-  ///
-  /// In en, this message translates to:
-  /// **'Next'**
-  String get onboardingNext;
-
   /// No description provided for @onboardingGetStarted.
   ///
   /// In en, this message translates to:
   /// **'Get Started'**
   String get onboardingGetStarted;
 
-  /// No description provided for @onboardingPage1Title.
+  /// No description provided for @onboardingTitle.
   ///
   /// In en, this message translates to:
-  /// **'Find & post trucks\nin seconds'**
-  String get onboardingPage1Title;
+  /// **'Loads come\nto you, every day.'**
+  String get onboardingTitle;
 
-  /// No description provided for @onboardingPage1Subtitle.
+  /// No description provided for @onboardingSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'A simpler home for truck availability — no more endless WhatsApp groups.'**
-  String get onboardingPage1Subtitle;
+  /// **'Post your truck once. Verified transporters call you. No middlemen, no running around.'**
+  String get onboardingSubtitle;
 
-  /// No description provided for @onboardingPage2Title.
+  /// No description provided for @onboardingChangeLanguage.
   ///
   /// In en, this message translates to:
-  /// **'No typing needed —\njust speak'**
-  String get onboardingPage2Title;
-
-  /// No description provided for @onboardingPage2Subtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Post your truck by voice in your own language. Built for the road.'**
-  String get onboardingPage2Subtitle;
-
-  /// No description provided for @onboardingPage3Title.
-  ///
-  /// In en, this message translates to:
-  /// **'Call drivers &\nloads directly'**
-  String get onboardingPage3Title;
-
-  /// No description provided for @onboardingPage3Subtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'See who has a truck, tap once, and the call connects. Simple.'**
-  String get onboardingPage3Subtitle;
+  /// **'Change language'**
+  String get onboardingChangeLanguage;
 
   /// No description provided for @phoneEnterNumberHint.
   ///
@@ -676,6 +652,18 @@ abstract class AppLocalizations {
   /// **'Enter a valid 10-digit mobile number'**
   String get postContactNumberError;
 
+  /// No description provided for @postEditTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit truck post'**
+  String get postEditTitle;
+
+  /// No description provided for @postSaveChangesButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Save Changes'**
+  String get postSaveChangesButton;
+
   /// No description provided for @postSuccessTitle.
   ///
   /// In en, this message translates to:
@@ -735,6 +723,60 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'No trucks added yet'**
   String get myTrucksNoTrucks;
+
+  /// No description provided for @tripsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'My Trips'**
+  String get tripsTitle;
+
+  /// No description provided for @tripsNoTrips.
+  ///
+  /// In en, this message translates to:
+  /// **'No trips posted yet'**
+  String get tripsNoTrips;
+
+  /// No description provided for @tripsActiveLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Active Trip'**
+  String get tripsActiveLabel;
+
+  /// No description provided for @tripsExpiredLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Expired'**
+  String get tripsExpiredLabel;
+
+  /// No description provided for @tripsEdit.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit'**
+  String get tripsEdit;
+
+  /// No description provided for @tripsReactivate.
+  ///
+  /// In en, this message translates to:
+  /// **'Reactivate'**
+  String get tripsReactivate;
+
+  /// No description provided for @tripsDeleteTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete trip'**
+  String get tripsDeleteTitle;
+
+  /// No description provided for @tripsDeleteMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete this trip permanently? This cannot be undone.'**
+  String get tripsDeleteMessage;
+
+  /// No description provided for @tripsMoreDestinations.
+  ///
+  /// In en, this message translates to:
+  /// **'+{count} more'**
+  String tripsMoreDestinations(int count);
 
   /// No description provided for @profileTitle.
   ///

@@ -23,14 +23,10 @@
   "truckTypeTanker": "टैंकर",
 
   "onboardingSkip": "छोड़ें",
-  "onboardingNext": "आगे",
   "onboardingGetStarted": "शुरू करें",
-  "onboardingPage1Title": "सेकंडों में ट्रक\nखोजें और पोस्ट करें",
-  "onboardingPage1Subtitle": "ट्रक उपलब्धता के लिए एक आसान जगह — अब अंतहीन व्हाट्सएप ग्रुप की जरूरत नहीं।",
-  "onboardingPage2Title": "टाइप करने की जरूरत नहीं —\nबस बोलें",
-  "onboardingPage2Subtitle": "अपनी भाषा में बोलकर अपना ट्रक पोस्ट करें। सड़क के लिए बनाया गया।",
-  "onboardingPage3Title": "ड्राइवरों और लोड को\nसीधे कॉल करें",
-  "onboardingPage3Subtitle": "देखें किसके पास ट्रक है, एक टैप करें, और कॉल जुड़ जाए। आसान।",
+  "onboardingTitle": "लोड हर दिन\nआपके पास आते हैं।",
+  "onboardingSubtitle": "अपना ट्रक एक बार पोस्ट करें। सत्यापित ट्रांसपोर्टर आपको कॉल करेंगे। कोई बिचौलिया नहीं, कोई भागदौड़ नहीं।",
+  "onboardingChangeLanguage": "भाषा बदलें",
 
   "phoneEnterNumberHint": "अपना नंबर दर्ज करें",
   "phoneContinueButton": "मोबाइल नंबर से जारी रखें",
@@ -107,6 +103,9 @@
   "postContactNumberHint": "10 अंकों का मोबाइल नंबर",
   "postContactNumberError": "एक मान्य 10 अंकों का मोबाइल नंबर दर्ज करें",
 
+  "postEditTitle": "ट्रक पोस्ट संपादित करें",
+  "postSaveChangesButton": "बदलाव सहेजें",
+
   "postSuccessTitle": "आपका ट्रक पोस्ट हो गया!",
   "postSuccessSubtitle": "आपके आस-पास के लोड मालिक अब इसे देख सकते हैं और सीधे आपको कॉल कर सकते हैं।",
   "postSuccessTruckTypeLabel": "ट्रक का प्रकार",
@@ -118,6 +117,16 @@
   "myTrucksDeleteTitle": "ट्रक हटाएं",
   "myTrucksDeleteMessage": "{vehicleNumber} को अपने ट्रकों से हटाएं? यह वापस नहीं किया जा सकता।",
   "myTrucksNoTrucks": "अभी तक कोई ट्रक नहीं जोड़ा गया",
+
+  "tripsTitle": "मेरी यात्राएं",
+  "tripsNoTrips": "अभी तक कोई यात्रा पोस्ट नहीं की गई",
+  "tripsActiveLabel": "सक्रिय यात्रा",
+  "tripsExpiredLabel": "समाप्त",
+  "tripsEdit": "संपादित करें",
+  "tripsReactivate": "पुनः सक्रिय करें",
+  "tripsDeleteTitle": "यात्रा हटाएं",
+  "tripsDeleteMessage": "इस यात्रा को स्थायी रूप से हटाएं? यह वापस नहीं किया जा सकता।",
+  "tripsMoreDestinations": "+{count} और",
 
   "profileTitle": "प्रोफाइल",
   "profileLogoutTitle": "लॉगआउट",

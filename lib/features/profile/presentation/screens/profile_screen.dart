@@ -71,6 +71,7 @@ class ProfileScreen extends ConsumerWidget {
           profilePhotoUrl: profile.profilePhotoUrl,
           vehicleCount: vehicleCount,
           onTapVehicles: () => context.push('/profile/vehicles'),
+          onTapTrips: () => context.push('/profile/trips'),
           onPhotoTap: () async {
             final picker = ImagePicker();
             final picked = await picker.pickImage(
@@ -129,6 +130,7 @@ class _ProfileContent extends StatelessWidget {
   final String? profilePhotoUrl;
   final int vehicleCount;
   final VoidCallback onTapVehicles;
+  final VoidCallback onTapTrips;
   final VoidCallback onPhotoTap;
   final VoidCallback onLogout;
 
@@ -146,6 +148,7 @@ class _ProfileContent extends StatelessWidget {
     this.profilePhotoUrl,
     required this.vehicleCount,
     required this.onTapVehicles,
+    required this.onTapTrips,
     required this.onPhotoTap,
     required this.onLogout,
   });
@@ -326,6 +329,12 @@ class _ProfileContent extends StatelessWidget {
                   label: l10n.profileMyVehicles,
                   sublabel: l10n.profileVehicleCount(vehicleCount),
                   onTap: onTapVehicles,
+                ),
+                _Divider(),
+                _ProfileItem(
+                  icon: Icons.map_outlined,
+                  label: l10n.tripsTitle,
+                  onTap: onTapTrips,
                 ),
                 _Divider(),
                 _ProfileItem(
