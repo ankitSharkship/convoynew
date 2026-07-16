@@ -12,6 +12,13 @@
   "delete": "हटाएं",
   "ok": "ठीक है",
 
+  "locationServiceDisabledTitle": "लोकेशन बंद है",
+  "locationServiceDisabledMessage": "अपनी वर्तमान लोकेशन का पता लगाने के लिए लोकेशन सेवाएं चालू करें।",
+  "locationEnableButton": "लोकेशन चालू करें",
+  "locationPermissionDeniedTitle": "लोकेशन अनुमति आवश्यक है",
+  "locationPermissionDeniedMessage": "अपनी वर्तमान लोकेशन का पता लगाने के लिए सेटिंग्स से Convoy को लोकेशन एक्सेस की अनुमति दें।",
+  "locationOpenSettingsButton": "सेटिंग्स खोलें",
+
   "truckTypeOpenBody": "खुली बॉडी",
   "truckTypeClosedBody": "बंद बॉडी",
   "truckTypeContainer20Ft": "कंटेनर 20 फ़ीट",
@@ -175,6 +182,13 @@
   "resultsCallNow": "अभी कॉल करें",
   "resultsPageOf": "पृष्ठ {page} / {totalPages}",
   "resultsMutualCount": "{count} पारस्परिक",
+  "resultsViewAllMutuals": "सभी देखें",
+
+  "mutualContactsSheetTitle": "पारस्परिक संपर्क",
+  "mutualContactsEmpty": "कोई पारस्परिक संपर्क नहीं मिला",
+  "mutualContactsNumberUnavailable": "नंबर उपलब्ध नहीं",
+  "contactsPermissionRationale": "Convoy अन्य उपयोगकर्ताओं के साथ पारस्परिक संबंध दिखाने के लिए आपके संपर्कों का उपयोग करता है। आपके संपर्क कभी साझा नहीं किए जाते — केवल सुरक्षित एकतरफा हैश सिंक किए जाते हैं।",
+  "contactsPermissionDeniedMessage": "संपर्क अनुमति अस्वीकृत। पारस्परिक कनेक्शन देखने के लिए सेटिंग्स में इसे सक्षम करें।",
 
   "navHome": "होम",
   "navSearch": "खोजें",

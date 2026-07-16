@@ -7,6 +7,7 @@ import '../../../../core/constants/app_colors.dart';
 import '../../../../l10n/generated/app_localizations.dart';
 import '../../../../shared/widgets/borderless_input_decoration.dart';
 import '../../../../shared/widgets/language_switcher_button.dart';
+import '../../../contacts/presentation/state/contacts_sync_notifier.dart';
 import '../state/auth_notifier.dart';
 
 class OtpScreen extends ConsumerStatefulWidget {
@@ -81,6 +82,9 @@ class _OtpScreenState extends ConsumerState<OtpScreen> {
   Widget build(BuildContext context) {
     ref.listen<AuthState>(authNotifierProvider, (_, next) {
       if (next is AuthSuccess) {
+        ref
+            .read(contactsSyncNotifierProvider.notifier)
+            .syncIfStale(force: true);
         context.go('/home');
       } else if (next is AuthError) {
         _otpController.clear();

@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../core/constants/app_colors.dart';
+import '../../../../core/services/location_service.dart';
 import '../../../../l10n/generated/app_localizations.dart';
 import '../../../../shared/utils/phone_number_formatter.dart';
 import '../../../../shared/utils/truck_image.dart';
 import '../../../../shared/utils/truck_type_i18n.dart';
 import '../../../../shared/widgets/borderless_input_decoration.dart';
 import '../../../../shared/widgets/language_switcher_button.dart';
+import '../../../../shared/widgets/location_permission_dialog.dart';
 import '../../../../shared/widgets/sheet_form_field.dart';
 import '../../../../shared/widgets/suggestions_overlay.dart';
 import '../../../search/domain/entities/location_entity.dart';
@@ -70,6 +72,14 @@ class _PostFormScreenState extends ConsumerState<PostFormScreen> {
     }
     while (_destControllers.length > count) {
       _destControllers.removeLast().dispose();
+    }
+  }
+
+  Future<void> _useCurrentOriginLocation() async {
+    try {
+      await ref.read(postNotifierProvider.notifier).useCurrentOriginLocation();
+    } on LocationServiceException catch (e) {
+      if (mounted) await showLocationPermissionDialog(context, e);
     }
   }
 
@@ -176,7 +186,7 @@ class _PostFormScreenState extends ConsumerState<PostFormScreen> {
                     controller: _originController,
                     origin: state.origin,
                     locating: state.originLocating,
-                    onLocate: () => notifier.useCurrentOriginLocation(),
+                    onLocate: _useCurrentOriginLocation,
                     onClear: () {
                       _originController.clear();
                       notifier.clearOrigin();

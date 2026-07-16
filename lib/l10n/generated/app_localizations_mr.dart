@@ -39,6 +39,26 @@ class AppLocalizationsMr extends AppLocalizations {
   String get ok => 'ठीक आहे';
 
   @override
+  String get locationServiceDisabledTitle => 'लोकेशन बंद आहे';
+
+  @override
+  String get locationServiceDisabledMessage =>
+      'तुमचे सध्याचे स्थान शोधण्यासाठी लोकेशन सेवा सुरू करा.';
+
+  @override
+  String get locationEnableButton => 'लोकेशन सुरू करा';
+
+  @override
+  String get locationPermissionDeniedTitle => 'लोकेशन परवानगी आवश्यक आहे';
+
+  @override
+  String get locationPermissionDeniedMessage =>
+      'तुमचे सध्याचे स्थान शोधण्यासाठी सेटिंग्जमधून Convoy ला लोकेशन अ‍ॅक्सेसची परवानगी द्या.';
+
+  @override
+  String get locationOpenSettingsButton => 'सेटिंग्ज उघडा';
+
+  @override
   String get truckTypeOpenBody => 'ओपन बॉडी';
 
   @override
@@ -516,6 +536,26 @@ class AppLocalizationsMr extends AppLocalizations {
   String resultsMutualCount(int count) {
     return '$count परस्पर';
   }
+
+  @override
+  String get resultsViewAllMutuals => 'सर्व पहा';
+
+  @override
+  String get mutualContactsSheetTitle => 'परस्पर संपर्क';
+
+  @override
+  String get mutualContactsEmpty => 'कोणतेही परस्पर संपर्क आढळले नाहीत';
+
+  @override
+  String get mutualContactsNumberUnavailable => 'नंबर उपलब्ध नाही';
+
+  @override
+  String get contactsPermissionRationale =>
+      'Convoy इतर वापरकर्त्यांसोबत परस्पर संबंध दाखवण्यासाठी तुमच्या संपर्कांचा वापर करते. तुमचे संपर्क कधीही शेअर केले जात नाहीत — फक्त सुरक्षित एकतर्फी हॅश सिंक केले जातात.';
+
+  @override
+  String get contactsPermissionDeniedMessage =>
+      'संपर्क परवानगी नाकारली. परस्पर कनेक्शन पाहण्यासाठी सेटिंग्जमध्ये सक्षम करा.';
 
   @override
   String get navHome => 'मुख्यपृष्ठ';

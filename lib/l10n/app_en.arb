@@ -12,6 +12,13 @@
   "delete": "Delete",
   "ok": "OK",
 
+  "locationServiceDisabledTitle": "Location is turned off",
+  "locationServiceDisabledMessage": "Turn on location services to auto-detect your current location.",
+  "locationEnableButton": "Enable Location",
+  "locationPermissionDeniedTitle": "Location permission needed",
+  "locationPermissionDeniedMessage": "Allow Convoy to access your location from Settings to auto-detect your current location.",
+  "locationOpenSettingsButton": "Open Settings",
+
   "truckTypeOpenBody": "Open Body",
   "truckTypeClosedBody": "Closed Body",
   "truckTypeContainer20Ft": "Container 20ft",
@@ -85,7 +92,7 @@
   "postRouteSectionLabel": "ROUTE",
   "postSelectTruckSectionLabel": "SELECT TRUCK",
   "postOriginLabel": "From (current location)",
-  "postOriginHint": "Tap the locate button to detect",
+  "postOriginHint": "Locate Your Position",
   "postGpsAutoDetected": "GPS Auto-detected",
   "postDestinationLabel": "Destination {number}",
   "@postDestinationLabel": {
@@ -208,6 +215,13 @@
   "@resultsMutualCount": {
     "placeholders": { "count": { "type": "int" } }
   },
+  "resultsViewAllMutuals": "View All",
+
+  "mutualContactsSheetTitle": "Mutual Contacts",
+  "mutualContactsEmpty": "No mutual contacts found",
+  "mutualContactsNumberUnavailable": "Number unavailable",
+  "contactsPermissionRationale": "Convoy uses your contacts to show mutual connections with other users. Your contacts are never shared — only secure one-way hashes are synced.",
+  "contactsPermissionDeniedMessage": "Contacts permission denied. Enable it in Settings to see mutual connections.",
 
   "navHome": "Home",
   "navSearch": "Search",

@@ -66,6 +66,7 @@ class TruckSearchResultEntity {
   final TruckSearchLocationEntity currentLocation;
   final List<TruckSearchDestinationEntity> destinations;
   final MatchedDestinationEntity? matchedDestination;
+  final String userId;
   final String userName;
   final String? userPhoto;
   final String userMobile;
@@ -90,6 +91,7 @@ class TruckSearchResultEntity {
     required this.currentLocation,
     required this.destinations,
     this.matchedDestination,
+    required this.userId,
     required this.userName,
     this.userPhoto,
     required this.userMobile,

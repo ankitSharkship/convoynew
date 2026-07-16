@@ -7,6 +7,7 @@ import '../../../../core/constants/app_colors.dart';
 import '../../../../l10n/generated/app_localizations.dart';
 import '../../../../shared/utils/truck_type_i18n.dart';
 import '../../../../shared/widgets/language_switcher_button.dart';
+import '../../../contacts/presentation/widgets/mutual_contacts_sheet.dart';
 import '../../domain/entities/truck_search_result_entity.dart';
 import '../state/search_notifier.dart';
 
@@ -571,6 +572,41 @@ class _ResultCard extends StatelessWidget {
               ),
             ],
           ),
+          if (result.mutualsCount > 0) ...[
+            const SizedBox(height: 12),
+            const Divider(height: 1, color: Color(0xFFF0F4F8)),
+            const SizedBox(height: 12),
+            Row(
+              children: [
+                const Icon(
+                  Icons.people_outline,
+                  size: 16,
+                  color: AppColors.textSecondary,
+                ),
+                const SizedBox(width: 6),
+                Text(
+                  l10n.resultsMutualCount(result.mutualsCount),
+                  style: const TextStyle(
+                    fontSize: 13,
+                    fontWeight: FontWeight.w600,
+                    color: AppColors.textSecondary,
+                  ),
+                ),
+                const Spacer(),
+                GestureDetector(
+                  onTap: () => MutualContactsSheet.show(context, result.userId),
+                  child: Text(
+                    l10n.resultsViewAllMutuals,
+                    style: const TextStyle(
+                      fontSize: 13,
+                      fontWeight: FontWeight.w600,
+                      color: AppColors.primaryBlue,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ],
         ],
       ),
     );

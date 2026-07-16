@@ -8,6 +8,8 @@
 	<string>Convoy needs access to your camera to take a profile photo.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Convoy uses your location to autofill origin and destination fields.</string>
+	<key>NSContactsUsageDescription</key>
+	<string>Convoy uses your contacts to show mutual connections with other users. Your contacts are never shared — only secure one-way hashes are synced.</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>tel</string>

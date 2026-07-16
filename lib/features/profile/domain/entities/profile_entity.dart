@@ -1,4 +1,5 @@
 class ProfileEntity {
+  final String id;
   final String name;
   final String phone;
   final String memberSince;
@@ -12,6 +13,7 @@ class ProfileEntity {
   final String? profilePhotoUrl;
 
   const ProfileEntity({
+    required this.id,
     required this.name,
     required this.phone,
     required this.memberSince,
@@ -26,6 +28,7 @@ class ProfileEntity {
   });
 
   ProfileEntity copyWith({
+    String? id,
     String? name,
     String? phone,
     String? memberSince,
@@ -39,6 +42,7 @@ class ProfileEntity {
     String? profilePhotoUrl,
   }) {
     return ProfileEntity(
+      id: id ?? this.id,
       name: name ?? this.name,
       phone: phone ?? this.phone,
       memberSince: memberSince ?? this.memberSince,

@@ -57,6 +57,7 @@ class ProfileRepositoryImpl implements ProfileRepository {
   ProfileEntity _toEntity(ProfileModel? profile) {
     final photoPath = _local.getPhotoPath();
     return ProfileEntity(
+      id: profile?.id ?? '',
       name: (profile?.name.isNotEmpty ?? false) ? profile!.name : 'Pilot',
       phone: profile?.mobile ?? '',
       memberSince: _formatMemberSince(profile?.createdDate),

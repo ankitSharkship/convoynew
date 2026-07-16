@@ -15,7 +15,7 @@ import '../state/kyc_notifier.dart';
 Future<void> navigateToPostTruck(BuildContext context, WidgetRef ref) async {
   final cachedStatus = ref.read(profileNotifierProvider).valueOrNull?.kycStatus;
   if (cachedStatus == 'approved') {
-    context.go('/post');
+    context.push('/post');
     return;
   }
 
@@ -43,8 +43,8 @@ Future<void> navigateToPostTruck(BuildContext context, WidgetRef ref) async {
   context.pop();
 
   if (isApproved) {
-    context.go('/post');
+    context.push('/post');
   } else {
-    context.go('/kyc');
+    context.push('/kyc');
   }
 }

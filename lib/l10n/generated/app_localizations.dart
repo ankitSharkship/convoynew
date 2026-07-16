@@ -160,6 +160,42 @@ abstract class AppLocalizations {
   /// **'OK'**
   String get ok;
 
+  /// No description provided for @locationServiceDisabledTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Location is turned off'**
+  String get locationServiceDisabledTitle;
+
+  /// No description provided for @locationServiceDisabledMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn on location services to auto-detect your current location.'**
+  String get locationServiceDisabledMessage;
+
+  /// No description provided for @locationEnableButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Enable Location'**
+  String get locationEnableButton;
+
+  /// No description provided for @locationPermissionDeniedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Location permission needed'**
+  String get locationPermissionDeniedTitle;
+
+  /// No description provided for @locationPermissionDeniedMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Allow Convoy to access your location from Settings to auto-detect your current location.'**
+  String get locationPermissionDeniedMessage;
+
+  /// No description provided for @locationOpenSettingsButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Open Settings'**
+  String get locationOpenSettingsButton;
+
   /// No description provided for @truckTypeOpenBody.
   ///
   /// In en, this message translates to:
@@ -505,7 +541,7 @@ abstract class AppLocalizations {
   /// No description provided for @postOriginHint.
   ///
   /// In en, this message translates to:
-  /// **'Tap the locate button to detect'**
+  /// **'Locate Your Position'**
   String get postOriginHint;
 
   /// No description provided for @postGpsAutoDetected.
@@ -1047,6 +1083,42 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{count} mutual'**
   String resultsMutualCount(int count);
+
+  /// No description provided for @resultsViewAllMutuals.
+  ///
+  /// In en, this message translates to:
+  /// **'View All'**
+  String get resultsViewAllMutuals;
+
+  /// No description provided for @mutualContactsSheetTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Mutual Contacts'**
+  String get mutualContactsSheetTitle;
+
+  /// No description provided for @mutualContactsEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No mutual contacts found'**
+  String get mutualContactsEmpty;
+
+  /// No description provided for @mutualContactsNumberUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Number unavailable'**
+  String get mutualContactsNumberUnavailable;
+
+  /// No description provided for @contactsPermissionRationale.
+  ///
+  /// In en, this message translates to:
+  /// **'Convoy uses your contacts to show mutual connections with other users. Your contacts are never shared — only secure one-way hashes are synced.'**
+  String get contactsPermissionRationale;
+
+  /// No description provided for @contactsPermissionDeniedMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Contacts permission denied. Enable it in Settings to see mutual connections.'**
+  String get contactsPermissionDeniedMessage;
 
   /// No description provided for @navHome.
   ///

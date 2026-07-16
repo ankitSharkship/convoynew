@@ -39,6 +39,26 @@ class AppLocalizationsEn extends AppLocalizations {
   String get ok => 'OK';
 
   @override
+  String get locationServiceDisabledTitle => 'Location is turned off';
+
+  @override
+  String get locationServiceDisabledMessage =>
+      'Turn on location services to auto-detect your current location.';
+
+  @override
+  String get locationEnableButton => 'Enable Location';
+
+  @override
+  String get locationPermissionDeniedTitle => 'Location permission needed';
+
+  @override
+  String get locationPermissionDeniedMessage =>
+      'Allow Convoy to access your location from Settings to auto-detect your current location.';
+
+  @override
+  String get locationOpenSettingsButton => 'Open Settings';
+
+  @override
   String get truckTypeOpenBody => 'Open Body';
 
   @override
@@ -223,7 +243,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get postOriginLabel => 'From (current location)';
 
   @override
-  String get postOriginHint => 'Tap the locate button to detect';
+  String get postOriginHint => 'Locate Your Position';
 
   @override
   String get postGpsAutoDetected => 'GPS Auto-detected';
@@ -516,6 +536,26 @@ class AppLocalizationsEn extends AppLocalizations {
   String resultsMutualCount(int count) {
     return '$count mutual';
   }
+
+  @override
+  String get resultsViewAllMutuals => 'View All';
+
+  @override
+  String get mutualContactsSheetTitle => 'Mutual Contacts';
+
+  @override
+  String get mutualContactsEmpty => 'No mutual contacts found';
+
+  @override
+  String get mutualContactsNumberUnavailable => 'Number unavailable';
+
+  @override
+  String get contactsPermissionRationale =>
+      'Convoy uses your contacts to show mutual connections with other users. Your contacts are never shared — only secure one-way hashes are synced.';
+
+  @override
+  String get contactsPermissionDeniedMessage =>
+      'Contacts permission denied. Enable it in Settings to see mutual connections.';
 
   @override
   String get navHome => 'Home';

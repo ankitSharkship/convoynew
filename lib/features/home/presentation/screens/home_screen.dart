@@ -17,12 +17,6 @@ class HomeScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final profileAsync = ref.watch(profileNotifierProvider);
     final displayName = profileAsync.valueOrNull?.name ?? 'Pilot';
-
-    // No full-page loading/error gate here: the greeting, hero banner and
-    // quick actions don't depend on any of this screen's remote data, so
-    // they always render immediately. Only the "Manage Post & Searches"
-    // section below watches its own (independent, per-tab) history
-    // providers and shows its own loading/error state, scoped to itself.
     return Scaffold(
       backgroundColor: AppColors.primaryBlueLight,
       body: _HomeContent(userName: displayName),

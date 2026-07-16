@@ -65,6 +65,9 @@ TruckSearchResultEntity truckSearchResultFromJson(Map<String, dynamic> json) {
     matchedDestination: _matchedDestinationFromJson(
       json['matchedDestination'] as Map<String, dynamic>?,
     ),
+    // TODO: confirm exact key with backend — assumed camelCase to match
+    // sibling userName/userPhoto/userMobile fields in this same object.
+    userId: json['userId'] as String? ?? '',
     userName: json['userName'] as String? ?? '',
     userPhoto: json['userPhoto'] as String?,
     userMobile: json['userMobile'] as String? ?? '',

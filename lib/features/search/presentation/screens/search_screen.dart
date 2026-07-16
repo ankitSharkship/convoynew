@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../core/constants/app_colors.dart';
+import '../../../../core/services/location_service.dart';
 import '../../../../l10n/generated/app_localizations.dart';
 import '../../../../shared/utils/truck_type_i18n.dart';
 import '../../../../shared/widgets/borderless_input_decoration.dart';
 import '../../../../shared/widgets/language_switcher_button.dart';
+import '../../../../shared/widgets/location_permission_dialog.dart';
 import '../../../../shared/widgets/suggestions_overlay.dart';
 import '../../domain/entities/location_entity.dart';
 import '../state/search_notifier.dart';
@@ -36,12 +38,8 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
       } else {
         await notifier.useCurrentDestinationLocation();
       }
-    } catch (e) {
-      if (mounted) {
-        ScaffoldMessenger.of(
-          context,
-        ).showSnackBar(SnackBar(content: Text(e.toString())));
-      }
+    } on LocationServiceException catch (e) {
+      if (mounted) await showLocationPermissionDialog(context, e);
     }
   }
 
@@ -98,7 +96,8 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                       ],
                     ),
                   ),
-
+                  _SortButton(onTap: () {}),
+                  const SizedBox(width: 10),
                   const LanguageSwitcherButton(),
                 ],
               ),

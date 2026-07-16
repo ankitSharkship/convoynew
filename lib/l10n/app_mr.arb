@@ -12,6 +12,13 @@
   "delete": "हटवा",
   "ok": "ठीक आहे",
 
+  "locationServiceDisabledTitle": "लोकेशन बंद आहे",
+  "locationServiceDisabledMessage": "तुमचे सध्याचे स्थान शोधण्यासाठी लोकेशन सेवा सुरू करा.",
+  "locationEnableButton": "लोकेशन सुरू करा",
+  "locationPermissionDeniedTitle": "लोकेशन परवानगी आवश्यक आहे",
+  "locationPermissionDeniedMessage": "तुमचे सध्याचे स्थान शोधण्यासाठी सेटिंग्जमधून Convoy ला लोकेशन अ‍ॅक्सेसची परवानगी द्या.",
+  "locationOpenSettingsButton": "सेटिंग्ज उघडा",
+
   "truckTypeOpenBody": "ओपन बॉडी",
   "truckTypeClosedBody": "क्लोज्ड बॉडी",
   "truckTypeContainer20Ft": "कंटेनर २० फूट",
@@ -175,6 +182,13 @@
   "resultsCallNow": "आत्ता कॉल करा",
   "resultsPageOf": "पृष्ठ {page} / {totalPages}",
   "resultsMutualCount": "{count} परस्पर",
+  "resultsViewAllMutuals": "सर्व पहा",
+
+  "mutualContactsSheetTitle": "परस्पर संपर्क",
+  "mutualContactsEmpty": "कोणतेही परस्पर संपर्क आढळले नाहीत",
+  "mutualContactsNumberUnavailable": "नंबर उपलब्ध नाही",
+  "contactsPermissionRationale": "Convoy इतर वापरकर्त्यांसोबत परस्पर संबंध दाखवण्यासाठी तुमच्या संपर्कांचा वापर करते. तुमचे संपर्क कधीही शेअर केले जात नाहीत — फक्त सुरक्षित एकतर्फी हॅश सिंक केले जातात.",
+  "contactsPermissionDeniedMessage": "संपर्क परवानगी नाकारली. परस्पर कनेक्शन पाहण्यासाठी सेटिंग्जमध्ये सक्षम करा.",
 
   "navHome": "मुख्यपृष्ठ",
   "navSearch": "शोधा",

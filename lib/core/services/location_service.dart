@@ -7,9 +7,26 @@ part 'location_service.g.dart';
 @riverpod
 LocationService locationService(LocationServiceRef ref) => LocationService();
 
+enum LocationServiceExceptionType {
+  /// The device's location service (GPS) is turned off.
+  serviceDisabled,
+
+  /// The app doesn't have location permission (denied or denied forever).
+  permissionDenied,
+
+  /// Permission and service are both fine, but resolving the position or
+  /// address otherwise failed (e.g. no placemark found).
+  other,
+}
+
 class LocationServiceException implements Exception {
   final String message;
-  const LocationServiceException(this.message);
+  final LocationServiceExceptionType type;
+
+  const LocationServiceException(
+    this.message, {
+    this.type = LocationServiceExceptionType.other,
+  });
 
   @override
   String toString() => message;
@@ -36,19 +53,26 @@ class CurrentLocation {
 class LocationService {
   Future<CurrentLocation> getCurrentLocation() async {
     if (!await Geolocator.isLocationServiceEnabled()) {
-      throw const LocationServiceException('Location services are disabled.');
+      throw const LocationServiceException(
+        'Location services are disabled.',
+        type: LocationServiceExceptionType.serviceDisabled,
+      );
     }
 
     var permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
       if (permission == LocationPermission.denied) {
-        throw const LocationServiceException('Location permission denied.');
+        throw const LocationServiceException(
+          'Location permission denied.',
+          type: LocationServiceExceptionType.permissionDenied,
+        );
       }
     }
     if (permission == LocationPermission.deniedForever) {
       throw const LocationServiceException(
         'Location permission permanently denied. Enable it from Settings.',
+        type: LocationServiceExceptionType.permissionDenied,
       );
     }
 

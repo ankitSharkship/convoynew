@@ -43,7 +43,20 @@ class _KycOtpScreenState extends ConsumerState<KycOtpScreen> {
 
     final success = await ref.read(kycNotifierProvider.notifier).verifyOtp(otp);
     if (success && mounted) {
-      await showKycSuccessDialog(context, onDismiss: () => context.go('/post'));
+      await showKycSuccessDialog(
+        context,
+        onDismiss: () {
+          // Pop back through the two KYC screens (this one + the Aadhaar
+          // entry screen) to whichever screen launched the KYC flow, then
+          // push Post on top of that — so Post's back button returns
+          // there directly instead of back through now-irrelevant KYC
+          // screens (or, if left as a bare `go`, closing the app because
+          // `go` leaves nothing on the stack to pop to at all).
+          if (context.canPop()) context.pop();
+          if (context.canPop()) context.pop();
+          context.push('/post');
+        },
+      );
     }
   }
 
