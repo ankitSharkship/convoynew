@@ -7,6 +7,7 @@ import 'package:intl/intl.dart' as intl;
 
 import 'app_localizations_en.dart';
 import 'app_localizations_hi.dart';
+import 'app_localizations_kn.dart';
 import 'app_localizations_mr.dart';
 
 // ignore_for_file: type=lint
@@ -97,6 +98,7 @@ abstract class AppLocalizations {
   static const List<Locale> supportedLocales = <Locale>[
     Locale('en'),
     Locale('hi'),
+    Locale('kn'),
     Locale('mr'),
   ];
 
@@ -129,6 +131,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'मराठी'**
   String get languageMarathi;
+
+  /// No description provided for @languageKannada.
+  ///
+  /// In en, this message translates to:
+  /// **'ಕನ್ನಡ'**
+  String get languageKannada;
 
   /// No description provided for @somethingWentWrong.
   ///
@@ -208,18 +216,6 @@ abstract class AppLocalizations {
   /// **'Closed Body'**
   String get truckTypeClosedBody;
 
-  /// No description provided for @truckTypeContainer20Ft.
-  ///
-  /// In en, this message translates to:
-  /// **'Container 20ft'**
-  String get truckTypeContainer20Ft;
-
-  /// No description provided for @truckTypeContainer32Ft.
-  ///
-  /// In en, this message translates to:
-  /// **'Container 32ft'**
-  String get truckTypeContainer32Ft;
-
   /// No description provided for @truckTypeTipper.
   ///
   /// In en, this message translates to:
@@ -237,6 +233,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Flat Bed Trailer'**
   String get truckTypeFlatBedTrailer;
+
+  /// No description provided for @truckTypeFlatBedTruck.
+  ///
+  /// In en, this message translates to:
+  /// **'Flat Bed Truck'**
+  String get truckTypeFlatBedTruck;
+
+  /// No description provided for @truckTypeLowBedTrailer.
+  ///
+  /// In en, this message translates to:
+  /// **'Low Bed Trailer'**
+  String get truckTypeLowBedTrailer;
+
+  /// No description provided for @truckTypeRefrigeratedTruck.
+  ///
+  /// In en, this message translates to:
+  /// **'Refrigerated Truck'**
+  String get truckTypeRefrigeratedTruck;
 
   /// No description provided for @truckTypeBulker.
   ///
@@ -880,6 +894,12 @@ abstract class AppLocalizations {
   /// **'Pending'**
   String get profileKycPending;
 
+  /// No description provided for @profileKycAlreadyVerified.
+  ///
+  /// In en, this message translates to:
+  /// **'Your KYC is already verified'**
+  String get profileKycAlreadyVerified;
+
   /// No description provided for @profileMyVehicles.
   ///
   /// In en, this message translates to:
@@ -1060,6 +1080,24 @@ abstract class AppLocalizations {
   /// **'Any'**
   String get resultsAny;
 
+  /// No description provided for @resultsSortByLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Sort By:'**
+  String get resultsSortByLabel;
+
+  /// No description provided for @resultsSortNearestOrigin.
+  ///
+  /// In en, this message translates to:
+  /// **'Nearest to Origin'**
+  String get resultsSortNearestOrigin;
+
+  /// No description provided for @resultsSortNearestDestination.
+  ///
+  /// In en, this message translates to:
+  /// **'Nearest to Destination'**
+  String get resultsSortNearestDestination;
+
   /// No description provided for @resultsCallDialerError.
   ///
   /// In en, this message translates to:
@@ -1162,7 +1200,7 @@ class _AppLocalizationsDelegate
 
   @override
   bool isSupported(Locale locale) =>
-      <String>['en', 'hi', 'mr'].contains(locale.languageCode);
+      <String>['en', 'hi', 'kn', 'mr'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
@@ -1175,6 +1213,8 @@ AppLocalizations lookupAppLocalizations(Locale locale) {
       return AppLocalizationsEn();
     case 'hi':
       return AppLocalizationsHi();
+    case 'kn':
+      return AppLocalizationsKn();
     case 'mr':
       return AppLocalizationsMr();
   }

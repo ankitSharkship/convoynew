@@ -12,5 +12,6 @@ abstract class SearchRepository {
     required DateTime availableDate,
     required int page,
     required int? capacity,
+    required String sortBy,
   });
 }

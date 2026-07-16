@@ -24,6 +24,9 @@ class AppLocalizationsMr extends AppLocalizations {
   String get languageMarathi => 'मराठी';
 
   @override
+  String get languageKannada => 'ಕನ್ನಡ';
+
+  @override
   String get somethingWentWrong => 'काहीतरी चूक झाली';
 
   @override
@@ -65,12 +68,6 @@ class AppLocalizationsMr extends AppLocalizations {
   String get truckTypeClosedBody => 'क्लोज्ड बॉडी';
 
   @override
-  String get truckTypeContainer20Ft => 'कंटेनर २० फूट';
-
-  @override
-  String get truckTypeContainer32Ft => 'कंटेनर ३२ फूट';
-
-  @override
   String get truckTypeTipper => 'टिपर';
 
   @override
@@ -78,6 +75,15 @@ class AppLocalizationsMr extends AppLocalizations {
 
   @override
   String get truckTypeFlatBedTrailer => 'फ्लॅट बेड ट्रेलर';
+
+  @override
+  String get truckTypeFlatBedTruck => 'फ्लॅट बेड ट्रक';
+
+  @override
+  String get truckTypeLowBedTrailer => 'लो बेड ट्रेलर';
+
+  @override
+  String get truckTypeRefrigeratedTruck => 'रेफ्रिजरेटेड ट्रक';
 
   @override
   String get truckTypeBulker => 'बल्कर';
@@ -422,6 +428,9 @@ class AppLocalizationsMr extends AppLocalizations {
   String get profileKycPending => 'प्रलंबित';
 
   @override
+  String get profileKycAlreadyVerified => 'तुमचे KYC आधीच सत्यापित झाले आहे';
+
+  @override
   String get profileMyVehicles => 'माझी वाहने';
 
   @override
@@ -520,6 +529,15 @@ class AppLocalizationsMr extends AppLocalizations {
 
   @override
   String get resultsAny => 'कोणतेही';
+
+  @override
+  String get resultsSortByLabel => 'यानुसार क्रमवारी लावा:';
+
+  @override
+  String get resultsSortNearestOrigin => 'उगम स्थानाच्या सर्वात जवळ';
+
+  @override
+  String get resultsSortNearestDestination => 'गंतव्यस्थानाच्या सर्वात जवळ';
 
   @override
   String get resultsCallDialerError => 'फोन डायलर उघडता आला नाही';

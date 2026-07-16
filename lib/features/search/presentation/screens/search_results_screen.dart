@@ -74,38 +74,48 @@ class _SearchResultsScreenState extends ConsumerState<SearchResultsScreen>
       backgroundColor: AppColors.primaryBlueLight,
       body: SafeArea(
         bottom: false,
-        child: SingleChildScrollView(
-          padding: EdgeInsets.fromLTRB(
-            20,
-            16,
-            20,
-            resultPage != null ? 104 : 24,
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _Header(subtitle: subtitle),
-              const SizedBox(height: 20),
-              if (state.searching)
-                _ResultsSkeleton(pulse: _pulseController)
-              else if (state.searchError != null)
-                _ErrorState(message: state.searchError!)
-              else if (resultPage == null)
-                _EmptyState(message: l10n.resultsRunSearch)
-              else ...[
-                _SummaryCard(state: state),
+        child: RefreshIndicator(
+          onRefresh: notifier.refresh,
+          color: AppColors.primaryBlue,
+          child: SingleChildScrollView(
+            physics: const AlwaysScrollableScrollPhysics(),
+            padding: EdgeInsets.fromLTRB(
+              20,
+              16,
+              20,
+              resultPage != null ? 104 : 24,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _Header(subtitle: subtitle),
                 const SizedBox(height: 20),
-                if (resultPage.posts.isEmpty)
-                  _EmptyState(message: l10n.resultsNoneNearby)
-                else
-                  ...resultPage.posts.map(
-                    (post) => Padding(
-                      padding: const EdgeInsets.only(bottom: 12),
-                      child: _ResultCard(result: post),
-                    ),
+                if (state.searching)
+                  _ResultsSkeleton(pulse: _pulseController)
+                else if (state.searchError != null)
+                  _ErrorState(message: state.searchError!)
+                else if (resultPage == null)
+                  _EmptyState(message: l10n.resultsRunSearch)
+                else ...[
+                  _SummaryCard(state: state),
+                  const SizedBox(height: 16),
+                  _SortByRow(
+                    sortBy: state.sortBy,
+                    onChanged: notifier.setSortBy,
                   ),
+                  const SizedBox(height: 16),
+                  if (resultPage.posts.isEmpty)
+                    _EmptyState(message: l10n.resultsNoneNearby)
+                  else
+                    ...resultPage.posts.map(
+                      (post) => Padding(
+                        padding: const EdgeInsets.only(bottom: 12),
+                        child: _ResultCard(result: post),
+                      ),
+                    ),
+                ],
               ],
-            ],
+            ),
           ),
         ),
       ),
@@ -408,6 +418,91 @@ class _MetaColumn extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
           ),
         ],
+      ),
+    );
+  }
+}
+
+// ─── Sort by row ──────────────────────────────────────────────────────────────
+
+class _SortByRow extends StatelessWidget {
+  final String sortBy;
+  final ValueChanged<String> onChanged;
+
+  const _SortByRow({required this.sortBy, required this.onChanged});
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    return Row(
+      children: [
+        Text(
+          l10n.resultsSortByLabel,
+          style: const TextStyle(
+            fontSize: 13,
+            fontWeight: FontWeight.w700,
+            color: AppColors.textPrimary,
+          ),
+        ),
+        const SizedBox(width: 10),
+        Expanded(
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: [
+                _SortChip(
+                  label: l10n.resultsSortNearestOrigin,
+                  selected: sortBy == sortByNearestOrigin,
+                  onTap: () => onChanged(sortByNearestOrigin),
+                ),
+                const SizedBox(width: 8),
+                _SortChip(
+                  label: l10n.resultsSortNearestDestination,
+                  selected: sortBy == sortByNearestDestination,
+                  onTap: () => onChanged(sortByNearestDestination),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _SortChip extends StatelessWidget {
+  final String label;
+  final bool selected;
+  final VoidCallback onTap;
+
+  const _SortChip({
+    required this.label,
+    required this.selected,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 200),
+        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 9),
+        decoration: BoxDecoration(
+          color: selected ? AppColors.primaryBlue : AppColors.white,
+          borderRadius: BorderRadius.circular(20),
+          border: Border.all(
+            color: selected ? AppColors.primaryBlue : AppColors.border,
+          ),
+        ),
+        child: Text(
+          label,
+          style: TextStyle(
+            fontSize: 12,
+            fontWeight: FontWeight.w600,
+            color: selected ? AppColors.white : AppColors.textSecondary,
+          ),
+        ),
       ),
     );
   }

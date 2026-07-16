@@ -16,6 +16,7 @@ abstract class SearchRemoteDataSource {
     required DateTime availableDate,
     required int page,
     required int? capacity,
+    required String sortBy,
   });
 }
 
@@ -52,6 +53,7 @@ class SearchRemoteDataSourceImpl implements SearchRemoteDataSource {
     required DateTime availableDate,
     required int page,
     required int? capacity,
+    required String sortBy,
   }) async {
     try {
       final response = await _dio.post(
@@ -64,6 +66,7 @@ class SearchRemoteDataSourceImpl implements SearchRemoteDataSource {
           'available_date': _formatDate(availableDate),
           'page': page,
           'capacity': capacity,
+          'sortBy': sortBy,
         },
       );
       return truckSearchResultPageFromJson(

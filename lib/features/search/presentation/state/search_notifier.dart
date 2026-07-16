@@ -17,6 +17,9 @@ const _minQueryLength = 3;
 const _debounceDuration = Duration(milliseconds: 350);
 const _defaultRadiusKm = 150;
 
+const sortByNearestOrigin = 'nearest_origin';
+const sortByNearestDestination = 'nearest_destination';
+
 @riverpod
 SearchRemoteDataSource searchRemoteDataSource(SearchRemoteDataSourceRef ref) {
   return SearchRemoteDataSourceImpl(ref.watch(dioProvider));
@@ -51,9 +54,11 @@ class SearchState {
   final String? selectedTruckType;
   final String? selectedCapacity;
   final bool searching;
+  final bool refreshing;
   final String? searchError;
   final TruckSearchResultPage? resultPage;
   final DateTime? lastSearchedDate;
+  final String sortBy;
 
   const SearchState({
     this.originLocation,
@@ -69,9 +74,11 @@ class SearchState {
     this.selectedTruckType,
     this.selectedCapacity,
     this.searching = false,
+    this.refreshing = false,
     this.searchError,
     this.resultPage,
     this.lastSearchedDate,
+    this.sortBy = sortByNearestOrigin,
   });
 
   bool get canSearch =>
@@ -101,11 +108,13 @@ class SearchState {
     String? selectedTruckType,
     String? selectedCapacity,
     bool? searching,
+    bool? refreshing,
     String? searchError,
     bool clearSearchError = false,
     TruckSearchResultPage? resultPage,
     bool clearResultPage = false,
     DateTime? lastSearchedDate,
+    String? sortBy,
   }) {
     return SearchState(
       originLocation: clearOriginLocation
@@ -131,9 +140,11 @@ class SearchState {
       selectedTruckType: selectedTruckType ?? this.selectedTruckType,
       selectedCapacity: selectedCapacity ?? this.selectedCapacity,
       searching: searching ?? this.searching,
+      refreshing: refreshing ?? this.refreshing,
       searchError: clearSearchError ? null : (searchError ?? this.searchError),
       resultPage: clearResultPage ? null : (resultPage ?? this.resultPage),
       lastSearchedDate: lastSearchedDate ?? this.lastSearchedDate,
+      sortBy: sortBy ?? this.sortBy,
     );
   }
 }
@@ -297,6 +308,12 @@ class SearchNotifier extends _$SearchNotifier {
     state = state.copyWith(selectedCapacity: capacity);
   }
 
+  /// Nearest-to-origin is the default whenever an origin was given (with or
+  /// without a destination); with only a destination, there's no origin to
+  /// sort by, so nearest-to-destination is the only sensible default.
+  String _defaultSortBy(LocationEntity? origin) =>
+      origin != null ? sortByNearestOrigin : sortByNearestDestination;
+
   /// Re-runs a past search from history. Replaces the whole state (rather
   /// than merging via copyWith) so stale criteria from an unrelated search
   /// don't leak into this one.
@@ -311,6 +328,7 @@ class SearchNotifier extends _$SearchNotifier {
       destinationLocation: destination,
       selectedTruckType: truckType,
       selectedCapacity: capacityDisplay,
+      sortBy: _defaultSortBy(origin),
     );
     await findTrucks();
   }
@@ -322,7 +340,16 @@ class SearchNotifier extends _$SearchNotifier {
     state = state.copyWith(
       clearResultPage: true,
       lastSearchedDate: DateTime.now(),
+      sortBy: _defaultSortBy(state.originLocation),
     );
+    await _search(page: 1);
+  }
+
+  /// Called when the user taps a sort option on the results screen —
+  /// re-runs the current search (same criteria, page 1) with the new sort.
+  Future<void> setSortBy(String sortBy) async {
+    if (state.sortBy == sortBy) return;
+    state = state.copyWith(sortBy: sortBy);
     await _search(page: 1);
   }
 
@@ -340,6 +367,29 @@ class SearchNotifier extends _$SearchNotifier {
     await _search(page: resultPage.page - 1);
   }
 
+  /// Pull-to-refresh on the results screen — re-fetches the current page
+  /// with the same criteria. Uses [refreshing] rather than [searching] so
+  /// the existing results stay on screen (with just the pull-to-refresh
+  /// spinner showing) instead of being replaced by the full skeleton.
+  Future<void> refresh() async {
+    final resultPage = state.resultPage;
+    if (resultPage == null) return;
+    if (state.originLocation == null && state.destinationLocation == null) {
+      return;
+    }
+
+    state = state.copyWith(refreshing: true, clearSearchError: true);
+    try {
+      final refreshed = await _fetchPage(page: resultPage.page);
+      state = state.copyWith(refreshing: false, resultPage: refreshed);
+    } catch (e) {
+      state = state.copyWith(
+        refreshing: false,
+        searchError: ApiException.messageFor(e),
+      );
+    }
+  }
+
   Future<void> _search({required int page}) async {
     final origin = state.originLocation;
     final destination = state.destinationLocation;
@@ -348,17 +398,7 @@ class SearchNotifier extends _$SearchNotifier {
     state = state.copyWith(searching: true, clearSearchError: true);
 
     try {
-      final resultPage = await ref
-          .read(searchTrucksUseCaseProvider)
-          .execute(
-            origin: origin,
-            destination: destination,
-            truckType: state.selectedTruckType,
-            radiusKm: _defaultRadiusKm,
-            availableDate: state.lastSearchedDate ?? DateTime.now(),
-            page: page,
-            capacity: _parseCapacity(state.selectedCapacity),
-          );
+      final resultPage = await _fetchPage(page: page);
       state = state.copyWith(searching: false, resultPage: resultPage);
     } catch (e) {
       state = state.copyWith(
@@ -366,6 +406,21 @@ class SearchNotifier extends _$SearchNotifier {
         searchError: ApiException.messageFor(e),
       );
     }
+  }
+
+  Future<TruckSearchResultPage> _fetchPage({required int page}) {
+    return ref
+        .read(searchTrucksUseCaseProvider)
+        .execute(
+          origin: state.originLocation,
+          destination: state.destinationLocation,
+          truckType: state.selectedTruckType,
+          radiusKm: _defaultRadiusKm,
+          availableDate: state.lastSearchedDate ?? DateTime.now(),
+          page: page,
+          capacity: _parseCapacity(state.selectedCapacity),
+          sortBy: state.sortBy,
+        );
   }
 
   int? _parseCapacity(String? value) {

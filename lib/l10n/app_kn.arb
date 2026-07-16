@@ -1,0 +1,245 @@
+{
+  "@@locale": "kn",
+
+  "appName": "Convoy",
+  "languageSelectTitle": "ಭಾಷೆ ಆಯ್ಕೆಮಾಡಿ",
+  "languageEnglish": "English",
+  "languageHindi": "हिंदी",
+  "languageMarathi": "मराठी",
+  "languageKannada": "ಕನ್ನಡ",
+  "somethingWentWrong": "ಏನೋ ತಪ್ಪಾಗಿದೆ",
+  "tryAgain": "ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ",
+  "cancel": "ರದ್ದುಮಾಡಿ",
+  "delete": "ಅಳಿಸಿ",
+  "ok": "ಸರಿ",
+
+  "locationServiceDisabledTitle": "ಲೊಕೇಶನ್ ಆಫ್ ಆಗಿದೆ",
+  "locationServiceDisabledMessage": "ನಿಮ್ಮ ಪ್ರಸ್ತುತ ಸ್ಥಳವನ್ನು ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಪತ್ತೆಹಚ್ಚಲು ಲೊಕೇಶನ್ ಸೇವೆಗಳನ್ನು ಆನ್ ಮಾಡಿ.",
+  "locationEnableButton": "ಲೊಕೇಶನ್ ಸಕ್ರಿಯಗೊಳಿಸಿ",
+  "locationPermissionDeniedTitle": "ಲೊಕೇಶನ್ ಅನುಮತಿ ಅಗತ್ಯವಿದೆ",
+  "locationPermissionDeniedMessage": "ನಿಮ್ಮ ಪ್ರಸ್ತುತ ಸ್ಥಳವನ್ನು ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಪತ್ತೆಹಚ್ಚಲು ಸೆಟ್ಟಿಂಗ್‌ಗಳಿಂದ Convoy ಗೆ ಲೊಕೇಶನ್ ಪ್ರವೇಶವನ್ನು ಅನುಮತಿಸಿ.",
+  "locationOpenSettingsButton": "ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ತೆರೆಯಿರಿ",
+
+  "truckTypeOpenBody": "ಓಪನ್ ಬಾಡಿ",
+  "truckTypeClosedBody": "ಕ್ಲೋಸ್ಡ್ ಬಾಡಿ",
+  "truckTypeTipper": "ಟಿಪ್ಪರ್",
+  "truckTypeSidewallTrailer": "ಸೈಡ್‌ವಾಲ್ ಟ್ರೈಲರ್",
+  "truckTypeFlatBedTrailer": "ಫ್ಲಾಟ್ ಬೆಡ್ ಟ್ರೈಲರ್",
+  "truckTypeFlatBedTruck": "ಫ್ಲಾಟ್ ಬೆಡ್ ಟ್ರಕ್",
+  "truckTypeLowBedTrailer": "ಲೋ ಬೆಡ್ ಟ್ರೈಲರ್",
+  "truckTypeRefrigeratedTruck": "ರೆಫ್ರಿಜರೇಟೆಡ್ ಟ್ರಕ್",
+  "truckTypeBulker": "ಬಲ್ಕರ್",
+  "truckTypeTanker": "ಟ್ಯಾಂಕರ್",
+
+  "onboardingSkip": "ಬಿಟ್ಟುಬಿಡಿ",
+  "onboardingGetStarted": "ಪ್ರಾರಂಭಿಸಿ",
+  "onboardingTitle": "ಲೋಡ್‌ಗಳು ಪ್ರತಿದಿನ\nನಿಮ್ಮ ಬಳಿಗೆ ಬರುತ್ತವೆ.",
+  "onboardingSubtitle": "ನಿಮ್ಮ ಟ್ರಕ್ ಅನ್ನು ಒಮ್ಮೆ ಪೋಸ್ಟ್ ಮಾಡಿ. ಪರಿಶೀಲಿತ ಟ್ರಾನ್ಸ್‌ಪೋರ್ಟರ್‌ಗಳು ನಿಮಗೆ ಕರೆ ಮಾಡುತ್ತಾರೆ. ಯಾವುದೇ ಮಧ್ಯವರ್ತಿಗಳಿಲ್ಲ, ಅಲೆದಾಡುವಿಕೆ ಇಲ್ಲ.",
+  "onboardingChangeLanguage": "ಭಾಷೆ ಬದಲಾಯಿಸಿ",
+
+  "phoneEnterNumberHint": "ನಿಮ್ಮ ನಂಬರ್ ನಮೂದಿಸಿ",
+  "phoneContinueButton": "ಮೊಬೈಲ್ ನಂಬರ್‌ನೊಂದಿಗೆ ಮುಂದುವರಿಸಿ",
+
+  "otpTitle": "4-ಅಂಕಿಯ ಕೋಡ್ ನಮೂದಿಸಿ",
+  "otpSentTo": "+91 {phone} ಗೆ ಕಳುಹಿಸಲಾಗಿದೆ",
+  "@otpSentTo": {
+    "placeholders": { "phone": { "type": "String" } }
+  },
+  "otpHelperText": "ಇದು ಸಿಗಲಿಲ್ಲವೇ? ನಂಬರ್ ಪರಿಶೀಲಿಸಿ ಮತ್ತು ಮತ್ತೆ ಕಳುಹಿಸಲು ಪ್ರಯತ್ನಿಸಿ.",
+  "otpResendIn": "ಸಿಗಲಿಲ್ಲವೇ? 0:{seconds} ರಲ್ಲಿ ಮತ್ತೆ ಕಳುಹಿಸಿ",
+  "@otpResendIn": {
+    "placeholders": { "seconds": { "type": "String" } }
+  },
+  "otpResendCode": "ಕೋಡ್ ಮತ್ತೆ ಕಳುಹಿಸಿ",
+
+  "callDialerHint": "ನಿಮ್ಮ ಫೋನ್ ಡಯಲರ್ ತೆರೆಯುತ್ತದೆ",
+  "callCalling": "ಕರೆ ಮಾಡುತ್ತಿದೆ…",
+  "callConnected": "ಸಂಪರ್ಕಗೊಂಡಿದೆ · {duration}",
+  "@callConnected": {
+    "placeholders": { "duration": { "type": "String" } }
+  },
+  "callDisclaimer": "Convoy ನಲ್ಲಿ ಇನ್-ಆ್ಯಪ್ ಕರೆ ಇಲ್ಲ. ಕರೆ ಮೇಲೆ ಟ್ಯಾಪ್ ಮಾಡಿದಾಗ\nಇದು ನಿಮ್ಮ ಫೋನ್ ಡಯಲರ್ ಅನ್ನು ತೆರೆಯುತ್ತದೆ ಮತ್ತು ದಾಖಲೆಗಾಗಿ ಅದನ್ನು ಲಾಗ್ ಮಾಡುತ್ತದೆ.",
+
+  "homeHello": "ನಮಸ್ಕಾರ",
+  "homeHeroTitle": "ನಿಮ್ಮ ಟ್ರಕ್ ಗಳಿಸಲು\nಸಿದ್ಧವಾಗಿದೆ 💰",
+  "homeHeroSubtitle": "ಈಗಲೇ ಪೋಸ್ಟ್ ಮಾಡಿ ಮತ್ತು ತಕ್ಷಣ ಪರಿಶೀಲಿತ ಲೋಡ್ ವಿನಂತಿಗಳನ್ನು ಪಡೆಯಿರಿ.",
+  "homeHeroButton": "ಈಗ ಟ್ರಕ್ ಪೋಸ್ಟ್ ಮಾಡಿ",
+  "homeQuickActions": "ತ್ವರಿತ ಕ್ರಿಯೆಗಳು",
+  "homePostNewTruck": "ಹೊಸ ಟ್ರಕ್ ಪೋಸ್ಟ್ ಮಾಡಿ",
+  "homePostNewTruckSubtitle": "30 ಸೆಕೆಂಡುಗಳಲ್ಲಿ ಸಿದ್ಧ",
+  "homeSearchTrucks": "ಟ್ರಕ್‌ಗಳನ್ನು ಹುಡುಕಿ",
+  "homeSearchTrucksSubtitle": "ಲಭ್ಯವಿರುವ ವಾಹನಗಳನ್ನು ಹುಡುಕಿ",
+  "homeManageSection": "ಪೋಸ್ಟ್ ಮತ್ತು ಹುಡುಕಾಟಗಳನ್ನು ನಿರ್ವಹಿಸಿ",
+  "homeViewAll": "ಎಲ್ಲವನ್ನೂ ವೀಕ್ಷಿಸಿ",
+  "homeRecentPosts": "ಇತ್ತೀಚಿನ ಪೋಸ್ಟ್‌ಗಳು",
+  "homeRecentSearch": "ಇತ್ತೀಚಿನ ಹುಡುಕಾಟ",
+  "homeNoRecentPosts": "ಯಾವುದೇ ಇತ್ತೀಚಿನ ಪೋಸ್ಟ್‌ಗಳಿಲ್ಲ",
+  "homeNoRecentSearches": "ಯಾವುದೇ ಇತ್ತೀಚಿನ ಹುಡುಕಾಟಗಳಿಲ್ಲ",
+
+  "kycVerifyTitle": "ಆಧಾರ್ ಕಾರ್ಡ್ ಪರಿಶೀಲಿಸಿ",
+  "kycAadhaarHint": "XXXX XXXX XXXX",
+  "kycVerifyButton": "ಆಧಾರ್ ಪರಿಶೀಲಿಸಿ",
+  "kycPendingTitle": "ನಿಮ್ಮ KYC ಬಾಕಿ ಇದೆ",
+  "kycPendingSubtitle": "ನಾವು ನಿಮ್ಮ ವಿವರಗಳನ್ನು ಪರಿಶೀಲಿಸುತ್ತಿದ್ದೇವೆ. Sharkship ಸೇವೆಗಳನ್ನು ಬಳಸುವುದನ್ನು ಮುಂದುವರಿಸಲು\nದಯವಿಟ್ಟು ನಿಮ್ಮ KYC ಪೂರ್ಣಗೊಳಿಸಿ.",
+  "kycWhatsNext": "ಮುಂದೆ ಏನಾಗುತ್ತದೆ?",
+  "kycWhatsNextSubtitle": "ನಿಮ್ಮ KYC ಪರಿಶೀಲನೆಯಾದ ತಕ್ಷಣ ನಾವು ನಿಮಗೆ ತಿಳಿಸುತ್ತೇವೆ.",
+  "kycIdCardLabel": "KYC",
+  "kycIdCardBrand": "Sharkship",
+  "kycOtpHelperText": "ನಿಮ್ಮ ಆಧಾರ್-ಲಿಂಕ್ ಮಾಡಿದ ಮೊಬೈಲ್ ನಂಬರ್‌ಗೆ OTP ಕಳುಹಿಸಲಾಗಿದೆ. ಪರಿಶೀಲಿಸಲು ದಯವಿಟ್ಟು ಅದನ್ನು ನಮೂದಿಸಿ.",
+  "kycOtpVerifyButton": "OTP ಪರಿಶೀಲಿಸಿ",
+  "kycThankYou": "ಧನ್ಯವಾದಗಳು",
+  "kycSuccessMessage": "eKYC ಪ್ರಕ್ರಿಯೆ ಯಶಸ್ವಿಯಾಗಿ ಪೂರ್ಣಗೊಂಡಿದೆ",
+
+  "postScreenTitle": "ನಿಮ್ಮ ಟ್ರಕ್ ಪೋಸ್ಟ್ ಮಾಡಿ",
+  "postRouteSectionLabel": "ಮಾರ್ಗ",
+  "postSelectTruckSectionLabel": "ಟ್ರಕ್ ಆಯ್ಕೆಮಾಡಿ",
+  "postOriginLabel": "ಇಂದ (ಪ್ರಸ್ತುತ ಸ್ಥಳ)",
+  "postOriginHint": "ಪತ್ತೆಹಚ್ಚಲು ಲೊಕೇಟ್ ಬಟನ್ ಒತ್ತಿ",
+  "postGpsAutoDetected": "GPS ಮೂಲಕ ಸ್ವಯಂ ಪತ್ತೆ",
+  "postDestinationLabel": "ಗಮ್ಯಸ್ಥಾನ {number}",
+  "@postDestinationLabel": {
+    "placeholders": { "number": { "type": "int" } }
+  },
+  "postDestinationHint": "ಗಮ್ಯಸ್ಥಾನ ನಮೂದಿಸಿ",
+  "postCouldNotLoadTrucks": "ನಿಮ್ಮ ಟ್ರಕ್‌ಗಳನ್ನು ಲೋಡ್ ಮಾಡಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ",
+  "postSelectTruckHint": "ಒಂದು ಟ್ರಕ್ ಆಯ್ಕೆಮಾಡಿ",
+  "postAddNewTruck": "ಹೊಸ ಟ್ರಕ್ ಸೇರಿಸಿ",
+  "postSubmitButton": "ಟ್ರಕ್ ಪೋಸ್ಟ್ ಮಾಡಿ",
+  "postAddTruckSheetTitle": "ಟ್ರಕ್ ಸೇರಿಸಿ",
+  "postTruckNumberLabel": "ಟ್ರಕ್ ನಂಬರ್",
+  "postTruckNumberHint": "ಉದಾ. MH04AB1234",
+  "postTruckTypeLabel": "ಟ್ರಕ್ ಪ್ರಕಾರ",
+  "postSelectTypeHint": "ಪ್ರಕಾರ ಆಯ್ಕೆಮಾಡಿ",
+  "postCapacityLabel": "ಸಾಮರ್ಥ್ಯ",
+  "postSelectCapacityHint": "ಸಾಮರ್ಥ್ಯ ಆಯ್ಕೆಮಾಡಿ",
+  "postAddTruckButton": "ಟ್ರಕ್ ಸೇರಿಸಿ",
+  "postVerifyButton": "ಪರಿಶೀಲಿಸಿ",
+
+  "postContactSectionTitle": "ನಾವು ಯಾರನ್ನು ಸಂಪರ್ಕಿಸಬೇಕು?",
+  "postContactMe": "ನಾನು",
+  "postContactSomeoneElse": "ಬೇರೆ ಯಾರಾದರೂ",
+  "postContactNameLabel": "ಸಂಪರ್ಕ ಹೆಸರು",
+  "postContactNameHint": "ಸಂಪರ್ಕದ ಹೆಸರು ನಮೂದಿಸಿ",
+  "postContactNumberLabel": "ಸಂಪರ್ಕ ನಂಬರ್",
+  "postContactNumberHint": "10-ಅಂಕಿಯ ಮೊಬೈಲ್ ನಂಬರ್",
+  "postContactNumberError": "ಮಾನ್ಯವಾದ 10-ಅಂಕಿಯ ಮೊಬೈಲ್ ನಂಬರ್ ನಮೂದಿಸಿ",
+
+  "postEditTitle": "ಟ್ರಕ್ ಪೋಸ್ಟ್ ಸಂಪಾದಿಸಿ",
+  "postSaveChangesButton": "ಬದಲಾವಣೆಗಳನ್ನು ಉಳಿಸಿ",
+
+  "postSuccessTitle": "ನಿಮ್ಮ ಟ್ರಕ್ ಪೋಸ್ಟ್ ಆಗಿದೆ!",
+  "postSuccessSubtitle": "ನಿಮ್ಮ ಹತ್ತಿರದ ಲೋಡ್ ಮಾಲೀಕರು ಈಗ ಅದನ್ನು ನೋಡಬಹುದು ಮತ್ತು ನೇರವಾಗಿ ನಿಮಗೆ ಕರೆ ಮಾಡಬಹುದು.",
+  "postSuccessTruckTypeLabel": "ಟ್ರಕ್ ಪ್ರಕಾರ",
+  "postSuccessPickupLabel": "ಪಿಕಪ್ ಸ್ಥಳ",
+  "postSuccessGoToDashboard": "ಡ್ಯಾಶ್‌ಬೋರ್ಡ್‌ಗೆ ಹೋಗಿ",
+  "postSuccessPostAnother": "ಇನ್ನೊಂದು ಟ್ರಕ್ ಪೋಸ್ಟ್ ಮಾಡಿ",
+
+  "myTrucksTitle": "ನನ್ನ ಟ್ರಕ್‌ಗಳು",
+  "myTrucksDeleteTitle": "ಟ್ರಕ್ ಅಳಿಸಿ",
+  "myTrucksDeleteMessage": "{vehicleNumber} ಅನ್ನು ನಿಮ್ಮ ಟ್ರಕ್‌ಗಳಿಂದ ತೆಗೆದುಹಾಕಬೇಕೇ? ಇದನ್ನು ರದ್ದುಗೊಳಿಸಲಾಗುವುದಿಲ್ಲ.",
+  "@myTrucksDeleteMessage": {
+    "placeholders": { "vehicleNumber": { "type": "String" } }
+  },
+  "myTrucksNoTrucks": "ಇನ್ನೂ ಯಾವುದೇ ಟ್ರಕ್ ಸೇರಿಸಲಾಗಿಲ್ಲ",
+
+  "tripsTitle": "ನನ್ನ ಟ್ರಿಪ್‌ಗಳು",
+  "tripsNoTrips": "ಇನ್ನೂ ಯಾವುದೇ ಟ್ರಿಪ್ ಪೋಸ್ಟ್ ಮಾಡಿಲ್ಲ",
+  "tripsActiveLabel": "ಸಕ್ರಿಯ ಟ್ರಿಪ್",
+  "tripsExpiredLabel": "ಅವಧಿ ಮುಗಿದಿದೆ",
+  "tripsEdit": "ಸಂಪಾದಿಸಿ",
+  "tripsReactivate": "ಮರುಸಕ್ರಿಯಗೊಳಿಸಿ",
+  "tripsDeleteTitle": "ಟ್ರಿಪ್ ಅಳಿಸಿ",
+  "tripsDeleteMessage": "ಈ ಟ್ರಿಪ್ ಅನ್ನು ಶಾಶ್ವತವಾಗಿ ಅಳಿಸಬೇಕೇ? ಇದನ್ನು ರದ್ದುಗೊಳಿಸಲಾಗುವುದಿಲ್ಲ.",
+  "tripsMoreDestinations": "+{count} ಇನ್ನಷ್ಟು",
+  "@tripsMoreDestinations": {
+    "placeholders": { "count": { "type": "int" } }
+  },
+
+  "profileTitle": "ಪ್ರೊಫೈಲ್",
+  "profileAccountSection": "ಖಾತೆ",
+  "profileVerifiedDriver": "✓ ಪರಿಶೀಲಿತ ಚಾಲಕ",
+  "profileLanguage": "ಭಾಷೆ",
+  "profileLogoutTitle": "ಲಾಗ್‌ಔಟ್",
+  "profileLogoutConfirm": "ನೀವು ಖಚಿತವಾಗಿ ಲಾಗ್‌ಔಟ್ ಮಾಡಲು ಬಯಸುವಿರಾ?",
+  "profileKycLabel": "KYC ಪರಿಶೀಲನೆ",
+  "profileKycVerified": "✓ ಪೂರ್ಣಗೊಂಡಿದೆ",
+  "profileKycInReview": "ಪರಿಶೀಲನೆಯಲ್ಲಿದೆ",
+  "profileKycRejected": "ತಿರಸ್ಕರಿಸಲಾಗಿದೆ",
+  "profileKycPending": "ಬಾಕಿ ಇದೆ",
+  "profileKycAlreadyVerified": "ನಿಮ್ಮ KYC ಈಗಾಗಲೇ ಪರಿಶೀಲಿಸಲಾಗಿದೆ",
+  "profileMyVehicles": "ನನ್ನ ವಾಹನಗಳು",
+  "profileTermsPrivacy": "ನಿಯಮಗಳು ಮತ್ತು ಗೌಪ್ಯತೆ",
+  "profileHelp": "24×7 ಚಾಲಕ ಬೆಂಬಲ",
+  "profileAccountStatusPrefix": "ಖಾತೆ {status}",
+  "@profileAccountStatusPrefix": {
+    "placeholders": { "status": { "type": "String" } }
+  },
+  "profileAccountSuspended": "ಅಮಾನತುಗೊಳಿಸಲಾಗಿದೆ",
+  "profileAccountBlocked": "ನಿರ್ಬಂಧಿಸಲಾಗಿದೆ",
+  "profileAccountInactive": "ನಿಷ್ಕ್ರಿಯ",
+
+  "searchTitle": "ಟ್ರಕ್‌ಗಳನ್ನು ಹುಡುಕಿ",
+  "searchSubtitle": "ನಿಮ್ಮ ಲೋಡ್‌ಗೆ ಸರಿಯಾದ ಟ್ರಕ್ ಹುಡುಕಿ",
+  "searchOriginLabel": "ಮೂಲ",
+  "searchOriginHint": "ಮೂಲ ಆಯ್ಕೆಮಾಡಿ",
+  "searchDestinationLabel": "ಗಮ್ಯಸ್ಥಾನ",
+  "searchDestinationHint": "ಗಮ್ಯಸ್ಥಾನ ಆಯ್ಕೆಮಾಡಿ",
+  "searchTruckTypeLabel": "ಟ್ರಕ್ ಪ್ರಕಾರ",
+  "searchSelectTruckHint": "ಟ್ರಕ್ ಆಯ್ಕೆಮಾಡಿ",
+  "searchCapacityLabel": "ಸಾಮರ್ಥ್ಯ",
+  "searchSelectHint": "ಆಯ್ಕೆಮಾಡಿ",
+  "searchFindTrucksButton": "ಟ್ರಕ್‌ಗಳನ್ನು ಹುಡುಕಿ",
+
+  "resultsTitle": "ಹುಡುಕಾಟ ಫಲಿತಾಂಶಗಳು",
+  "resultsSearching": "ಹುಡುಕುತ್ತಿದೆ…",
+  "resultsFoundCount": "{count, plural, one{1 ಟ್ರಕ್ ಕಂಡುಬಂದಿದೆ} other{{count} ಟ್ರಕ್‌ಗಳು ಕಂಡುಬಂದಿವೆ}}",
+  "@resultsFoundCount": {
+    "placeholders": { "count": { "type": "int" } }
+  },
+  "resultsYourResults": "ನಿಮ್ಮ ಹುಡುಕಾಟ ಫಲಿತಾಂಶಗಳು",
+  "resultsRunSearch": "ಫಲಿತಾಂಶಗಳನ್ನು ನೋಡಲು ಹುಡುಕಾಟ ನಡೆಸಿ",
+  "resultsNoneNearby": "ಹತ್ತಿರದಲ್ಲಿ ಯಾವುದೇ ಟ್ರಕ್ ಕಂಡುಬಂದಿಲ್ಲ",
+  "resultsAnyOrigin": "ಯಾವುದೇ ಮೂಲ",
+  "resultsAnyDestination": "ಯಾವುದೇ ಗಮ್ಯಸ್ಥಾನ",
+  "resultsOriginLabel": "ಮೂಲ",
+  "resultsDestinationLabel": "ಗಮ್ಯಸ್ಥಾನ",
+  "resultsDateLabel": "ದಿನಾಂಕ",
+  "resultsAny": "ಯಾವುದಾದರೂ",
+  "resultsSortByLabel": "ಇದರ ಆಧಾರದ ಮೇಲೆ ವಿಂಗಡಿಸಿ:",
+  "resultsSortNearestOrigin": "ಮೂಲಕ್ಕೆ ಹತ್ತಿರ",
+  "resultsSortNearestDestination": "ಗಮ್ಯಸ್ಥಾನಕ್ಕೆ ಹತ್ತಿರ",
+  "resultsCallDialerError": "ಫೋನ್ ಡಯಲರ್ ತೆರೆಯಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ",
+  "resultsCallNow": "ಈಗ ಕರೆ ಮಾಡಿ",
+  "resultsPageOf": "ಪುಟ {page} ರಲ್ಲಿ {totalPages}",
+  "@resultsPageOf": {
+    "placeholders": {
+      "page": { "type": "int" },
+      "totalPages": { "type": "int" }
+    }
+  },
+  "resultsMutualCount": "{count} ಪರಸ್ಪರ",
+  "@resultsMutualCount": {
+    "placeholders": { "count": { "type": "int" } }
+  },
+  "resultsViewAllMutuals": "ಎಲ್ಲವನ್ನೂ ವೀಕ್ಷಿಸಿ",
+
+  "mutualContactsSheetTitle": "ಪರಸ್ಪರ ಸಂಪರ್ಕಗಳು",
+  "mutualContactsEmpty": "ಯಾವುದೇ ಪರಸ್ಪರ ಸಂಪರ್ಕಗಳು ಕಂಡುಬಂದಿಲ್ಲ",
+  "mutualContactsNumberUnavailable": "ನಂಬರ್ ಲಭ್ಯವಿಲ್ಲ",
+  "contactsPermissionRationale": "ಇತರ ಬಳಕೆದಾರರೊಂದಿಗೆ ಪರಸ್ಪರ ಸಂಪರ್ಕಗಳನ್ನು ತೋರಿಸಲು Convoy ನಿಮ್ಮ ಸಂಪರ್ಕಗಳನ್ನು ಬಳಸುತ್ತದೆ. ನಿಮ್ಮ ಸಂಪರ್ಕಗಳನ್ನು ಎಂದಿಗೂ ಹಂಚಿಕೊಳ್ಳಲಾಗುವುದಿಲ್ಲ — ಸುರಕ್ಷಿತ ಏಕಮುಖ ಹ್ಯಾಶ್‌ಗಳನ್ನು ಮಾತ್ರ ಸಿಂಕ್ ಮಾಡಲಾಗುತ್ತದೆ.",
+  "contactsPermissionDeniedMessage": "ಸಂಪರ್ಕಗಳ ಅನುಮತಿ ನಿರಾಕರಿಸಲಾಗಿದೆ. ಪರಸ್ಪರ ಸಂಪರ್ಕಗಳನ್ನು ನೋಡಲು ಸೆಟ್ಟಿಂಗ್‌ಗಳಲ್ಲಿ ಅದನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ.",
+
+  "navHome": "ಮುಖಪುಟ",
+  "navSearch": "ಹುಡುಕಿ",
+  "navProfile": "ಪ್ರೊಫೈಲ್",
+
+  "truckCardMoreDestinations": "+{count} ಇನ್ನಷ್ಟು",
+  "@truckCardMoreDestinations": {
+    "placeholders": { "count": { "type": "int" } }
+  },
+
+  "capacityTon": "{capacity} ಟನ್",
+  "@capacityTon": {
+    "placeholders": { "capacity": { "type": "int" } }
+  }
+}

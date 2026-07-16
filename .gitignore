@@ -76,7 +76,7 @@ ios/Runner.xcworkspace/
 ios/DerivedData/
 
 # CocoaPods
-Podfile.lock
+# Podfile.lock
 
 #========================
 # macOS

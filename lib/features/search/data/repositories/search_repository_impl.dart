@@ -21,6 +21,7 @@ class SearchRepositoryImpl implements SearchRepository {
     required DateTime availableDate,
     required int page,
     required int? capacity,
+    required String sortBy,
   }) => _remote.searchTrucks(
     origin: origin,
     destination: destination,
@@ -29,5 +30,6 @@ class SearchRepositoryImpl implements SearchRepository {
     availableDate: availableDate,
     page: page,
     capacity: capacity,
+    sortBy: sortBy,
   );
 }

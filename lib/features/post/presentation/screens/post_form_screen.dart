@@ -151,7 +151,7 @@ class _PostFormScreenState extends ConsumerState<PostFormScreen> {
         : null;
 
     return Scaffold(
-      backgroundColor: AppColors.background,
+      backgroundColor: AppColors.primaryBlueLight,
       appBar: AppBar(
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
@@ -164,7 +164,7 @@ class _PostFormScreenState extends ConsumerState<PostFormScreen> {
         ),
         centerTitle: false,
         actions: const [LanguageSwitcherButton(card: false)],
-        backgroundColor: AppColors.background,
+        backgroundColor: AppColors.primaryBlueLight,
         elevation: 0,
         scrolledUnderElevation: 0,
       ),

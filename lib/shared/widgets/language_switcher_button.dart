@@ -36,6 +36,7 @@ class LanguageSwitcherButton extends ConsumerWidget {
       (const Locale('en'), l10n.languageEnglish),
       (const Locale('hi'), l10n.languageHindi),
       (const Locale('mr'), l10n.languageMarathi),
+      (const Locale('kn'), l10n.languageKannada),
     ];
 
     List<PopupMenuEntry<Locale>> itemBuilder(BuildContext context) {

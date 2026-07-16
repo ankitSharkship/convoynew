@@ -15,6 +15,7 @@ class SearchTrucksUseCase {
     required DateTime availableDate,
     required int page,
     required int? capacity,
+    required String sortBy,
   }) => _repository.searchTrucks(
     origin: origin,
     destination: destination,
@@ -23,5 +24,6 @@ class SearchTrucksUseCase {
     availableDate: availableDate,
     page: page,
     capacity: capacity,
+    sortBy: sortBy,
   );
 }

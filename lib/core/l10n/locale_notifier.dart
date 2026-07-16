@@ -5,7 +5,12 @@ import '../router/app_router.dart';
 
 part 'locale_notifier.g.dart';
 
-const supportedLocales = [Locale('en'), Locale('hi'), Locale('mr')];
+const supportedLocales = [
+  Locale('en'),
+  Locale('hi'),
+  Locale('mr'),
+  Locale('kn'),
+];
 
 const _localePrefsKey = 'app_locale';
 

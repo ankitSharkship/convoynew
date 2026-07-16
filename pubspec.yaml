@@ -45,3 +45,5 @@ flutter:
   assets:
     - .env
     - assets/images/
+    - assets/trucks/
+    - shorebird.yaml

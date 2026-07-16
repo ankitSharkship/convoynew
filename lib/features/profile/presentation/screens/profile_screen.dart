@@ -83,7 +83,18 @@ class ProfileScreen extends ConsumerWidget {
                   profilePhotoUrl: profile.profilePhotoUrl,
                   onTapVehicles: () => context.push('/profile/vehicles'),
                   onTapTrips: () => context.push('/profile/trips'),
-                  onTapKyc: () => context.push('/kyc'),
+                  onTapKyc: () {
+                    final isVerified =
+                        profile.kycStatus == 'approved' ||
+                        profile.kycStatus == 'verified';
+                    if (isVerified) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text(l10n.profileKycAlreadyVerified)),
+                      );
+                    } else {
+                      context.push('/kyc');
+                    }
+                  },
                   onPhotoTap: () async {
                     final picker = ImagePicker();
                     final picked = await picker.pickImage(

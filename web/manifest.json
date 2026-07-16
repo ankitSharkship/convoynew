@@ -1,6 +1,6 @@
 {
-    "name": "convoynew",
-    "short_name": "convoynew",
+    "name": "Convoy",
+    "short_name": "Convoy",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

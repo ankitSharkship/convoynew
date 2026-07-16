@@ -8,9 +8,11 @@ import '../../../../shared/utils/truck_type_i18n.dart';
 import '../../../../shared/widgets/borderless_input_decoration.dart';
 import '../../../../shared/widgets/language_switcher_button.dart';
 import '../../../../shared/widgets/location_permission_dialog.dart';
+import '../../../../shared/utils/truck_type_image.dart';
 import '../../../../shared/widgets/suggestions_overlay.dart';
 import '../../domain/entities/location_entity.dart';
 import '../state/search_notifier.dart';
+import '../widgets/truck_type_sheet.dart';
 
 class SearchScreen extends ConsumerStatefulWidget {
   const SearchScreen({super.key});
@@ -40,6 +42,13 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
       }
     } on LocationServiceException catch (e) {
       if (mounted) await showLocationPermissionDialog(context, e);
+    }
+  }
+
+  Future<void> _pickTruckType(String? current) async {
+    final selected = await TruckTypeSheet.show(context, selected: current);
+    if (selected != null && mounted) {
+      ref.read(searchNotifierProvider.notifier).selectTruckType(selected);
     }
   }
 
@@ -96,8 +105,6 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                       ],
                     ),
                   ),
-                  _SortButton(onTap: () {}),
-                  const SizedBox(width: 10),
                   const LanguageSwitcherButton(),
                 ],
               ),
@@ -186,12 +193,17 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                             children: [
                               _FieldLabel(l10n.searchTruckTypeLabel),
                               const SizedBox(height: 8),
-                              _DropdownField(
+                              _TruckTypeField(
                                 hintText: l10n.searchSelectTruckHint,
                                 value: state.selectedTruckType,
-                                items: truckTypes,
-                                itemLabel: (t) => truckTypeLabel(context, t),
-                                onChanged: notifier.selectTruckType,
+                                label: state.selectedTruckType != null
+                                    ? truckTypeLabel(
+                                        context,
+                                        state.selectedTruckType!,
+                                      )
+                                    : null,
+                                onTap: () =>
+                                    _pickTruckType(state.selectedTruckType),
                               ),
                             ],
                           ),
@@ -264,41 +276,6 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
               ),
             ],
           ),
-        ),
-      ),
-    );
-  }
-}
-
-// ─── Sort button ─────────────────────────────────────────────────────────────
-
-class _SortButton extends StatelessWidget {
-  final VoidCallback onTap;
-
-  const _SortButton({required this.onTap});
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        width: 44,
-        height: 44,
-        decoration: BoxDecoration(
-          color: AppColors.white,
-          borderRadius: BorderRadius.circular(14),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withValues(alpha: 0.05),
-              blurRadius: 8,
-              offset: const Offset(0, 2),
-            ),
-          ],
-        ),
-        child: const Icon(
-          Icons.sort_by_alpha,
-          size: 20,
-          color: AppColors.primaryBlue,
         ),
       ),
     );
@@ -527,21 +504,19 @@ class _SuggestionsList extends StatelessWidget {
   }
 }
 
-// ─── Dropdown field (truck type) ────────────────────────────────────────────
+// ─── Dropdown field (capacity) ──────────────────────────────────────────────
 
 class _DropdownField extends StatelessWidget {
   final String hintText;
   final String? value;
   final List<String> items;
   final ValueChanged<String?> onChanged;
-  final String Function(String)? itemLabel;
 
   const _DropdownField({
     required this.hintText,
     required this.value,
     required this.items,
     required this.onChanged,
-    this.itemLabel,
   });
 
   @override
@@ -580,14 +555,77 @@ class _DropdownField extends StatelessWidget {
         color: AppColors.textPrimary,
       ),
       items: items
-          .map(
-            (i) => DropdownMenuItem(
-              value: i,
-              child: Text(itemLabel != null ? itemLabel!(i) : i),
-            ),
-          )
+          .map((i) => DropdownMenuItem(value: i, child: Text(i)))
           .toList(),
       onChanged: onChanged,
+    );
+  }
+}
+
+// ─── Truck type field (opens the illustrated bottom sheet) ─────────────────
+
+class _TruckTypeField extends StatelessWidget {
+  final String hintText;
+  final String? value;
+  final String? label;
+  final VoidCallback onTap;
+
+  const _TruckTypeField({
+    required this.hintText,
+    required this.value,
+    required this.label,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final imagePath = value != null ? truckTypeImagePath(value!) : null;
+
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        height: 44,
+        padding: const EdgeInsets.symmetric(horizontal: 8),
+        decoration: BoxDecoration(
+          color: const Color(0xFFF8FAFC),
+          borderRadius: BorderRadius.circular(10),
+          border: Border.all(color: AppColors.border),
+        ),
+        child: Row(
+          children: [
+            if (imagePath != null) ...[
+              ClipRRect(
+                borderRadius: BorderRadius.circular(6),
+                child: Image.asset(
+                  imagePath,
+                  width: 28,
+                  height: 28,
+                  fit: BoxFit.cover,
+                ),
+              ),
+              const SizedBox(width: 8),
+            ],
+            Expanded(
+              child: Text(
+                label ?? hintText,
+                style: TextStyle(
+                  fontSize: 13,
+                  fontWeight: FontWeight.w600,
+                  color: label != null
+                      ? AppColors.textPrimary
+                      : AppColors.textTertiary,
+                ),
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+            const Icon(
+              Icons.keyboard_arrow_down,
+              size: 18,
+              color: AppColors.textTertiary,
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
