@@ -154,6 +154,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get homeManageSection => 'Manage Post & Searches';
 
   @override
+  String get homeViewAll => 'View All';
+
+  @override
   String get homeRecentPosts => 'Recent Posts';
 
   @override

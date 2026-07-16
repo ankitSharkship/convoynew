@@ -7,6 +7,7 @@ import '../../features/auth/presentation/screens/otp_screen.dart';
 import '../../features/auth/presentation/screens/phone_screen.dart';
 import '../../features/call/presentation/screens/call_screen.dart';
 import '../../features/home/presentation/screens/home_screen.dart';
+import '../../features/home/presentation/screens/manage_history_screen.dart';
 import '../../features/kyc/presentation/screens/kyc_otp_screen.dart';
 import '../../features/kyc/presentation/screens/kyc_screen.dart';
 import '../../features/onboarding/presentation/screens/onboarding_screen.dart';
@@ -85,6 +86,10 @@ GoRouter appRouter(AppRouterRef ref) {
       GoRoute(
         path: '/profile/trips',
         builder: (_, __) => const MyTripsScreen(),
+      ),
+      GoRoute(
+        path: '/home/manage',
+        builder: (_, __) => const ManageHistoryScreen(),
       ),
       GoRoute(
         path: '/kyc',

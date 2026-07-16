@@ -370,6 +370,12 @@ abstract class AppLocalizations {
   /// **'Manage Post & Searches'**
   String get homeManageSection;
 
+  /// No description provided for @homeViewAll.
+  ///
+  /// In en, this message translates to:
+  /// **'View All'**
+  String get homeViewAll;
+
   /// No description provided for @homeRecentPosts.
   ///
   /// In en, this message translates to:

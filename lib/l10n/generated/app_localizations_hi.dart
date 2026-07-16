@@ -154,6 +154,9 @@ class AppLocalizationsHi extends AppLocalizations {
   String get homeManageSection => 'पोस्ट और खोज प्रबंधित करें';
 
   @override
+  String get homeViewAll => 'सभी देखें';
+
+  @override
   String get homeRecentPosts => 'हाल की पोस्ट';
 
   @override
