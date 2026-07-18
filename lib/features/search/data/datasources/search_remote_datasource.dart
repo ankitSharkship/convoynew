@@ -13,7 +13,6 @@ abstract class SearchRemoteDataSource {
     required LocationEntity? destination,
     required String? truckType,
     required int radiusKm,
-    required DateTime availableDate,
     required int page,
     required int? capacity,
     required String sortBy,
@@ -50,7 +49,6 @@ class SearchRemoteDataSourceImpl implements SearchRemoteDataSource {
     required LocationEntity? destination,
     required String? truckType,
     required int radiusKm,
-    required DateTime availableDate,
     required int page,
     required int? capacity,
     required String sortBy,
@@ -63,7 +61,6 @@ class SearchRemoteDataSourceImpl implements SearchRemoteDataSource {
           if (destination != null) 'destination': destination.toRequestJson(),
           'truckType': truckType,
           'radius_km': radiusKm,
-          'available_date': _formatDate(availableDate),
           'page': page,
           'capacity': capacity,
           'sortBy': sortBy,
@@ -79,8 +76,3 @@ class SearchRemoteDataSourceImpl implements SearchRemoteDataSource {
     }
   }
 }
-
-String _formatDate(DateTime date) =>
-    '${date.year.toString().padLeft(4, '0')}-'
-    '${date.month.toString().padLeft(2, '0')}-'
-    '${date.day.toString().padLeft(2, '0')}';

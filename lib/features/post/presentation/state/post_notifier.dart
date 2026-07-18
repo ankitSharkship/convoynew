@@ -390,7 +390,6 @@ class PostNotifier extends _$PostNotifier {
             origin: origin,
             destinations: destinations,
             currentLocation: origin,
-            availableDate: DateTime.now(),
             contactName: contactName,
             contactNumber: contactNumber,
           );

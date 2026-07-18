@@ -5,8 +5,8 @@ import '../../../../core/constants/app_colors.dart';
 import '../../../../core/services/location_service.dart';
 import '../../../../l10n/generated/app_localizations.dart';
 import '../../../../shared/utils/phone_number_formatter.dart';
-import '../../../../shared/utils/truck_image.dart';
 import '../../../../shared/utils/truck_type_i18n.dart';
+import '../../../../shared/utils/truck_type_image.dart';
 import '../../../../shared/widgets/borderless_input_decoration.dart';
 import '../../../../shared/widgets/language_switcher_button.dart';
 import '../../../../shared/widgets/location_permission_dialog.dart';
@@ -824,15 +824,7 @@ class _TruckDropdown extends StatelessWidget {
               padding: const EdgeInsets.symmetric(vertical: 6),
               child: Row(
                 children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(10),
-                    child: Image.asset(
-                      truckImageFor(v.vehicleNumber),
-                      width: 52,
-                      height: 52,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
+                  _TruckTypeThumbnail(type: v.truckType, size: 52),
                   const SizedBox(width: 14),
                   Expanded(
                     child: Column(
@@ -841,6 +833,8 @@ class _TruckDropdown extends StatelessWidget {
                       children: [
                         Text(
                           v.vehicleNumber,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
                           style: const TextStyle(
                             fontWeight: FontWeight.w700,
                             fontSize: 15,
@@ -852,6 +846,8 @@ class _TruckDropdown extends StatelessWidget {
                           v.capacity > 0
                               ? '${truckTypeLabel(context, v.truckType)} · ${l10n.capacityTon(v.capacity)}'
                               : truckTypeLabel(context, v.truckType),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
                           style: const TextStyle(
                             fontSize: 13,
                             color: AppColors.textSecondary,
@@ -911,14 +907,10 @@ class _TruckDropdown extends StatelessWidget {
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(6),
-                  child: Image.asset(
-                    truckImageFor(v.vehicleNumber),
-                    width: 28,
-                    height: 28,
-                    fit: BoxFit.cover,
-                  ),
+                _TruckTypeThumbnail(
+                  type: v.truckType,
+                  size: 28,
+                  borderRadius: 6,
                 ),
                 const SizedBox(width: 10),
                 Text(
@@ -946,6 +938,38 @@ class _TruckDropdown extends StatelessWidget {
         ),
       ],
       onChanged: onChanged,
+    );
+  }
+}
+
+class _TruckTypeThumbnail extends StatelessWidget {
+  final String type;
+  final double size;
+  final double borderRadius;
+
+  const _TruckTypeThumbnail({
+    required this.type,
+    required this.size,
+    this.borderRadius = 10,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final imagePath = truckTypeImagePath(type);
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(borderRadius),
+      child: imagePath != null
+          ? Image.asset(imagePath, width: size, height: size, fit: BoxFit.cover)
+          : Container(
+              width: size,
+              height: size,
+              color: AppColors.chipBackground,
+              alignment: Alignment.center,
+              child: const Icon(
+                Icons.local_shipping_outlined,
+                color: AppColors.textTertiary,
+              ),
+            ),
     );
   }
 }

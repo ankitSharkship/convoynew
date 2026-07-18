@@ -227,7 +227,7 @@ class _HeroBanner extends StatelessWidget {
               child: Opacity(
                 opacity: 0.9,
                 child: Image.asset(
-                  'assets/images/truck.png',
+                  'assets/images/truck.webp',
                   width: 150,
                   height: 130,
                   fit: BoxFit.cover,

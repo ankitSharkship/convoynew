@@ -15,7 +15,6 @@ class PostRepositoryImpl implements PostRepository {
     required LocationEntity origin,
     required List<LocationEntity> destinations,
     required LocationEntity currentLocation,
-    required DateTime availableDate,
     String? contactName,
     String? contactNumber,
   }) => _remote.submitPost(
@@ -24,7 +23,6 @@ class PostRepositoryImpl implements PostRepository {
     origin: origin,
     destinations: destinations,
     currentLocation: currentLocation,
-    availableDate: availableDate,
     contactName: contactName,
     contactNumber: contactNumber,
   );

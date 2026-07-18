@@ -41,6 +41,13 @@ ContactsRepository contactsRepository(ContactsRepositoryRef ref) =>
 SyncContactsUseCase syncContactsUseCase(SyncContactsUseCaseRef ref) =>
     SyncContactsUseCase(ref.watch(contactsRepositoryProvider));
 
+/// Whether contacts permission is currently granted — used to decide
+/// whether the mutual-connections UI has any way to resolve a match, since
+/// a granted-then-later-revoked permission leaves no path to show it.
+@riverpod
+Future<bool> hasContactsPermission(HasContactsPermissionRef ref) =>
+    ref.watch(contactsRepositoryProvider).hasPermission();
+
 enum ContactsSyncStatus { idle, syncing, success, permissionDenied, error }
 
 class ContactsSyncState {
@@ -57,10 +64,13 @@ class ContactsSyncNotifier extends _$ContactsSyncNotifier {
       const ContactsSyncState(status: ContactsSyncStatus.idle);
 
   /// Syncs the device's contacts to the backend if the last sync is older
-  /// than [_staleAfter] (or [force] is true). No-ops otherwise. Intended to
-  /// be called after login and on app resume — a mobile client with no
-  /// background-isolate infra, so this "check when the app is in the
-  /// foreground" approach is the periodic-refresh mechanism.
+  /// than [_staleAfter] (or [force] is true). No-ops otherwise. Called from
+  /// three deliberate, one-shot touchpoints — right after login, once per
+  /// cold app open, and when the user taps "Find Trucks" — rather than
+  /// from an app-lifecycle observer, since re-requesting permission on
+  /// every `resumed` event risked a feedback loop with the native
+  /// permission dialog on some devices (each dialog show/dismiss could
+  /// itself trigger another spurious resume).
   Future<void> syncIfStale({bool force = false}) async {
     if (state.status == ContactsSyncStatus.syncing) return;
 

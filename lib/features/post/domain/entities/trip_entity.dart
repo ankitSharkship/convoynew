@@ -12,7 +12,6 @@ class TripEntity {
   final List<LocationEntity> destinations;
   final LocationEntity currentLocation;
   final String originName;
-  final String availableDate;
   final DateTime createdAt;
   final DateTime expiresAt;
 
@@ -28,7 +27,6 @@ class TripEntity {
     required this.destinations,
     required this.currentLocation,
     required this.originName,
-    required this.availableDate,
     required this.createdAt,
     required this.expiresAt,
   });

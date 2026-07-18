@@ -57,7 +57,6 @@ class SearchState {
   final bool refreshing;
   final String? searchError;
   final TruckSearchResultPage? resultPage;
-  final DateTime? lastSearchedDate;
   final String sortBy;
 
   const SearchState({
@@ -77,7 +76,6 @@ class SearchState {
     this.refreshing = false,
     this.searchError,
     this.resultPage,
-    this.lastSearchedDate,
     this.sortBy = sortByNearestOrigin,
   });
 
@@ -113,7 +111,6 @@ class SearchState {
     bool clearSearchError = false,
     TruckSearchResultPage? resultPage,
     bool clearResultPage = false,
-    DateTime? lastSearchedDate,
     String? sortBy,
   }) {
     return SearchState(
@@ -143,7 +140,6 @@ class SearchState {
       refreshing: refreshing ?? this.refreshing,
       searchError: clearSearchError ? null : (searchError ?? this.searchError),
       resultPage: clearResultPage ? null : (resultPage ?? this.resultPage),
-      lastSearchedDate: lastSearchedDate ?? this.lastSearchedDate,
       sortBy: sortBy ?? this.sortBy,
     );
   }
@@ -339,7 +335,6 @@ class SearchNotifier extends _$SearchNotifier {
     }
     state = state.copyWith(
       clearResultPage: true,
-      lastSearchedDate: DateTime.now(),
       sortBy: _defaultSortBy(state.originLocation),
     );
     await _search(page: 1);
@@ -416,7 +411,6 @@ class SearchNotifier extends _$SearchNotifier {
           destination: state.destinationLocation,
           truckType: state.selectedTruckType,
           radiusKm: _defaultRadiusKm,
-          availableDate: state.lastSearchedDate ?? DateTime.now(),
           page: page,
           capacity: _parseCapacity(state.selectedCapacity),
           sortBy: state.sortBy,

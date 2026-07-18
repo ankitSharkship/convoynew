@@ -1,43 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../core/constants/app_colors.dart';
-import '../../features/contacts/presentation/state/contacts_sync_notifier.dart';
 import '../../l10n/generated/app_localizations.dart';
 
-class MainShell extends ConsumerStatefulWidget {
+class MainShell extends StatelessWidget {
   final StatefulNavigationShell navigationShell;
 
   const MainShell({super.key, required this.navigationShell});
 
   @override
-  ConsumerState<MainShell> createState() => _MainShellState();
-}
-
-class _MainShellState extends ConsumerState<MainShell>
-    with WidgetsBindingObserver {
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addObserver(this);
-  }
-
-  @override
-  void dispose() {
-    WidgetsBinding.instance.removeObserver(this);
-    super.dispose();
-  }
-
-  @override
-  void didChangeAppLifecycleState(AppLifecycleState state) {
-    if (state == AppLifecycleState.resumed) {
-      ref.read(contactsSyncNotifierProvider.notifier).syncIfStale();
-    }
-  }
-
-  @override
   Widget build(BuildContext context) {
-    final navigationShell = widget.navigationShell;
     final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       body: navigationShell,

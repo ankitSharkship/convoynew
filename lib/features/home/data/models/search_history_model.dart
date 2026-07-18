@@ -31,7 +31,6 @@ SearchHistoryEntity searchHistoryFromJson(Map<String, dynamic> json) {
     truckType: json['truckType'] as String?,
     capacity: (json['capacity'] as num?)?.toInt(),
     radiusKm: (json['radius_km'] as num?)?.toInt() ?? 0,
-    availableDate: json['available_date'] as String? ?? '',
     searchedAt: DateTime.parse(json['searchedAt'] as String),
   );
 }

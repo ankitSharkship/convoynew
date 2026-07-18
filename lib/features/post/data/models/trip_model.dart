@@ -28,7 +28,6 @@ class TripModel extends TripEntity {
     required super.destinations,
     required super.currentLocation,
     required super.originName,
-    required super.availableDate,
     required super.createdAt,
     required super.expiresAt,
   });
@@ -55,7 +54,6 @@ class TripModel extends TripEntity {
         'current',
       ),
       originName: json['originName'] as String? ?? '',
-      availableDate: json['availableDate'] as String,
       createdAt: DateTime.parse(json['createdAt'] as String),
       expiresAt: DateTime.parse(json['expiresAt'] as String),
     );

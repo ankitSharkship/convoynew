@@ -60,7 +60,6 @@ class TruckSearchResultEntity {
   final int capacity;
   final String origin;
   final double originDistanceKm;
-  final String availableDate;
   final String status;
   final TruckSearchLocationEntity originLocation;
   final TruckSearchLocationEntity currentLocation;
@@ -85,7 +84,6 @@ class TruckSearchResultEntity {
     required this.capacity,
     required this.origin,
     required this.originDistanceKm,
-    required this.availableDate,
     required this.status,
     required this.originLocation,
     required this.currentLocation,

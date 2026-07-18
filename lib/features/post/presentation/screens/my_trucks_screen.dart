@@ -4,8 +4,8 @@ import 'package:go_router/go_router.dart';
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/network/api_exception.dart';
 import '../../../../l10n/generated/app_localizations.dart';
-import '../../../../shared/utils/truck_image.dart';
 import '../../../../shared/utils/truck_type_i18n.dart';
+import '../../../../shared/utils/truck_type_image.dart';
 import '../../../../shared/widgets/language_switcher_button.dart';
 import '../../../../shared/widgets/loader.dart';
 import '../../domain/entities/vehicle_entity.dart';
@@ -79,7 +79,7 @@ class MyTrucksScreen extends ConsumerWidget {
       ),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(0, 16, 20, 20),
+          padding: const EdgeInsets.fromLTRB(20, 16, 20, 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -191,15 +191,7 @@ class _TruckCard extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(10),
-            child: Image.asset(
-              truckImageFor(vehicle.vehicleNumber),
-              width: 56,
-              height: 56,
-              fit: BoxFit.cover,
-            ),
-          ),
+          _TruckTypeThumbnail(type: vehicle.truckType, size: 56),
           const SizedBox(width: 14),
           Expanded(
             child: Column(
@@ -232,6 +224,33 @@ class _TruckCard extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+class _TruckTypeThumbnail extends StatelessWidget {
+  final String type;
+  final double size;
+
+  const _TruckTypeThumbnail({required this.type, required this.size});
+
+  @override
+  Widget build(BuildContext context) {
+    final imagePath = truckTypeImagePath(type);
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(10),
+      child: imagePath != null
+          ? Image.asset(imagePath, width: size, height: size, fit: BoxFit.cover)
+          : Container(
+              width: size,
+              height: size,
+              color: AppColors.chipBackground,
+              alignment: Alignment.center,
+              child: const Icon(
+                Icons.local_shipping_outlined,
+                color: AppColors.textTertiary,
+              ),
+            ),
     );
   }
 }

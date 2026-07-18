@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../../../core/constants/app_colors.dart';
 import '../../../../l10n/generated/app_localizations.dart';
 import '../../../auth/presentation/state/auth_notifier.dart';
+import '../../../contacts/presentation/state/contacts_sync_notifier.dart';
 import '../../../onboarding/presentation/state/onboarding_notifier.dart';
 
 class SplashScreen extends ConsumerStatefulWidget {
@@ -38,6 +39,11 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
 
     if (!mounted) return;
     if (session != null) {
+      // Fire-and-forget: re-checks/re-requests contacts permission (and
+      // syncs if stale) once per cold app open, without blocking
+      // navigation on it. Deliberately not tied to app-lifecycle resume
+      // events — that caused a permission-dialog feedback loop before.
+      ref.read(contactsSyncNotifierProvider.notifier).syncIfStale();
       context.go('/home');
     } else {
       context.go('/auth/phone');

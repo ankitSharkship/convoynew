@@ -1,22 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../../../core/constants/app_colors.dart';
 import '../../../../l10n/generated/app_localizations.dart';
 import '../../../../shared/utils/truck_type_i18n.dart';
 import '../../../../shared/widgets/language_switcher_button.dart';
+import '../../../contacts/presentation/state/contacts_sync_notifier.dart';
 import '../../../contacts/presentation/widgets/mutual_contacts_sheet.dart';
 import '../../domain/entities/truck_search_result_entity.dart';
 import '../state/search_notifier.dart';
-
-String _formatDate(BuildContext context, DateTime? date) {
-  if (date == null) return '';
-  return DateFormat.yMMMd(
-    Localizations.localeOf(context).toString(),
-  ).format(date);
-}
 
 Future<void> _callNumber(BuildContext context, String phone) async {
   final uri = Uri(scheme: 'tel', path: phone);
@@ -49,6 +42,14 @@ class _SearchResultsScreenState extends ConsumerState<SearchResultsScreen>
       vsync: this,
       duration: const Duration(milliseconds: 900),
     )..repeat(reverse: true);
+    // Permission may have changed (granted or revoked) since this screen
+    // was last shown — re-check rather than trusting a stale cached value.
+    // Deferred to after the first frame: invalidating during initState
+    // reaches for the ProviderScope container before this element has
+    // finished mounting, which Flutter disallows.
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) ref.invalidate(hasContactsPermissionProvider);
+    });
   }
 
   @override
@@ -306,11 +307,6 @@ class _SummaryCard extends StatelessWidget {
                 label: l10n.searchCapacityLabel,
                 value: state.selectedCapacity ?? l10n.resultsAny,
               ),
-              _MetaColumn(
-                icon: Icons.calendar_today_outlined,
-                label: l10n.resultsDateLabel,
-                value: _formatDate(context, state.lastSearchedDate),
-              ),
             ],
           ),
         ],
@@ -510,14 +506,21 @@ class _SortChip extends StatelessWidget {
 
 // ─── Result card (person / truck) ────────────────────────────────────────────
 
-class _ResultCard extends StatelessWidget {
+class _ResultCard extends ConsumerWidget {
   final TruckSearchResultEntity result;
 
   const _ResultCard({required this.result});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context)!;
+    // No mutuals to show, or no way to resolve them without permission
+    // (e.g. the user synced once, then later revoked contacts access) —
+    // either way, hide the section entirely rather than showing a count
+    // that can't be backed up by anything.
+    final hasContactsPermission =
+        ref.watch(hasContactsPermissionProvider).valueOrNull ?? false;
+    final showMutuals = result.mutualsCount > 0 && hasContactsPermission;
     final displayName = result.displayContactName;
     final initials = displayName
         .split(' ')
@@ -660,14 +663,9 @@ class _ResultCard extends StatelessWidget {
                     ? l10n.capacityTon(result.capacity)
                     : '—',
               ),
-              _MetaColumn(
-                icon: Icons.calendar_today_outlined,
-                label: l10n.resultsDateLabel,
-                value: result.availableDate,
-              ),
             ],
           ),
-          if (result.mutualsCount > 0) ...[
+          if (showMutuals) ...[
             const SizedBox(height: 12),
             const Divider(height: 1, color: Color(0xFFF0F4F8)),
             const SizedBox(height: 12),

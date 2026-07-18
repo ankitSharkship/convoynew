@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/services/location_service.dart';
 import '../../../../l10n/generated/app_localizations.dart';
+import '../../../contacts/presentation/state/contacts_sync_notifier.dart';
 import '../../../../shared/utils/truck_type_i18n.dart';
 import '../../../../shared/widgets/borderless_input_decoration.dart';
 import '../../../../shared/widgets/language_switcher_button.dart';
@@ -235,6 +236,14 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                         onPressed: state.canSearch
                             ? () {
                                 notifier.findTrucks();
+                                // Fire-and-forget: this is the natural
+                                // moment to ask for contacts permission if
+                                // it's still missing, since mutual
+                                // connections only show up on search
+                                // results. Doesn't block the search itself.
+                                ref
+                                    .read(contactsSyncNotifierProvider.notifier)
+                                    .syncIfStale();
                                 context.push('/search/results');
                               }
                             : null,

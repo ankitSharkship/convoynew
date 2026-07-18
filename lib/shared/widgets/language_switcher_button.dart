@@ -71,12 +71,46 @@ class LanguageSwitcherButton extends ConsumerWidget {
         ref.read(localeNotifierProvider.notifier).setLocale(locale);
 
     if (trigger != null) {
-      return PopupMenuButton<Locale>(
-        tooltip: l10n.languageSelectTitle,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
-        onSelected: onSelected,
-        itemBuilder: itemBuilder,
-        child: trigger,
+      // PopupMenuButton anchors its menu using the button's own bounding
+      // box: if that box is (close to) as wide as the screen — as it is
+      // for a full-width settings row like the "Language" item on the
+      // Profile screen — the box's left and right edges end up roughly
+      // equidistant from the screen edges, and Flutter's positioning
+      // logic falls back to opening the menu flush with the *left* edge.
+      // To always open the menu against the right end regardless of how
+      // wide the visible trigger is, the real PopupMenuButton is shrunk
+      // to a 1x1 anchor pinned to the trigger's right edge (via a
+      // GlobalKey so it can still be opened programmatically), while the
+      // full-size trigger stays visible and tappable underneath.
+      final menuKey = GlobalKey<PopupMenuButtonState<Locale>>();
+      return GestureDetector(
+        behavior: HitTestBehavior.opaque,
+        onTap: () => menuKey.currentState?.showButtonMenu(),
+        child: Stack(
+          children: [
+            trigger!,
+            Positioned.fill(
+              child: Align(
+                alignment: Alignment.centerRight,
+                child: SizedBox(
+                  width: 1,
+                  height: 1,
+                  child: PopupMenuButton<Locale>(
+                    key: menuKey,
+                    tooltip: l10n.languageSelectTitle,
+                    padding: EdgeInsets.zero,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(14),
+                    ),
+                    onSelected: onSelected,
+                    itemBuilder: itemBuilder,
+                    child: const SizedBox(width: 1, height: 1),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
       );
     }
 

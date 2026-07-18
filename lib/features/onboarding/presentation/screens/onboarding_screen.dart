@@ -10,9 +10,9 @@ import '../state/onboarding_notifier.dart';
 // three pages for now — only the illustration changes. The images/text will
 // be revisited later.
 const _pageImages = [
-  'assets/images/truck2.png',
-  'assets/images/truck4.png',
-  'assets/images/truck3.png',
+  'assets/images/truck2.webp',
+  'assets/images/truck4.webp',
+  'assets/images/truck3.webp',
 ];
 
 class OnboardingScreen extends ConsumerStatefulWidget {

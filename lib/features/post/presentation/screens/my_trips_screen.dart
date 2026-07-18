@@ -82,7 +82,7 @@ class MyTripsScreen extends ConsumerWidget {
       backgroundColor: AppColors.primaryBlueLight,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(0, 16, 20, 20),
+          padding: const EdgeInsets.fromLTRB(20, 16, 20, 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

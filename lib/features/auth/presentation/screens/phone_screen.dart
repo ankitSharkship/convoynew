@@ -64,7 +64,7 @@ class _PhoneScreenState extends ConsumerState<PhoneScreen> {
               child: Stack(
                 children: [
                   Image.asset(
-                    'assets/images/truck4.png',
+                    'assets/images/truck4.webp',
                     width: double.infinity,
                     height: double.infinity,
                     fit: BoxFit.cover,

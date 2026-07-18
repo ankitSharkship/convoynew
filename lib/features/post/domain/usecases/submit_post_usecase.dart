@@ -13,7 +13,6 @@ class SubmitPostUseCase {
     required LocationEntity origin,
     required List<LocationEntity> destinations,
     required LocationEntity currentLocation,
-    required DateTime availableDate,
     String? contactName,
     String? contactNumber,
   }) => _repository.submitPost(
@@ -22,7 +21,6 @@ class SubmitPostUseCase {
     origin: origin,
     destinations: destinations,
     currentLocation: currentLocation,
-    availableDate: availableDate,
     contactName: contactName,
     contactNumber: contactNumber,
   );

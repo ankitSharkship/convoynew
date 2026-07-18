@@ -9,7 +9,6 @@ class PostModel extends PostEntity {
     required super.capacity,
     required super.originName,
     required super.destinationNames,
-    required super.availableDate,
     required super.status,
     required super.createdAt,
     super.contactName,
@@ -32,7 +31,6 @@ class PostModel extends PostEntity {
           .map((d) => (d as Map<String, dynamic>)['name'] as String? ?? '')
           .where((name) => name.isNotEmpty)
           .toList(),
-      availableDate: json['availableDate'] as String,
       status: json['status'] as String,
       createdAt: DateTime.parse(json['createdAt'] as String),
       contactName: json['contactName'] as String?,

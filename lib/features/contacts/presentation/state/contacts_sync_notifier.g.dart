@@ -104,6 +104,28 @@ final syncContactsUseCaseProvider =
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef SyncContactsUseCaseRef = AutoDisposeProviderRef<SyncContactsUseCase>;
+String _$hasContactsPermissionHash() =>
+    r'3d48d99d0f1ab91617353265c1ab8caf4824d6de';
+
+/// Whether contacts permission is currently granted — used to decide
+/// whether the mutual-connections UI has any way to resolve a match, since
+/// a granted-then-later-revoked permission leaves no path to show it.
+///
+/// Copied from [hasContactsPermission].
+@ProviderFor(hasContactsPermission)
+final hasContactsPermissionProvider = AutoDisposeFutureProvider<bool>.internal(
+  hasContactsPermission,
+  name: r'hasContactsPermissionProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$hasContactsPermissionHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef HasContactsPermissionRef = AutoDisposeFutureProviderRef<bool>;
 String _$contactsSyncNotifierHash() =>
     r'a337ac6c7de20b59cc20a55b0effac900be9320b';
 

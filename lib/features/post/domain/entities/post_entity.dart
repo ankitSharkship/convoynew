@@ -6,7 +6,6 @@ class PostEntity {
   final int capacity;
   final String originName;
   final List<String> destinationNames;
-  final String availableDate;
   final String status;
   final DateTime createdAt;
   final String? contactName;
@@ -20,7 +19,6 @@ class PostEntity {
     required this.capacity,
     required this.originName,
     required this.destinationNames,
-    required this.availableDate,
     required this.status,
     required this.createdAt,
     this.contactName,

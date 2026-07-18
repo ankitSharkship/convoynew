@@ -9,7 +9,6 @@ abstract class SearchRepository {
     required LocationEntity? destination,
     required String? truckType,
     required int radiusKm,
-    required DateTime availableDate,
     required int page,
     required int? capacity,
     required String sortBy,

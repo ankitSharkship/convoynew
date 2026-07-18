@@ -51,7 +51,6 @@ TruckSearchResultEntity truckSearchResultFromJson(Map<String, dynamic> json) {
     capacity: (json['capacity'] as num?)?.toInt() ?? 0,
     origin: json['origin'] as String,
     originDistanceKm: (json['origin_distance_km'] as num?)?.toDouble() ?? 0,
-    availableDate: json['available_date'] as String,
     status: json['status'] as String,
     originLocation: _locationFromJson(
       json['originLocation'] as Map<String, dynamic>,

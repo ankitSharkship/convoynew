@@ -8,7 +8,6 @@ abstract class PostRepository {
     required LocationEntity origin,
     required List<LocationEntity> destinations,
     required LocationEntity currentLocation,
-    required DateTime availableDate,
     String? contactName,
     String? contactNumber,
   });

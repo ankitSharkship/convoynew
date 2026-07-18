@@ -6,7 +6,6 @@ class SearchHistoryEntity {
   final String? truckType;
   final int? capacity;
   final int radiusKm;
-  final String availableDate;
   final DateTime searchedAt;
 
   const SearchHistoryEntity({
@@ -15,7 +14,6 @@ class SearchHistoryEntity {
     this.truckType,
     this.capacity,
     required this.radiusKm,
-    required this.availableDate,
     required this.searchedAt,
   });
 }

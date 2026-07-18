@@ -11,7 +11,6 @@ abstract class PostRemoteDataSource {
     required LocationEntity origin,
     required List<LocationEntity> destinations,
     required LocationEntity currentLocation,
-    required DateTime availableDate,
     String? contactName,
     String? contactNumber,
   });
@@ -29,7 +28,6 @@ class PostRemoteDataSourceImpl implements PostRemoteDataSource {
     required LocationEntity origin,
     required List<LocationEntity> destinations,
     required LocationEntity currentLocation,
-    required DateTime availableDate,
     String? contactName,
     String? contactNumber,
   }) async {
@@ -41,7 +39,6 @@ class PostRemoteDataSourceImpl implements PostRemoteDataSource {
           'origin': origin.toRequestJson(),
           'destinations': destinations.map((d) => d.toRequestJson()).toList(),
           'currentLocation': currentLocation.toRequestJson(),
-          'available_date': _formatDate(availableDate),
           'contactName': ?contactName,
           'contactNumber': ?contactNumber,
         },
@@ -55,8 +52,3 @@ class PostRemoteDataSourceImpl implements PostRemoteDataSource {
     }
   }
 }
-
-String _formatDate(DateTime date) =>
-    '${date.year.toString().padLeft(4, '0')}-'
-    '${date.month.toString().padLeft(2, '0')}-'
-    '${date.day.toString().padLeft(2, '0')}';

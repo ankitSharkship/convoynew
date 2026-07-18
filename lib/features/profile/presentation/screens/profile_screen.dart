@@ -414,6 +414,8 @@ String _currentLanguageLabel(BuildContext context, AppLocalizations l10n) {
       return l10n.languageHindi;
     case 'mr':
       return l10n.languageMarathi;
+    case 'kn':
+      return l10n.languageKannada;
     default:
       return l10n.languageEnglish;
   }
