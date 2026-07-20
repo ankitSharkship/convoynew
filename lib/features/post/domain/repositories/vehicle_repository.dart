@@ -2,7 +2,7 @@ import '../entities/vehicle_entity.dart';
 import '../entities/vehicle_verification_entity.dart';
 
 abstract class VehicleRepository {
-  Future<List<VehicleEntity>> getVehicles(String userId);
+  Future<List<VehicleEntity>> getVehicles(String userId, {String? truckNumber});
 
   Future<void> deleteVehicle({
     required String userId,

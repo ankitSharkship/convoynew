@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -6,12 +8,12 @@ import '../../../../core/services/location_service.dart';
 import '../../../../l10n/generated/app_localizations.dart';
 import '../../../../shared/utils/phone_number_formatter.dart';
 import '../../../../shared/utils/truck_type_i18n.dart';
-import '../../../../shared/utils/truck_type_image.dart';
 import '../../../../shared/widgets/borderless_input_decoration.dart';
 import '../../../../shared/widgets/language_switcher_button.dart';
 import '../../../../shared/widgets/location_permission_dialog.dart';
 import '../../../../shared/widgets/sheet_form_field.dart';
 import '../../../../shared/widgets/suggestions_overlay.dart';
+import '../../../../shared/widgets/truck_type_thumbnail.dart';
 import '../../../search/domain/entities/location_entity.dart';
 import '../../domain/entities/trip_entity.dart';
 import '../../domain/entities/vehicle_entity.dart';
@@ -19,7 +21,7 @@ import '../state/post_notifier.dart';
 import '../state/vehicle_notifier.dart';
 import '../widgets/add_truck_sheet.dart';
 
-const _addNewTruckSentinel = '__add_new_truck__';
+const _truckSearchDebounce = Duration(milliseconds: 350);
 
 class PostFormScreen extends ConsumerStatefulWidget {
   final TripEntity? editingTrip;
@@ -83,12 +85,12 @@ class _PostFormScreenState extends ConsumerState<PostFormScreen> {
     }
   }
 
-  Future<void> _showAddTruckSheet() async {
+  Future<void> _showAddTruckSheet([String? prefillNumber]) async {
     final vehicle = await showModalBottomSheet<VehicleEntity>(
       context: context,
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
-      builder: (_) => const AddTruckSheet(),
+      builder: (_) => AddTruckSheet(initialVehicleNumber: prefillNumber),
     );
     if (vehicle != null && mounted) {
       ref.read(postNotifierProvider.notifier).selectVehicle(vehicle.id);
@@ -247,16 +249,11 @@ class _PostFormScreenState extends ConsumerState<PostFormScreen> {
                       l10n.postCouldNotLoadTrucks,
                       style: const TextStyle(color: AppColors.red),
                     ),
-                    data: (vehicles) => _TruckDropdown(
+                    data: (vehicles) => _TruckField(
                       vehicles: vehicles,
                       selectedVehicleId: state.selectedVehicleId,
-                      onChanged: (value) {
-                        if (value == _addNewTruckSentinel) {
-                          _showAddTruckSheet();
-                          return;
-                        }
-                        notifier.selectVehicle(value);
-                      },
+                      onSelect: (vehicle) => notifier.selectVehicle(vehicle.id),
+                      onAddNewTruck: _showAddTruckSheet,
                     ),
                   ),
                 ],
@@ -761,206 +758,370 @@ class _SuggestionsList extends StatelessWidget {
   }
 }
 
-// ── Truck dropdown ───────────────────────────────────────────────────────────
+// ── Truck field (search-as-you-type picker) ─────────────────────────────────
 
-class _TruckDropdown extends StatelessWidget {
+/// Replaces a plain dropdown: tapping the closed field opens a search box
+/// backed by the vehicles-list API (filtered by truck number), with an
+/// always-visible "Add new truck" action pinned below the results.
+class _TruckField extends ConsumerStatefulWidget {
   final List<VehicleEntity> vehicles;
   final String? selectedVehicleId;
-  final ValueChanged<String?> onChanged;
+  final ValueChanged<VehicleEntity> onSelect;
+  final ValueChanged<String?> onAddNewTruck;
 
-  const _TruckDropdown({
+  const _TruckField({
     required this.vehicles,
     required this.selectedVehicleId,
-    required this.onChanged,
+    required this.onSelect,
+    required this.onAddNewTruck,
+  });
+
+  @override
+  ConsumerState<_TruckField> createState() => _TruckFieldState();
+}
+
+class _TruckFieldState extends ConsumerState<_TruckField> {
+  final _searchController = TextEditingController();
+  bool _searchOpen = false;
+  bool _loading = false;
+  List<VehicleEntity> _results = const [];
+  Timer? _debounce;
+  int _requestId = 0;
+
+  @override
+  void dispose() {
+    _debounce?.cancel();
+    _searchController.dispose();
+    super.dispose();
+  }
+
+  void _openSearch() {
+    setState(() => _searchOpen = true);
+    _search(null);
+  }
+
+  void _closeSearch() {
+    _debounce?.cancel();
+    if (!mounted) return;
+    setState(() {
+      _searchOpen = false;
+      _searchController.clear();
+      _results = const [];
+    });
+  }
+
+  void _onQueryChanged(String value) {
+    _debounce?.cancel();
+    final query = value.trim();
+    _debounce = Timer(
+      _truckSearchDebounce,
+      () => _search(query.isEmpty ? null : query),
+    );
+  }
+
+  Future<void> _search(String? truckNumber) async {
+    final requestId = ++_requestId;
+    setState(() => _loading = true);
+    List<VehicleEntity> results = const [];
+    try {
+      results = await ref
+          .read(vehicleNotifierProvider.notifier)
+          .searchVehicles(truckNumber);
+    } catch (_) {
+      results = const [];
+    }
+    if (!mounted || requestId != _requestId) return;
+    setState(() {
+      _results = results;
+      _loading = false;
+    });
+  }
+
+  void _selectVehicle(VehicleEntity vehicle) {
+    widget.onSelect(vehicle);
+    _closeSearch();
+  }
+
+  void _addNewTruck() {
+    final number = _searchController.text.trim();
+    widget.onAddNewTruck(number.isEmpty ? null : number);
+    _closeSearch();
+  }
+
+  VehicleEntity? _selectedVehicle() {
+    final id = widget.selectedVehicleId;
+    if (id == null) return null;
+    for (final v in widget.vehicles) {
+      if (v.id == id) return v;
+    }
+    return null;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    final selected = _selectedVehicle();
+
+    return SuggestionsOverlay(
+      visible: _searchOpen,
+      onDismissTap: _closeSearch,
+      overlayBuilder: (_) => _TruckResultsList(
+        loading: _loading,
+        results: _results,
+        onSelect: _selectVehicle,
+        onAddNewTruck: _addNewTruck,
+      ),
+      field: Container(
+        decoration: BoxDecoration(
+          color: const Color(0xFFF8FAFC),
+          borderRadius: BorderRadius.circular(14),
+          border: Border.all(
+            color: _searchOpen ? AppColors.primaryBlue : AppColors.border,
+            width: _searchOpen ? 1.5 : 1,
+          ),
+        ),
+        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 4),
+        child: _searchOpen
+            ? Row(
+                children: [
+                  Expanded(
+                    child: TextField(
+                      controller: _searchController,
+                      autofocus: true,
+                      onChanged: _onQueryChanged,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 15,
+                        color: AppColors.textPrimary,
+                      ),
+                      decoration: borderlessInputDecoration(
+                        hintText: l10n.postSearchTruckHint,
+                        hintStyle: const TextStyle(
+                          color: AppColors.textTertiary,
+                          fontWeight: FontWeight.normal,
+                        ),
+                        contentPadding: const EdgeInsets.symmetric(
+                          vertical: 14,
+                        ),
+                      ),
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: _closeSearch,
+                    child: const Icon(
+                      Icons.close,
+                      size: 20,
+                      color: AppColors.textTertiary,
+                    ),
+                  ),
+                ],
+              )
+            : GestureDetector(
+                behavior: HitTestBehavior.opaque,
+                onTap: _openSearch,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  child: Row(
+                    children: [
+                      if (selected != null) ...[
+                        TruckTypeThumbnail(
+                          type: selected.truckType,
+                          size: 28,
+                          borderRadius: 6,
+                        ),
+                        const SizedBox(width: 10),
+                        Expanded(
+                          child: Text(
+                            selected.vehicleNumber,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: const TextStyle(
+                              fontWeight: FontWeight.w700,
+                              fontSize: 15,
+                              color: AppColors.textPrimary,
+                            ),
+                          ),
+                        ),
+                      ] else
+                        Expanded(
+                          child: Text(
+                            l10n.postSelectTruckHint,
+                            style: const TextStyle(
+                              color: AppColors.textTertiary,
+                              fontSize: 14,
+                            ),
+                          ),
+                        ),
+                      const Icon(
+                        Icons.keyboard_arrow_down,
+                        color: AppColors.textTertiary,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+      ),
+    );
+  }
+}
+
+class _TruckResultsList extends StatelessWidget {
+  final bool loading;
+  final List<VehicleEntity> results;
+  final ValueChanged<VehicleEntity> onSelect;
+  final VoidCallback onAddNewTruck;
+
+  const _TruckResultsList({
+    required this.loading,
+    required this.results,
+    required this.onSelect,
+    required this.onAddNewTruck,
   });
 
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
-    return DropdownButtonFormField<String>(
-      value: selectedVehicleId,
-      isExpanded: true,
-      itemHeight: 72,
-      borderRadius: BorderRadius.circular(18),
-      decoration: InputDecoration(
-        hintText: l10n.postSelectTruckHint,
-        hintStyle: const TextStyle(color: AppColors.textTertiary, fontSize: 14),
-        filled: true,
-        fillColor: const Color(0xFFF8FAFC),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(14),
-          borderSide: const BorderSide(color: AppColors.border),
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(14),
-          borderSide: const BorderSide(color: AppColors.border),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(14),
-          borderSide: const BorderSide(
-            color: AppColors.primaryBlue,
-            width: 1.5,
+
+    return Container(
+      constraints: const BoxConstraints(maxHeight: 320),
+      decoration: BoxDecoration(
+        color: AppColors.white,
+        borderRadius: BorderRadius.circular(14),
+        border: Border.all(color: AppColors.border),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.12),
+            blurRadius: 16,
+            offset: const Offset(0, 6),
           ),
-        ),
-        contentPadding: const EdgeInsets.symmetric(
-          horizontal: 14,
-          vertical: 14,
-        ),
+        ],
       ),
-      items: [
-        ...vehicles.map(
-          (v) => DropdownMenuItem(
-            value: v.id,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Flexible(
+            child: loading
+                ? const Padding(
+                    padding: EdgeInsets.symmetric(vertical: 16),
+                    child: Center(
+                      child: SizedBox(
+                        width: 18,
+                        height: 18,
+                        child: CircularProgressIndicator(
+                          strokeWidth: 2,
+                          color: AppColors.primaryBlue,
+                        ),
+                      ),
+                    ),
+                  )
+                : results.isEmpty
+                ? Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: Text(
+                      l10n.postTruckSearchEmptyMessage,
+                      style: const TextStyle(
+                        fontSize: 13,
+                        color: AppColors.textSecondary,
+                      ),
+                    ),
+                  )
+                : ListView.separated(
+                    shrinkWrap: true,
+                    padding: const EdgeInsets.symmetric(vertical: 4),
+                    itemCount: results.length,
+                    separatorBuilder: (_, _) =>
+                        const Divider(height: 1, indent: 12, endIndent: 12),
+                    itemBuilder: (_, i) {
+                      final v = results[i];
+                      return InkWell(
+                        onTap: () => onSelect(v),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 12,
+                            vertical: 8,
+                          ),
+                          child: Row(
+                            children: [
+                              TruckTypeThumbnail(type: v.truckType, size: 44),
+                              const SizedBox(width: 12),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Text(
+                                      v.vehicleNumber,
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: const TextStyle(
+                                        fontWeight: FontWeight.w700,
+                                        fontSize: 14,
+                                        color: AppColors.textPrimary,
+                                      ),
+                                    ),
+                                    Text(
+                                      v.capacity > 0
+                                          ? '${truckTypeLabel(context, v.truckType)} · ${l10n.capacityTon(v.capacity)}'
+                                          : truckTypeLabel(
+                                              context,
+                                              v.truckType,
+                                            ),
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: const TextStyle(
+                                        fontSize: 12,
+                                        color: AppColors.textSecondary,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+          ),
+          const Divider(height: 1),
+          InkWell(
+            onTap: onAddNewTruck,
             child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 6),
+              padding: const EdgeInsets.symmetric(
+                horizontal: 12,
+                vertical: 12,
+              ),
               child: Row(
                 children: [
-                  _TruckTypeThumbnail(type: v.truckType, size: 52),
-                  const SizedBox(width: 14),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(
-                          v.vehicleNumber,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: const TextStyle(
-                            fontWeight: FontWeight.w700,
-                            fontSize: 15,
-                            color: AppColors.textPrimary,
-                          ),
-                        ),
-                        const SizedBox(height: 2),
-                        Text(
-                          v.capacity > 0
-                              ? '${truckTypeLabel(context, v.truckType)} · ${l10n.capacityTon(v.capacity)}'
-                              : truckTypeLabel(context, v.truckType),
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: const TextStyle(
-                            fontSize: 13,
-                            color: AppColors.textSecondary,
-                          ),
-                        ),
-                      ],
+                  Container(
+                    width: 36,
+                    height: 36,
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      color: AppColors.primaryBlue.withValues(alpha: 0.1),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: const Icon(
+                      Icons.add,
+                      size: 20,
+                      color: AppColors.primaryBlue,
+                    ),
+                  ),
+                  const SizedBox(width: 12),
+                  Text(
+                    l10n.postAddNewTruck,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.w600,
+                      fontSize: 14,
+                      color: AppColors.primaryBlue,
                     ),
                   ),
                 ],
               ),
             ),
           ),
-        ),
-        DropdownMenuItem(
-          value: _addNewTruckSentinel,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 6),
-            child: Row(
-              children: [
-                Container(
-                  width: 52,
-                  height: 52,
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    color: AppColors.primaryBlue.withValues(alpha: 0.1),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: const Icon(
-                    Icons.add,
-                    size: 24,
-                    color: AppColors.primaryBlue,
-                  ),
-                ),
-                const SizedBox(width: 14),
-                Text(
-                  l10n.postAddNewTruck,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.w600,
-                    fontSize: 15,
-                    color: AppColors.primaryBlue,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ],
-      // The closed/collapsed field reuses each DropdownMenuItem's child by
-      // default, but that rich (image + two lines of text) item is taller
-      // than the space the collapsed field allocates, causing an overflow.
-      // selectedItemBuilder supplies a compact, single-line stand-in just
-      // for the closed state instead.
-      selectedItemBuilder: (context) => [
-        ...vehicles.map(
-          (v) => Align(
-            alignment: Alignment.centerLeft,
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                _TruckTypeThumbnail(
-                  type: v.truckType,
-                  size: 28,
-                  borderRadius: 6,
-                ),
-                const SizedBox(width: 10),
-                Text(
-                  v.vehicleNumber,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.w700,
-                    fontSize: 14,
-                    color: AppColors.textPrimary,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-        Align(
-          alignment: Alignment.centerLeft,
-          child: Text(
-            l10n.postAddNewTruck,
-            style: const TextStyle(
-              fontWeight: FontWeight.w600,
-              fontSize: 14,
-              color: AppColors.primaryBlue,
-            ),
-          ),
-        ),
-      ],
-      onChanged: onChanged,
-    );
-  }
-}
-
-class _TruckTypeThumbnail extends StatelessWidget {
-  final String type;
-  final double size;
-  final double borderRadius;
-
-  const _TruckTypeThumbnail({
-    required this.type,
-    required this.size,
-    this.borderRadius = 10,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final imagePath = truckTypeImagePath(type);
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(borderRadius),
-      child: imagePath != null
-          ? Image.asset(imagePath, width: size, height: size, fit: BoxFit.cover)
-          : Container(
-              width: size,
-              height: size,
-              color: AppColors.chipBackground,
-              alignment: Alignment.center,
-              child: const Icon(
-                Icons.local_shipping_outlined,
-                color: AppColors.textTertiary,
-              ),
-            ),
+        ],
+      ),
     );
   }
 }

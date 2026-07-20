@@ -204,26 +204,6 @@ class AppLocalizationsMr extends AppLocalizations {
   String get kycVerifyButton => 'आधार सत्यापित करा';
 
   @override
-  String get kycPendingTitle => 'तुमचे KYC प्रलंबित आहे';
-
-  @override
-  String get kycPendingSubtitle =>
-      'आम्ही तुमचे तपशील सत्यापित करत आहोत. Sharkship सेवा वापरणे सुरू ठेवण्यासाठी\nकृपया तुमचे KYC पूर्ण करा.';
-
-  @override
-  String get kycWhatsNext => 'पुढे काय होते?';
-
-  @override
-  String get kycWhatsNextSubtitle =>
-      'तुमचे KYC सत्यापित होताच आम्ही तुम्हाला कळवू.';
-
-  @override
-  String get kycIdCardLabel => 'KYC';
-
-  @override
-  String get kycIdCardBrand => 'Sharkship';
-
-  @override
   String get kycOtpHelperText =>
       'OTP तुमच्या आधारशी जोडलेल्या मोबाइल नंबरवर पाठवला आहे. सत्यापित करण्यासाठी कृपया तो टाका.';
 
@@ -269,7 +249,14 @@ class AppLocalizationsMr extends AppLocalizations {
   String get postSelectTruckHint => 'एक ट्रक निवडा';
 
   @override
+  String get postSearchTruckHint => 'ट्रक क्रमांकाने शोधा';
+
+  @override
   String get postAddNewTruck => 'नवीन ट्रक जोडा';
+
+  @override
+  String get postTruckSearchEmptyMessage =>
+      'या क्रमांकाचा ट्रक उपलब्ध नाही. क्रमांक टाइप करा आणि तो जोडण्यासाठी खालील नवीन ट्रक जोडा वर टॅप करा.';
 
   @override
   String get postSubmitButton => 'ट्रक पोस्ट करा';

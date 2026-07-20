@@ -5,7 +5,7 @@ import '../../domain/entities/vehicle_verification_entity.dart';
 import '../models/vehicle_model.dart';
 
 abstract class VehicleRemoteDataSource {
-  Future<List<VehicleEntity>> getVehicles(String userId);
+  Future<List<VehicleEntity>> getVehicles(String userId, {String? truckNumber});
 
   Future<void> deleteVehicle({
     required String userId,
@@ -31,9 +31,18 @@ class VehicleRemoteDataSourceImpl implements VehicleRemoteDataSource {
   VehicleRemoteDataSourceImpl(this._dio);
 
   @override
-  Future<List<VehicleEntity>> getVehicles(String userId) async {
+  Future<List<VehicleEntity>> getVehicles(
+    String userId, {
+    String? truckNumber,
+  }) async {
     try {
-      final response = await _dio.get('/api/vehicle/list/$userId');
+      final response = await _dio.get(
+        '/api/vehicle/list/$userId',
+        queryParameters: {
+          if (truckNumber != null && truckNumber.isNotEmpty)
+            'truckNumber': truckNumber,
+        },
+      );
       final data = response.data as Map<String, dynamic>;
       final vehicles = data['vehicles'] as List<dynamic>? ?? [];
       return vehicles

@@ -204,26 +204,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get kycVerifyButton => 'Verify Aadhar';
 
   @override
-  String get kycPendingTitle => 'Your KYC is Pending';
-
-  @override
-  String get kycPendingSubtitle =>
-      'We are verifying your details. Please complete\nyour KYC to continue using Sharkship services.';
-
-  @override
-  String get kycWhatsNext => 'What happens next?';
-
-  @override
-  String get kycWhatsNextSubtitle =>
-      'We\'ll notify you as soon as your KYC is verified.';
-
-  @override
-  String get kycIdCardLabel => 'KYC';
-
-  @override
-  String get kycIdCardBrand => 'Sharkship';
-
-  @override
   String get kycOtpHelperText =>
       'OTP has been sent to your Aadhaar-linked mobile number. Please enter it to verify.';
 
@@ -269,7 +249,14 @@ class AppLocalizationsEn extends AppLocalizations {
   String get postSelectTruckHint => 'Select a truck';
 
   @override
+  String get postSearchTruckHint => 'Search by truck number';
+
+  @override
   String get postAddNewTruck => 'Add New Truck';
+
+  @override
+  String get postTruckSearchEmptyMessage =>
+      'No truck with this number available. Type the number and tap Add New Truck below to add it.';
 
   @override
   String get postSubmitButton => 'Post a Truck';

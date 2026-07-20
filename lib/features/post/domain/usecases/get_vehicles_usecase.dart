@@ -6,6 +6,6 @@ class GetVehiclesUseCase {
 
   GetVehiclesUseCase(this._repository);
 
-  Future<List<VehicleEntity>> execute(String userId) =>
-      _repository.getVehicles(userId);
+  Future<List<VehicleEntity>> execute(String userId, {String? truckNumber}) =>
+      _repository.getVehicles(userId, truckNumber: truckNumber);
 }

@@ -43,6 +43,12 @@ class ProfileScreen extends ConsumerWidget {
                 ],
               ),
             ),
+            // TextButton(
+            //   onPressed: () {
+            //     context.push('/kyc');
+            //   },
+            //   child: Text("Go to kcy"),
+            // ),
             Expanded(
               child: profileAsync.when(
                 loading: () => const AppLoader(),

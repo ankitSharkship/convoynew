@@ -65,6 +65,18 @@ class VehicleNotifier extends _$VehicleNotifier {
     state = AsyncData(current.where((v) => v.id != vehicleId).toList());
   }
 
+  /// Looks up vehicles by (partial) truck number for the search-as-you-type
+  /// picker. Returns a fresh list from the API rather than filtering the
+  /// cached [build] result, so it always reflects the server's own match —
+  /// it deliberately does not touch this notifier's list state.
+  Future<List<VehicleEntity>> searchVehicles(String? truckNumber) async {
+    final userId = await ref.read(tokenStorageProvider).getUserId();
+    if (userId == null) throw const ApiException();
+    return ref
+        .read(getVehiclesUseCaseProvider)
+        .execute(userId, truckNumber: truckNumber);
+  }
+
   /// A pre-check only — does not touch the vehicle list state.
   Future<VehicleVerificationEntity> verifyVehicle(String vehicleNumber) async {
     final userId = await ref.read(tokenStorageProvider).getUserId();

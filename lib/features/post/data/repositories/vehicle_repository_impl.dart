@@ -9,8 +9,8 @@ class VehicleRepositoryImpl implements VehicleRepository {
   VehicleRepositoryImpl(this._remote);
 
   @override
-  Future<List<VehicleEntity>> getVehicles(String userId) =>
-      _remote.getVehicles(userId);
+  Future<List<VehicleEntity>> getVehicles(String userId, {String? truckNumber}) =>
+      _remote.getVehicles(userId, truckNumber: truckNumber);
 
   @override
   Future<void> deleteVehicle({

@@ -204,26 +204,6 @@ class AppLocalizationsKn extends AppLocalizations {
   String get kycVerifyButton => 'ಆಧಾರ್ ಪರಿಶೀಲಿಸಿ';
 
   @override
-  String get kycPendingTitle => 'ನಿಮ್ಮ KYC ಬಾಕಿ ಇದೆ';
-
-  @override
-  String get kycPendingSubtitle =>
-      'ನಾವು ನಿಮ್ಮ ವಿವರಗಳನ್ನು ಪರಿಶೀಲಿಸುತ್ತಿದ್ದೇವೆ. Sharkship ಸೇವೆಗಳನ್ನು ಬಳಸುವುದನ್ನು ಮುಂದುವರಿಸಲು\nದಯವಿಟ್ಟು ನಿಮ್ಮ KYC ಪೂರ್ಣಗೊಳಿಸಿ.';
-
-  @override
-  String get kycWhatsNext => 'ಮುಂದೆ ಏನಾಗುತ್ತದೆ?';
-
-  @override
-  String get kycWhatsNextSubtitle =>
-      'ನಿಮ್ಮ KYC ಪರಿಶೀಲನೆಯಾದ ತಕ್ಷಣ ನಾವು ನಿಮಗೆ ತಿಳಿಸುತ್ತೇವೆ.';
-
-  @override
-  String get kycIdCardLabel => 'KYC';
-
-  @override
-  String get kycIdCardBrand => 'Sharkship';
-
-  @override
   String get kycOtpHelperText =>
       'ನಿಮ್ಮ ಆಧಾರ್-ಲಿಂಕ್ ಮಾಡಿದ ಮೊಬೈಲ್ ನಂಬರ್‌ಗೆ OTP ಕಳುಹಿಸಲಾಗಿದೆ. ಪರಿಶೀಲಿಸಲು ದಯವಿಟ್ಟು ಅದನ್ನು ನಮೂದಿಸಿ.';
 
@@ -270,7 +250,14 @@ class AppLocalizationsKn extends AppLocalizations {
   String get postSelectTruckHint => 'ಒಂದು ಟ್ರಕ್ ಆಯ್ಕೆಮಾಡಿ';
 
   @override
+  String get postSearchTruckHint => 'ಟ್ರಕ್ ಸಂಖ್ಯೆಯಿಂದ ಹುಡುಕಿ';
+
+  @override
   String get postAddNewTruck => 'ಹೊಸ ಟ್ರಕ್ ಸೇರಿಸಿ';
+
+  @override
+  String get postTruckSearchEmptyMessage =>
+      'ಈ ಸಂಖ್ಯೆಯ ಟ್ರಕ್ ಲಭ್ಯವಿಲ್ಲ. ಸಂಖ್ಯೆಯನ್ನು ಟೈಪ್ ಮಾಡಿ ಮತ್ತು ಅದನ್ನು ಸೇರಿಸಲು ಕೆಳಗಿನ ಹೊಸ ಟ್ರಕ್ ಸೇರಿಸಿ ಟ್ಯಾಪ್ ಮಾಡಿ.';
 
   @override
   String get postSubmitButton => 'ಟ್ರಕ್ ಪೋಸ್ಟ್ ಮಾಡಿ';

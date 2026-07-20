@@ -468,42 +468,6 @@ abstract class AppLocalizations {
   /// **'Verify Aadhar'**
   String get kycVerifyButton;
 
-  /// No description provided for @kycPendingTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Your KYC is Pending'**
-  String get kycPendingTitle;
-
-  /// No description provided for @kycPendingSubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'We are verifying your details. Please complete\nyour KYC to continue using Sharkship services.'**
-  String get kycPendingSubtitle;
-
-  /// No description provided for @kycWhatsNext.
-  ///
-  /// In en, this message translates to:
-  /// **'What happens next?'**
-  String get kycWhatsNext;
-
-  /// No description provided for @kycWhatsNextSubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'We\'ll notify you as soon as your KYC is verified.'**
-  String get kycWhatsNextSubtitle;
-
-  /// No description provided for @kycIdCardLabel.
-  ///
-  /// In en, this message translates to:
-  /// **'KYC'**
-  String get kycIdCardLabel;
-
-  /// No description provided for @kycIdCardBrand.
-  ///
-  /// In en, this message translates to:
-  /// **'Sharkship'**
-  String get kycIdCardBrand;
-
   /// No description provided for @kycOtpHelperText.
   ///
   /// In en, this message translates to:
@@ -588,11 +552,23 @@ abstract class AppLocalizations {
   /// **'Select a truck'**
   String get postSelectTruckHint;
 
+  /// No description provided for @postSearchTruckHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Search by truck number'**
+  String get postSearchTruckHint;
+
   /// No description provided for @postAddNewTruck.
   ///
   /// In en, this message translates to:
   /// **'Add New Truck'**
   String get postAddNewTruck;
+
+  /// No description provided for @postTruckSearchEmptyMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'No truck with this number available. Type the number and tap Add New Truck below to add it.'**
+  String get postTruckSearchEmptyMessage;
 
   /// No description provided for @postSubmitButton.
   ///
