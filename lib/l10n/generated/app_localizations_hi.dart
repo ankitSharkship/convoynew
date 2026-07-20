@@ -483,6 +483,9 @@ class AppLocalizationsHi extends AppLocalizations {
   String get searchCapacityLabel => 'क्षमता';
 
   @override
+  String get searchVehicleNumberLabel => 'वाहन नंबर';
+
+  @override
   String get searchSelectHint => 'चुनें';
 
   @override
@@ -559,6 +562,11 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get resultsViewAllMutuals => 'सभी देखें';
+
+  @override
+  String resultsPostedBy(String userName) {
+    return 'पोस्टकर्ता: $userName';
+  }
 
   @override
   String get mutualContactsSheetTitle => 'पारस्परिक संपर्क';

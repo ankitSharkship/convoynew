@@ -445,16 +445,6 @@ class _OriginField extends StatelessWidget {
                         fontWeight: FontWeight.normal,
                       ),
                       contentPadding: const EdgeInsets.symmetric(vertical: 10),
-                      suffixIcon: origin != null
-                          ? GestureDetector(
-                              onTap: onClear,
-                              child: const Icon(
-                                Icons.close,
-                                size: 18,
-                                color: AppColors.textTertiary,
-                              ),
-                            )
-                          : null,
                     ),
                   ),
                   if (isGpsDetected) ...[

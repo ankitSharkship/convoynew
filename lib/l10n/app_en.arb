@@ -187,6 +187,7 @@
   "searchTruckTypeLabel": "Truck Type",
   "searchSelectTruckHint": "Select Truck",
   "searchCapacityLabel": "Capacity",
+  "searchVehicleNumberLabel": "Vehicle No.",
   "searchSelectHint": "Select",
   "searchFindTrucksButton": "Find Trucks",
 
@@ -222,6 +223,10 @@
     "placeholders": { "count": { "type": "int" } }
   },
   "resultsViewAllMutuals": "View All",
+  "resultsPostedBy": "Posted By: {userName}",
+  "@resultsPostedBy": {
+    "placeholders": { "userName": { "type": "String" } }
+  },
 
   "mutualContactsSheetTitle": "Mutual Contacts",
   "mutualContactsEmpty": "No mutual contacts found",

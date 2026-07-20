@@ -11,6 +11,14 @@ import '../../../contacts/presentation/widgets/mutual_contacts_sheet.dart';
 import '../../domain/entities/truck_search_result_entity.dart';
 import '../state/search_notifier.dart';
 
+String _maskVehicleNumber(String number) {
+  final buffer = StringBuffer();
+  for (var i = 0; i < number.length; i++) {
+    buffer.write(i.isEven ? number[i] : '*');
+  }
+  return buffer.toString();
+}
+
 Future<void> _callNumber(BuildContext context, String phone) async {
   final uri = Uri(scheme: 'tel', path: phone);
   final launched = await canLaunchUrl(uri) && await launchUrl(uri);
@@ -553,27 +561,41 @@ class _ResultCard extends ConsumerWidget {
               _Avatar(photoUrl: result.userPhoto, initials: initials),
               const SizedBox(width: 12),
               Expanded(
-                child: Row(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Flexible(
-                      child: Text(
-                        displayName,
+                    Row(
+                      children: [
+                        Flexible(
+                          child: Text(
+                            displayName,
+                            style: const TextStyle(
+                              fontWeight: FontWeight.w700,
+                              fontSize: 16,
+                              color: AppColors.textPrimary,
+                            ),
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                        if (!result.hasAlternateContact) ...[
+                          const SizedBox(width: 4),
+                          const Icon(
+                            Icons.verified,
+                            size: 16,
+                            color: AppColors.primaryBlue,
+                          ),
+                        ],
+                      ],
+                    ),
+                    if (result.hasAlternateContact)
+                      Text(
+                        l10n.resultsPostedBy(result.userName),
                         style: const TextStyle(
-                          fontWeight: FontWeight.w700,
-                          fontSize: 16,
-                          color: AppColors.textPrimary,
+                          fontSize: 12,
+                          color: AppColors.textSecondary,
                         ),
                         overflow: TextOverflow.ellipsis,
                       ),
-                    ),
-                    if (!result.hasAlternateContact) ...[
-                      const SizedBox(width: 4),
-                      const Icon(
-                        Icons.verified,
-                        size: 16,
-                        color: AppColors.primaryBlue,
-                      ),
-                    ],
                   ],
                 ),
               ),
@@ -662,6 +684,11 @@ class _ResultCard extends ConsumerWidget {
                 value: result.capacity > 0
                     ? l10n.capacityTon(result.capacity)
                     : '—',
+              ),
+              _MetaColumn(
+                icon: Icons.numbers,
+                label: l10n.searchVehicleNumberLabel,
+                value: _maskVehicleNumber(result.truckNumber),
               ),
             ],
           ),

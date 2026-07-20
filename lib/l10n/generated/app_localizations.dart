@@ -996,6 +996,12 @@ abstract class AppLocalizations {
   /// **'Capacity'**
   String get searchCapacityLabel;
 
+  /// No description provided for @searchVehicleNumberLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Vehicle No.'**
+  String get searchVehicleNumberLabel;
+
   /// No description provided for @searchSelectHint.
   ///
   /// In en, this message translates to:
@@ -1127,6 +1133,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'View All'**
   String get resultsViewAllMutuals;
+
+  /// No description provided for @resultsPostedBy.
+  ///
+  /// In en, this message translates to:
+  /// **'Posted By: {userName}'**
+  String resultsPostedBy(String userName);
 
   /// No description provided for @mutualContactsSheetTitle.
   ///

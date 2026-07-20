@@ -166,6 +166,7 @@
   "searchTruckTypeLabel": "ट्रक का प्रकार",
   "searchSelectTruckHint": "ट्रक चुनें",
   "searchCapacityLabel": "क्षमता",
+  "searchVehicleNumberLabel": "वाहन नंबर",
   "searchSelectHint": "चुनें",
   "searchFindTrucksButton": "ट्रक खोजें",
 
@@ -189,6 +190,10 @@
   "resultsPageOf": "पृष्ठ {page} / {totalPages}",
   "resultsMutualCount": "{count} पारस्परिक",
   "resultsViewAllMutuals": "सभी देखें",
+  "resultsPostedBy": "पोस्टकर्ता: {userName}",
+  "@resultsPostedBy": {
+    "placeholders": { "userName": { "type": "String" } }
+  },
 
   "mutualContactsSheetTitle": "पारस्परिक संपर्क",
   "mutualContactsEmpty": "कोई पारस्परिक संपर्क नहीं मिला",

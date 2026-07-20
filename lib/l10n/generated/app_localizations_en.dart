@@ -481,6 +481,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get searchCapacityLabel => 'Capacity';
 
   @override
+  String get searchVehicleNumberLabel => 'Vehicle No.';
+
+  @override
   String get searchSelectHint => 'Select';
 
   @override
@@ -557,6 +560,11 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get resultsViewAllMutuals => 'View All';
+
+  @override
+  String resultsPostedBy(String userName) {
+    return 'Posted By: $userName';
+  }
 
   @override
   String get mutualContactsSheetTitle => 'Mutual Contacts';

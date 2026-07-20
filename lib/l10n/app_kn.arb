@@ -187,6 +187,7 @@
   "searchTruckTypeLabel": "ಟ್ರಕ್ ಪ್ರಕಾರ",
   "searchSelectTruckHint": "ಟ್ರಕ್ ಆಯ್ಕೆಮಾಡಿ",
   "searchCapacityLabel": "ಸಾಮರ್ಥ್ಯ",
+  "searchVehicleNumberLabel": "ವಾಹನ ಸಂಖ್ಯೆ",
   "searchSelectHint": "ಆಯ್ಕೆಮಾಡಿ",
   "searchFindTrucksButton": "ಟ್ರಕ್‌ಗಳನ್ನು ಹುಡುಕಿ",
 
@@ -222,6 +223,10 @@
     "placeholders": { "count": { "type": "int" } }
   },
   "resultsViewAllMutuals": "ಎಲ್ಲವನ್ನೂ ವೀಕ್ಷಿಸಿ",
+  "resultsPostedBy": "ಪೋಸ್ಟ್ ಮಾಡಿದವರು: {userName}",
+  "@resultsPostedBy": {
+    "placeholders": { "userName": { "type": "String" } }
+  },
 
   "mutualContactsSheetTitle": "ಪರಸ್ಪರ ಸಂಪರ್ಕಗಳು",
   "mutualContactsEmpty": "ಯಾವುದೇ ಪರಸ್ಪರ ಸಂಪರ್ಕಗಳು ಕಂಡುಬಂದಿಲ್ಲ",

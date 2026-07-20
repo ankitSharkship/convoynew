@@ -4,6 +4,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'api_exception.dart';
+import 'auth_revocation_notifier.dart';
 import 'network_status_provider.dart';
 import 'token_storage.dart';
 
@@ -14,6 +15,8 @@ const _sendTimeout = Duration(seconds: 15);
 const _receiveTimeout = Duration(seconds: 15);
 
 const _unauthenticatedPaths = ['/api/auth/send-otp', '/api/auth/verify-otp'];
+
+final authRevocationNotifier = AuthRevocationNotifier();
 
 @riverpod
 TokenStorage tokenStorage(TokenStorageRef ref) {
@@ -73,6 +76,7 @@ Dio dio(DioRef ref) {
         );
         if (error.response?.statusCode == 401 && !isUnauthenticatedEndpoint) {
           await storage.clear();
+          authRevocationNotifier.revoke();
         }
         handler.next(error);
       },

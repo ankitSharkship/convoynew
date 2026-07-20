@@ -482,6 +482,9 @@ class AppLocalizationsKn extends AppLocalizations {
   String get searchCapacityLabel => 'ಸಾಮರ್ಥ್ಯ';
 
   @override
+  String get searchVehicleNumberLabel => 'ವಾಹನ ಸಂಖ್ಯೆ';
+
+  @override
   String get searchSelectHint => 'ಆಯ್ಕೆಮಾಡಿ';
 
   @override
@@ -558,6 +561,11 @@ class AppLocalizationsKn extends AppLocalizations {
 
   @override
   String get resultsViewAllMutuals => 'ಎಲ್ಲವನ್ನೂ ವೀಕ್ಷಿಸಿ';
+
+  @override
+  String resultsPostedBy(String userName) {
+    return 'ಪೋಸ್ಟ್ ಮಾಡಿದವರು: $userName';
+  }
 
   @override
   String get mutualContactsSheetTitle => 'ಪರಸ್ಪರ ಸಂಪರ್ಕಗಳು';

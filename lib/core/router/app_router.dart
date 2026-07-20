@@ -21,13 +21,24 @@ import '../../features/search/presentation/screens/search_results_screen.dart';
 import '../../features/search/presentation/screens/search_screen.dart';
 import '../../features/splash/presentation/screens/splash_screen.dart';
 import '../../shared/widgets/main_shell.dart';
+import '../network/dio_client.dart';
 
 part 'app_router.g.dart';
 
+const _publicPaths = {'/splash', '/onboarding', '/auth/phone', '/auth/otp'};
+
 @riverpod
 GoRouter appRouter(AppRouterRef ref) {
+  final tokenStorage = ref.watch(tokenStorageProvider);
   return GoRouter(
     initialLocation: '/splash',
+    refreshListenable: authRevocationNotifier,
+    redirect: (context, state) async {
+      if (_publicPaths.contains(state.matchedLocation)) return null;
+      final token = await tokenStorage.getAccessToken();
+      if (token == null) return '/auth/phone';
+      return null;
+    },
     routes: [
       GoRoute(path: '/splash', builder: (_, __) => const SplashScreen()),
       GoRoute(
