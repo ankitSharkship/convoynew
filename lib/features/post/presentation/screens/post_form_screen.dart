@@ -108,6 +108,7 @@ class _PostFormScreenState extends ConsumerState<PostFormScreen> {
       if (next.origin != null && next.origin != previous?.origin) {
         _originController.text = next.origin!.name;
       }
+      _syncDestControllers(next.destinations.length);
       for (var i = 0; i < next.destinations.length; i++) {
         final location = next.destinations[i].location;
         final previousLocation = i < (previous?.destinations.length ?? 0)

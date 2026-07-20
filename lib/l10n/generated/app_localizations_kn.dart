@@ -594,4 +594,7 @@ class AppLocalizationsKn extends AppLocalizations {
   String capacityTon(int capacity) {
     return '$capacity ಟನ್';
   }
+
+  @override
+  String get networkOfflineBanner => 'ಇಂಟರ್ನೆಟ್ ಸಂಪರ್ಕವಿಲ್ಲ';
 }

@@ -202,5 +202,7 @@
 
   "truckCardMoreDestinations": "+{count} अधिक",
 
-  "capacityTon": "{capacity} टन"
+  "capacityTon": "{capacity} टन",
+
+  "networkOfflineBanner": "इंटरनेट कनेक्शन नाही"
 }

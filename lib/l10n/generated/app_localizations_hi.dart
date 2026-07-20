@@ -595,4 +595,7 @@ class AppLocalizationsHi extends AppLocalizations {
   String capacityTon(int capacity) {
     return '$capacity टन';
   }
+
+  @override
+  String get networkOfflineBanner => 'इंटरनेट कनेक्शन नहीं है';
 }

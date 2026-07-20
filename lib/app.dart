@@ -5,6 +5,7 @@ import 'core/l10n/locale_notifier.dart';
 import 'core/router/app_router.dart';
 import 'core/theme/app_theme.dart';
 import 'l10n/generated/app_localizations.dart';
+import 'shared/widgets/offline_banner.dart';
 
 class App extends ConsumerWidget {
   const App({super.key});
@@ -26,6 +27,15 @@ class App extends ConsumerWidget {
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
+      // Global "no internet connection" strip, sits above every route
+      // (auth, kyc, the tabbed shell, etc.) rather than living inside any
+      // one screen — see OfflineBanner for why this isn't a Snackbar.
+      builder: (context, child) => Column(
+        children: [
+          const OfflineBanner(),
+          Expanded(child: child ?? const SizedBox.shrink()),
+        ],
+      ),
     );
   }
 }

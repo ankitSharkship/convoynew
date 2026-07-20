@@ -1187,6 +1187,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{capacity} Ton'**
   String capacityTon(int capacity);
+
+  /// No description provided for @networkOfflineBanner.
+  ///
+  /// In en, this message translates to:
+  /// **'No internet connection'**
+  String get networkOfflineBanner;
 }
 
 class _AppLocalizationsDelegate

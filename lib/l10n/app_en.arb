@@ -241,5 +241,7 @@
   "capacityTon": "{capacity} Ton",
   "@capacityTon": {
     "placeholders": { "capacity": { "type": "int" } }
-  }
+  },
+
+  "networkOfflineBanner": "No internet connection"
 }
