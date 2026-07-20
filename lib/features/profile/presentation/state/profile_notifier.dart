@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../../../core/network/dio_client.dart';
 import '../../../../core/router/app_router.dart';
@@ -8,6 +10,7 @@ import '../../domain/entities/profile_entity.dart';
 import '../../domain/usecases/get_cached_profile_usecase.dart';
 import '../../domain/usecases/get_profile_usecase.dart';
 import '../../domain/usecases/update_profile_usecase.dart';
+import '../../domain/usecases/upload_profile_photo_usecase.dart';
 
 part 'profile_notifier.g.dart';
 
@@ -53,6 +56,13 @@ UpdateProfilePhotoUseCase updateProfilePhotoUseCase(
 }
 
 @riverpod
+UploadProfilePhotoUseCase uploadProfilePhotoUseCase(
+  UploadProfilePhotoUseCaseRef ref,
+) {
+  return UploadProfilePhotoUseCase(ref.watch(profileRepositoryProvider));
+}
+
+@riverpod
 class ProfileNotifier extends _$ProfileNotifier {
   @override
   Future<ProfileEntity> build() async {
@@ -90,5 +100,10 @@ class ProfileNotifier extends _$ProfileNotifier {
     final useCase = ref.read(updateProfilePhotoUseCaseProvider);
     final updated = await useCase.execute(photoPath);
     state = AsyncData(updated);
+  }
+
+  Future<void> uploadPhoto(File imageFile) async {
+    final useCase = ref.read(uploadProfilePhotoUseCaseProvider);
+    await useCase.execute(imageFile);
   }
 }

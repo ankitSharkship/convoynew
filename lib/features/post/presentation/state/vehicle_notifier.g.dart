@@ -119,7 +119,7 @@ final addVehicleUseCaseProvider =
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef AddVehicleUseCaseRef = AutoDisposeProviderRef<AddVehicleUseCase>;
-String _$vehicleNotifierHash() => r'aa4fb17eb9afa37d57f2e4833f3e8a1dec2be05f';
+String _$vehicleNotifierHash() => r'a543f9057ca93888588f23ba654fd26c0dd65ed8';
 
 /// See also [VehicleNotifier].
 @ProviderFor(VehicleNotifier)

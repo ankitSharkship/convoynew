@@ -116,7 +116,7 @@ class LanguageSwitcherButton extends ConsumerWidget {
 
     final button = PopupMenuButton<Locale>(
       icon: Icon(
-        Icons.translate,
+        Icons.g_translate,
         size: card ? 20 : 22,
         color: iconColor ?? AppColors.textPrimary,
       ),

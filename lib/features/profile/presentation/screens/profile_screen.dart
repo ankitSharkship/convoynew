@@ -2,7 +2,6 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:image_picker/image_picker.dart';
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/network/api_exception.dart';
 import '../../../../l10n/generated/app_localizations.dart';
@@ -45,7 +44,7 @@ class ProfileScreen extends ConsumerWidget {
             ),
             // TextButton(
             //   onPressed: () {
-            //     context.push('/kyc');
+            //     context.push('/face_capture');
             //   },
             //   child: Text("Go to kcy"),
             // ),
@@ -101,19 +100,6 @@ class ProfileScreen extends ConsumerWidget {
                       context.push('/kyc');
                     }
                   },
-                  onPhotoTap: () async {
-                    final picker = ImagePicker();
-                    final picked = await picker.pickImage(
-                      source: ImageSource.gallery,
-                      maxWidth: 512,
-                      maxHeight: 512,
-                    );
-                    if (picked != null) {
-                      await ref
-                          .read(profileNotifierProvider.notifier)
-                          .updatePhoto(picked.path);
-                    }
-                  },
                   onLogout: () async {
                     final confirmed = await showDialog<bool>(
                       context: context,
@@ -158,7 +144,6 @@ class _ProfileContent extends StatelessWidget {
   final VoidCallback onTapVehicles;
   final VoidCallback onTapTrips;
   final VoidCallback onTapKyc;
-  final VoidCallback onPhotoTap;
   final VoidCallback onLogout;
 
   const _ProfileContent({
@@ -170,7 +155,6 @@ class _ProfileContent extends StatelessWidget {
     required this.onTapVehicles,
     required this.onTapTrips,
     required this.onTapKyc,
-    required this.onPhotoTap,
     required this.onLogout,
   });
 
@@ -198,26 +182,23 @@ class _ProfileContent extends StatelessWidget {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                GestureDetector(
-                  onTap: onPhotoTap,
-                  child: Container(
-                    width: 64,
-                    height: 64,
-                    decoration: BoxDecoration(
-                      color: AppColors.white.withValues(alpha: 0.12),
-                      borderRadius: BorderRadius.circular(14),
-                    ),
-                    alignment: Alignment.center,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(14),
-                      child: SizedBox(
-                        width: 64,
-                        height: 64,
-                        child: _AvatarImage(
-                          photoPath: photoPath,
-                          profilePhotoUrl: profilePhotoUrl,
-                          initials: initials,
-                        ),
+                Container(
+                  width: 64,
+                  height: 64,
+                  decoration: BoxDecoration(
+                    color: AppColors.white.withValues(alpha: 0.12),
+                    borderRadius: BorderRadius.circular(14),
+                  ),
+                  alignment: Alignment.center,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(14),
+                    child: SizedBox(
+                      width: 64,
+                      height: 64,
+                      child: _AvatarImage(
+                        photoPath: photoPath,
+                        profilePhotoUrl: profilePhotoUrl,
+                        initials: initials,
                       ),
                     ),
                   ),

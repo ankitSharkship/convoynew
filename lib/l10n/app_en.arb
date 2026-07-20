@@ -83,6 +83,11 @@
   "kycOtpVerifyButton": "Verify OTP",
   "kycThankYou": "Thank You",
   "kycSuccessMessage": "eKYC Process Successfully Completed",
+  "faceReviewTitle": "Use this photo?",
+  "faceReviewRetake": "Retake",
+  "faceReviewConfirm": "Use this photo",
+  "faceReviewVerifyingTitle": "Verifying",
+  "faceReviewVerifyingMessage": "Please wait, we're verifying your photo",
 
   "postScreenTitle": "Post your truck",
   "postRouteSectionLabel": "ROUTE",

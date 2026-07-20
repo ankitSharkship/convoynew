@@ -102,6 +102,7 @@ class AuthNotifier extends _$AuthNotifier {
     final profileLocal = ref.read(profileLocalDataSourceProvider);
     await profileLocal.clearProfile();
     await profileLocal.clearPhotoPath();
+    await profileLocal.clearRemotePhoto();
     ref.invalidate(profileNotifierProvider);
     state = const AuthIdle();
   }

@@ -217,6 +217,22 @@ class AppLocalizationsKn extends AppLocalizations {
   String get kycSuccessMessage => 'eKYC ಪ್ರಕ್ರಿಯೆ ಯಶಸ್ವಿಯಾಗಿ ಪೂರ್ಣಗೊಂಡಿದೆ';
 
   @override
+  String get faceReviewTitle => 'ಈ ಫೋಟೋ ಬಳಸುವುದೇ?';
+
+  @override
+  String get faceReviewRetake => 'ಮತ್ತೆ ತೆಗೆದುಕೊಳ್ಳಿ';
+
+  @override
+  String get faceReviewConfirm => 'ಈ ಫೋಟೋ ಬಳಸಿ';
+
+  @override
+  String get faceReviewVerifyingTitle => 'ಪರಿಶೀಲಿಸಲಾಗುತ್ತಿದೆ';
+
+  @override
+  String get faceReviewVerifyingMessage =>
+      'ದಯವಿಟ್ಟು ಕಾಯಿರಿ, ನಾವು ನಿಮ್ಮ ಫೋಟೋವನ್ನು ಪರಿಶೀಲಿಸುತ್ತಿದ್ದೇವೆ';
+
+  @override
   String get postScreenTitle => 'ನಿಮ್ಮ ಟ್ರಕ್ ಪೋಸ್ಟ್ ಮಾಡಿ';
 
   @override

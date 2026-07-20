@@ -7,6 +7,7 @@ import 'api_exception.dart';
 import 'auth_revocation_notifier.dart';
 import 'network_status_provider.dart';
 import 'token_storage.dart';
+import 'package:flutter/foundation.dart';
 
 part 'dio_client.g.dart';
 
@@ -82,5 +83,18 @@ Dio dio(DioRef ref) {
       },
     ),
   );
+  if (kDebugMode) {
+    dio.interceptors.add(
+      LogInterceptor(
+        request: true,
+        requestHeader: true,
+        requestBody: true,
+        responseHeader: false,
+        responseBody: true,
+        error: true,
+        logPrint: (object) => debugPrint(object.toString()),
+      ),
+    );
+  }
   return dio;
 }

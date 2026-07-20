@@ -83,6 +83,11 @@
   "kycOtpVerifyButton": "OTP ಪರಿಶೀಲಿಸಿ",
   "kycThankYou": "ಧನ್ಯವಾದಗಳು",
   "kycSuccessMessage": "eKYC ಪ್ರಕ್ರಿಯೆ ಯಶಸ್ವಿಯಾಗಿ ಪೂರ್ಣಗೊಂಡಿದೆ",
+  "faceReviewTitle": "ಈ ಫೋಟೋ ಬಳಸುವುದೇ?",
+  "faceReviewRetake": "ಮತ್ತೆ ತೆಗೆದುಕೊಳ್ಳಿ",
+  "faceReviewConfirm": "ಈ ಫೋಟೋ ಬಳಸಿ",
+  "faceReviewVerifyingTitle": "ಪರಿಶೀಲಿಸಲಾಗುತ್ತಿದೆ",
+  "faceReviewVerifyingMessage": "ದಯವಿಟ್ಟು ಕಾಯಿರಿ, ನಾವು ನಿಮ್ಮ ಫೋಟೋವನ್ನು ಪರಿಶೀಲಿಸುತ್ತಿದ್ದೇವೆ",
 
   "postScreenTitle": "ನಿಮ್ಮ ಟ್ರಕ್ ಪೋಸ್ಟ್ ಮಾಡಿ",
   "postRouteSectionLabel": "ಮಾರ್ಗ",

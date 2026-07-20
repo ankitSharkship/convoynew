@@ -492,6 +492,36 @@ abstract class AppLocalizations {
   /// **'eKYC Process Successfully Completed'**
   String get kycSuccessMessage;
 
+  /// No description provided for @faceReviewTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Use this photo?'**
+  String get faceReviewTitle;
+
+  /// No description provided for @faceReviewRetake.
+  ///
+  /// In en, this message translates to:
+  /// **'Retake'**
+  String get faceReviewRetake;
+
+  /// No description provided for @faceReviewConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Use this photo'**
+  String get faceReviewConfirm;
+
+  /// No description provided for @faceReviewVerifyingTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Verifying'**
+  String get faceReviewVerifyingTitle;
+
+  /// No description provided for @faceReviewVerifyingMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Please wait, we\'re verifying your photo'**
+  String get faceReviewVerifyingMessage;
+
   /// No description provided for @postScreenTitle.
   ///
   /// In en, this message translates to:

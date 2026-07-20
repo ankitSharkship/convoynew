@@ -217,6 +217,22 @@ class AppLocalizationsMr extends AppLocalizations {
   String get kycSuccessMessage => 'eKYC प्रक्रिया यशस्वीरित्या पूर्ण झाली';
 
   @override
+  String get faceReviewTitle => 'हा फोटो वापरायचा?';
+
+  @override
+  String get faceReviewRetake => 'पुन्हा घ्या';
+
+  @override
+  String get faceReviewConfirm => 'हा फोटो वापरा';
+
+  @override
+  String get faceReviewVerifyingTitle => 'पडताळणी होत आहे';
+
+  @override
+  String get faceReviewVerifyingMessage =>
+      'कृपया थांबा, आम्ही तुमचा फोटो पडताळत आहोत';
+
+  @override
   String get postScreenTitle => 'तुमचा ट्रक पोस्ट करा';
 
   @override

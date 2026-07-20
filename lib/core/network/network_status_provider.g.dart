@@ -1,7 +1,4 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// coverage:ignore-file
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
 
 part of 'network_status_provider.dart';
 
@@ -10,7 +7,7 @@ part of 'network_status_provider.dart';
 // **************************************************************************
 
 String _$networkStatusNotifierHash() =>
-    r'3f0c2b6a9d0d6f7e0c5c4c9e2a2b1d6f0c9a1b2c';
+    r'63ae18264480e7c759857211cfb11c31e4b6e8ba';
 
 /// Tracks whether the app's most recent API traffic actually reached the
 /// network. This is a *reactive* signal — it's flipped to [NetworkStatus
@@ -40,3 +37,5 @@ final networkStatusNotifierProvider =
     );
 
 typedef _$NetworkStatusNotifier = Notifier<NetworkStatus>;
+// ignore_for_file: type=lint
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

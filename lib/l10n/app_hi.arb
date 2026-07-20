@@ -74,6 +74,11 @@
   "kycOtpVerifyButton": "OTP सत्यापित करें",
   "kycThankYou": "धन्यवाद",
   "kycSuccessMessage": "eKYC प्रक्रिया सफलतापूर्वक पूरी हुई",
+  "faceReviewTitle": "इस फ़ोटो का उपयोग करें?",
+  "faceReviewRetake": "फिर से लें",
+  "faceReviewConfirm": "इस फ़ोटो का उपयोग करें",
+  "faceReviewVerifyingTitle": "सत्यापन हो रहा है",
+  "faceReviewVerifyingMessage": "कृपया प्रतीक्षा करें, हम आपकी फ़ोटो सत्यापित कर रहे हैं",
 
   "postScreenTitle": "अपना ट्रक पोस्ट करें",
   "postRouteSectionLabel": "मार्ग",

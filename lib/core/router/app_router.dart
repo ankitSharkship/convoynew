@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:convoynew/features/kyc/presentation/screens/face_capture_screen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -8,6 +11,7 @@ import '../../features/auth/presentation/screens/phone_screen.dart';
 import '../../features/call/presentation/screens/call_screen.dart';
 import '../../features/home/presentation/screens/home_screen.dart';
 import '../../features/home/presentation/screens/manage_history_screen.dart';
+import '../../features/kyc/presentation/screens/face_review_screen.dart';
 import '../../features/kyc/presentation/screens/kyc_otp_screen.dart';
 import '../../features/kyc/presentation/screens/kyc_screen.dart';
 import '../../features/onboarding/presentation/screens/onboarding_screen.dart';
@@ -93,6 +97,32 @@ GoRouter appRouter(AppRouterRef ref) {
       GoRoute(
         path: '/profile/vehicles',
         builder: (_, __) => const MyTrucksScreen(),
+      ),
+      GoRoute(
+        path: '/face_capture',
+        // `extra` is an optional route to continue to once the captured
+        // photo is confirmed (e.g. the KYC flow continues on to `/post`);
+        // left null for callers (like the profile screen's test button)
+        // that just want the default "update photo, go back to /profile".
+        builder: (context, state) {
+          final nextRoute = state.extra as String?;
+          return FaceCaptureScreen(
+            onCaptured: (file) => context.pushReplacement(
+              '/face_review',
+              extra: (imageFile: file, nextRoute: nextRoute),
+            ),
+          );
+        },
+      ),
+      GoRoute(
+        path: '/face_review',
+        builder: (context, state) {
+          final args = state.extra as ({File imageFile, String? nextRoute});
+          return FaceReviewScreen(
+            imageFile: args.imageFile,
+            nextRoute: args.nextRoute,
+          );
+        },
       ),
       GoRoute(
         path: '/profile/trips',

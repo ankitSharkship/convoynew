@@ -122,7 +122,27 @@ final updateProfilePhotoUseCaseProvider =
 // ignore: unused_element
 typedef UpdateProfilePhotoUseCaseRef =
     AutoDisposeProviderRef<UpdateProfilePhotoUseCase>;
-String _$profileNotifierHash() => r'ee8db57932a306e20d186575eac1f6b5246119f8';
+String _$uploadProfilePhotoUseCaseHash() =>
+    r'c3dd2b29cd9c1fd33a372b8dacb29b3bcd54c5aa';
+
+/// See also [uploadProfilePhotoUseCase].
+@ProviderFor(uploadProfilePhotoUseCase)
+final uploadProfilePhotoUseCaseProvider =
+    AutoDisposeProvider<UploadProfilePhotoUseCase>.internal(
+      uploadProfilePhotoUseCase,
+      name: r'uploadProfilePhotoUseCaseProvider',
+      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+          ? null
+          : _$uploadProfilePhotoUseCaseHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
+
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef UploadProfilePhotoUseCaseRef =
+    AutoDisposeProviderRef<UploadProfilePhotoUseCase>;
+String _$profileNotifierHash() => r'1dffcc385229880fa92cb6683ff306772651f26e';
 
 /// See also [ProfileNotifier].
 @ProviderFor(ProfileNotifier)

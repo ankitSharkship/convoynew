@@ -217,6 +217,22 @@ class AppLocalizationsEn extends AppLocalizations {
   String get kycSuccessMessage => 'eKYC Process Successfully Completed';
 
   @override
+  String get faceReviewTitle => 'Use this photo?';
+
+  @override
+  String get faceReviewRetake => 'Retake';
+
+  @override
+  String get faceReviewConfirm => 'Use this photo';
+
+  @override
+  String get faceReviewVerifyingTitle => 'Verifying';
+
+  @override
+  String get faceReviewVerifyingMessage =>
+      'Please wait, we\'re verifying your photo';
+
+  @override
   String get postScreenTitle => 'Post your truck';
 
   @override
