@@ -8,6 +8,7 @@ import '../../../../l10n/generated/app_localizations.dart';
 import '../../../../shared/widgets/language_switcher_button.dart';
 import '../../../../shared/widgets/loader.dart';
 import '../../../auth/presentation/state/auth_notifier.dart';
+import '../../../kyc/presentation/navigation/post_truck_gate.dart';
 import '../state/profile_notifier.dart';
 
 class ProfileScreen extends ConsumerWidget {
@@ -83,23 +84,21 @@ class ProfileScreen extends ConsumerWidget {
                 data: (profile) => _ProfileContent(
                   name: profile.name,
                   kycStatus: profile.kycStatus,
+                  kycStep: profile.kycStep,
                   accountStatus: profile.accountStatus,
                   photoPath: profile.photoPath,
                   profilePhotoUrl: profile.profilePhotoUrl,
                   onTapVehicles: () => context.push('/profile/vehicles'),
                   onTapTrips: () => context.push('/profile/trips'),
-                  onTapKyc: () {
-                    final isVerified =
-                        profile.kycStatus == 'approved' ||
-                        profile.kycStatus == 'verified';
-                    if (isVerified) {
+                  onTapKyc: () => navigateToKycVerification(
+                    context,
+                    ref,
+                    onAlreadyVerified: () {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(content: Text(l10n.profileKycAlreadyVerified)),
                       );
-                    } else {
-                      context.push('/kyc');
-                    }
-                  },
+                    },
+                  ),
                   onLogout: () async {
                     final confirmed = await showDialog<bool>(
                       context: context,
@@ -138,6 +137,7 @@ class ProfileScreen extends ConsumerWidget {
 class _ProfileContent extends StatelessWidget {
   final String name;
   final String kycStatus;
+  final String? kycStep;
   final String accountStatus;
   final String? photoPath;
   final String? profilePhotoUrl;
@@ -149,6 +149,7 @@ class _ProfileContent extends StatelessWidget {
   const _ProfileContent({
     required this.name,
     required this.kycStatus,
+    this.kycStep,
     required this.accountStatus,
     this.photoPath,
     this.profilePhotoUrl,
@@ -312,7 +313,7 @@ class _ProfileContent extends StatelessWidget {
                 _ProfileItem(
                   icon: Icons.badge_outlined,
                   label: l10n.profileKycLabel,
-                  badge: _kycBadgeLabel(l10n, kycStatus),
+                  badge: _kycBadgeLabel(l10n, kycStatus, kycStep),
                   badgeColor: _kycBadgeColor(kycStatus),
                   onTap: onTapKyc,
                 ),
@@ -408,7 +409,11 @@ String _currentLanguageLabel(BuildContext context, AppLocalizations l10n) {
   }
 }
 
-String _kycBadgeLabel(AppLocalizations l10n, String kycStatus) {
+String _kycBadgeLabel(
+  AppLocalizations l10n,
+  String kycStatus,
+  String? kycStep,
+) {
   switch (kycStatus) {
     case 'approved':
     case 'verified':
@@ -418,7 +423,12 @@ String _kycBadgeLabel(AppLocalizations l10n, String kycStatus) {
     case 'rejected':
       return l10n.profileKycRejected;
     default:
-      return l10n.profileKycPending;
+      // Aadhaar's done and only the photo step remains — distinguish this
+      // from "hasn't started KYC at all" instead of lumping both under a
+      // generic "Pending".
+      return kycStep == 'photo'
+          ? l10n.profileKycPhotoPending
+          : l10n.profileKycPending;
   }
 }
 

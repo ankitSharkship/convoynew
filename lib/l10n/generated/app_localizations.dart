@@ -483,13 +483,13 @@ abstract class AppLocalizations {
   /// No description provided for @kycThankYou.
   ///
   /// In en, this message translates to:
-  /// **'Thank You'**
+  /// **'Aadhaar Verified!'**
   String get kycThankYou;
 
   /// No description provided for @kycSuccessMessage.
   ///
   /// In en, this message translates to:
-  /// **'eKYC Process Successfully Completed'**
+  /// **'One more step — let\'s confirm your photo to complete verification.'**
   String get kycSuccessMessage;
 
   /// No description provided for @faceReviewTitle.
@@ -521,6 +521,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Please wait, we\'re verifying your photo'**
   String get faceReviewVerifyingMessage;
+
+  /// No description provided for @faceReviewVerificationFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn\'t confirm your verification. Please try again.'**
+  String get faceReviewVerificationFailed;
 
   /// No description provided for @postScreenTitle.
   ///
@@ -899,6 +905,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Pending'**
   String get profileKycPending;
+
+  /// No description provided for @profileKycPhotoPending.
+  ///
+  /// In en, this message translates to:
+  /// **'Photo Pending'**
+  String get profileKycPhotoPending;
 
   /// No description provided for @profileKycAlreadyVerified.
   ///

@@ -211,10 +211,11 @@ class AppLocalizationsKn extends AppLocalizations {
   String get kycOtpVerifyButton => 'OTP ಪರಿಶೀಲಿಸಿ';
 
   @override
-  String get kycThankYou => 'ಧನ್ಯವಾದಗಳು';
+  String get kycThankYou => 'ಆಧಾರ್ ಪರಿಶೀಲಿಸಲಾಗಿದೆ!';
 
   @override
-  String get kycSuccessMessage => 'eKYC ಪ್ರಕ್ರಿಯೆ ಯಶಸ್ವಿಯಾಗಿ ಪೂರ್ಣಗೊಂಡಿದೆ';
+  String get kycSuccessMessage =>
+      'ಇನ್ನೊಂದು ಹಂತ — ಪರಿಶೀಲನೆ ಪೂರ್ಣಗೊಳಿಸಲು ನಿಮ್ಮ ಫೋಟೋ ಖಚಿತಪಡಿಸೋಣ.';
 
   @override
   String get faceReviewTitle => 'ಈ ಫೋಟೋ ಬಳಸುವುದೇ?';
@@ -231,6 +232,10 @@ class AppLocalizationsKn extends AppLocalizations {
   @override
   String get faceReviewVerifyingMessage =>
       'ದಯವಿಟ್ಟು ಕಾಯಿರಿ, ನಾವು ನಿಮ್ಮ ಫೋಟೋವನ್ನು ಪರಿಶೀಲಿಸುತ್ತಿದ್ದೇವೆ';
+
+  @override
+  String get faceReviewVerificationFailed =>
+      'ನಾವು ನಿಮ್ಮ ಪರಿಶೀಲನೆಯನ್ನು ದೃಢೀಕರಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ. ದಯವಿಟ್ಟು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.';
 
   @override
   String get postScreenTitle => 'ನಿಮ್ಮ ಟ್ರಕ್ ಪೋಸ್ಟ್ ಮಾಡಿ';
@@ -430,6 +435,9 @@ class AppLocalizationsKn extends AppLocalizations {
 
   @override
   String get profileKycPending => 'ಬಾಕಿ ಇದೆ';
+
+  @override
+  String get profileKycPhotoPending => 'ಫೋಟೋ ಬಾಕಿ ಇದೆ';
 
   @override
   String get profileKycAlreadyVerified => 'ನಿಮ್ಮ KYC ಈಗಾಗಲೇ ಪರಿಶೀಲಿಸಲಾಗಿದೆ';

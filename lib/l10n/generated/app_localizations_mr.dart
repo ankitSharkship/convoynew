@@ -211,10 +211,11 @@ class AppLocalizationsMr extends AppLocalizations {
   String get kycOtpVerifyButton => 'OTP सत्यापित करा';
 
   @override
-  String get kycThankYou => 'धन्यवाद';
+  String get kycThankYou => 'आधार सत्यापित झाले!';
 
   @override
-  String get kycSuccessMessage => 'eKYC प्रक्रिया यशस्वीरित्या पूर्ण झाली';
+  String get kycSuccessMessage =>
+      'आणखी एक पायरी — पडताळणी पूर्ण करण्यासाठी तुमचा फोटो निश्चित करूया.';
 
   @override
   String get faceReviewTitle => 'हा फोटो वापरायचा?';
@@ -231,6 +232,10 @@ class AppLocalizationsMr extends AppLocalizations {
   @override
   String get faceReviewVerifyingMessage =>
       'कृपया थांबा, आम्ही तुमचा फोटो पडताळत आहोत';
+
+  @override
+  String get faceReviewVerificationFailed =>
+      'आम्ही तुमची पडताळणी निश्चित करू शकलो नाही. कृपया पुन्हा प्रयत्न करा.';
 
   @override
   String get postScreenTitle => 'तुमचा ट्रक पोस्ट करा';
@@ -429,6 +434,9 @@ class AppLocalizationsMr extends AppLocalizations {
 
   @override
   String get profileKycPending => 'प्रलंबित';
+
+  @override
+  String get profileKycPhotoPending => 'फोटो प्रलंबित';
 
   @override
   String get profileKycAlreadyVerified => 'तुमचे KYC आधीच सत्यापित झाले आहे';

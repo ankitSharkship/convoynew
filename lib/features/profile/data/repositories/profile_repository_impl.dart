@@ -117,6 +117,7 @@ class ProfileRepositoryImpl implements ProfileRepository {
       callsMade: 0,
       responseRate: 0,
       kycStatus: profile?.kycStatus ?? 'not_started',
+      kycStep: profile?.kycStep,
       accountStatus: profile?.accountStatus ?? 'active',
       photoPath: photoPath,
       profilePhotoUrl: profile?.profilePhotoUrl,

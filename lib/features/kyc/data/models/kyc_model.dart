@@ -1,14 +1,17 @@
 import '../../domain/entities/kyc_entity.dart';
 
 class KycStatusModel extends KycStatusEntity {
-  const KycStatusModel({required super.status});
+  const KycStatusModel({required super.status, super.step});
 
   factory KycStatusModel.fromJson(Map<String, dynamic> json) {
-    final kyc = json['kyc'] as Map<String, dynamic>?;
-    final status = kyc != null
-        ? (kyc['status'] as String? ?? 'pending')
-        : (json['status'] as String? ?? 'pending');
-    return KycStatusModel(status: status);
+    // The overall two-step status/step always live at the top level. Any
+    // nested "kyc" object is just the raw Aadhaar sub-record (has its own
+    // unrelated `status`, e.g. "approved" meaning the Aadhaar check itself
+    // succeeded, and has no `kycStep` at all) — never read status/step
+    // from it, or a user who's only done Aadhaar reads as fully approved.
+    final status = json['status'] as String? ?? 'pending';
+    final step = json['kycStep'] as String?;
+    return KycStatusModel(status: status, step: step);
   }
 }
 
@@ -31,10 +34,11 @@ class VerifyAadhaarOtpResultModel extends VerifyAadhaarOtpResultEntity {
 
   factory VerifyAadhaarOtpResultModel.fromJson(Map<String, dynamic> json) {
     final user = json['user'] as Map<String, dynamic>?;
+    // Aadhaar verification is only step 1 of 2 — never default to
+    // 'approved' here. Full approval is confirmed separately via
+    // GET /api/kyc/status after the photo step (see FaceReviewScreen).
     final status =
-        user?['kycStatus'] as String? ??
-        json['status'] as String? ??
-        'approved';
+        user?['kycStatus'] as String? ?? json['status'] as String? ?? 'in_progress';
     return VerifyAadhaarOtpResultModel(status: status);
   }
 }

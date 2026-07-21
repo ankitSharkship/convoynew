@@ -6,8 +6,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../core/constants/app_colors.dart';
+import '../../../../core/network/dio_client.dart';
 import '../../../../l10n/generated/app_localizations.dart';
 import '../../../profile/presentation/state/profile_notifier.dart';
+import '../state/kyc_notifier.dart';
 
 /// Shown right after [FaceCaptureScreen] auto-captures a photo, so the user
 /// can confirm it (updating their profile photo locally) or retake it
@@ -32,6 +34,7 @@ class FaceReviewScreen extends ConsumerStatefulWidget {
 
 class _FaceReviewScreenState extends ConsumerState<FaceReviewScreen> {
   bool _saving = false;
+  String? _error;
 
   void _retake() {
     // Replaces (rather than pops back to) the capture screen so a fresh
@@ -42,13 +45,38 @@ class _FaceReviewScreenState extends ConsumerState<FaceReviewScreen> {
   }
 
   Future<void> _confirm() async {
-    setState(() => _saving = true);
+    setState(() {
+      _saving = true;
+      _error = null;
+    });
     try {
       final notifier = ref.read(profileNotifierProvider.notifier);
       await notifier.updatePhoto(widget.imageFile.path);
       await notifier.uploadPhoto(widget.imageFile);
-      if (!mounted) return;
+
       final nextRoute = widget.nextRoute;
+      if (nextRoute != null) {
+        // This upload is meant to complete KYC step 2 (the photo upload
+        // endpoint is reused for that server-side) — don't just assume it
+        // worked. Re-check the authoritative status before letting the
+        // user through to `nextRoute` (e.g. `/post`); the upload response
+        // itself doesn't confirm the KYC side effect actually happened.
+        final userId = await ref.read(tokenStorageProvider).getUserId();
+        final status = userId != null
+            ? await ref.read(getKycStatusUseCaseProvider).execute(userId)
+            : null;
+        if (status?.isApproved != true) {
+          if (!mounted) return;
+          setState(() {
+            _saving = false;
+            _error = AppLocalizations.of(context)!.faceReviewVerificationFailed;
+          });
+          return;
+        }
+        ref.invalidate(profileNotifierProvider);
+      }
+
+      if (!mounted) return;
       if (nextRoute != null) {
         context.pushReplacement(nextRoute);
       } else {
@@ -71,6 +99,7 @@ class _FaceReviewScreenState extends ConsumerState<FaceReviewScreen> {
             : _ReviewView(
                 key: const ValueKey('review'),
                 imageFile: widget.imageFile,
+                errorMessage: _error,
                 onRetake: _retake,
                 onConfirm: _confirm,
               ),
@@ -83,12 +112,14 @@ class _FaceReviewScreenState extends ConsumerState<FaceReviewScreen> {
 
 class _ReviewView extends StatelessWidget {
   final File imageFile;
+  final String? errorMessage;
   final VoidCallback onRetake;
   final VoidCallback onConfirm;
 
   const _ReviewView({
     super.key,
     required this.imageFile,
+    this.errorMessage,
     required this.onRetake,
     required this.onConfirm,
   });
@@ -132,6 +163,18 @@ class _ReviewView extends StatelessWidget {
                         fontWeight: FontWeight.w700,
                       ),
                     ),
+                    if (errorMessage != null) ...[
+                      const SizedBox(height: 8),
+                      Text(
+                        errorMessage!,
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                          color: AppColors.red,
+                          fontSize: 13,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ],
                     const SizedBox(height: 20),
                     Row(
                       children: [

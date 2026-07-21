@@ -211,10 +211,11 @@ class AppLocalizationsEn extends AppLocalizations {
   String get kycOtpVerifyButton => 'Verify OTP';
 
   @override
-  String get kycThankYou => 'Thank You';
+  String get kycThankYou => 'Aadhaar Verified!';
 
   @override
-  String get kycSuccessMessage => 'eKYC Process Successfully Completed';
+  String get kycSuccessMessage =>
+      'One more step — let\'s confirm your photo to complete verification.';
 
   @override
   String get faceReviewTitle => 'Use this photo?';
@@ -231,6 +232,10 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get faceReviewVerifyingMessage =>
       'Please wait, we\'re verifying your photo';
+
+  @override
+  String get faceReviewVerificationFailed =>
+      'We couldn\'t confirm your verification. Please try again.';
 
   @override
   String get postScreenTitle => 'Post your truck';
@@ -429,6 +434,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get profileKycPending => 'Pending';
+
+  @override
+  String get profileKycPhotoPending => 'Photo Pending';
 
   @override
   String get profileKycAlreadyVerified => 'Your KYC is already verified';

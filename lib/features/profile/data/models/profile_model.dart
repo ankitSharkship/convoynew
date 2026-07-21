@@ -4,6 +4,7 @@ class ProfileModel {
   final String name;
   final String? profilePhotoUrl;
   final String kycStatus;
+  final String? kycStep;
   final String accountStatus;
   final DateTime? createdDate;
 
@@ -13,6 +14,7 @@ class ProfileModel {
     required this.name,
     this.profilePhotoUrl,
     required this.kycStatus,
+    this.kycStep,
     required this.accountStatus,
     this.createdDate,
   });
@@ -23,6 +25,7 @@ class ProfileModel {
     name: json['name'] as String? ?? '',
     profilePhotoUrl: json['profilePhoto'] as String?,
     kycStatus: json['kycStatus'] as String? ?? 'not_started',
+    kycStep: json['kycStep'] as String?,
     accountStatus: json['accountStatus'] as String? ?? 'active',
     createdDate: json['createdDate'] != null
         ? DateTime.tryParse(json['createdDate'] as String)
@@ -35,6 +38,7 @@ class ProfileModel {
     name: json['name'] as String? ?? '',
     profilePhotoUrl: json['profilePhotoUrl'] as String?,
     kycStatus: json['kycStatus'] as String? ?? 'not_started',
+    kycStep: json['kycStep'] as String?,
     accountStatus: json['accountStatus'] as String? ?? 'active',
     createdDate: json['createdDate'] != null
         ? DateTime.tryParse(json['createdDate'] as String)
@@ -47,6 +51,7 @@ class ProfileModel {
     'name': name,
     'profilePhotoUrl': profilePhotoUrl,
     'kycStatus': kycStatus,
+    'kycStep': kycStep,
     'accountStatus': accountStatus,
     'createdDate': createdDate?.toIso8601String(),
   };

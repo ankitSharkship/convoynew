@@ -1,9 +1,17 @@
 class KycStatusEntity {
   final String status;
 
-  const KycStatusEntity({required this.status});
+  /// "aadhaar" (not started/needs Aadhaar OTP), "photo" (Aadhaar done,
+  /// selfie pending), or "completed". Null for accounts predating the
+  /// two-step flow.
+  final String? step;
+
+  const KycStatusEntity({required this.status, this.step});
 
   bool get isApproved => status == 'approved';
+
+  /// Aadhaar step is done and only the selfie/photo step remains.
+  bool get isPhotoStepPending => step == 'photo';
 }
 
 class SendAadhaarOtpResultEntity {
