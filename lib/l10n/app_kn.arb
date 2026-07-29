@@ -159,7 +159,7 @@
 
   "profileTitle": "ಪ್ರೊಫೈಲ್",
   "profileAccountSection": "ಖಾತೆ",
-  "profileVerifiedDriver": "✓ ಪರಿಶೀಲಿತ ಚಾಲಕ",
+  "profileVerifiedDriver": "✓ ಪರಿಶೀಲಿತ",
   "profileLanguage": "ಭಾಷೆ",
   "profileLogoutTitle": "ಲಾಗ್‌ಔಟ್",
   "profileLogoutConfirm": "ನೀವು ಖಚಿತವಾಗಿ ಲಾಗ್‌ಔಟ್ ಮಾಡಲು ಬಯಸುವಿರಾ?",
@@ -251,5 +251,23 @@
     "placeholders": { "capacity": { "type": "int" } }
   },
 
-  "networkOfflineBanner": "ಇಂಟರ್ನೆಟ್ ಸಂಪರ್ಕವಿಲ್ಲ"
+  "networkOfflineBanner": "ಇಂಟರ್ನೆಟ್ ಸಂಪರ್ಕವಿಲ್ಲ",
+
+  "truckMapPreviewTitle": "ಲೈವ್ ಟ್ರಕ್ ಮ್ಯಾಪ್",
+  "truckMapPreviewSubtitle": "ನಿಮ್ಮ ಹತ್ತಿರದ ಟ್ರಕ್‌ಗಳನ್ನು ನೋಡಲು ಟ್ಯಾಪ್ ಮಾಡಿ",
+  "truckMapPreviewCta": "ಲೈವ್ ಮ್ಯಾಪ್ ನೋಡಿ",
+  "truckMapAppBarTitle": "ನಿಮ್ಮ ಹತ್ತಿರದ ಟ್ರಕ್‌ಗಳು",
+  "truckMapLoading": "ನಿಮ್ಮ ಹತ್ತಿರದ ಟ್ರಕ್‌ಗಳನ್ನು ಹುಡುಕಲಾಗುತ್ತಿದೆ…",
+  "truckMapNoTrucksNearby": "150 ಕಿ.ಮೀ ಒಳಗೆ ಯಾವುದೇ ಟ್ರಕ್ ಸಿಗಲಿಲ್ಲ",
+  "truckMapErrorGeneric": "ಟ್ರಕ್‌ಗಳನ್ನು ಲೋಡ್ ಮಾಡಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ",
+  "truckMapRetry": "ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ",
+  "truckMapCountFound": "{count, plural, one{1 ಟ್ರಕ್ ಹತ್ತಿರದಲ್ಲಿದೆ} other{{count} ಟ್ರಕ್‌ಗಳು ಹತ್ತಿರದಲ್ಲಿವೆ}}",
+  "@truckMapCountFound": {
+    "placeholders": { "count": { "type": "int" } }
+  },
+  "truckMapDetailsTitle": "ಟ್ರಕ್ ವಿವರಗಳು",
+  "truckMapViewList": "{count, plural, one{ಪಟ್ಟಿ ನೋಡಿ (1)} other{ಪಟ್ಟಿ ನೋಡಿ ({count})}}",
+  "@truckMapViewList": {
+    "placeholders": { "count": { "type": "int" } }
+  }
 }

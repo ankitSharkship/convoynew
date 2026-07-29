@@ -7,18 +7,20 @@
   "languageHindi": "हिंदी",
   "languageMarathi": "मराठी",
   "languageKannada": "ಕನ್ನಡ",
-  "somethingWentWrong": "काहीतरी चूक झाली",
-  "tryAgain": "पुन्हा प्रयत्न करा",
+
+  "somethingWentWrong": "काहीतरी गडबड झाली",
+  "tryAgain": "पुन्हा करून पाहा",
   "cancel": "रद्द करा",
-  "delete": "हटवा",
+  "delete": "काढा",
   "ok": "ठीक आहे",
 
   "locationServiceDisabledTitle": "लोकेशन बंद आहे",
-  "locationServiceDisabledMessage": "तुमचे सध्याचे स्थान शोधण्यासाठी लोकेशन सेवा सुरू करा.",
+  "locationServiceDisabledMessage": "तुमचं Current Location मिळवण्यासाठी लोकेशन सुरू करा.",
   "locationEnableButton": "लोकेशन सुरू करा",
-  "locationPermissionDeniedTitle": "लोकेशन परवानगी आवश्यक आहे",
-  "locationPermissionDeniedMessage": "तुमचे सध्याचे स्थान शोधण्यासाठी सेटिंग्जमधून Convoy ला लोकेशन अ‍ॅक्सेसची परवानगी द्या.",
-  "locationOpenSettingsButton": "सेटिंग्ज उघडा",
+
+  "locationPermissionDeniedTitle": "लोकेशनची परवानगी द्या",
+  "locationPermissionDeniedMessage": "Current Location मिळवण्यासाठी Settings मध्ये जाऊन Convoy ला लोकेशनची परवानगी द्या.",
+  "locationOpenSettingsButton": "Settings उघडा",
 
   "truckTypeOpenBody": "ओपन बॉडी",
   "truckTypeClosedBody": "क्लोज्ड बॉडी",
@@ -31,186 +33,343 @@
   "truckTypeBulker": "बल्कर",
   "truckTypeTanker": "टँकर",
 
-  "onboardingSkip": "वगळा",
-  "onboardingGetStarted": "सुरुवात करा",
-  "onboardingTitle": "लोड दररोज\nतुमच्याकडे येतात.",
-  "onboardingSubtitle": "तुमचा ट्रक एकदा पोस्ट करा. सत्यापित ट्रान्सपोर्टर तुम्हाला कॉल करतील. कोणताही मध्यस्थ नाही, धावपळ नाही.",
+  "onboardingSkip": "स्किप करा",
+  "onboardingGetStarted": "सुरू करा",
+
+  "onboardingTitle": "लोड रोज\nतुमच्यापर्यंत पोहोचतात.",
+
+  "onboardingSubtitle": "एकदाच ट्रक पोस्ट करा. Verified Transporter थेट तुम्हाला Call करतील. कोणताही दलाल नाही, धावपळ नाही.",
+
   "onboardingChangeLanguage": "भाषा बदला",
 
-  "phoneEnterNumberHint": "तुमचा नंबर टाका",
-  "phoneContinueButton": "मोबाइल नंबरसह पुढे जा",
+  "phoneEnterNumberHint": "मोबाइल नंबर टाका",
+  "phoneContinueButton": "मोबाइल नंबरने पुढे जा",
 
-  "otpTitle": "4 अंकी कोड टाका",
+  "otpTitle": "4 अंकी OTP टाका",
+
   "otpSentTo": "+91 {phone} वर पाठवला",
-  "otpHelperText": "कोड मिळाला नाही? नंबर तपासा आणि पुन्हा पाठवण्याचा प्रयत्न करा.",
-  "otpResendIn": "मिळाला नाही? 0:{seconds} मध्ये पुन्हा पाठवा",
-  "otpResendCode": "कोड पुन्हा पाठवा",
 
-  "callDialerHint": "तुमचा फोन डायलर उघडतो",
-  "callCalling": "कॉल होत आहे…",
-  "callConnected": "जोडले · {duration}",
-  "callDisclaimer": "Convoy मध्ये इन-अॅप कॉलिंग नाही. कॉलवर टॅप केल्यास\nतुमचा फोन डायलर उघडतो आणि तो नोंदीसाठी साठवला जातो.",
+  "otpHelperText": "OTP मिळाला नाही? नंबर तपासा आणि पुन्हा पाठवा.",
 
-  "homeHello": "नमस्कार",
+  "otpResendIn": "OTP नाही? 0:{seconds} मध्ये पुन्हा पाठवा",
+
+  "otpResendCode": "OTP पुन्हा पाठवा",
+
+  "callDialerHint": "तुमचा फोन Dialer उघडेल",
+
+  "callCalling": "Call सुरू आहे…",
+
+  "callConnected": "Connected · {duration}",
+
+  "callDisclaimer": "Convoy मध्ये इन-अॅप Calling नाही. Call वर टॅप केल्यावर तुमचा फोन Dialer उघडेल. ही माहिती फक्त रेकॉर्डसाठी जतन केली जाते.",
+
+  "homeHello": "नमस्कार 👋",
+
   "homeHeroTitle": "तुमचा ट्रक कमाईसाठी\nतयार आहे 💰",
-  "homeHeroSubtitle": "आत्ताच पोस्ट करा आणि त्वरित सत्यापित लोड विनंत्या मिळवा.",
-  "homeHeroButton": "आत्ता ट्रक पोस्ट करा",
-  "homeQuickActions": "त्वरित कृती",
-  "homePostNewTruck": "नवीन ट्रक पोस्ट करा",
-  "homePostNewTruckSubtitle": "30 सेकंदात तयार",
-  "homeSearchTrucks": "ट्रक शोधा",
-  "homeSearchTrucksSubtitle": "उपलब्ध वाहने शोधा",
-  "homeManageSection": "पोस्ट आणि शोध व्यवस्थापित करा",
-  "homeViewAll": "सर्व पहा",
-  "homeRecentPosts": "अलीकडील पोस्ट",
-  "homeRecentSearch": "अलीकडील शोध",
-  "homeNoRecentPosts": "कोणतीही अलीकडील पोस्ट नाही",
-  "homeNoRecentSearches": "कोणताही अलीकडील शोध नाही",
 
-  "kycVerifyTitle": "आधार कार्ड सत्यापित करा",
+  "homeHeroSubtitle": "आत्ताच ट्रक पोस्ट करा आणि लगेच Verified Load मिळवा.",
+
+  "homeHeroButton": "ट्रक पोस्ट करा",
+
+  "homeQuickActions": "काय करायचं?",
+
+  "homePostNewTruck": "नवीन ट्रक पोस्ट करा",
+
+  "homePostNewTruckSubtitle": "फक्त 30 सेकंदात",
+
+  "homeSearchTrucks": "ट्रक शोधा",
+
+  "homeSearchTrucksSubtitle": "उपलब्ध ट्रक पाहा",
+
+  "homeManageSection": "तुमच्या पोस्ट आणि शोध",
+
+  "homeViewAll": "सगळं पहा",
+
+  "homeRecentPosts": "अलीकडच्या पोस्ट",
+
+  "homeRecentSearch": "अलीकडचे शोध",
+
+  "homeNoRecentPosts": "अजून कोणतीही पोस्ट नाही",
+
+  "homeNoRecentSearches": "अजून कोणताही शोध नाही",
+  "kycVerifyTitle": "आधार कार्ड Verify करा",
   "kycAadhaarHint": "XXXX XXXX XXXX",
-  "kycVerifyButton": "आधार सत्यापित करा",
-  "kycOtpHelperText": "OTP तुमच्या आधारशी जोडलेल्या मोबाइल नंबरवर पाठवला आहे. सत्यापित करण्यासाठी कृपया तो टाका.",
-  "kycOtpVerifyButton": "OTP सत्यापित करा",
-  "kycThankYou": "आधार सत्यापित झाले!",
-  "kycSuccessMessage": "आणखी एक पायरी — पडताळणी पूर्ण करण्यासाठी तुमचा फोटो निश्चित करूया.",
+  "kycVerifyButton": "आधार Verify करा",
+  "kycOtpHelperText": "तुमच्या आधारला जोडलेल्या मोबाइल नंबरवर OTP पाठवला आहे. तो टाकून Verify करा.",
+  "kycOtpVerifyButton": "OTP Verify करा",
+  "kycThankYou": "आधार Verify झाला!",
+  "kycSuccessMessage": "आता फक्त एक स्टेप बाकी आहे. तुमचा फोटो Verify करूया.",
   "faceReviewTitle": "हा फोटो वापरायचा?",
-  "faceReviewRetake": "पुन्हा घ्या",
+  "faceReviewRetake": "पुन्हा काढा",
   "faceReviewConfirm": "हा फोटो वापरा",
-  "faceReviewVerifyingTitle": "पडताळणी होत आहे",
-  "faceReviewVerifyingMessage": "कृपया थांबा, आम्ही तुमचा फोटो पडताळत आहोत",
-  "faceReviewVerificationFailed": "आम्ही तुमची पडताळणी निश्चित करू शकलो नाही. कृपया पुन्हा प्रयत्न करा.",
+  "faceReviewVerifyingTitle": "Verify होत आहे",
+  "faceReviewVerifyingMessage": "थोडा वेळ थांबा, तुमचा फोटो Verify करत आहोत.",
+  "faceReviewVerificationFailed": "तुमचा फोटो Verify करता आला नाही. कृपया पुन्हा करून पाहा.",
 
   "postScreenTitle": "तुमचा ट्रक पोस्ट करा",
-  "postRouteSectionLabel": "मार्ग",
+
+  "postRouteSectionLabel": "रूट",
+
   "postSelectTruckSectionLabel": "ट्रक निवडा",
-  "postOriginLabel": "पासून (सध्याचे स्थान)",
-  "postOriginHint": "शोधण्यासाठी लोकेट बटण दाबा",
-  "postGpsAutoDetected": "GPS द्वारे शोधले",
-  "postDestinationLabel": "गंतव्यस्थान {number}",
-  "postDestinationHint": "गंतव्यस्थान टाका",
-  "postCouldNotLoadTrucks": "तुमचे ट्रक लोड होऊ शकले नाहीत",
-  "postSelectTruckHint": "एक ट्रक निवडा",
-  "postSearchTruckHint": "ट्रक क्रमांकाने शोधा",
+
+  "postOriginLabel": "कुठून (Current Location)",
+
+  "postOriginHint": "Current Location साठी Locate बटण दाबा",
+
+  "postGpsAutoDetected": "GPS ने सापडलं",
+
+  "postDestinationLabel": "कुठपर्यंत {number}",
+
+  "postDestinationHint": "कुठपर्यंत टाका",
+
+  "postCouldNotLoadTrucks": "तुमचे ट्रक लोड करता आले नाहीत",
+
+  "postSelectTruckHint": "ट्रक निवडा",
+
+  "postSearchTruckHint": "ट्रक नंबर टाका",
+
   "postAddNewTruck": "नवीन ट्रक जोडा",
-  "postTruckSearchEmptyMessage": "या क्रमांकाचा ट्रक उपलब्ध नाही. क्रमांक टाइप करा आणि तो जोडण्यासाठी खालील नवीन ट्रक जोडा वर टॅप करा.",
+
+  "postTruckSearchEmptyMessage": "या नंबरचा ट्रक सापडला नाही. नंबर टाका आणि खाली 'नवीन ट्रक जोडा' वर टॅप करून ट्रक जोडा.",
+
   "postSubmitButton": "ट्रक पोस्ट करा",
-  "postAddTruckSheetTitle": "ट्रक जोडा",
+
+  "postAddTruckSheetTitle": "नवीन ट्रक जोडा",
+
   "postTruckNumberLabel": "ट्रक नंबर",
+
   "postTruckNumberHint": "उदा. MH04AB1234",
+
   "postTruckTypeLabel": "ट्रकचा प्रकार",
+
   "postSelectTypeHint": "प्रकार निवडा",
+
   "postCapacityLabel": "क्षमता",
+
   "postSelectCapacityHint": "क्षमता निवडा",
+
   "postAddTruckButton": "ट्रक जोडा",
-  "postVerifyButton": "सत्यापित करा",
 
-  "postContactSectionTitle": "कोणाशी संपर्क करायचा?",
-  "postContactMe": "मी",
-  "postContactSomeoneElse": "इतर कोणीतरी",
-  "postContactNameLabel": "संपर्काचे नाव",
-  "postContactNameHint": "संपर्काचे नाव टाका",
-  "postContactNumberLabel": "संपर्क क्रमांक",
-  "postContactNumberHint": "10 अंकी मोबाइल क्रमांक",
-  "postContactNumberError": "वैध 10 अंकी मोबाइल क्रमांक टाका",
+  "postVerifyButton": "Verify करा",
 
-  "postEditTitle": "ट्रक पोस्ट संपादित करा",
-  "postSaveChangesButton": "बदल जतन करा",
+  "postContactSectionTitle": "Contact कोणाचा?",
 
-  "postSuccessTitle": "तुमचा ट्रक पोस्ट झाला!",
-  "postSuccessSubtitle": "तुमच्या जवळचे लोड मालक आता तो पाहू शकतात आणि थेट तुम्हाला कॉल करू शकतात.",
-  "postSuccessTruckTypeLabel": "ट्रकचा प्रकार",
-  "postSuccessPickupLabel": "पिकअप स्थान",
-  "postSuccessGoToDashboard": "डॅशबोर्डवर जा",
+  "postContactMe": "माझा",
+
+  "postContactSomeoneElse": "दुसऱ्याचा",
+
+  "postContactNameLabel": "Contact नाव",
+
+  "postContactNameHint": "नाव टाका",
+
+  "postContactNumberLabel": "Contact नंबर",
+
+  "postContactNumberHint": "10 अंकी मोबाइल नंबर",
+
+  "postContactNumberError": "योग्य 10 अंकी मोबाइल नंबर टाका",
+
+  "postEditTitle": "ट्रक पोस्ट Edit करा",
+
+  "postSaveChangesButton": "बदल सेव्ह करा",
+
+  "postSuccessTitle": "ट्रक यशस्वीपणे पोस्ट झाला!",
+
+  "postSuccessSubtitle": "आता तुमच्या जवळचे Load Owner हा ट्रक पाहू शकतात आणि थेट तुम्हाला Call करू शकतात.",
+
+  "postSuccessTruckTypeLabel": "ट्रक प्रकार",
+
+  "postSuccessPickupLabel": "Pickup",
+
+  "postSuccessGoToDashboard": "Dashboard वर जा",
+
   "postSuccessPostAnother": "आणखी एक ट्रक पोस्ट करा",
 
   "myTrucksTitle": "माझे ट्रक",
-  "myTrucksDeleteTitle": "ट्रक हटवा",
-  "myTrucksDeleteMessage": "{vehicleNumber} तुमच्या ट्रकमधून काढायचा? हे परत करता येणार नाही.",
-  "myTrucksNoTrucks": "अजून कोणताही ट्रक जोडलेला नाही",
 
-  "tripsTitle": "माझ्या यात्रा",
-  "tripsNoTrips": "अजून कोणतीही यात्रा पोस्ट केलेली नाही",
-  "tripsActiveLabel": "सक्रिय यात्रा",
+  "myTrucksDeleteTitle": "ट्रक काढा",
+
+  "myTrucksDeleteMessage": "{vehicleNumber} काढायचा? नंतर परत आणता येणार नाही.",
+
+  "myTrucksNoTrucks": "अजून एकही ट्रक जोडलेला नाही",
+    "tripsTitle": "माझे ट्रिप",
+
+  "tripsNoTrips": "अजून एकही ट्रिप पोस्ट केलेली नाही",
+
+  "tripsActiveLabel": "चालू",
+
   "tripsExpiredLabel": "कालबाह्य",
-  "tripsEdit": "संपादित करा",
-  "tripsReactivate": "पुन्हा सक्रिय करा",
-  "tripsDeleteTitle": "यात्रा हटवा",
-  "tripsDeleteMessage": "ही यात्रा कायमची हटवायची? हे परत करता येणार नाही.",
-  "tripsMoreDestinations": "+{count} अधिक",
+
+  "tripsEdit": "Edit करा",
+
+  "tripsReactivate": "पुन्हा सुरू करा",
+
+  "tripsDeleteTitle": "ट्रिप काढा",
+
+  "tripsDeleteMessage": "ही ट्रिप कायमची काढायची? नंतर परत आणता येणार नाही.",
+
+  "tripsMoreDestinations": "+{count} आणखी",
+
+
 
   "profileTitle": "प्रोफाइल",
-  "profileAccountSection": "खाते",
-  "profileVerifiedDriver": "✓ सत्यापित चालक",
-  "profileLanguage": "भाषा",
-  "profileLogoutTitle": "लॉगआउट",
-  "profileLogoutConfirm": "तुम्हाला खरंच लॉगआउट करायचे आहे का?",
-  "profileKycLabel": "KYC पडताळणी",
-  "profileKycVerified": "✓ पूर्ण",
-  "profileKycInReview": "पुनरावलोकनात",
-  "profileKycRejected": "नाकारले",
-  "profileKycPending": "प्रलंबित",
-  "profileKycPhotoPending": "फोटो प्रलंबित",
-  "profileKycAlreadyVerified": "तुमचे KYC आधीच सत्यापित झाले आहे",
-  "profileMyVehicles": "माझी वाहने",
-  "profileTermsPrivacy": "अटी व गोपनीयता",
-  "profileHelp": "24×7 चालक सहाय्य",
-  "profileAccountStatusPrefix": "खाते {status}",
-  "profileAccountSuspended": "निलंबित",
-  "profileAccountBlocked": "अवरोधित",
-  "profileAccountInactive": "निष्क्रिय",
 
-  "searchTitle": "ट्रक शोधा",
-  "searchSubtitle": "तुमच्या लोडसाठी योग्य ट्रक शोधा",
-  "searchOriginLabel": "उगम स्थान",
-  "searchOriginHint": "उगम स्थान निवडा",
-  "searchDestinationLabel": "गंतव्यस्थान",
-  "searchDestinationHint": "गंतव्यस्थान निवडा",
-  "searchTruckTypeLabel": "ट्रकचा प्रकार",
+  "profileAccountSection": "खाते",
+
+  "profileVerifiedDriver": "✓ Verified",
+
+  "profileLanguage": "भाषा",
+
+  "profileLogoutTitle": "Logout",
+
+  "profileLogoutConfirm": "खरंच Logout करायचं आहे का?",
+
+  "profileKycLabel": "KYC Status",
+
+  "profileKycVerified": "✓ Verified",
+
+  "profileKycInReview": "Review मध्ये",
+
+  "profileKycRejected": "Reject",
+
+  "profileKycPending": "बाकी आहे",
+
+  "profileKycPhotoPending": "फोटो बाकी आहे",
+
+  "profileKycAlreadyVerified": "तुमचं KYC आधीच Verify झालं आहे",
+
+  "profileMyVehicles": "माझी वाहनं",
+
+  "profileTermsPrivacy": "Terms & Privacy",
+
+  "profileHelp": "24×7 Driver Support",
+
+  "profileAccountStatusPrefix": "खातं {status}",
+
+  "profileAccountSuspended": "Suspend",
+
+  "profileAccountBlocked": "Blocked",
+
+  "profileAccountInactive": "Inactive",
+
+    "searchTitle": "ट्रक शोधा",
+
+  "searchSubtitle": "तुमच्या Load साठी योग्य ट्रक शोधा",
+
+  "searchOriginLabel": "कुठून",
+
+  "searchOriginHint": "कुठून निवडा",
+
+  "searchDestinationLabel": "कुठपर्यंत",
+
+  "searchDestinationHint": "कुठपर्यंत निवडा",
+
+  "searchTruckTypeLabel": "ट्रक प्रकार",
+
   "searchSelectTruckHint": "ट्रक निवडा",
+
   "searchCapacityLabel": "क्षमता",
-  "searchVehicleNumberLabel": "वाहन क्रमांक",
+
+  "searchVehicleNumberLabel": "वाहन नंबर",
+
   "searchSelectHint": "निवडा",
+
   "searchFindTrucksButton": "ट्रक शोधा",
 
-  "resultsTitle": "शोध निकाल",
-  "resultsSearching": "शोधत आहे…",
+
+
+  "resultsTitle": "शोधाचे निकाल",
+
+  "resultsSearching": "ट्रक शोधत आहोत…",
+
   "resultsFoundCount": "{count, plural, one{1 ट्रक सापडला} other{{count} ट्रक सापडले}}",
-  "resultsYourResults": "तुमचे शोध निकाल",
-  "resultsRunSearch": "निकाल पाहण्यासाठी शोध घ्या",
-  "resultsNoneNearby": "जवळपास कोणताही ट्रक सापडला नाही",
-  "resultsAnyOrigin": "कोणतेही उगम स्थान",
-  "resultsAnyDestination": "कोणतेही गंतव्यस्थान",
-  "resultsOriginLabel": "उगम स्थान",
-  "resultsDestinationLabel": "गंतव्यस्थान",
+
+  "resultsYourResults": "तुमचे निकाल",
+
+  "resultsRunSearch": "निकाल पाहण्यासाठी ट्रक शोधा",
+
+  "resultsNoneNearby": "जवळपास एकही ट्रक सापडला नाही",
+
+  "resultsAnyOrigin": "कोठूनही",
+
+  "resultsAnyDestination": "कोठेही",
+
+  "resultsOriginLabel": "कुठून",
+
+  "resultsDestinationLabel": "कुठपर्यंत",
+
   "resultsDateLabel": "तारीख",
-  "resultsAny": "कोणतेही",
-  "resultsSortByLabel": "यानुसार क्रमवारी लावा:",
-  "resultsSortNearestOrigin": "उगम स्थानाच्या सर्वात जवळ",
-  "resultsSortNearestDestination": "गंतव्यस्थानाच्या सर्वात जवळ",
-  "resultsCallDialerError": "फोन डायलर उघडता आला नाही",
-  "resultsCallNow": "आत्ता कॉल करा",
-  "resultsPageOf": "पृष्ठ {page} / {totalPages}",
-  "resultsMutualCount": "{count} परस्पर",
-  "resultsViewAllMutuals": "सर्व पहा",
-  "resultsPostedBy": "पोस्ट करणारे: {userName}",
-  "@resultsPostedBy": {
-    "placeholders": { "userName": { "type": "String" } }
-  },
 
-  "mutualContactsSheetTitle": "परस्पर संपर्क",
-  "mutualContactsEmpty": "कोणतेही परस्पर संपर्क आढळले नाहीत",
+  "resultsAny": "कोणतंही",
+
+  "resultsSortByLabel": "क्रम लावा",
+
+  "resultsSortNearestOrigin": "Pickup च्या सर्वात जवळ",
+
+  "resultsSortNearestDestination": "Destination च्या सर्वात जवळ",
+
+  "resultsCallDialerError": "Dialer उघडता आला नाही",
+
+  "resultsCallNow": "Call करा",
+
+  "resultsPageOf": "{totalPages} पैकी {page}",
+
+  "resultsMutualCount": "{count} कॉमन",
+
+  "resultsViewAllMutuals": "सगळे पहा",
+
+  "resultsPostedBy": "पोस्ट केलं: {userName}",
+
+    "mutualContactsSheetTitle": "कॉमन Contact",
+
+  "mutualContactsEmpty": "एकही कॉमन Contact सापडला नाही",
+
   "mutualContactsNumberUnavailable": "नंबर उपलब्ध नाही",
-  "contactsPermissionRationale": "Convoy इतर वापरकर्त्यांसोबत परस्पर संबंध दाखवण्यासाठी तुमच्या संपर्कांचा वापर करते. तुमचे संपर्क कधीही शेअर केले जात नाहीत — फक्त सुरक्षित एकतर्फी हॅश सिंक केले जातात.",
-  "contactsPermissionDeniedMessage": "संपर्क परवानगी नाकारली. परस्पर कनेक्शन पाहण्यासाठी सेटिंग्जमध्ये सक्षम करा.",
 
-  "navHome": "मुख्यपृष्ठ",
+  "contactsPermissionRationale": "तुमच्या Contact List मधले कॉमन Contact दाखवण्यासाठी Convoy ला Contacts ची परवानगी लागते. तुमचे Contacts कोणाशीही शेअर केले जात नाहीत. फक्त सुरक्षित Hash वापरून Match केले जातात.",
+
+  "contactsPermissionDeniedMessage": "Contacts ची परवानगी दिलेली नाही. कॉमन Contact पाहण्यासाठी Settings मध्ये जाऊन परवानगी द्या.",
+
+
+
+  "navHome": "होम",
+
   "navSearch": "शोधा",
+
   "navProfile": "प्रोफाइल",
 
-  "truckCardMoreDestinations": "+{count} अधिक",
+
+
+  "truckCardMoreDestinations": "+{count} आणखी",
+
+
 
   "capacityTon": "{capacity} टन",
 
-  "networkOfflineBanner": "इंटरनेट कनेक्शन नाही"
+
+
+  "networkOfflineBanner": "इंटरनेट नाही",
+
+
+
+  "truckMapPreviewTitle": "लाईव्ह ट्रक मॅप",
+
+  "truckMapPreviewSubtitle": "तुमच्या जवळचे ट्रक पाहण्यासाठी टॅप करा",
+
+  "truckMapPreviewCta": "लाईव्ह मॅप पहा",
+
+  "truckMapAppBarTitle": "तुमच्या जवळचे ट्रक",
+
+  "truckMapLoading": "जवळचे ट्रक शोधत आहोत…",
+
+  "truckMapNoTrucksNearby": "150 किमीच्या आत एकही ट्रक सापडला नाही",
+
+  "truckMapErrorGeneric": "ट्रक लोड करता आले नाहीत",
+
+  "truckMapRetry": "पुन्हा करून पाहा",
+
+  "truckMapCountFound": "{count, plural, one{1 ट्रक जवळ आहे} other{{count} ट्रक जवळ आहेत}}",
+
+  "truckMapDetailsTitle": "ट्रकची माहिती",
+
+  "truckMapViewList": "{count, plural, one{यादी पहा (1)} other{यादी पहा ({count})}}"
 }

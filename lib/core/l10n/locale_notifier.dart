@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../router/app_router.dart';
+import '../storage/shared_preferences_provider.dart';
 
 part 'locale_notifier.g.dart';
 

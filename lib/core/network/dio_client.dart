@@ -8,6 +8,8 @@ import 'auth_revocation_notifier.dart';
 import 'network_status_provider.dart';
 import 'token_storage.dart';
 import 'package:flutter/foundation.dart';
+import '../../features/kyc/data/datasources/kyc_local_datasource.dart';
+import '../storage/shared_preferences_provider.dart';
 
 part 'dio_client.g.dart';
 
@@ -33,6 +35,7 @@ Dio dio(DioRef ref) {
   // autoDispose provider, so `ref` itself could be invalid by then even
   // though the (keepAlive) notifier it points to never is.
   final networkStatus = ref.read(networkStatusNotifierProvider.notifier);
+  final kycLocal = KycLocalDataSourceImpl(ref.watch(sharedPreferencesProvider));
   final dio = Dio(
     BaseOptions(
       baseUrl: dotenv.env['API_BASE_URL'] ?? '',
@@ -77,6 +80,12 @@ Dio dio(DioRef ref) {
         );
         if (error.response?.statusCode == 401 && !isUnauthenticatedEndpoint) {
           await storage.clear();
+          // This forced-logout path bypasses AuthNotifier.logout() entirely
+          // (see that method for the equivalent clear on a manual logout),
+          // so the per-user KYC-approved cache has to be wiped here too —
+          // otherwise it would survive a 401 and could be read by whichever
+          // user logs into this device next.
+          await kycLocal.clear();
           authRevocationNotifier.revoke();
         }
         handler.next(error);

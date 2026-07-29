@@ -2,7 +2,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../core/network/api_exception.dart';
 import '../../../../core/network/dio_client.dart';
-import '../../../../core/router/app_router.dart';
+import '../../../../core/storage/shared_preferences_provider.dart';
 import '../../data/datasources/contacts_device_datasource.dart';
 import '../../data/datasources/contacts_local_datasource.dart';
 import '../../data/datasources/contacts_remote_datasource.dart';

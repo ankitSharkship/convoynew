@@ -12,7 +12,7 @@ class AppLocalizationsHi extends AppLocalizations {
   String get appName => 'Convoy';
 
   @override
-  String get languageSelectTitle => 'भाषा चुनें';
+  String get languageSelectTitle => 'भाषा सेलेक्ट करें';
 
   @override
   String get languageEnglish => 'English';
@@ -30,13 +30,13 @@ class AppLocalizationsHi extends AppLocalizations {
   String get somethingWentWrong => 'कुछ गड़बड़ हो गई';
 
   @override
-  String get tryAgain => 'पुनः प्रयास करें';
+  String get tryAgain => 'फिर से कोशिश करें';
 
   @override
   String get cancel => 'रद्द करें';
 
   @override
-  String get delete => 'हटाएं';
+  String get delete => 'डिलीट करें';
 
   @override
   String get ok => 'ठीक है';
@@ -46,13 +46,13 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get locationServiceDisabledMessage =>
-      'अपनी वर्तमान लोकेशन का पता लगाने के लिए लोकेशन सेवाएं चालू करें।';
+      'अपनी वर्तमान लोकेशन का पता लगाने के लिए लोकेशन ऑन करें।';
 
   @override
   String get locationEnableButton => 'लोकेशन चालू करें';
 
   @override
-  String get locationPermissionDeniedTitle => 'लोकेशन अनुमति आवश्यक है';
+  String get locationPermissionDeniedTitle => 'लोकेशन की परमिशन चाहिए';
 
   @override
   String get locationPermissionDeniedMessage =>
@@ -102,7 +102,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get onboardingSubtitle =>
-      'अपना ट्रक एक बार पोस्ट करें। सत्यापित ट्रांसपोर्टर आपको कॉल करेंगे। कोई बिचौलिया नहीं, कोई भागदौड़ नहीं।';
+      'बस एक बार पोस्ट करें। Verified ट्रांसपोर्टर आपको सीधे कॉल करेंगे। कोई बिचौलिया नहीं।';
 
   @override
   String get onboardingChangeLanguage => 'भाषा बदलें';
@@ -111,10 +111,10 @@ class AppLocalizationsHi extends AppLocalizations {
   String get phoneEnterNumberHint => 'अपना नंबर दर्ज करें';
 
   @override
-  String get phoneContinueButton => 'मोबाइल नंबर से जारी रखें';
+  String get phoneContinueButton => 'मोबाइल नंबर से आगे बढ़ें';
 
   @override
-  String get otpTitle => '4 अंकों का कोड दर्ज करें';
+  String get otpTitle => '4 अंकों का OTP डालें';
 
   @override
   String otpSentTo(String phone) {
@@ -122,8 +122,7 @@ class AppLocalizationsHi extends AppLocalizations {
   }
 
   @override
-  String get otpHelperText =>
-      'कोड नहीं मिला? नंबर जांचें और फिर से भेजने की कोशिश करें।';
+  String get otpHelperText => 'OTP नहीं मिला? नंबर चेक करें और दोबारा भेजें।';
 
   @override
   String otpResendIn(String seconds) {
@@ -131,17 +130,17 @@ class AppLocalizationsHi extends AppLocalizations {
   }
 
   @override
-  String get otpResendCode => 'कोड फिर से भेजें';
+  String get otpResendCode => 'OTP दोबारा भेजें';
 
   @override
   String get callDialerHint => 'आपका फोन डायलर खोलता है';
 
   @override
-  String get callCalling => 'कॉल हो रही है…';
+  String get callCalling => 'कॉल लग रही है…';
 
   @override
   String callConnected(String duration) {
-    return 'जुड़ गया · $duration';
+    return 'कॉल जुड़ गई · $duration';
   }
 
   @override
@@ -159,22 +158,22 @@ class AppLocalizationsHi extends AppLocalizations {
       'अभी पोस्ट करें और तुरंत सत्यापित लोड अनुरोध पाएं।';
 
   @override
-  String get homeHeroButton => 'अभी ट्रक पोस्ट करें';
+  String get homeHeroButton => 'अभी पोस्ट करें';
 
   @override
-  String get homeQuickActions => 'त्वरित कार्य';
+  String get homeQuickActions => 'क्या करना है?';
 
   @override
-  String get homePostNewTruck => 'नया ट्रक पोस्ट करें';
+  String get homePostNewTruck => 'नया पोस्ट करें';
 
   @override
-  String get homePostNewTruckSubtitle => '30 सेकंड में तैयार';
+  String get homePostNewTruckSubtitle => '30 सेकंड में हो जाएगा';
 
   @override
-  String get homeSearchTrucks => 'ट्रक खोजें';
+  String get homeSearchTrucks => 'ट्रक ढूंढें';
 
   @override
-  String get homeSearchTrucksSubtitle => 'उपलब्ध वाहन खोजें';
+  String get homeSearchTrucksSubtitle => 'आस-पास के ट्रक देखें';
 
   @override
   String get homeManageSection => 'पोस्ट और खोज प्रबंधित करें';
@@ -195,13 +194,13 @@ class AppLocalizationsHi extends AppLocalizations {
   String get homeNoRecentSearches => 'कोई हाल की खोज नहीं';
 
   @override
-  String get kycVerifyTitle => 'आधार कार्ड सत्यापित करें';
+  String get kycVerifyTitle => 'आधार Verify करें';
 
   @override
   String get kycAadhaarHint => 'XXXX XXXX XXXX';
 
   @override
-  String get kycVerifyButton => 'आधार सत्यापित करें';
+  String get kycVerifyButton => 'आधार Verify करें';
 
   @override
   String get kycOtpHelperText =>
@@ -211,66 +210,65 @@ class AppLocalizationsHi extends AppLocalizations {
   String get kycOtpVerifyButton => 'OTP सत्यापित करें';
 
   @override
-  String get kycThankYou => 'आधार सत्यापित!';
+  String get kycThankYou => 'आधार Verify हो गया!';
 
   @override
-  String get kycSuccessMessage =>
-      'एक और कदम — सत्यापन पूरा करने के लिए अपनी फ़ोटो की पुष्टि करें।';
+  String get kycSuccessMessage => 'एक और कदम — अब अपनी फोटो Confirm करें।';
 
   @override
-  String get faceReviewTitle => 'इस फ़ोटो का उपयोग करें?';
+  String get faceReviewTitle => 'यही फोटो इस्तेमाल करें?';
 
   @override
-  String get faceReviewRetake => 'फिर से लें';
+  String get faceReviewRetake => 'दोबारा लें';
 
   @override
   String get faceReviewConfirm => 'इस फ़ोटो का उपयोग करें';
 
   @override
-  String get faceReviewVerifyingTitle => 'सत्यापन हो रहा है';
+  String get faceReviewVerifyingTitle => 'Verify हो रहा है';
 
   @override
   String get faceReviewVerifyingMessage =>
-      'कृपया प्रतीक्षा करें, हम आपकी फ़ोटो सत्यापित कर रहे हैं';
+      'थोड़ा इंतज़ार करें, आपकी फोटो Verify हो रही है।';
 
   @override
   String get faceReviewVerificationFailed =>
       'हम आपके सत्यापन की पुष्टि नहीं कर सके। कृपया फिर से प्रयास करें।';
 
   @override
-  String get postScreenTitle => 'अपना ट्रक पोस्ट करें';
+  String get postScreenTitle => 'पोस्ट करें';
 
   @override
-  String get postRouteSectionLabel => 'मार्ग';
+  String get postRouteSectionLabel => 'रूट';
 
   @override
-  String get postSelectTruckSectionLabel => 'ट्रक चुनें';
+  String get postSelectTruckSectionLabel => 'ट्रक सेलेक्ट करें';
 
   @override
-  String get postOriginLabel => 'से (वर्तमान स्थान)';
+  String get postOriginLabel => 'कहाँ से (Current Location)';
 
   @override
-  String get postOriginHint => 'पता लगाने के लिए लोकेट बटन दबाएं';
+  String get postOriginHint => 'लोकेशन लेने के लिए बटन दबाएँ';
 
   @override
   String get postGpsAutoDetected => 'GPS से पता लगाया गया';
 
   @override
   String postDestinationLabel(int number) {
-    return 'गंतव्य $number';
+    return 'कहाँ तक $number';
   }
 
   @override
-  String get postDestinationHint => 'गंतव्य दर्ज करें';
+  String get postDestinationHint => 'कहाँ तक दर्ज करें';
 
   @override
   String get postCouldNotLoadTrucks => 'आपके ट्रक लोड नहीं हो सके';
 
   @override
-  String get postSelectTruckHint => 'एक ट्रक चुनें';
+  String get postSelectTruckHint => 'एक ट्रक सेलेक्ट करें';
 
   @override
-  String get postSearchTruckHint => 'ट्रक नंबर से खोजें';
+  String get postSearchTruckHint => 'ट्रक नंबर से ढूंढें';
 
   @override
   String get postAddNewTruck => 'नया ट्रक जोड़ें';
@@ -280,7 +278,7 @@ class AppLocalizationsHi extends AppLocalizations {
       'इस नंबर से कोई ट्रक उपलब्ध नहीं है। नंबर टाइप करें और इसे जोड़ने के लिए नीचे नया ट्रक जोड़ें पर टैप करें।';
 
   @override
-  String get postSubmitButton => 'ट्रक पोस्ट करें';
+  String get postSubmitButton => 'पोस्ट करें';
 
   @override
   String get postAddTruckSheetTitle => 'ट्रक जोड़ें';
@@ -295,13 +293,13 @@ class AppLocalizationsHi extends AppLocalizations {
   String get postTruckTypeLabel => 'ट्रक का प्रकार';
 
   @override
-  String get postSelectTypeHint => 'प्रकार चुनें';
+  String get postSelectTypeHint => 'प्रकार सेलेक्ट करें';
 
   @override
   String get postCapacityLabel => 'क्षमता';
 
   @override
-  String get postSelectCapacityHint => 'क्षमता चुनें';
+  String get postSelectCapacityHint => 'क्षमता सेलेक्ट करें';
 
   @override
   String get postAddTruckButton => 'ट्रक जोड़ें';
@@ -310,13 +308,13 @@ class AppLocalizationsHi extends AppLocalizations {
   String get postVerifyButton => 'सत्यापित करें';
 
   @override
-  String get postContactSectionTitle => 'किससे संपर्क करें?';
+  String get postContactSectionTitle => 'किसको कॉल आए?';
 
   @override
   String get postContactMe => 'मैं';
 
   @override
-  String get postContactSomeoneElse => 'कोई और';
+  String get postContactSomeoneElse => 'कोई दूसरा';
 
   @override
   String get postContactNameLabel => 'संपर्क का नाम';
@@ -338,10 +336,10 @@ class AppLocalizationsHi extends AppLocalizations {
   String get postEditTitle => 'ट्रक पोस्ट संपादित करें';
 
   @override
-  String get postSaveChangesButton => 'बदलाव सहेजें';
+  String get postSaveChangesButton => 'सेव करें';
 
   @override
-  String get postSuccessTitle => 'आपका ट्रक पोस्ट हो गया!';
+  String get postSuccessTitle => 'ट्रक सफलतापूर्वक पोस्ट हो गया!';
 
   @override
   String get postSuccessSubtitle =>
@@ -354,20 +352,20 @@ class AppLocalizationsHi extends AppLocalizations {
   String get postSuccessPickupLabel => 'पिकअप स्थान';
 
   @override
-  String get postSuccessGoToDashboard => 'डैशबोर्ड पर जाएं';
+  String get postSuccessGoToDashboard => 'होम पर जाएँ';
 
   @override
-  String get postSuccessPostAnother => 'एक और ट्रक पोस्ट करें';
+  String get postSuccessPostAnother => 'एक और पोस्ट करें';
 
   @override
   String get myTrucksTitle => 'मेरे ट्रक';
 
   @override
-  String get myTrucksDeleteTitle => 'ट्रक हटाएं';
+  String get myTrucksDeleteTitle => 'ट्रक डिलीट करें';
 
   @override
   String myTrucksDeleteMessage(String vehicleNumber) {
-    return '$vehicleNumber को अपने ट्रकों से हटाएं? यह वापस नहीं किया जा सकता।';
+    return '$vehicleNumber को अपने ट्रकों से डिलीट करें? यह वापस नहीं किया जा सकता।';
   }
 
   @override
@@ -392,11 +390,11 @@ class AppLocalizationsHi extends AppLocalizations {
   String get tripsReactivate => 'पुनः सक्रिय करें';
 
   @override
-  String get tripsDeleteTitle => 'यात्रा हटाएं';
+  String get tripsDeleteTitle => 'यात्रा डिलीट करें';
 
   @override
   String get tripsDeleteMessage =>
-      'इस यात्रा को स्थायी रूप से हटाएं? यह वापस नहीं किया जा सकता।';
+      'इस यात्रा को स्थायी रूप से डिलीट करें? यह वापस नहीं किया जा सकता।';
 
   @override
   String tripsMoreDestinations(int count) {
@@ -404,13 +402,13 @@ class AppLocalizationsHi extends AppLocalizations {
   }
 
   @override
-  String get profileTitle => 'प्रोफाइल';
+  String get profileTitle => 'प्रोफ़ाइल';
 
   @override
   String get profileAccountSection => 'खाता';
 
   @override
-  String get profileVerifiedDriver => '✓ सत्यापित ड्राइवर';
+  String get profileVerifiedDriver => '✓ सत्यापित';
 
   @override
   String get profileLanguage => 'भाषा';
@@ -447,7 +445,7 @@ class AppLocalizationsHi extends AppLocalizations {
   String get profileMyVehicles => 'मेरे वाहन';
 
   @override
-  String get profileTermsPrivacy => 'नियम व गोपनीयता';
+  String get profileTermsPrivacy => 'Terms & Privacy';
 
   @override
   String get profileHelp => '24×7 ड्राइवर सहायता';
@@ -467,28 +465,28 @@ class AppLocalizationsHi extends AppLocalizations {
   String get profileAccountInactive => 'निष्क्रिय';
 
   @override
-  String get searchTitle => 'ट्रक खोजें';
+  String get searchTitle => 'ट्रक ढूंढें';
 
   @override
-  String get searchSubtitle => 'अपने लोड के लिए सही ट्रक खोजें';
+  String get searchSubtitle => 'अपने लोड के लिए सही ट्रक ढूंढें';
 
   @override
-  String get searchOriginLabel => 'मूल स्थान';
+  String get searchOriginLabel => 'कहाँ से';
 
   @override
-  String get searchOriginHint => 'मूल स्थान चुनें';
+  String get searchOriginHint => 'कहाँ से सेलेक्ट करें';
 
   @override
-  String get searchDestinationLabel => 'गंतव्य';
+  String get searchDestinationLabel => 'कहाँ तक';
 
   @override
-  String get searchDestinationHint => 'गंतव्य चुनें';
+  String get searchDestinationHint => 'कहाँ तक सेलेक्ट करें';
 
   @override
   String get searchTruckTypeLabel => 'ट्रक का प्रकार';
 
   @override
-  String get searchSelectTruckHint => 'ट्रक चुनें';
+  String get searchSelectTruckHint => 'ट्रक सेलेक्ट करें';
 
   @override
   String get searchCapacityLabel => 'क्षमता';
@@ -497,16 +495,16 @@ class AppLocalizationsHi extends AppLocalizations {
   String get searchVehicleNumberLabel => 'वाहन नंबर';
 
   @override
-  String get searchSelectHint => 'चुनें';
+  String get searchSelectHint => 'सेलेक्ट करें';
 
   @override
-  String get searchFindTrucksButton => 'ट्रक खोजें';
+  String get searchFindTrucksButton => 'ट्रक ढूंढें';
 
   @override
-  String get resultsTitle => 'खोज परिणाम';
+  String get resultsTitle => 'रिजल्ट';
 
   @override
-  String get resultsSearching => 'खोज रहे हैं…';
+  String get resultsSearching => 'ढूंढ रहे हैं…';
 
   @override
   String resultsFoundCount(int count) {
@@ -520,7 +518,7 @@ class AppLocalizationsHi extends AppLocalizations {
   }
 
   @override
-  String get resultsYourResults => 'आपके खोज परिणाम';
+  String get resultsYourResults => 'आपके रिजल्ट';
 
   @override
   String get resultsRunSearch => 'परिणाम देखने के लिए खोज चलाएं';
@@ -529,16 +527,16 @@ class AppLocalizationsHi extends AppLocalizations {
   String get resultsNoneNearby => 'आस-पास कोई ट्रक नहीं मिला';
 
   @override
-  String get resultsAnyOrigin => 'कोई भी मूल स्थान';
+  String get resultsAnyOrigin => 'कोई भी कहाँ से';
 
   @override
-  String get resultsAnyDestination => 'कोई भी गंतव्य';
+  String get resultsAnyDestination => 'कोई भी कहाँ तक';
 
   @override
-  String get resultsOriginLabel => 'मूल स्थान';
+  String get resultsOriginLabel => 'कहाँ से';
 
   @override
-  String get resultsDestinationLabel => 'गंतव्य';
+  String get resultsDestinationLabel => 'कहाँ तक';
 
   @override
   String get resultsDateLabel => 'तारीख';
@@ -547,16 +545,16 @@ class AppLocalizationsHi extends AppLocalizations {
   String get resultsAny => 'कोई भी';
 
   @override
-  String get resultsSortByLabel => 'इसके अनुसार क्रमबद्ध करें:';
+  String get resultsSortByLabel => 'Sort करें:';
 
   @override
-  String get resultsSortNearestOrigin => 'मूल स्थान के सबसे निकट';
+  String get resultsSortNearestOrigin => 'कहाँ से के सबसे निकट';
 
   @override
-  String get resultsSortNearestDestination => 'गंतव्य के सबसे निकट';
+  String get resultsSortNearestDestination => 'कहाँ तक के सबसे निकट';
 
   @override
-  String get resultsCallDialerError => 'फोन डायलर नहीं खुल सका';
+  String get resultsCallDialerError => 'फोन नहीं खुल पाया';
 
   @override
   String get resultsCallNow => 'अभी कॉल करें';
@@ -580,10 +578,10 @@ class AppLocalizationsHi extends AppLocalizations {
   }
 
   @override
-  String get mutualContactsSheetTitle => 'पारस्परिक संपर्क';
+  String get mutualContactsSheetTitle => 'कॉमन कॉन्टैक्ट';
 
   @override
-  String get mutualContactsEmpty => 'कोई पारस्परिक संपर्क नहीं मिला';
+  String get mutualContactsEmpty => 'कोई कॉमन कॉन्टैक्ट नहीं मिला';
 
   @override
   String get mutualContactsNumberUnavailable => 'नंबर उपलब्ध नहीं';
@@ -594,16 +592,16 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get contactsPermissionDeniedMessage =>
-      'संपर्क अनुमति अस्वीकृत। पारस्परिक कनेक्शन देखने के लिए सेटिंग्स में इसे सक्षम करें।';
+      'Contacts की परमिशन बंद है। सेटिंग्स से ऑन करें।';
 
   @override
   String get navHome => 'होम';
 
   @override
-  String get navSearch => 'खोजें';
+  String get navSearch => 'ढूंढें';
 
   @override
-  String get navProfile => 'प्रोफाइल';
+  String get navProfile => 'प्रोफ़ाइल';
 
   @override
   String truckCardMoreDestinations(int count) {
@@ -616,5 +614,55 @@ class AppLocalizationsHi extends AppLocalizations {
   }
 
   @override
-  String get networkOfflineBanner => 'इंटरनेट कनेक्शन नहीं है';
+  String get networkOfflineBanner => 'इंटरनेट नहीं है';
+
+  @override
+  String get truckMapPreviewTitle => 'लाइव ट्रक मैप';
+
+  @override
+  String get truckMapPreviewSubtitle =>
+      'अपने पास के ट्रक देखने के लिए टैप करें';
+
+  @override
+  String get truckMapPreviewCta => 'लाइव मैप देखें';
+
+  @override
+  String get truckMapAppBarTitle => 'आपके आस-पास के ट्रक';
+
+  @override
+  String get truckMapLoading => 'आपके आस-पास के ट्रक खोजे जा रहे हैं…';
+
+  @override
+  String get truckMapNoTrucksNearby => '150 किमी के भीतर कोई ट्रक नहीं मिला';
+
+  @override
+  String get truckMapErrorGeneric => 'ट्रक लोड नहीं हो सके';
+
+  @override
+  String get truckMapRetry => 'फिर से कोशिश करें';
+
+  @override
+  String truckMapCountFound(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count ट्रक पास में',
+      one: '1 ट्रक पास में',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get truckMapDetailsTitle => 'ट्रक विवरण';
+
+  @override
+  String truckMapViewList(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'सूची देखें ($count)',
+      one: 'सूची देखें (1)',
+    );
+    return '$_temp0';
+  }
 }

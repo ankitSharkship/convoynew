@@ -25,7 +25,26 @@ final kycRemoteDataSourceProvider =
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef KycRemoteDataSourceRef = AutoDisposeProviderRef<KycRemoteDataSource>;
-String _$kycRepositoryHash() => r'841c1bbbfb87dff4107b20ecfe6d0db8c117ce0c';
+String _$kycLocalDataSourceHash() =>
+    r'37d85803c6dfcde781b9a9855fd37ccc5d293c20';
+
+/// See also [kycLocalDataSource].
+@ProviderFor(kycLocalDataSource)
+final kycLocalDataSourceProvider =
+    AutoDisposeProvider<KycLocalDataSource>.internal(
+      kycLocalDataSource,
+      name: r'kycLocalDataSourceProvider',
+      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+          ? null
+          : _$kycLocalDataSourceHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
+
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef KycLocalDataSourceRef = AutoDisposeProviderRef<KycLocalDataSource>;
+String _$kycRepositoryHash() => r'a28da51ec0d83aad1aabf9c9ffd1d3fe5bc470f0';
 
 /// See also [kycRepository].
 @ProviderFor(kycRepository)

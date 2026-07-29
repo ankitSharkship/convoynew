@@ -11,6 +11,7 @@ import '../../../../shared/widgets/language_switcher_button.dart';
 import '../../../../shared/widgets/location_permission_dialog.dart';
 import '../../../../shared/utils/truck_type_image.dart';
 import '../../../../shared/widgets/suggestions_overlay.dart';
+import '../../../truck_map/presentation/widgets/mini_map_preview.dart';
 import '../../domain/entities/location_entity.dart';
 import '../state/search_notifier.dart';
 import '../widgets/truck_type_sheet.dart';
@@ -283,6 +284,8 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                   ],
                 ),
               ),
+              const SizedBox(height: 20),
+              const SizedBox(height: 200, child: MiniMapPreview()),
             ],
           ),
         ),

@@ -2,13 +2,14 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../core/network/api_exception.dart';
 import '../../../../core/network/dio_client.dart';
-import '../../../../core/router/app_router.dart';
+import '../../../../core/storage/shared_preferences_provider.dart';
 import '../../data/datasources/auth_local_datasource.dart';
 import '../../data/datasources/auth_remote_datasource.dart';
 import '../../data/repositories/auth_repository_impl.dart';
 import '../../domain/entities/auth_session_entity.dart';
 import '../../domain/usecases/send_otp_usecase.dart';
 import '../../domain/usecases/verify_otp_usecase.dart';
+import '../../../kyc/presentation/state/kyc_notifier.dart';
 import '../../../profile/presentation/state/profile_notifier.dart';
 
 part 'auth_notifier.g.dart';
@@ -104,6 +105,11 @@ class AuthNotifier extends _$AuthNotifier {
     await profileLocal.clearPhotoPath();
     await profileLocal.clearRemotePhoto();
     ref.invalidate(profileNotifierProvider);
+    // The cached "KYC approved" flag is scoped to a user id, but wipe it
+    // outright anyway rather than leaving it for the next login's check to
+    // filter out — one less thing that has to work correctly for a stale
+    // cache to never leak across accounts on the same device.
+    await ref.read(kycLocalDataSourceProvider).clear();
     state = const AuthIdle();
   }
 

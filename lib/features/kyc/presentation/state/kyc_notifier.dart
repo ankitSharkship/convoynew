@@ -1,7 +1,9 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../../../core/network/api_exception.dart';
 import '../../../../core/network/dio_client.dart';
+import '../../../../core/storage/shared_preferences_provider.dart';
 import '../../../profile/presentation/state/profile_notifier.dart';
+import '../../data/datasources/kyc_local_datasource.dart';
 import '../../data/datasources/kyc_remote_datasource.dart';
 import '../../data/repositories/kyc_repository_impl.dart';
 import '../../domain/usecases/get_kyc_status_usecase.dart';
@@ -16,8 +18,16 @@ KycRemoteDataSource kycRemoteDataSource(KycRemoteDataSourceRef ref) {
 }
 
 @riverpod
+KycLocalDataSource kycLocalDataSource(KycLocalDataSourceRef ref) {
+  return KycLocalDataSourceImpl(ref.watch(sharedPreferencesProvider));
+}
+
+@riverpod
 KycRepositoryImpl kycRepository(KycRepositoryRef ref) {
-  return KycRepositoryImpl(ref.watch(kycRemoteDataSourceProvider));
+  return KycRepositoryImpl(
+    ref.watch(kycRemoteDataSourceProvider),
+    ref.watch(kycLocalDataSourceProvider),
+  );
 }
 
 @riverpod

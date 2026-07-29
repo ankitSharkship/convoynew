@@ -159,7 +159,7 @@
 
   "profileTitle": "Profile",
   "profileAccountSection": "ACCOUNT",
-  "profileVerifiedDriver": "✓ Verified Driver",
+  "profileVerifiedDriver": "✓ Verified",
   "profileLanguage": "Language",
   "profileLogoutTitle": "Logout",
   "profileLogoutConfirm": "Are you sure you want to logout?",
@@ -251,5 +251,23 @@
     "placeholders": { "capacity": { "type": "int" } }
   },
 
-  "networkOfflineBanner": "No internet connection"
+  "networkOfflineBanner": "No internet connection",
+
+  "truckMapPreviewTitle": "Live Truck Map",
+  "truckMapPreviewSubtitle": "Tap to view trucks near you",
+  "truckMapPreviewCta": "View Live Map",
+  "truckMapAppBarTitle": "Trucks Near You",
+  "truckMapLoading": "Finding trucks near you…",
+  "truckMapNoTrucksNearby": "No trucks found within 150 km",
+  "truckMapErrorGeneric": "Couldn't load trucks",
+  "truckMapRetry": "Retry",
+  "truckMapCountFound": "{count, plural, one{1 truck nearby} other{{count} trucks nearby}}",
+  "@truckMapCountFound": {
+    "placeholders": { "count": { "type": "int" } }
+  },
+  "truckMapDetailsTitle": "Truck Details",
+  "truckMapViewList": "{count, plural, one{View List (1)} other{View List ({count})}}",
+  "@truckMapViewList": {
+    "placeholders": { "count": { "type": "int" } }
+  }
 }

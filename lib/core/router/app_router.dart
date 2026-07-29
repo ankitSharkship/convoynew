@@ -4,7 +4,6 @@ import 'package:convoynew/features/kyc/presentation/screens/face_capture_screen.
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../features/auth/presentation/screens/otp_screen.dart';
 import '../../features/auth/presentation/screens/phone_screen.dart';
@@ -24,6 +23,7 @@ import '../../features/profile/presentation/screens/profile_screen.dart';
 import '../../features/search/presentation/screens/search_results_screen.dart';
 import '../../features/search/presentation/screens/search_screen.dart';
 import '../../features/splash/presentation/screens/splash_screen.dart';
+import '../../features/truck_map/presentation/screens/truck_map_screen.dart';
 import '../../shared/widgets/main_shell.dart';
 import '../network/dio_client.dart';
 
@@ -93,6 +93,10 @@ GoRouter appRouter(AppRouterRef ref) {
       GoRoute(
         path: '/search/results',
         builder: (_, __) => const SearchResultsScreen(),
+      ),
+      GoRoute(
+        path: '/truck-map',
+        builder: (_, __) => const TruckMapScreen(),
       ),
       GoRoute(
         path: '/profile/vehicles',
@@ -169,7 +173,3 @@ GoRouter appRouter(AppRouterRef ref) {
     ],
   );
 }
-
-final sharedPreferencesProvider = Provider<SharedPreferences>(
-  (_) => throw UnimplementedError('Override sharedPreferencesProvider in main'),
-);

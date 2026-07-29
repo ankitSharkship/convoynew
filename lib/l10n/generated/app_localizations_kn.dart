@@ -410,7 +410,7 @@ class AppLocalizationsKn extends AppLocalizations {
   String get profileAccountSection => 'ಖಾತೆ';
 
   @override
-  String get profileVerifiedDriver => '✓ ಪರಿಶೀಲಿತ ಚಾಲಕ';
+  String get profileVerifiedDriver => '✓ ಪರಿಶೀಲಿತ';
 
   @override
   String get profileLanguage => 'ಭಾಷೆ';
@@ -616,4 +616,54 @@ class AppLocalizationsKn extends AppLocalizations {
 
   @override
   String get networkOfflineBanner => 'ಇಂಟರ್ನೆಟ್ ಸಂಪರ್ಕವಿಲ್ಲ';
+
+  @override
+  String get truckMapPreviewTitle => 'ಲೈವ್ ಟ್ರಕ್ ಮ್ಯಾಪ್';
+
+  @override
+  String get truckMapPreviewSubtitle =>
+      'ನಿಮ್ಮ ಹತ್ತಿರದ ಟ್ರಕ್‌ಗಳನ್ನು ನೋಡಲು ಟ್ಯಾಪ್ ಮಾಡಿ';
+
+  @override
+  String get truckMapPreviewCta => 'ಲೈವ್ ಮ್ಯಾಪ್ ನೋಡಿ';
+
+  @override
+  String get truckMapAppBarTitle => 'ನಿಮ್ಮ ಹತ್ತಿರದ ಟ್ರಕ್‌ಗಳು';
+
+  @override
+  String get truckMapLoading => 'ನಿಮ್ಮ ಹತ್ತಿರದ ಟ್ರಕ್‌ಗಳನ್ನು ಹುಡುಕಲಾಗುತ್ತಿದೆ…';
+
+  @override
+  String get truckMapNoTrucksNearby => '150 ಕಿ.ಮೀ ಒಳಗೆ ಯಾವುದೇ ಟ್ರಕ್ ಸಿಗಲಿಲ್ಲ';
+
+  @override
+  String get truckMapErrorGeneric => 'ಟ್ರಕ್‌ಗಳನ್ನು ಲೋಡ್ ಮಾಡಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ';
+
+  @override
+  String get truckMapRetry => 'ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ';
+
+  @override
+  String truckMapCountFound(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count ಟ್ರಕ್‌ಗಳು ಹತ್ತಿರದಲ್ಲಿವೆ',
+      one: '1 ಟ್ರಕ್ ಹತ್ತಿರದಲ್ಲಿದೆ',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get truckMapDetailsTitle => 'ಟ್ರಕ್ ವಿವರಗಳು';
+
+  @override
+  String truckMapViewList(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'ಪಟ್ಟಿ ನೋಡಿ ($count)',
+      one: 'ಪಟ್ಟಿ ನೋಡಿ (1)',
+    );
+    return '$_temp0';
+  }
 }

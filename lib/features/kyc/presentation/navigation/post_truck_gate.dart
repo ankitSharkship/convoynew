@@ -45,16 +45,34 @@ Future<KycStatusEntity?> _fetchLiveKycStatus(
 /// Aadhaar is already done and only the photo step remains (skipping
 /// Aadhaar entry entirely — resending an OTP there resets progress back to
 /// step 1), or `/kyc` to start from scratch.
-Future<void> navigateToPostTruck(BuildContext context, WidgetRef ref) async {
+///
+/// [replace] swaps the current screen out instead of stacking on top of it.
+/// Pass `true` when calling this from the Post Success screen's "Post New
+/// Truck" button — that screen was itself reached via `pushReplacement`, so
+/// a plain `push` here would stack a fresh post form on top of it, leaving
+/// it (rather than the dashboard) as what the back button returns to.
+Future<void> navigateToPostTruck(
+  BuildContext context,
+  WidgetRef ref, {
+  bool replace = false,
+}) async {
   final status = await _fetchLiveKycStatus(context, ref);
   if (!context.mounted) return;
 
+  void go(String path, {Object? extra}) {
+    if (replace) {
+      context.pushReplacement(path, extra: extra);
+    } else {
+      context.push(path, extra: extra);
+    }
+  }
+
   if (status?.isApproved ?? false) {
-    context.push('/post');
+    go('/post');
   } else if (status?.isPhotoStepPending ?? false) {
-    context.push('/face_capture', extra: '/post');
+    go('/face_capture', extra: '/post');
   } else {
-    context.push('/kyc');
+    go('/kyc');
   }
 }
 

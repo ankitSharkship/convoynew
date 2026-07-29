@@ -855,7 +855,7 @@ abstract class AppLocalizations {
   /// No description provided for @profileVerifiedDriver.
   ///
   /// In en, this message translates to:
-  /// **'✓ Verified Driver'**
+  /// **'✓ Verified'**
   String get profileVerifiedDriver;
 
   /// No description provided for @profileLanguage.
@@ -1223,6 +1223,72 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'No internet connection'**
   String get networkOfflineBanner;
+
+  /// No description provided for @truckMapPreviewTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Live Truck Map'**
+  String get truckMapPreviewTitle;
+
+  /// No description provided for @truckMapPreviewSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap to view trucks near you'**
+  String get truckMapPreviewSubtitle;
+
+  /// No description provided for @truckMapPreviewCta.
+  ///
+  /// In en, this message translates to:
+  /// **'View Live Map'**
+  String get truckMapPreviewCta;
+
+  /// No description provided for @truckMapAppBarTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Trucks Near You'**
+  String get truckMapAppBarTitle;
+
+  /// No description provided for @truckMapLoading.
+  ///
+  /// In en, this message translates to:
+  /// **'Finding trucks near you…'**
+  String get truckMapLoading;
+
+  /// No description provided for @truckMapNoTrucksNearby.
+  ///
+  /// In en, this message translates to:
+  /// **'No trucks found within 150 km'**
+  String get truckMapNoTrucksNearby;
+
+  /// No description provided for @truckMapErrorGeneric.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load trucks'**
+  String get truckMapErrorGeneric;
+
+  /// No description provided for @truckMapRetry.
+  ///
+  /// In en, this message translates to:
+  /// **'Retry'**
+  String get truckMapRetry;
+
+  /// No description provided for @truckMapCountFound.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, one{1 truck nearby} other{{count} trucks nearby}}'**
+  String truckMapCountFound(int count);
+
+  /// No description provided for @truckMapDetailsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Truck Details'**
+  String get truckMapDetailsTitle;
+
+  /// No description provided for @truckMapViewList.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, one{View List (1)} other{View List ({count})}}'**
+  String truckMapViewList(int count);
 }
 
 class _AppLocalizationsDelegate

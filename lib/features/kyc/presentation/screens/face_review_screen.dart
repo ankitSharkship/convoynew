@@ -73,8 +73,17 @@ class _FaceReviewScreenState extends ConsumerState<FaceReviewScreen> {
           });
           return;
         }
-        ref.invalidate(profileNotifierProvider);
       }
+
+      // Always refresh the cached profile after a successful photo upload —
+      // both the avatar and kycStatus/kycStep may have changed server-side.
+      // This used to run only on the nextRoute != null (KYC flow) branch,
+      // so completing KYC straight from the profile screen's own KYC button
+      // (nextRoute == null) left the cached kycStatus/kycStep stale: the
+      // badge kept showing "in progress" until something else happened to
+      // invalidate the provider, even though a live re-check (e.g. tapping
+      // the KYC button again) already confirmed approval.
+      ref.invalidate(profileNotifierProvider);
 
       if (!mounted) return;
       if (nextRoute != null) {

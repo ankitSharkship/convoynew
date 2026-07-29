@@ -409,7 +409,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get profileAccountSection => 'ACCOUNT';
 
   @override
-  String get profileVerifiedDriver => '✓ Verified Driver';
+  String get profileVerifiedDriver => '✓ Verified';
 
   @override
   String get profileLanguage => 'Language';
@@ -615,4 +615,53 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get networkOfflineBanner => 'No internet connection';
+
+  @override
+  String get truckMapPreviewTitle => 'Live Truck Map';
+
+  @override
+  String get truckMapPreviewSubtitle => 'Tap to view trucks near you';
+
+  @override
+  String get truckMapPreviewCta => 'View Live Map';
+
+  @override
+  String get truckMapAppBarTitle => 'Trucks Near You';
+
+  @override
+  String get truckMapLoading => 'Finding trucks near you…';
+
+  @override
+  String get truckMapNoTrucksNearby => 'No trucks found within 150 km';
+
+  @override
+  String get truckMapErrorGeneric => 'Couldn\'t load trucks';
+
+  @override
+  String get truckMapRetry => 'Retry';
+
+  @override
+  String truckMapCountFound(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count trucks nearby',
+      one: '1 truck nearby',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get truckMapDetailsTitle => 'Truck Details';
+
+  @override
+  String truckMapViewList(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'View List ($count)',
+      one: 'View List (1)',
+    );
+    return '$_temp0';
+  }
 }

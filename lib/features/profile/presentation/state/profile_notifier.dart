@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../../../core/network/dio_client.dart';
-import '../../../../core/router/app_router.dart';
+import '../../../../core/storage/shared_preferences_provider.dart';
 import '../../data/datasources/profile_local_datasource.dart';
 import '../../data/datasources/profile_remote_datasource.dart';
 import '../../data/repositories/profile_repository_impl.dart';

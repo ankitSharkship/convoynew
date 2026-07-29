@@ -101,7 +101,8 @@ class PostSuccessScreen extends ConsumerWidget {
               ),
               const SizedBox(height: 12),
               TextButton(
-                onPressed: () => navigateToPostTruck(context, ref),
+                onPressed: () =>
+                    navigateToPostTruck(context, ref, replace: true),
                 child: Text(l10n.postSuccessPostAnother),
               ),
               const SizedBox(height: 24),
