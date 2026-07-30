@@ -1,11 +1,15 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../core/constants/app_colors.dart';
+import '../../../../core/network/dio_client.dart';
 import '../../../../l10n/generated/app_localizations.dart';
 import '../../../auth/presentation/state/auth_notifier.dart';
 import '../../../contacts/presentation/state/contacts_sync_notifier.dart';
+import '../../../devices/presentation/state/device_notifier.dart';
 import '../../../onboarding/presentation/state/onboarding_notifier.dart';
 
 class SplashScreen extends ConsumerStatefulWidget {
@@ -44,6 +48,21 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
       // navigation on it. Deliberately not tied to app-lifecycle resume
       // events — that caused a permission-dialog feedback loop before.
       ref.read(contactsSyncNotifierProvider.notifier).syncIfStale();
+      // Same fire-and-forget treatment: only actually calls the register
+      // endpoint if the FCM token has changed since the last time this
+      // device synced (see SyncDeviceTokenIfChangedUseCase) — a login
+      // itself already registers unconditionally, so this only matters
+      // for a session resumed on a fresh cold start. Provider reads are
+      // captured now, before navigating away, since `ref` itself becomes
+      // unusable once this screen is disposed.
+      final tokenStorage = ref.read(tokenStorageProvider);
+      final syncUseCase = ref.read(syncDeviceTokenIfChangedUseCaseProvider);
+      unawaited(
+        tokenStorage.getUserId().then((userId) {
+          if (userId == null) return null;
+          return syncUseCase.execute(userId);
+        }).catchError((_) {}),
+      );
       context.go('/home');
     } else {
       context.go('/auth/phone');

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../core/network/api_exception.dart';
@@ -9,6 +11,7 @@ import '../../data/repositories/auth_repository_impl.dart';
 import '../../domain/entities/auth_session_entity.dart';
 import '../../domain/usecases/send_otp_usecase.dart';
 import '../../domain/usecases/verify_otp_usecase.dart';
+import '../../../devices/presentation/state/device_notifier.dart';
 import '../../../kyc/presentation/state/kyc_notifier.dart';
 import '../../../profile/presentation/state/profile_notifier.dart';
 
@@ -93,12 +96,35 @@ class AuthNotifier extends _$AuthNotifier {
       final useCase = ref.read(verifyOtpUseCaseProvider);
       final session = await useCase.execute(phone, otp);
       state = AuthSuccess(session);
+      // Always (re-)registers this device against the just-logged-in user —
+      // including the same-device/different-user handoff case, since the
+      // backend reassigns the deviceId to the new userId automatically.
+      // Best-effort: push-device registration failing must never block a
+      // successful login.
+      final userId = await ref.read(tokenStorageProvider).getUserId();
+      if (userId != null) {
+        unawaited(
+          ref.read(registerDeviceUseCaseProvider).execute(userId).catchError(
+            (_) {},
+          ),
+        );
+      }
     } catch (e) {
       state = AuthError(ApiException.messageFor(e));
     }
   }
 
   Future<void> logout() async {
+    // Read the userId before anything below clears the stored JWT it's
+    // decoded from.
+    final userId = await ref.read(tokenStorageProvider).getUserId();
+    if (userId != null) {
+      try {
+        await ref.read(logoutDeviceUseCaseProvider).execute(userId);
+      } catch (_) {
+        // Best-effort — push deregistration failing must not block logout.
+      }
+    }
     await ref.read(authRepositoryProvider).logout();
     final profileLocal = ref.read(profileLocalDataSourceProvider);
     await profileLocal.clearProfile();

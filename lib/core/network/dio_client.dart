@@ -8,6 +8,7 @@ import 'auth_revocation_notifier.dart';
 import 'network_status_provider.dart';
 import 'token_storage.dart';
 import 'package:flutter/foundation.dart';
+import '../../features/devices/data/datasources/device_local_datasource.dart';
 import '../../features/kyc/data/datasources/kyc_local_datasource.dart';
 import '../storage/shared_preferences_provider.dart';
 
@@ -36,6 +37,10 @@ Dio dio(DioRef ref) {
   // though the (keepAlive) notifier it points to never is.
   final networkStatus = ref.read(networkStatusNotifierProvider.notifier);
   final kycLocal = KycLocalDataSourceImpl(ref.watch(sharedPreferencesProvider));
+  final deviceLocal = DeviceLocalDataSourceImpl(
+    const FlutterSecureStorage(),
+    ref.watch(sharedPreferencesProvider),
+  );
   final dio = Dio(
     BaseOptions(
       baseUrl: dotenv.env['API_BASE_URL'] ?? '',
@@ -50,6 +55,11 @@ Dio dio(DioRef ref) {
         final token = await storage.getAccessToken();
         if (token != null) {
           options.headers['Authorization'] = 'Bearer $token';
+          // Optional server-side, but this is what lets the backend's
+          // "last app seen" cleanup job tell an actively-used device apart
+          // from an abandoned one — see middleware/auth.py.
+          options.headers['X-Device-Id'] = await deviceLocal
+              .getOrCreateDeviceId();
         }
         handler.next(options);
       },

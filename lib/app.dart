@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'core/l10n/locale_notifier.dart';
 import 'core/router/app_router.dart';
 import 'core/theme/app_theme.dart';
+import 'features/devices/presentation/state/device_notifier.dart';
 import 'l10n/generated/app_localizations.dart';
 import 'shared/widgets/offline_banner.dart';
 
@@ -14,6 +15,9 @@ class App extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final router = ref.watch(appRouterProvider);
     final locale = ref.watch(localeNotifierProvider);
+    // Keeps listening for FCM token rotation for the app's entire lifetime,
+    // regardless of which route is active.
+    ref.watch(deviceTokenRefreshListenerProvider);
     return MaterialApp.router(
       title: 'Convoy',
       debugShowCheckedModeBanner: false,

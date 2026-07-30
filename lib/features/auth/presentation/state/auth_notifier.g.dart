@@ -95,7 +95,7 @@ final verifyOtpUseCaseProvider = AutoDisposeProvider<VerifyOtpUseCase>.internal(
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef VerifyOtpUseCaseRef = AutoDisposeProviderRef<VerifyOtpUseCase>;
-String _$authNotifierHash() => r'89c8e7c48d48b9d93fd5fe1564b8e9ff9348cf5e';
+String _$authNotifierHash() => r'34c9602f76f6591adbdc1e5670216766cb15fde9';
 
 /// See also [AuthNotifier].
 @ProviderFor(AuthNotifier)
