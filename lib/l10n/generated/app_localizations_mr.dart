@@ -9,7 +9,7 @@ class AppLocalizationsMr extends AppLocalizations {
   AppLocalizationsMr([String locale = 'mr']) : super(locale);
 
   @override
-  String get appName => 'Convoy';
+  String get appName => 'Bonut';
 
   @override
   String get languageSelectTitle => 'भाषा निवडा';
@@ -56,7 +56,7 @@ class AppLocalizationsMr extends AppLocalizations {
 
   @override
   String get locationPermissionDeniedMessage =>
-      'Current Location मिळवण्यासाठी Settings मध्ये जाऊन Convoy ला लोकेशनची परवानगी द्या.';
+      'Current Location मिळवण्यासाठी Settings मध्ये जाऊन Bonut ला लोकेशनची परवानगी द्या.';
 
   @override
   String get locationOpenSettingsButton => 'Settings उघडा';
@@ -145,7 +145,7 @@ class AppLocalizationsMr extends AppLocalizations {
 
   @override
   String get callDisclaimer =>
-      'Convoy मध्ये इन-अॅप Calling नाही. Call वर टॅप केल्यावर तुमचा फोन Dialer उघडेल. ही माहिती फक्त रेकॉर्डसाठी जतन केली जाते.';
+      'Bonut मध्ये इन-अॅप Calling नाही. Call वर टॅप केल्यावर तुमचा फोन Dialer उघडेल. ही माहिती फक्त रेकॉर्डसाठी जतन केली जाते.';
 
   @override
   String get homeHello => 'नमस्कार 👋';
@@ -587,7 +587,7 @@ class AppLocalizationsMr extends AppLocalizations {
 
   @override
   String get contactsPermissionRationale =>
-      'तुमच्या Contact List मधले कॉमन Contact दाखवण्यासाठी Convoy ला Contacts ची परवानगी लागते. तुमचे Contacts कोणाशीही शेअर केले जात नाहीत. फक्त सुरक्षित Hash वापरून Match केले जातात.';
+      'तुमच्या Contact List मधले कॉमन Contact दाखवण्यासाठी Bonut ला Contacts ची परवानगी लागते. तुमचे Contacts कोणाशीही शेअर केले जात नाहीत. फक्त सुरक्षित Hash वापरून Match केले जातात.';
 
   @override
   String get contactsPermissionDeniedMessage =>
@@ -598,6 +598,9 @@ class AppLocalizationsMr extends AppLocalizations {
 
   @override
   String get navSearch => 'शोधा';
+
+  @override
+  String get navWallet => 'वॉलेट';
 
   @override
   String get navProfile => 'प्रोफाइल';
@@ -664,4 +667,108 @@ class AppLocalizationsMr extends AppLocalizations {
     );
     return '$_temp0';
   }
+
+  @override
+  String get walletTitle => 'वॉलेट';
+
+  @override
+  String get walletBalanceCardLabel => 'आतापर्यंत मिळवलेले एकूण रिवॉर्ड';
+
+  @override
+  String walletPendingPayout(String amount) {
+    return '$amount पेमेंट प्रलंबित';
+  }
+
+  @override
+  String get walletFrozenMessage => 'वॉलेट फ्रीझ आहे — सहाय्याशी संपर्क साधा';
+
+  @override
+  String get walletRedeemButton => 'रिडीम करा';
+
+  @override
+  String get walletScratchCardsTab => 'स्क्रॅच कार्ड्स';
+
+  @override
+  String get walletTransactionsTab => 'व्यवहार';
+
+  @override
+  String get walletNoTransactions => 'अद्याप कोणतेही व्यवहार नाहीत';
+
+  @override
+  String get walletTxnCredit => 'रिवॉर्ड जमा झाले';
+
+  @override
+  String get walletTxnReserveRedeem => 'रिडीम विनंती केली';
+
+  @override
+  String get walletTxnConfirmPayout => 'पेमेंट पाठवले';
+
+  @override
+  String get walletTxnReleaseReserve => 'रिडीम नाकारले — परत जमा';
+
+  @override
+  String get walletRedeemSheetTitle => 'UPI वर रिडीम करा';
+
+  @override
+  String walletRedeemAvailableLabel(String amount) {
+    return 'उपलब्ध: $amount';
+  }
+
+  @override
+  String get walletUpiIdLabel => 'UPI आयडी';
+
+  @override
+  String get walletUpiIdHint => 'yourname@bank';
+
+  @override
+  String get walletUpiIdRequired => 'UPI आयडी टाका';
+
+  @override
+  String get walletUpiIdInvalid => 'वैध UPI आयडी टाका, उदा. name@bank';
+
+  @override
+  String get walletConfirmRedeemButton => 'रिडीमची पुष्टी करा';
+
+  @override
+  String get walletRedeemSuccessMessage => 'रिडीम विनंती सबमिट केली';
+
+  @override
+  String get walletScratchCardsEmpty =>
+      'अद्याप कोणतेही स्क्रॅच कार्ड नाही — ट्रक पोस्ट करा आणि एक मिळवा!';
+
+  @override
+  String get walletScratchCardScratchHint => 'स्क्रॅच करा';
+
+  @override
+  String get walletScratchCardNoReward => 'बक्षीस नाही';
+
+  @override
+  String get walletScratchCardExpired => 'मुदत संपली';
+
+  @override
+  String get postScratchCardTitle => 'तुम्ही स्क्रॅच कार्ड जिंकले आहे!';
+
+  @override
+  String get postScratchCardSubtitle =>
+      'तुमचे बक्षीस पाहण्यासाठी कार्ड स्क्रॅच करा';
+
+  @override
+  String get postScratchCardWonTitle => '🎉 तुम्ही जिंकलात!';
+
+  @override
+  String get postScratchCardNoRewardTitle => 'पुढच्या वेळी नशीब आजमवा!';
+
+  @override
+  String get postScratchCardNoRewardSubtitle =>
+      'जिंकण्याच्या अधिक संधींसाठी दररोज पोस्ट करत रहा';
+
+  @override
+  String get postScratchCardContinueButton => 'पुढे सुरू ठेवा';
+
+  @override
+  String get walletKycRequiredMessage =>
+      'तुमचे वॉलेट आणि रिवॉर्ड्स अ‍ॅक्सेस करण्यासाठी कृपया तुमचे KYC पूर्ण करा';
+
+  @override
+  String get walletKycCompleteButton => 'KYC पूर्ण करा';
 }

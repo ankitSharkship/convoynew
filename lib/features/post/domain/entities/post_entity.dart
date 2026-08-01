@@ -1,3 +1,7 @@
+import '../../../scratch_cards/domain/entities/scratch_card_entity.dart';
+
+typedef PostSubmitResult = ({PostEntity post, ScratchCardEntity? scratchCard});
+
 class PostEntity {
   final String id;
   final String vehicleId;

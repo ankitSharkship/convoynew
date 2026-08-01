@@ -105,7 +105,7 @@ abstract class AppLocalizations {
   /// No description provided for @appName.
   ///
   /// In en, this message translates to:
-  /// **'Convoy'**
+  /// **'Bonut'**
   String get appName;
 
   /// No description provided for @languageSelectTitle.
@@ -195,7 +195,7 @@ abstract class AppLocalizations {
   /// No description provided for @locationPermissionDeniedMessage.
   ///
   /// In en, this message translates to:
-  /// **'Allow Convoy to access your location from Settings to auto-detect your current location.'**
+  /// **'Allow Bonut to access your location from Settings to auto-detect your current location.'**
   String get locationPermissionDeniedMessage;
 
   /// No description provided for @locationOpenSettingsButton.
@@ -357,7 +357,7 @@ abstract class AppLocalizations {
   /// No description provided for @callDisclaimer.
   ///
   /// In en, this message translates to:
-  /// **'Convoy has no in-app calling. Tapping Call\nopens your phone dialer and logs it for your records.'**
+  /// **'Bounut has no in-app calling. Tapping Call\nopens your phone dialer and logs it for your records.'**
   String get callDisclaimer;
 
   /// No description provided for @homeHello.
@@ -1179,7 +1179,7 @@ abstract class AppLocalizations {
   /// No description provided for @contactsPermissionRationale.
   ///
   /// In en, this message translates to:
-  /// **'Convoy uses your contacts to show mutual connections with other users. Your contacts are never shared — only secure one-way hashes are synced.'**
+  /// **'Bonut uses your contacts to show mutual connections with other users. Your contacts are never shared — only secure one-way hashes are synced.'**
   String get contactsPermissionRationale;
 
   /// No description provided for @contactsPermissionDeniedMessage.
@@ -1199,6 +1199,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Search'**
   String get navSearch;
+
+  /// No description provided for @navWallet.
+  ///
+  /// In en, this message translates to:
+  /// **'Wallet'**
+  String get navWallet;
 
   /// No description provided for @navProfile.
   ///
@@ -1289,6 +1295,198 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{count, plural, one{View List (1)} other{View List ({count})}}'**
   String truckMapViewList(int count);
+
+  /// No description provided for @walletTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Wallet'**
+  String get walletTitle;
+
+  /// No description provided for @walletBalanceCardLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Total Rewards Earned'**
+  String get walletBalanceCardLabel;
+
+  /// No description provided for @walletPendingPayout.
+  ///
+  /// In en, this message translates to:
+  /// **'{amount} pending payout'**
+  String walletPendingPayout(String amount);
+
+  /// No description provided for @walletFrozenMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Wallet frozen — contact support'**
+  String get walletFrozenMessage;
+
+  /// No description provided for @walletRedeemButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Redeem'**
+  String get walletRedeemButton;
+
+  /// No description provided for @walletScratchCardsTab.
+  ///
+  /// In en, this message translates to:
+  /// **'Scratch Cards'**
+  String get walletScratchCardsTab;
+
+  /// No description provided for @walletTransactionsTab.
+  ///
+  /// In en, this message translates to:
+  /// **'Transactions'**
+  String get walletTransactionsTab;
+
+  /// No description provided for @walletNoTransactions.
+  ///
+  /// In en, this message translates to:
+  /// **'No transactions yet'**
+  String get walletNoTransactions;
+
+  /// No description provided for @walletTxnCredit.
+  ///
+  /// In en, this message translates to:
+  /// **'Reward credited'**
+  String get walletTxnCredit;
+
+  /// No description provided for @walletTxnReserveRedeem.
+  ///
+  /// In en, this message translates to:
+  /// **'Redeem requested'**
+  String get walletTxnReserveRedeem;
+
+  /// No description provided for @walletTxnConfirmPayout.
+  ///
+  /// In en, this message translates to:
+  /// **'Payout sent'**
+  String get walletTxnConfirmPayout;
+
+  /// No description provided for @walletTxnReleaseReserve.
+  ///
+  /// In en, this message translates to:
+  /// **'Redeem rejected — refunded'**
+  String get walletTxnReleaseReserve;
+
+  /// No description provided for @walletRedeemSheetTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Redeem to UPI'**
+  String get walletRedeemSheetTitle;
+
+  /// No description provided for @walletRedeemAvailableLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Available: {amount}'**
+  String walletRedeemAvailableLabel(String amount);
+
+  /// No description provided for @walletUpiIdLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'UPI ID'**
+  String get walletUpiIdLabel;
+
+  /// No description provided for @walletUpiIdHint.
+  ///
+  /// In en, this message translates to:
+  /// **'yourname@bank'**
+  String get walletUpiIdHint;
+
+  /// No description provided for @walletUpiIdRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a UPI ID'**
+  String get walletUpiIdRequired;
+
+  /// No description provided for @walletUpiIdInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a valid UPI ID, e.g. name@bank'**
+  String get walletUpiIdInvalid;
+
+  /// No description provided for @walletConfirmRedeemButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm Redeem'**
+  String get walletConfirmRedeemButton;
+
+  /// No description provided for @walletRedeemSuccessMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Redeem request submitted'**
+  String get walletRedeemSuccessMessage;
+
+  /// No description provided for @walletScratchCardsEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No scratch cards yet — post a truck to earn one!'**
+  String get walletScratchCardsEmpty;
+
+  /// No description provided for @walletScratchCardScratchHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Scratch Here'**
+  String get walletScratchCardScratchHint;
+
+  /// No description provided for @walletScratchCardNoReward.
+  ///
+  /// In en, this message translates to:
+  /// **'No reward'**
+  String get walletScratchCardNoReward;
+
+  /// No description provided for @walletScratchCardExpired.
+  ///
+  /// In en, this message translates to:
+  /// **'Expired'**
+  String get walletScratchCardExpired;
+
+  /// No description provided for @postScratchCardTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'ve Earned a Scratch Card!'**
+  String get postScratchCardTitle;
+
+  /// No description provided for @postScratchCardSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Scratch the card to reveal your reward'**
+  String get postScratchCardSubtitle;
+
+  /// No description provided for @postScratchCardWonTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'🎉 You Won!'**
+  String get postScratchCardWonTitle;
+
+  /// No description provided for @postScratchCardNoRewardTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Better Luck Next Time!'**
+  String get postScratchCardNoRewardTitle;
+
+  /// No description provided for @postScratchCardNoRewardSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep posting daily for more chances to win'**
+  String get postScratchCardNoRewardSubtitle;
+
+  /// No description provided for @postScratchCardContinueButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue'**
+  String get postScratchCardContinueButton;
+
+  /// No description provided for @walletKycRequiredMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Please complete your KYC to access the wallet and rewards'**
+  String get walletKycRequiredMessage;
+
+  /// No description provided for @walletKycCompleteButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Complete KYC'**
+  String get walletKycCompleteButton;
 }
 
 class _AppLocalizationsDelegate

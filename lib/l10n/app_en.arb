@@ -1,7 +1,7 @@
 {
   "@@locale": "en",
 
-  "appName": "Convoy",
+  "appName": "Bonut",
   "languageSelectTitle": "Select Language",
   "languageEnglish": "English",
   "languageHindi": "हिंदी",
@@ -17,7 +17,7 @@
   "locationServiceDisabledMessage": "Turn on location services to auto-detect your current location.",
   "locationEnableButton": "Enable Location",
   "locationPermissionDeniedTitle": "Location permission needed",
-  "locationPermissionDeniedMessage": "Allow Convoy to access your location from Settings to auto-detect your current location.",
+  "locationPermissionDeniedMessage": "Allow Bonut to access your location from Settings to auto-detect your current location.",
   "locationOpenSettingsButton": "Open Settings",
 
   "truckTypeOpenBody": "Open Body",
@@ -58,7 +58,7 @@
   "@callConnected": {
     "placeholders": { "duration": { "type": "String" } }
   },
-  "callDisclaimer": "Convoy has no in-app calling. Tapping Call\nopens your phone dialer and logs it for your records.",
+  "callDisclaimer": "Bounut has no in-app calling. Tapping Call\nopens your phone dialer and logs it for your records.",
 
   "homeHello": "Hello",
   "homeHeroTitle": "Your truck is ready\nto earn 💰",
@@ -234,11 +234,12 @@
   "mutualContactsSheetTitle": "Mutual Contacts",
   "mutualContactsEmpty": "No mutual contacts found",
   "mutualContactsNumberUnavailable": "Number unavailable",
-  "contactsPermissionRationale": "Convoy uses your contacts to show mutual connections with other users. Your contacts are never shared — only secure one-way hashes are synced.",
+  "contactsPermissionRationale": "Bonut uses your contacts to show mutual connections with other users. Your contacts are never shared — only secure one-way hashes are synced.",
   "contactsPermissionDeniedMessage": "Contacts permission denied. Enable it in Settings to see mutual connections.",
 
   "navHome": "Home",
   "navSearch": "Search",
+  "navWallet": "Wallet",
   "navProfile": "Profile",
 
   "truckCardMoreDestinations": "+{count} more",
@@ -269,5 +270,47 @@
   "truckMapViewList": "{count, plural, one{View List (1)} other{View List ({count})}}",
   "@truckMapViewList": {
     "placeholders": { "count": { "type": "int" } }
-  }
+  },
+
+  "walletTitle": "Wallet",
+  "walletBalanceCardLabel": "Total Rewards Earned",
+  "walletPendingPayout": "{amount} pending payout",
+  "@walletPendingPayout": {
+    "placeholders": { "amount": { "type": "String" } }
+  },
+  "walletFrozenMessage": "Wallet frozen — contact support",
+  "walletRedeemButton": "Redeem",
+  "walletScratchCardsTab": "Scratch Cards",
+  "walletTransactionsTab": "Transactions",
+  "walletNoTransactions": "No transactions yet",
+  "walletTxnCredit": "Reward credited",
+  "walletTxnReserveRedeem": "Redeem requested",
+  "walletTxnConfirmPayout": "Payout sent",
+  "walletTxnReleaseReserve": "Redeem rejected — refunded",
+  "walletRedeemSheetTitle": "Redeem to UPI",
+  "walletRedeemAvailableLabel": "Available: {amount}",
+  "@walletRedeemAvailableLabel": {
+    "placeholders": { "amount": { "type": "String" } }
+  },
+  "walletUpiIdLabel": "UPI ID",
+  "walletUpiIdHint": "yourname@bank",
+  "walletUpiIdRequired": "Enter a UPI ID",
+  "walletUpiIdInvalid": "Enter a valid UPI ID, e.g. name@bank",
+  "walletConfirmRedeemButton": "Confirm Redeem",
+  "walletRedeemSuccessMessage": "Redeem request submitted",
+
+  "walletScratchCardsEmpty": "No scratch cards yet — post a truck to earn one!",
+  "walletScratchCardScratchHint": "Scratch Here",
+  "walletScratchCardNoReward": "No reward",
+  "walletScratchCardExpired": "Expired",
+
+  "postScratchCardTitle": "You've Earned a Scratch Card!",
+  "postScratchCardSubtitle": "Scratch the card to reveal your reward",
+  "postScratchCardWonTitle": "🎉 You Won!",
+  "postScratchCardNoRewardTitle": "Better Luck Next Time!",
+  "postScratchCardNoRewardSubtitle": "Keep posting daily for more chances to win",
+  "postScratchCardContinueButton": "Continue",
+
+  "walletKycRequiredMessage": "Please complete your KYC to access the wallet and rewards",
+  "walletKycCompleteButton": "Complete KYC"
 }

@@ -1,7 +1,7 @@
 {
   "@@locale": "hi",
 
-  "appName": "Convoy",
+  "appName": "Bonut",
   "languageSelectTitle": "भाषा सेलेक्ट करें",
   "languageEnglish": "English",
   "languageHindi": "हिंदी",
@@ -17,7 +17,7 @@
   "locationServiceDisabledMessage": "अपनी वर्तमान लोकेशन का पता लगाने के लिए लोकेशन ऑन करें।",
   "locationEnableButton": "लोकेशन चालू करें",
   "locationPermissionDeniedTitle": "लोकेशन की परमिशन चाहिए",
-  "locationPermissionDeniedMessage": "अपनी वर्तमान लोकेशन का पता लगाने के लिए सेटिंग्स से Convoy को लोकेशन एक्सेस की अनुमति दें।",
+  "locationPermissionDeniedMessage": "अपनी वर्तमान लोकेशन का पता लगाने के लिए सेटिंग्स से Bonut को लोकेशन एक्सेस की अनुमति दें।",
   "locationOpenSettingsButton": "सेटिंग्स खोलें",
 
   "truckTypeOpenBody": "खुली बॉडी",
@@ -49,7 +49,7 @@
   "callDialerHint": "आपका फोन डायलर खोलता है",
   "callCalling": "कॉल लग रही है…",
   "callConnected": "कॉल जुड़ गई · {duration}",
-  "callDisclaimer": "Convoy में इन-ऐप कॉलिंग नहीं है। कॉल पर टैप करने से\nआपका फोन डायलर खुलता है और इसे रिकॉर्ड के लिए दर्ज किया जाता है।",
+  "callDisclaimer": "Bonut में इन-ऐप कॉलिंग नहीं है। कॉल पर टैप करने से\nआपका फोन डायलर खुलता है और इसे रिकॉर्ड के लिए दर्ज किया जाता है।",
 
   "homeHello": "नमस्ते",
   "homeHeroTitle": "आपका ट्रक कमाई के लिए\nतैयार है 💰",
@@ -201,11 +201,12 @@
   "mutualContactsSheetTitle": "कॉमन कॉन्टैक्ट",
   "mutualContactsEmpty": "कोई कॉमन कॉन्टैक्ट नहीं मिला",
   "mutualContactsNumberUnavailable": "नंबर उपलब्ध नहीं",
-  "contactsPermissionRationale": "Convoy अन्य उपयोगकर्ताओं के साथ पारस्परिक संबंध दिखाने के लिए आपके संपर्कों का उपयोग करता है। आपके संपर्क कभी साझा नहीं किए जाते — केवल सुरक्षित एकतरफा हैश सिंक किए जाते हैं।",
+  "contactsPermissionRationale": "Bonut अन्य उपयोगकर्ताओं के साथ पारस्परिक संबंध दिखाने के लिए आपके संपर्कों का उपयोग करता है। आपके संपर्क कभी साझा नहीं किए जाते — केवल सुरक्षित एकतरफा हैश सिंक किए जाते हैं।",
   "contactsPermissionDeniedMessage": "Contacts की परमिशन बंद है। सेटिंग्स से ऑन करें।",
 
   "navHome": "होम",
   "navSearch": "ढूंढें",
+  "navWallet": "वॉलेट",
   "navProfile": "प्रोफ़ाइल",
 
   "truckCardMoreDestinations": "+{count} और",
@@ -230,5 +231,47 @@
   "truckMapViewList": "{count, plural, one{सूची देखें (1)} other{सूची देखें ({count})}}",
   "@truckMapViewList": {
     "placeholders": { "count": { "type": "int" } }
-  }
+  },
+
+  "walletTitle": "वॉलेट",
+  "walletBalanceCardLabel": "अब तक अर्जित कुल रिवॉर्ड",
+  "walletPendingPayout": "{amount} भुगतान लंबित",
+  "@walletPendingPayout": {
+    "placeholders": { "amount": { "type": "String" } }
+  },
+  "walletFrozenMessage": "वॉलेट फ़्रीज़ है — सहायता से संपर्क करें",
+  "walletRedeemButton": "रिडीम करें",
+  "walletScratchCardsTab": "स्क्रैच कार्ड",
+  "walletTransactionsTab": "लेन-देन",
+  "walletNoTransactions": "अभी तक कोई लेन-देन नहीं",
+  "walletTxnCredit": "रिवॉर्ड जमा हुआ",
+  "walletTxnReserveRedeem": "रिडीम अनुरोध किया गया",
+  "walletTxnConfirmPayout": "भुगतान भेजा गया",
+  "walletTxnReleaseReserve": "रिडीम अस्वीकृत — वापस जमा",
+  "walletRedeemSheetTitle": "UPI पर रिडीम करें",
+  "walletRedeemAvailableLabel": "उपलब्ध: {amount}",
+  "@walletRedeemAvailableLabel": {
+    "placeholders": { "amount": { "type": "String" } }
+  },
+  "walletUpiIdLabel": "UPI आईडी",
+  "walletUpiIdHint": "yourname@bank",
+  "walletUpiIdRequired": "UPI आईडी दर्ज करें",
+  "walletUpiIdInvalid": "मान्य UPI आईडी दर्ज करें, जैसे name@bank",
+  "walletConfirmRedeemButton": "रिडीम की पुष्टि करें",
+  "walletRedeemSuccessMessage": "रिडीम अनुरोध सबमिट किया गया",
+
+  "walletScratchCardsEmpty": "अभी तक कोई स्क्रैच कार्ड नहीं — ट्रक पोस्ट करें और एक पाएं!",
+  "walletScratchCardScratchHint": "स्क्रैच करें",
+  "walletScratchCardNoReward": "कोई इनाम नहीं",
+  "walletScratchCardExpired": "समाप्त",
+
+  "postScratchCardTitle": "आपने एक स्क्रैच कार्ड जीता है!",
+  "postScratchCardSubtitle": "अपना इनाम देखने के लिए कार्ड स्क्रैच करें",
+  "postScratchCardWonTitle": "🎉 आप जीत गए!",
+  "postScratchCardNoRewardTitle": "अगली बार किस्मत आजमाएं!",
+  "postScratchCardNoRewardSubtitle": "जीतने के और मौकों के लिए रोज़ पोस्ट करते रहें",
+  "postScratchCardContinueButton": "जारी रखें",
+
+  "walletKycRequiredMessage": "अपने वॉलेट और रिवॉर्ड तक पहुंचने के लिए कृपया अपना KYC पूरा करें",
+  "walletKycCompleteButton": "KYC पूरा करें"
 }

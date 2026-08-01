@@ -58,10 +58,13 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
       final tokenStorage = ref.read(tokenStorageProvider);
       final syncUseCase = ref.read(syncDeviceTokenIfChangedUseCaseProvider);
       unawaited(
-        tokenStorage.getUserId().then((userId) {
-          if (userId == null) return null;
-          return syncUseCase.execute(userId);
-        }).catchError((_) {}),
+        tokenStorage
+            .getUserId()
+            .then((userId) {
+              if (userId == null) return null;
+              return syncUseCase.execute(userId);
+            })
+            .catchError((_) {}),
       );
       context.go('/home');
     } else {
@@ -79,7 +82,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
           child: Text(
             AppLocalizations.of(context)!.appName,
             style: const TextStyle(
-              color: AppColors.primaryBlue,
+              color: AppColors.primaryDarkLight,
               fontSize: 44,
               fontWeight: FontWeight.w900,
               letterSpacing: -0.5,

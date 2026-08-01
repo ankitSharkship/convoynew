@@ -77,7 +77,7 @@ final editTripUseCaseProvider = AutoDisposeProvider<EditTripUseCase>.internal(
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef EditTripUseCaseRef = AutoDisposeProviderRef<EditTripUseCase>;
-String _$postNotifierHash() => r'62ce6b6e50feff2e59175bd22d1992a1420e8343';
+String _$postNotifierHash() => r'2edb1fbdcac457a7df47771e93b875e377f71add';
 
 /// See also [PostNotifier].
 @ProviderFor(PostNotifier)

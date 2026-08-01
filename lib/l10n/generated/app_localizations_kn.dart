@@ -9,7 +9,7 @@ class AppLocalizationsKn extends AppLocalizations {
   AppLocalizationsKn([String locale = 'kn']) : super(locale);
 
   @override
-  String get appName => 'Convoy';
+  String get appName => 'Bonut';
 
   @override
   String get languageSelectTitle => 'ಭಾಷೆ ಆಯ್ಕೆಮಾಡಿ';
@@ -56,7 +56,7 @@ class AppLocalizationsKn extends AppLocalizations {
 
   @override
   String get locationPermissionDeniedMessage =>
-      'ನಿಮ್ಮ ಪ್ರಸ್ತುತ ಸ್ಥಳವನ್ನು ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಪತ್ತೆಹಚ್ಚಲು ಸೆಟ್ಟಿಂಗ್‌ಗಳಿಂದ Convoy ಗೆ ಲೊಕೇಶನ್ ಪ್ರವೇಶವನ್ನು ಅನುಮತಿಸಿ.';
+      'ನಿಮ್ಮ ಪ್ರಸ್ತುತ ಸ್ಥಳವನ್ನು ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಪತ್ತೆಹಚ್ಚಲು ಸೆಟ್ಟಿಂಗ್‌ಗಳಿಂದ Bonut ಗೆ ಲೊಕೇಶನ್ ಪ್ರವೇಶವನ್ನು ಅನುಮತಿಸಿ.';
 
   @override
   String get locationOpenSettingsButton => 'ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ತೆರೆಯಿರಿ';
@@ -146,7 +146,7 @@ class AppLocalizationsKn extends AppLocalizations {
 
   @override
   String get callDisclaimer =>
-      'Convoy ನಲ್ಲಿ ಇನ್-ಆ್ಯಪ್ ಕರೆ ಇಲ್ಲ. ಕರೆ ಮೇಲೆ ಟ್ಯಾಪ್ ಮಾಡಿದಾಗ\nಇದು ನಿಮ್ಮ ಫೋನ್ ಡಯಲರ್ ಅನ್ನು ತೆರೆಯುತ್ತದೆ ಮತ್ತು ದಾಖಲೆಗಾಗಿ ಅದನ್ನು ಲಾಗ್ ಮಾಡುತ್ತದೆ.';
+      'Bonut ನಲ್ಲಿ ಇನ್-ಆ್ಯಪ್ ಕರೆ ಇಲ್ಲ. ಕರೆ ಮೇಲೆ ಟ್ಯಾಪ್ ಮಾಡಿದಾಗ\nಇದು ನಿಮ್ಮ ಫೋನ್ ಡಯಲರ್ ಅನ್ನು ತೆರೆಯುತ್ತದೆ ಮತ್ತು ದಾಖಲೆಗಾಗಿ ಅದನ್ನು ಲಾಗ್ ಮಾಡುತ್ತದೆ.';
 
   @override
   String get homeHello => 'ನಮಸ್ಕಾರ';
@@ -589,7 +589,7 @@ class AppLocalizationsKn extends AppLocalizations {
 
   @override
   String get contactsPermissionRationale =>
-      'ಇತರ ಬಳಕೆದಾರರೊಂದಿಗೆ ಪರಸ್ಪರ ಸಂಪರ್ಕಗಳನ್ನು ತೋರಿಸಲು Convoy ನಿಮ್ಮ ಸಂಪರ್ಕಗಳನ್ನು ಬಳಸುತ್ತದೆ. ನಿಮ್ಮ ಸಂಪರ್ಕಗಳನ್ನು ಎಂದಿಗೂ ಹಂಚಿಕೊಳ್ಳಲಾಗುವುದಿಲ್ಲ — ಸುರಕ್ಷಿತ ಏಕಮುಖ ಹ್ಯಾಶ್‌ಗಳನ್ನು ಮಾತ್ರ ಸಿಂಕ್ ಮಾಡಲಾಗುತ್ತದೆ.';
+      'ಇತರ ಬಳಕೆದಾರರೊಂದಿಗೆ ಪರಸ್ಪರ ಸಂಪರ್ಕಗಳನ್ನು ತೋರಿಸಲು Bonut ನಿಮ್ಮ ಸಂಪರ್ಕಗಳನ್ನು ಬಳಸುತ್ತದೆ. ನಿಮ್ಮ ಸಂಪರ್ಕಗಳನ್ನು ಎಂದಿಗೂ ಹಂಚಿಕೊಳ್ಳಲಾಗುವುದಿಲ್ಲ — ಸುರಕ್ಷಿತ ಏಕಮುಖ ಹ್ಯಾಶ್‌ಗಳನ್ನು ಮಾತ್ರ ಸಿಂಕ್ ಮಾಡಲಾಗುತ್ತದೆ.';
 
   @override
   String get contactsPermissionDeniedMessage =>
@@ -600,6 +600,9 @@ class AppLocalizationsKn extends AppLocalizations {
 
   @override
   String get navSearch => 'ಹುಡುಕಿ';
+
+  @override
+  String get navWallet => 'ವಾಲೆಟ್';
 
   @override
   String get navProfile => 'ಪ್ರೊಫೈಲ್';
@@ -666,4 +669,110 @@ class AppLocalizationsKn extends AppLocalizations {
     );
     return '$_temp0';
   }
+
+  @override
+  String get walletTitle => 'ವಾಲೆಟ್';
+
+  @override
+  String get walletBalanceCardLabel => 'ಇಲ್ಲಿಯವರೆಗೆ ಗಳಿಸಿದ ಒಟ್ಟು ರಿವಾರ್ಡ್';
+
+  @override
+  String walletPendingPayout(String amount) {
+    return '$amount ಪಾವತಿ ಬಾಕಿ ಇದೆ';
+  }
+
+  @override
+  String get walletFrozenMessage =>
+      'ವಾಲೆಟ್ ಫ್ರೀಜ್ ಆಗಿದೆ — ಸಹಾಯಕ್ಕಾಗಿ ಸಂಪರ್ಕಿಸಿ';
+
+  @override
+  String get walletRedeemButton => 'ರಿಡೀಮ್ ಮಾಡಿ';
+
+  @override
+  String get walletScratchCardsTab => 'ಸ್ಕ್ರ್ಯಾಚ್ ಕಾರ್ಡ್‌ಗಳು';
+
+  @override
+  String get walletTransactionsTab => 'ವಹಿವಾಟುಗಳು';
+
+  @override
+  String get walletNoTransactions => 'ಇನ್ನೂ ಯಾವುದೇ ವಹಿವಾಟುಗಳಿಲ್ಲ';
+
+  @override
+  String get walletTxnCredit => 'ರಿವಾರ್ಡ್ ಜಮಾ ಆಗಿದೆ';
+
+  @override
+  String get walletTxnReserveRedeem => 'ರಿಡೀಮ್ ವಿನಂತಿಸಲಾಗಿದೆ';
+
+  @override
+  String get walletTxnConfirmPayout => 'ಪಾವತಿ ಕಳುಹಿಸಲಾಗಿದೆ';
+
+  @override
+  String get walletTxnReleaseReserve =>
+      'ರಿಡೀಮ್ ತಿರಸ್ಕರಿಸಲಾಗಿದೆ — ಮರುಪಾವತಿಸಲಾಗಿದೆ';
+
+  @override
+  String get walletRedeemSheetTitle => 'UPI ಗೆ ರಿಡೀಮ್ ಮಾಡಿ';
+
+  @override
+  String walletRedeemAvailableLabel(String amount) {
+    return 'ಲಭ್ಯವಿದೆ: $amount';
+  }
+
+  @override
+  String get walletUpiIdLabel => 'UPI ಐಡಿ';
+
+  @override
+  String get walletUpiIdHint => 'yourname@bank';
+
+  @override
+  String get walletUpiIdRequired => 'UPI ಐಡಿ ನಮೂದಿಸಿ';
+
+  @override
+  String get walletUpiIdInvalid => 'ಮಾನ್ಯ UPI ಐಡಿ ನಮೂದಿಸಿ, ಉದಾ. name@bank';
+
+  @override
+  String get walletConfirmRedeemButton => 'ರಿಡೀಮ್ ಖಚಿತಪಡಿಸಿ';
+
+  @override
+  String get walletRedeemSuccessMessage => 'ರಿಡೀಮ್ ವಿನಂತಿ ಸಲ್ಲಿಸಲಾಗಿದೆ';
+
+  @override
+  String get walletScratchCardsEmpty =>
+      'ಇನ್ನೂ ಯಾವುದೇ ಸ್ಕ್ರ್ಯಾಚ್ ಕಾರ್ಡ್ ಇಲ್ಲ — ಟ್ರಕ್ ಪೋಸ್ಟ್ ಮಾಡಿ ಒಂದನ್ನು ಗಳಿಸಿ!';
+
+  @override
+  String get walletScratchCardScratchHint => 'ಸ್ಕ್ರ್ಯಾಚ್ ಮಾಡಿ';
+
+  @override
+  String get walletScratchCardNoReward => 'ಯಾವುದೇ ರಿವಾರ್ಡ್ ಇಲ್ಲ';
+
+  @override
+  String get walletScratchCardExpired => 'ಅವಧಿ ಮುಗಿದಿದೆ';
+
+  @override
+  String get postScratchCardTitle => 'ನೀವು ಸ್ಕ್ರ್ಯಾಚ್ ಕಾರ್ಡ್ ಗಳಿಸಿದ್ದೀರಿ!';
+
+  @override
+  String get postScratchCardSubtitle =>
+      'ನಿಮ್ಮ ರಿವಾರ್ಡ್ ನೋಡಲು ಕಾರ್ಡ್ ಸ್ಕ್ರ್ಯಾಚ್ ಮಾಡಿ';
+
+  @override
+  String get postScratchCardWonTitle => '🎉 ನೀವು ಗೆದ್ದಿದ್ದೀರಿ!';
+
+  @override
+  String get postScratchCardNoRewardTitle => 'ಮುಂದಿನ ಬಾರಿ ಪ್ರಯತ್ನಿಸಿ!';
+
+  @override
+  String get postScratchCardNoRewardSubtitle =>
+      'ಗೆಲ್ಲುವ ಹೆಚ್ಚಿನ ಅವಕಾಶಗಳಿಗಾಗಿ ಪ್ರತಿದಿನ ಪೋಸ್ಟ್ ಮಾಡುತ್ತಿರಿ';
+
+  @override
+  String get postScratchCardContinueButton => 'ಮುಂದುವರಿಸಿ';
+
+  @override
+  String get walletKycRequiredMessage =>
+      'ನಿಮ್ಮ ವಾಲೆಟ್ ಮತ್ತು ರಿವಾರ್ಡ್‌ಗಳನ್ನು ಪ್ರವೇಶಿಸಲು ದಯವಿಟ್ಟು ನಿಮ್ಮ KYC ಪೂರ್ಣಗೊಳಿಸಿ';
+
+  @override
+  String get walletKycCompleteButton => 'KYC ಪೂರ್ಣಗೊಳಿಸಿ';
 }

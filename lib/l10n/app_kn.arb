@@ -1,7 +1,7 @@
 {
   "@@locale": "kn",
 
-  "appName": "Convoy",
+  "appName": "Bonut",
   "languageSelectTitle": "ಭಾಷೆ ಆಯ್ಕೆಮಾಡಿ",
   "languageEnglish": "English",
   "languageHindi": "हिंदी",
@@ -17,7 +17,7 @@
   "locationServiceDisabledMessage": "ನಿಮ್ಮ ಪ್ರಸ್ತುತ ಸ್ಥಳವನ್ನು ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಪತ್ತೆಹಚ್ಚಲು ಲೊಕೇಶನ್ ಸೇವೆಗಳನ್ನು ಆನ್ ಮಾಡಿ.",
   "locationEnableButton": "ಲೊಕೇಶನ್ ಸಕ್ರಿಯಗೊಳಿಸಿ",
   "locationPermissionDeniedTitle": "ಲೊಕೇಶನ್ ಅನುಮತಿ ಅಗತ್ಯವಿದೆ",
-  "locationPermissionDeniedMessage": "ನಿಮ್ಮ ಪ್ರಸ್ತುತ ಸ್ಥಳವನ್ನು ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಪತ್ತೆಹಚ್ಚಲು ಸೆಟ್ಟಿಂಗ್‌ಗಳಿಂದ Convoy ಗೆ ಲೊಕೇಶನ್ ಪ್ರವೇಶವನ್ನು ಅನುಮತಿಸಿ.",
+  "locationPermissionDeniedMessage": "ನಿಮ್ಮ ಪ್ರಸ್ತುತ ಸ್ಥಳವನ್ನು ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಪತ್ತೆಹಚ್ಚಲು ಸೆಟ್ಟಿಂಗ್‌ಗಳಿಂದ Bonut ಗೆ ಲೊಕೇಶನ್ ಪ್ರವೇಶವನ್ನು ಅನುಮತಿಸಿ.",
   "locationOpenSettingsButton": "ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ತೆರೆಯಿರಿ",
 
   "truckTypeOpenBody": "ಓಪನ್ ಬಾಡಿ",
@@ -58,7 +58,7 @@
   "@callConnected": {
     "placeholders": { "duration": { "type": "String" } }
   },
-  "callDisclaimer": "Convoy ನಲ್ಲಿ ಇನ್-ಆ್ಯಪ್ ಕರೆ ಇಲ್ಲ. ಕರೆ ಮೇಲೆ ಟ್ಯಾಪ್ ಮಾಡಿದಾಗ\nಇದು ನಿಮ್ಮ ಫೋನ್ ಡಯಲರ್ ಅನ್ನು ತೆರೆಯುತ್ತದೆ ಮತ್ತು ದಾಖಲೆಗಾಗಿ ಅದನ್ನು ಲಾಗ್ ಮಾಡುತ್ತದೆ.",
+  "callDisclaimer": "Bonut ನಲ್ಲಿ ಇನ್-ಆ್ಯಪ್ ಕರೆ ಇಲ್ಲ. ಕರೆ ಮೇಲೆ ಟ್ಯಾಪ್ ಮಾಡಿದಾಗ\nಇದು ನಿಮ್ಮ ಫೋನ್ ಡಯಲರ್ ಅನ್ನು ತೆರೆಯುತ್ತದೆ ಮತ್ತು ದಾಖಲೆಗಾಗಿ ಅದನ್ನು ಲಾಗ್ ಮಾಡುತ್ತದೆ.",
 
   "homeHello": "ನಮಸ್ಕಾರ",
   "homeHeroTitle": "ನಿಮ್ಮ ಟ್ರಕ್ ಗಳಿಸಲು\nಸಿದ್ಧವಾಗಿದೆ 💰",
@@ -234,11 +234,12 @@
   "mutualContactsSheetTitle": "ಪರಸ್ಪರ ಸಂಪರ್ಕಗಳು",
   "mutualContactsEmpty": "ಯಾವುದೇ ಪರಸ್ಪರ ಸಂಪರ್ಕಗಳು ಕಂಡುಬಂದಿಲ್ಲ",
   "mutualContactsNumberUnavailable": "ನಂಬರ್ ಲಭ್ಯವಿಲ್ಲ",
-  "contactsPermissionRationale": "ಇತರ ಬಳಕೆದಾರರೊಂದಿಗೆ ಪರಸ್ಪರ ಸಂಪರ್ಕಗಳನ್ನು ತೋರಿಸಲು Convoy ನಿಮ್ಮ ಸಂಪರ್ಕಗಳನ್ನು ಬಳಸುತ್ತದೆ. ನಿಮ್ಮ ಸಂಪರ್ಕಗಳನ್ನು ಎಂದಿಗೂ ಹಂಚಿಕೊಳ್ಳಲಾಗುವುದಿಲ್ಲ — ಸುರಕ್ಷಿತ ಏಕಮುಖ ಹ್ಯಾಶ್‌ಗಳನ್ನು ಮಾತ್ರ ಸಿಂಕ್ ಮಾಡಲಾಗುತ್ತದೆ.",
+  "contactsPermissionRationale": "ಇತರ ಬಳಕೆದಾರರೊಂದಿಗೆ ಪರಸ್ಪರ ಸಂಪರ್ಕಗಳನ್ನು ತೋರಿಸಲು Bonut ನಿಮ್ಮ ಸಂಪರ್ಕಗಳನ್ನು ಬಳಸುತ್ತದೆ. ನಿಮ್ಮ ಸಂಪರ್ಕಗಳನ್ನು ಎಂದಿಗೂ ಹಂಚಿಕೊಳ್ಳಲಾಗುವುದಿಲ್ಲ — ಸುರಕ್ಷಿತ ಏಕಮುಖ ಹ್ಯಾಶ್‌ಗಳನ್ನು ಮಾತ್ರ ಸಿಂಕ್ ಮಾಡಲಾಗುತ್ತದೆ.",
   "contactsPermissionDeniedMessage": "ಸಂಪರ್ಕಗಳ ಅನುಮತಿ ನಿರಾಕರಿಸಲಾಗಿದೆ. ಪರಸ್ಪರ ಸಂಪರ್ಕಗಳನ್ನು ನೋಡಲು ಸೆಟ್ಟಿಂಗ್‌ಗಳಲ್ಲಿ ಅದನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ.",
 
   "navHome": "ಮುಖಪುಟ",
   "navSearch": "ಹುಡುಕಿ",
+  "navWallet": "ವಾಲೆಟ್",
   "navProfile": "ಪ್ರೊಫೈಲ್",
 
   "truckCardMoreDestinations": "+{count} ಇನ್ನಷ್ಟು",
@@ -269,5 +270,47 @@
   "truckMapViewList": "{count, plural, one{ಪಟ್ಟಿ ನೋಡಿ (1)} other{ಪಟ್ಟಿ ನೋಡಿ ({count})}}",
   "@truckMapViewList": {
     "placeholders": { "count": { "type": "int" } }
-  }
+  },
+
+  "walletTitle": "ವಾಲೆಟ್",
+  "walletBalanceCardLabel": "ಇಲ್ಲಿಯವರೆಗೆ ಗಳಿಸಿದ ಒಟ್ಟು ರಿವಾರ್ಡ್",
+  "walletPendingPayout": "{amount} ಪಾವತಿ ಬಾಕಿ ಇದೆ",
+  "@walletPendingPayout": {
+    "placeholders": { "amount": { "type": "String" } }
+  },
+  "walletFrozenMessage": "ವಾಲೆಟ್ ಫ್ರೀಜ್ ಆಗಿದೆ — ಸಹಾಯಕ್ಕಾಗಿ ಸಂಪರ್ಕಿಸಿ",
+  "walletRedeemButton": "ರಿಡೀಮ್ ಮಾಡಿ",
+  "walletScratchCardsTab": "ಸ್ಕ್ರ್ಯಾಚ್ ಕಾರ್ಡ್‌ಗಳು",
+  "walletTransactionsTab": "ವಹಿವಾಟುಗಳು",
+  "walletNoTransactions": "ಇನ್ನೂ ಯಾವುದೇ ವಹಿವಾಟುಗಳಿಲ್ಲ",
+  "walletTxnCredit": "ರಿವಾರ್ಡ್ ಜಮಾ ಆಗಿದೆ",
+  "walletTxnReserveRedeem": "ರಿಡೀಮ್ ವಿನಂತಿಸಲಾಗಿದೆ",
+  "walletTxnConfirmPayout": "ಪಾವತಿ ಕಳುಹಿಸಲಾಗಿದೆ",
+  "walletTxnReleaseReserve": "ರಿಡೀಮ್ ತಿರಸ್ಕರಿಸಲಾಗಿದೆ — ಮರುಪಾವತಿಸಲಾಗಿದೆ",
+  "walletRedeemSheetTitle": "UPI ಗೆ ರಿಡೀಮ್ ಮಾಡಿ",
+  "walletRedeemAvailableLabel": "ಲಭ್ಯವಿದೆ: {amount}",
+  "@walletRedeemAvailableLabel": {
+    "placeholders": { "amount": { "type": "String" } }
+  },
+  "walletUpiIdLabel": "UPI ಐಡಿ",
+  "walletUpiIdHint": "yourname@bank",
+  "walletUpiIdRequired": "UPI ಐಡಿ ನಮೂದಿಸಿ",
+  "walletUpiIdInvalid": "ಮಾನ್ಯ UPI ಐಡಿ ನಮೂದಿಸಿ, ಉದಾ. name@bank",
+  "walletConfirmRedeemButton": "ರಿಡೀಮ್ ಖಚಿತಪಡಿಸಿ",
+  "walletRedeemSuccessMessage": "ರಿಡೀಮ್ ವಿನಂತಿ ಸಲ್ಲಿಸಲಾಗಿದೆ",
+
+  "walletScratchCardsEmpty": "ಇನ್ನೂ ಯಾವುದೇ ಸ್ಕ್ರ್ಯಾಚ್ ಕಾರ್ಡ್ ಇಲ್ಲ — ಟ್ರಕ್ ಪೋಸ್ಟ್ ಮಾಡಿ ಒಂದನ್ನು ಗಳಿಸಿ!",
+  "walletScratchCardScratchHint": "ಸ್ಕ್ರ್ಯಾಚ್ ಮಾಡಿ",
+  "walletScratchCardNoReward": "ಯಾವುದೇ ರಿವಾರ್ಡ್ ಇಲ್ಲ",
+  "walletScratchCardExpired": "ಅವಧಿ ಮುಗಿದಿದೆ",
+
+  "postScratchCardTitle": "ನೀವು ಸ್ಕ್ರ್ಯಾಚ್ ಕಾರ್ಡ್ ಗಳಿಸಿದ್ದೀರಿ!",
+  "postScratchCardSubtitle": "ನಿಮ್ಮ ರಿವಾರ್ಡ್ ನೋಡಲು ಕಾರ್ಡ್ ಸ್ಕ್ರ್ಯಾಚ್ ಮಾಡಿ",
+  "postScratchCardWonTitle": "🎉 ನೀವು ಗೆದ್ದಿದ್ದೀರಿ!",
+  "postScratchCardNoRewardTitle": "ಮುಂದಿನ ಬಾರಿ ಪ್ರಯತ್ನಿಸಿ!",
+  "postScratchCardNoRewardSubtitle": "ಗೆಲ್ಲುವ ಹೆಚ್ಚಿನ ಅವಕಾಶಗಳಿಗಾಗಿ ಪ್ರತಿದಿನ ಪೋಸ್ಟ್ ಮಾಡುತ್ತಿರಿ",
+  "postScratchCardContinueButton": "ಮುಂದುವರಿಸಿ",
+
+  "walletKycRequiredMessage": "ನಿಮ್ಮ ವಾಲೆಟ್ ಮತ್ತು ರಿವಾರ್ಡ್‌ಗಳನ್ನು ಪ್ರವೇಶಿಸಲು ದಯವಿಟ್ಟು ನಿಮ್ಮ KYC ಪೂರ್ಣಗೊಳಿಸಿ",
+  "walletKycCompleteButton": "KYC ಪೂರ್ಣಗೊಳಿಸಿ"
 }

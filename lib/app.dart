@@ -19,7 +19,7 @@ class App extends ConsumerWidget {
     // regardless of which route is active.
     ref.watch(deviceTokenRefreshListenerProvider);
     return MaterialApp.router(
-      title: 'Convoy',
+      title: 'Bounut',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.light,
       routerConfig: router,
@@ -30,6 +30,7 @@ class App extends ConsumerWidget {
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
+
       ],
       // Global "no internet connection" strip, sits above every route
       // (auth, kyc, the tabbed shell, etc.) rather than living inside any

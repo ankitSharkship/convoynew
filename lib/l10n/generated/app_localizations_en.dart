@@ -9,7 +9,7 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
-  String get appName => 'Convoy';
+  String get appName => 'Bonut';
 
   @override
   String get languageSelectTitle => 'Select Language';
@@ -56,7 +56,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get locationPermissionDeniedMessage =>
-      'Allow Convoy to access your location from Settings to auto-detect your current location.';
+      'Allow Bonut to access your location from Settings to auto-detect your current location.';
 
   @override
   String get locationOpenSettingsButton => 'Open Settings';
@@ -146,7 +146,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get callDisclaimer =>
-      'Convoy has no in-app calling. Tapping Call\nopens your phone dialer and logs it for your records.';
+      'Bounut has no in-app calling. Tapping Call\nopens your phone dialer and logs it for your records.';
 
   @override
   String get homeHello => 'Hello';
@@ -588,7 +588,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get contactsPermissionRationale =>
-      'Convoy uses your contacts to show mutual connections with other users. Your contacts are never shared — only secure one-way hashes are synced.';
+      'Bonut uses your contacts to show mutual connections with other users. Your contacts are never shared — only secure one-way hashes are synced.';
 
   @override
   String get contactsPermissionDeniedMessage =>
@@ -599,6 +599,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get navSearch => 'Search';
+
+  @override
+  String get navWallet => 'Wallet';
 
   @override
   String get navProfile => 'Profile';
@@ -664,4 +667,108 @@ class AppLocalizationsEn extends AppLocalizations {
     );
     return '$_temp0';
   }
+
+  @override
+  String get walletTitle => 'Wallet';
+
+  @override
+  String get walletBalanceCardLabel => 'Total Rewards Earned';
+
+  @override
+  String walletPendingPayout(String amount) {
+    return '$amount pending payout';
+  }
+
+  @override
+  String get walletFrozenMessage => 'Wallet frozen — contact support';
+
+  @override
+  String get walletRedeemButton => 'Redeem';
+
+  @override
+  String get walletScratchCardsTab => 'Scratch Cards';
+
+  @override
+  String get walletTransactionsTab => 'Transactions';
+
+  @override
+  String get walletNoTransactions => 'No transactions yet';
+
+  @override
+  String get walletTxnCredit => 'Reward credited';
+
+  @override
+  String get walletTxnReserveRedeem => 'Redeem requested';
+
+  @override
+  String get walletTxnConfirmPayout => 'Payout sent';
+
+  @override
+  String get walletTxnReleaseReserve => 'Redeem rejected — refunded';
+
+  @override
+  String get walletRedeemSheetTitle => 'Redeem to UPI';
+
+  @override
+  String walletRedeemAvailableLabel(String amount) {
+    return 'Available: $amount';
+  }
+
+  @override
+  String get walletUpiIdLabel => 'UPI ID';
+
+  @override
+  String get walletUpiIdHint => 'yourname@bank';
+
+  @override
+  String get walletUpiIdRequired => 'Enter a UPI ID';
+
+  @override
+  String get walletUpiIdInvalid => 'Enter a valid UPI ID, e.g. name@bank';
+
+  @override
+  String get walletConfirmRedeemButton => 'Confirm Redeem';
+
+  @override
+  String get walletRedeemSuccessMessage => 'Redeem request submitted';
+
+  @override
+  String get walletScratchCardsEmpty =>
+      'No scratch cards yet — post a truck to earn one!';
+
+  @override
+  String get walletScratchCardScratchHint => 'Scratch Here';
+
+  @override
+  String get walletScratchCardNoReward => 'No reward';
+
+  @override
+  String get walletScratchCardExpired => 'Expired';
+
+  @override
+  String get postScratchCardTitle => 'You\'ve Earned a Scratch Card!';
+
+  @override
+  String get postScratchCardSubtitle =>
+      'Scratch the card to reveal your reward';
+
+  @override
+  String get postScratchCardWonTitle => '🎉 You Won!';
+
+  @override
+  String get postScratchCardNoRewardTitle => 'Better Luck Next Time!';
+
+  @override
+  String get postScratchCardNoRewardSubtitle =>
+      'Keep posting daily for more chances to win';
+
+  @override
+  String get postScratchCardContinueButton => 'Continue';
+
+  @override
+  String get walletKycRequiredMessage =>
+      'Please complete your KYC to access the wallet and rewards';
+
+  @override
+  String get walletKycCompleteButton => 'Complete KYC';
 }

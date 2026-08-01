@@ -19,11 +19,14 @@ import '../../features/post/presentation/screens/my_trips_screen.dart';
 import '../../features/post/presentation/screens/my_trucks_screen.dart';
 import '../../features/post/presentation/screens/post_form_screen.dart';
 import '../../features/post/presentation/screens/post_success_screen.dart';
+import '../../features/scratch_cards/domain/entities/scratch_card_entity.dart';
+import '../../features/scratch_cards/presentation/screens/post_scratch_card_screen.dart';
 import '../../features/profile/presentation/screens/profile_screen.dart';
 import '../../features/search/presentation/screens/search_results_screen.dart';
 import '../../features/search/presentation/screens/search_screen.dart';
 import '../../features/splash/presentation/screens/splash_screen.dart';
 import '../../features/truck_map/presentation/screens/truck_map_screen.dart';
+import '../../features/wallet/presentation/screens/wallet_screen.dart';
 import '../../shared/widgets/main_shell.dart';
 import '../network/dio_client.dart';
 
@@ -86,6 +89,18 @@ GoRouter appRouter(AppRouterRef ref) {
             builder: (context, state) {
               final trip = state.extra as TripEntity?;
               return PostFormScreen(editingTrip: trip);
+            },
+          ),
+          GoRoute(
+            path: 'scratch-card',
+            builder: (context, state) {
+              final extra = state.extra as Map<String, dynamic>? ?? {};
+              return PostScratchCardScreen(
+                truckType: extra['truckType'] as String? ?? 'Open Body',
+                capacity: extra['capacity'] as int? ?? 9,
+                origin: extra['origin'] as String? ?? 'Bhiwandi, MH',
+                scratchCard: extra['scratchCard'] as ScratchCardEntity,
+              );
             },
           ),
         ],
@@ -157,6 +172,14 @@ GoRouter appRouter(AppRouterRef ref) {
               GoRoute(
                 path: '/search',
                 builder: (_, __) => const SearchScreen(),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: '/wallet',
+                builder: (_, __) => const WalletScreen(),
               ),
             ],
           ),

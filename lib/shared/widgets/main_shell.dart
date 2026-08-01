@@ -45,6 +45,11 @@ class MainShell extends StatelessWidget {
               label: l10n.navSearch,
             ),
             BottomNavigationBarItem(
+              icon: const Icon(Icons.account_balance_wallet_outlined),
+              activeIcon: const Icon(Icons.account_balance_wallet),
+              label: l10n.navWallet,
+            ),
+            BottomNavigationBarItem(
               icon: const Icon(Icons.person_outline),
               activeIcon: const Icon(Icons.person),
               label: l10n.navProfile,

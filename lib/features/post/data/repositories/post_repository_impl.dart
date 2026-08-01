@@ -9,7 +9,7 @@ class PostRepositoryImpl implements PostRepository {
   PostRepositoryImpl(this._remote);
 
   @override
-  Future<PostEntity> submitPost({
+  Future<PostSubmitResult> submitPost({
     required String userId,
     required String vehicleId,
     required LocationEntity origin,

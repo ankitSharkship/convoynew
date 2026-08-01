@@ -4,6 +4,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../../../core/network/api_exception.dart';
 import '../../../../core/network/dio_client.dart';
 import '../../../../core/services/location_service.dart';
+import '../../../scratch_cards/domain/entities/scratch_card_entity.dart';
 import '../../../search/domain/entities/location_entity.dart';
 import '../../../search/presentation/state/search_notifier.dart';
 import '../../data/datasources/post_remote_datasource.dart';
@@ -86,7 +87,8 @@ class PostSubmitting extends PostState {
 
 class PostDone extends PostState {
   final PostEntity post;
-  const PostDone(this.post);
+  final ScratchCardEntity? scratchCard;
+  const PostDone(this.post, this.scratchCard);
 }
 
 class PostError extends PostState {
@@ -382,7 +384,7 @@ class PostNotifier extends _$PostNotifier {
       final userId = await ref.read(tokenStorageProvider).getUserId();
       if (userId == null) throw const ApiException();
 
-      final post = await ref
+      final result = await ref
           .read(submitPostUseCaseProvider)
           .execute(
             userId: userId,
@@ -393,7 +395,9 @@ class PostNotifier extends _$PostNotifier {
             contactName: contactName,
             contactNumber: contactNumber,
           );
-      state = state.copyWith(submission: PostDone(post));
+      state = state.copyWith(
+        submission: PostDone(result.post, result.scratchCard),
+      );
     } catch (e) {
       state = state.copyWith(submission: PostError(ApiException.messageFor(e)));
     }

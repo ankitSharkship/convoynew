@@ -128,15 +128,21 @@ class _PostFormScreenState extends ConsumerState<PostFormScreen> {
         _contactNumberController.text = formatPhoneDisplay(next.contactNumber);
       }
       if (next.submission is PostDone) {
-        final post = (next.submission as PostDone).post;
-        context.pushReplacement(
-          '/post/success',
-          extra: {
-            'truckType': post.truckType,
-            'capacity': post.capacity,
-            'origin': post.originName,
-          },
-        );
+        final done = next.submission as PostDone;
+        final scratchCard = done.scratchCard;
+        final extra = {
+          'truckType': done.post.truckType,
+          'capacity': done.post.capacity,
+          'origin': done.post.originName,
+        };
+        if (scratchCard != null) {
+          context.pushReplacement(
+            '/post/scratch-card',
+            extra: {...extra, 'scratchCard': scratchCard},
+          );
+        } else {
+          context.pushReplacement('/post/success', extra: extra);
+        }
         notifier.resetSubmission();
       } else if (next.submission is PostEditSaved) {
         if (context.canPop()) {

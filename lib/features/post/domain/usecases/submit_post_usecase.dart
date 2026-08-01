@@ -7,7 +7,7 @@ class SubmitPostUseCase {
 
   SubmitPostUseCase(this._repository);
 
-  Future<PostEntity> execute({
+  Future<PostSubmitResult> execute({
     required String userId,
     required String vehicleId,
     required LocationEntity origin,

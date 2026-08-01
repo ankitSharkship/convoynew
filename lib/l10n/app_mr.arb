@@ -1,7 +1,7 @@
 {
   "@@locale": "mr",
 
-  "appName": "Convoy",
+  "appName": "Bonut",
   "languageSelectTitle": "भाषा निवडा",
   "languageEnglish": "English",
   "languageHindi": "हिंदी",
@@ -19,7 +19,7 @@
   "locationEnableButton": "लोकेशन सुरू करा",
 
   "locationPermissionDeniedTitle": "लोकेशनची परवानगी द्या",
-  "locationPermissionDeniedMessage": "Current Location मिळवण्यासाठी Settings मध्ये जाऊन Convoy ला लोकेशनची परवानगी द्या.",
+  "locationPermissionDeniedMessage": "Current Location मिळवण्यासाठी Settings मध्ये जाऊन Bonut ला लोकेशनची परवानगी द्या.",
   "locationOpenSettingsButton": "Settings उघडा",
 
   "truckTypeOpenBody": "ओपन बॉडी",
@@ -61,7 +61,7 @@
 
   "callConnected": "Connected · {duration}",
 
-  "callDisclaimer": "Convoy मध्ये इन-अॅप Calling नाही. Call वर टॅप केल्यावर तुमचा फोन Dialer उघडेल. ही माहिती फक्त रेकॉर्डसाठी जतन केली जाते.",
+  "callDisclaimer": "Bonut मध्ये इन-अॅप Calling नाही. Call वर टॅप केल्यावर तुमचा फोन Dialer उघडेल. ही माहिती फक्त रेकॉर्डसाठी जतन केली जाते.",
 
   "homeHello": "नमस्कार 👋",
 
@@ -325,7 +325,7 @@
 
   "mutualContactsNumberUnavailable": "नंबर उपलब्ध नाही",
 
-  "contactsPermissionRationale": "तुमच्या Contact List मधले कॉमन Contact दाखवण्यासाठी Convoy ला Contacts ची परवानगी लागते. तुमचे Contacts कोणाशीही शेअर केले जात नाहीत. फक्त सुरक्षित Hash वापरून Match केले जातात.",
+  "contactsPermissionRationale": "तुमच्या Contact List मधले कॉमन Contact दाखवण्यासाठी Bonut ला Contacts ची परवानगी लागते. तुमचे Contacts कोणाशीही शेअर केले जात नाहीत. फक्त सुरक्षित Hash वापरून Match केले जातात.",
 
   "contactsPermissionDeniedMessage": "Contacts ची परवानगी दिलेली नाही. कॉमन Contact पाहण्यासाठी Settings मध्ये जाऊन परवानगी द्या.",
 
@@ -334,6 +334,8 @@
   "navHome": "होम",
 
   "navSearch": "शोधा",
+
+  "navWallet": "वॉलेट",
 
   "navProfile": "प्रोफाइल",
 
@@ -371,5 +373,69 @@
 
   "truckMapDetailsTitle": "ट्रकची माहिती",
 
-  "truckMapViewList": "{count, plural, one{यादी पहा (1)} other{यादी पहा ({count})}}"
+  "truckMapViewList": "{count, plural, one{यादी पहा (1)} other{यादी पहा ({count})}}",
+
+  "walletTitle": "वॉलेट",
+
+  "walletBalanceCardLabel": "आतापर्यंत मिळवलेले एकूण रिवॉर्ड",
+
+  "walletPendingPayout": "{amount} पेमेंट प्रलंबित",
+
+  "walletFrozenMessage": "वॉलेट फ्रीझ आहे — सहाय्याशी संपर्क साधा",
+
+  "walletRedeemButton": "रिडीम करा",
+
+  "walletScratchCardsTab": "स्क्रॅच कार्ड्स",
+
+  "walletTransactionsTab": "व्यवहार",
+
+  "walletNoTransactions": "अद्याप कोणतेही व्यवहार नाहीत",
+
+  "walletTxnCredit": "रिवॉर्ड जमा झाले",
+
+  "walletTxnReserveRedeem": "रिडीम विनंती केली",
+
+  "walletTxnConfirmPayout": "पेमेंट पाठवले",
+
+  "walletTxnReleaseReserve": "रिडीम नाकारले — परत जमा",
+
+  "walletRedeemSheetTitle": "UPI वर रिडीम करा",
+
+  "walletRedeemAvailableLabel": "उपलब्ध: {amount}",
+
+  "walletUpiIdLabel": "UPI आयडी",
+
+  "walletUpiIdHint": "yourname@bank",
+
+  "walletUpiIdRequired": "UPI आयडी टाका",
+
+  "walletUpiIdInvalid": "वैध UPI आयडी टाका, उदा. name@bank",
+
+  "walletConfirmRedeemButton": "रिडीमची पुष्टी करा",
+
+  "walletRedeemSuccessMessage": "रिडीम विनंती सबमिट केली",
+
+  "walletScratchCardsEmpty": "अद्याप कोणतेही स्क्रॅच कार्ड नाही — ट्रक पोस्ट करा आणि एक मिळवा!",
+
+  "walletScratchCardScratchHint": "स्क्रॅच करा",
+
+  "walletScratchCardNoReward": "बक्षीस नाही",
+
+  "walletScratchCardExpired": "मुदत संपली",
+
+  "postScratchCardTitle": "तुम्ही स्क्रॅच कार्ड जिंकले आहे!",
+
+  "postScratchCardSubtitle": "तुमचे बक्षीस पाहण्यासाठी कार्ड स्क्रॅच करा",
+
+  "postScratchCardWonTitle": "🎉 तुम्ही जिंकलात!",
+
+  "postScratchCardNoRewardTitle": "पुढच्या वेळी नशीब आजमवा!",
+
+  "postScratchCardNoRewardSubtitle": "जिंकण्याच्या अधिक संधींसाठी दररोज पोस्ट करत रहा",
+
+  "postScratchCardContinueButton": "पुढे सुरू ठेवा",
+
+  "walletKycRequiredMessage": "तुमचे वॉलेट आणि रिवॉर्ड्स अ‍ॅक्सेस करण्यासाठी कृपया तुमचे KYC पूर्ण करा",
+
+  "walletKycCompleteButton": "KYC पूर्ण करा"
 }
