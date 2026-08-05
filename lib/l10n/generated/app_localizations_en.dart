@@ -92,6 +92,15 @@ class AppLocalizationsEn extends AppLocalizations {
   String get truckTypeTanker => 'Tanker';
 
   @override
+  String get truckTypePuller => 'Puller';
+
+  @override
+  String get truckTypeWindbladeTrailer => 'Windblade Trailer';
+
+  @override
+  String get truckTypePickupTruck => 'Pickup Truck/Tata Ace';
+
+  @override
   String get onboardingSkip => 'Skip';
 
   @override
@@ -108,7 +117,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get onboardingChangeLanguage => 'Change language';
 
   @override
-  String get phoneEnterNumberHint => 'Enter Your Number';
+  String get phoneEnterNumberHint => 'Enter Mobile Number';
 
   @override
   String get phoneContinueButton => 'Continue with Mobile Number';
@@ -209,6 +218,16 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get kycOtpVerifyButton => 'Verify OTP';
+
+  @override
+  String get kycCheckingAadhaar => 'Checking...';
+
+  @override
+  String get kycAadhaarUnavailable => 'This Aadhaar can\'t be used';
+
+  @override
+  String get kycAadhaarConflictSnackbar =>
+      'This Aadhaar has already been verified with another account.';
 
   @override
   String get kycThankYou => 'Aadhaar Verified!';
@@ -498,6 +517,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get searchSelectHint => 'Select';
 
   @override
+  String get searchCapacityNotApplicable => 'Not applicable';
+
+  @override
   String get searchFindTrucksButton => 'Find Trucks';
 
   @override
@@ -612,7 +634,7 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String capacityTon(int capacity) {
+  String capacityTon(num capacity) {
     return '$capacity Ton';
   }
 
@@ -746,6 +768,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get walletScratchCardExpired => 'Expired';
 
   @override
+  String get scratchCardRevealButton => 'Reveal';
+
+  @override
   String get postScratchCardTitle => 'You\'ve Earned a Scratch Card!';
 
   @override
@@ -771,4 +796,24 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get walletKycCompleteButton => 'Complete KYC';
+
+  @override
+  String get wheelPickerDoneButton => 'Done';
+
+  @override
+  String get postLengthLabel => 'Length';
+
+  @override
+  String get postHeightLabel => 'Height';
+
+  @override
+  String get postSelectLengthHint => 'Select length';
+
+  @override
+  String get postSelectHeightHint => 'Select height';
+
+  @override
+  String feetValue(num value) {
+    return '$value ft';
+  }
 }

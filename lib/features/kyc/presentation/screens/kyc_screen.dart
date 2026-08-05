@@ -42,7 +42,10 @@ class _KycScreenState extends ConsumerState<KycScreen> {
   @override
   Widget build(BuildContext context) {
     final state = ref.watch(kycNotifierProvider);
-    final canSubmit = _digitsOnly.length == 12 && !state.sendingOtp;
+    final canSubmit =
+        _digitsOnly.length == 12 &&
+        !state.sendingOtp &&
+        state.aadhaarAvailable != false;
     final l10n = AppLocalizations.of(context)!;
 
     return Scaffold(
@@ -107,10 +110,32 @@ class _KycScreenState extends ConsumerState<KycScreen> {
                         if (state.error != null) {
                           ref.read(kycNotifierProvider.notifier).clearError();
                         }
+                        ref
+                            .read(kycNotifierProvider.notifier)
+                            .checkAadhaarAvailability(_digitsOnly);
                         setState(() {});
                       },
                     ),
                   ),
+                  if (state.checkingAadhaar) ...[
+                    const SizedBox(height: 10),
+                    Text(
+                      l10n.kycCheckingAadhaar,
+                      style: const TextStyle(
+                        fontSize: 12,
+                        color: AppColors.textTertiary,
+                      ),
+                    ),
+                  ] else if (state.aadhaarAvailable == false) ...[
+                    const SizedBox(height: 10),
+                    Text(
+                      state.aadhaarCheckMessage ?? l10n.kycAadhaarUnavailable,
+                      style: const TextStyle(
+                        fontSize: 12,
+                        color: AppColors.red,
+                      ),
+                    ),
+                  ],
                   if (state.error != null) ...[
                     const SizedBox(height: 10),
                     Text(

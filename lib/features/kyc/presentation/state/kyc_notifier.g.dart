@@ -120,7 +120,27 @@ final verifyAadhaarOtpUseCaseProvider =
 // ignore: unused_element
 typedef VerifyAadhaarOtpUseCaseRef =
     AutoDisposeProviderRef<VerifyAadhaarOtpUseCase>;
-String _$kycNotifierHash() => r'0facb3963d286005618f5dc1c8646e18eb7d03ac';
+String _$checkAadhaarAvailabilityUseCaseHash() =>
+    r'9454c0a03c5672f6d10e357065fa05d74928c34c';
+
+/// See also [checkAadhaarAvailabilityUseCase].
+@ProviderFor(checkAadhaarAvailabilityUseCase)
+final checkAadhaarAvailabilityUseCaseProvider =
+    AutoDisposeProvider<CheckAadhaarAvailabilityUseCase>.internal(
+      checkAadhaarAvailabilityUseCase,
+      name: r'checkAadhaarAvailabilityUseCaseProvider',
+      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+          ? null
+          : _$checkAadhaarAvailabilityUseCaseHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
+
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef CheckAadhaarAvailabilityUseCaseRef =
+    AutoDisposeProviderRef<CheckAadhaarAvailabilityUseCase>;
+String _$kycNotifierHash() => r'9fe530bae2e4ba560e2b9aebe72ee8faed91ed55';
 
 /// See also [KycNotifier].
 @ProviderFor(KycNotifier)

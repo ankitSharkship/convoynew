@@ -8,14 +8,18 @@ class VehicleModel extends VehicleEntity {
     required super.truckType,
     required super.capacity,
     required super.verificationStatus,
+    super.length,
+    super.height,
   });
 
   factory VehicleModel.fromJson(Map<String, dynamic> json) => VehicleModel(
     id: json['_id'] as String,
     vehicleNumber: json['vehicleNumber'] as String,
     truckType: json['truckType'] as String,
-    capacity: (json['capacity'] as num?)?.toInt() ?? 0,
+    capacity: (json['capacity'] as num?)?.toDouble() ?? 0,
     verificationStatus: json['verificationStatus'] as String? ?? 'pending',
+    length: (json['length'] as num?)?.toDouble(),
+    height: (json['height'] as num?)?.toDouble(),
   );
 }
 

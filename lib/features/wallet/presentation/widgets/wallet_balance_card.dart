@@ -39,16 +39,8 @@ class WalletBalanceCard extends StatelessWidget {
           children: [
             // Decorative — purely visual, gives the flat gradient some of
             // the depth a real card's foil/emboss pattern would have.
-            Positioned(
-              right: -30,
-              top: -40,
-              child: _fadedCircle(120),
-            ),
-            Positioned(
-              right: 40,
-              bottom: -50,
-              child: _fadedCircle(90),
-            ),
+            Positioned(right: -30, top: -40, child: _fadedCircle(120)),
+            Positioned(right: 40, bottom: -50, child: _fadedCircle(90)),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -85,7 +77,9 @@ class WalletBalanceCard extends StatelessWidget {
                 if (reserved > 0) ...[
                   const SizedBox(height: 4),
                   Text(
-                    l10n.walletPendingPayout(formatRupees(wallet.reservedBalance)),
+                    l10n.walletPendingPayout(
+                      formatRupees(wallet.reservedBalance),
+                    ),
                     style: TextStyle(
                       color: AppColors.white.withValues(alpha: 0.85),
                       fontSize: 12,
@@ -122,7 +116,10 @@ class WalletBalanceCard extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(width: 12),
-                    _RedeemPill(onTap: onRedeemTap, label: l10n.walletRedeemButton),
+                    _RedeemPill(
+                      onTap: onRedeemTap,
+                      label: l10n.walletRedeemButton,
+                    ),
                   ],
                 ),
               ],
@@ -154,11 +151,23 @@ class _RedeemPill extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final enabled = onTap != null;
+    // The disabled state used to blend a translucent white fill with dark
+    // orange (primaryBlueDark) text — both colors were independently
+    // alpha-blended against the navy card behind them, so the resolved
+    // pill background and text landed on similar muted tones for some
+    // color profiles, making the label unreadable. Using white for both
+    // (just at different opacities, like a standard disabled control on a
+    // dark surface) keeps the pill legible no matter what's behind it.
     return Material(
       color: enabled
           ? AppColors.white
-          : AppColors.white.withValues(alpha: 0.4),
-      borderRadius: BorderRadius.circular(20),
+          : AppColors.white.withValues(alpha: 0.14),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20),
+        side: enabled
+            ? BorderSide.none
+            : BorderSide(color: AppColors.white.withValues(alpha: 0.35)),
+      ),
       child: InkWell(
         onTap: onTap,
         borderRadius: BorderRadius.circular(20),
@@ -169,7 +178,7 @@ class _RedeemPill extends StatelessWidget {
             style: TextStyle(
               color: enabled
                   ? AppColors.primaryBlueDark
-                  : AppColors.primaryBlueDark.withValues(alpha: 0.6),
+                  : AppColors.white.withValues(alpha: 0.55),
               fontSize: 13,
               fontWeight: FontWeight.w700,
             ),

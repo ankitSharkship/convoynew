@@ -4,6 +4,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../../../core/network/api_exception.dart';
 import '../../../../core/network/dio_client.dart';
 import '../../../../core/services/location_service.dart';
+import '../../../profile/presentation/state/profile_notifier.dart';
 import '../../../scratch_cards/domain/entities/scratch_card_entity.dart';
 import '../../../search/domain/entities/location_entity.dart';
 import '../../../search/presentation/state/search_notifier.dart';
@@ -307,12 +308,27 @@ class PostNotifier extends _$PostNotifier {
   /// The origin field stays tied to `currentLocation` — refreshing it (GPS)
   /// re-detects the current location, matching how a fresh post works.
   void startEditing(TripEntity trip) {
-    final hasContact = trip.contactName != null && trip.contactName!.isNotEmpty;
     final rawNumber = trip.contactNumber ?? '';
     final digits = rawNumber.replaceAll(RegExp(r'\D'), '');
     final contactNumber = digits.length > 10
         ? digits.substring(digits.length - 10)
         : digits;
+
+    // The API always returns a resolved contact for a trip — even one
+    // posted with "me" selected, since other users searching for this
+    // trip need someone to call — so a non-empty contactName/contactNumber
+    // alone doesn't mean an alternate contact was actually set. Only
+    // treat it as "someone else" if the number differs from the signed-in
+    // user's own phone.
+    final myPhoneDigits =
+        (ref.read(profileNotifierProvider).valueOrNull?.phone ?? '').replaceAll(
+          RegExp(r'\D'),
+          '',
+        );
+    final myPhone = myPhoneDigits.length > 10
+        ? myPhoneDigits.substring(myPhoneDigits.length - 10)
+        : myPhoneDigits;
+    final isAltContact = contactNumber.isNotEmpty && contactNumber != myPhone;
 
     state = state.copyWith(
       origin: trip.currentLocation,
@@ -322,9 +338,9 @@ class PostNotifier extends _$PostNotifier {
                 .map((d) => DestinationField(location: d))
                 .toList(),
       selectedVehicleId: trip.vehicleId,
-      contactMode: hasContact ? ContactMode.someoneElse : ContactMode.me,
-      contactName: trip.contactName ?? '',
-      contactNumber: contactNumber,
+      contactMode: isAltContact ? ContactMode.someoneElse : ContactMode.me,
+      contactName: isAltContact ? (trip.contactName ?? '') : '',
+      contactNumber: isAltContact ? contactNumber : '',
       editingTripId: trip.id,
     );
   }

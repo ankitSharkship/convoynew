@@ -8,6 +8,8 @@ class PostEntity {
   final String vehicleNumber;
   final String truckType;
   final int capacity;
+  final double? length;
+  final double? height;
   final String originName;
   final List<String> destinationNames;
   final String status;
@@ -21,6 +23,8 @@ class PostEntity {
     required this.vehicleNumber,
     required this.truckType,
     required this.capacity,
+    this.length,
+    this.height,
     required this.originName,
     required this.destinationNames,
     required this.status,

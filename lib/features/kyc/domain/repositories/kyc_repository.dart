@@ -14,4 +14,11 @@ abstract class KycRepository {
     required String otp,
     required String aadhaarNumber,
   });
+
+  /// Pure lookup, no side effects — safe to call on every keystroke once
+  /// the Aadhaar number reaches 12 digits.
+  Future<AadhaarAvailabilityEntity> checkAadhaarAvailability({
+    required String userId,
+    required String aadhaarNumber,
+  });
 }

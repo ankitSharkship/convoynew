@@ -30,6 +30,9 @@
   "truckTypeRefrigeratedTruck": "रेफ्रिजरेटेड ट्रक",
   "truckTypeBulker": "बल्कर",
   "truckTypeTanker": "टैंकर",
+  "truckTypePuller": "पुलर",
+  "truckTypeWindbladeTrailer": "विंडब्लेड ट्रेलर",
+  "truckTypePickupTruck": "पिकअप ट्रक/टाटा ऐस",
 
   "onboardingSkip": "छोड़ें",
   "onboardingGetStarted": "शुरू करें",
@@ -37,7 +40,7 @@
   "onboardingSubtitle": "बस एक बार पोस्ट करें। Verified ट्रांसपोर्टर आपको सीधे कॉल करेंगे। कोई बिचौलिया नहीं।",
   "onboardingChangeLanguage": "भाषा बदलें",
 
-  "phoneEnterNumberHint": "अपना नंबर दर्ज करें",
+  "phoneEnterNumberHint": "मोबाइल नंबर दर्ज करें",
   "phoneContinueButton": "मोबाइल नंबर से आगे बढ़ें",
 
   "otpTitle": "4 अंकों का OTP डालें",
@@ -52,7 +55,7 @@
   "callDisclaimer": "Bonut में इन-ऐप कॉलिंग नहीं है। कॉल पर टैप करने से\nआपका फोन डायलर खुलता है और इसे रिकॉर्ड के लिए दर्ज किया जाता है।",
 
   "homeHello": "नमस्ते",
-  "homeHeroTitle": "आपका ट्रक कमाई के लिए\nतैयार है 💰",
+  "homeHeroTitle": "ट्रक तैया र है?है अब का म शुरू करें।",
   "homeHeroSubtitle": "अभी पोस्ट करें और तुरंत सत्यापित लोड अनुरोध पाएं।",
   "homeHeroButton": "अभी पोस्ट करें",
   "homeQuickActions": "क्या करना है?",
@@ -72,6 +75,9 @@
   "kycVerifyButton": "आधार Verify करें",
   "kycOtpHelperText": "OTP आपके आधार से जुड़े मोबाइल नंबर पर भेजा गया है। सत्यापित करने के लिए कृपया इसे दर्ज करें।",
   "kycOtpVerifyButton": "OTP सत्यापित करें",
+  "kycCheckingAadhaar": "जाँच की जा रही है...",
+  "kycAadhaarUnavailable": "यह आधार इस्तेमाल नहीं किया जा सकता",
+  "kycAadhaarConflictSnackbar": "यह आधार पहले से ही किसी दूसरे खाते से सत्यापित है।",
   "kycThankYou": "आधार Verify हो गया!",
   "kycSuccessMessage": "एक और कदम — अब अपनी फोटो Confirm करें।",
   "faceReviewTitle": "यही फोटो इस्तेमाल करें?",
@@ -171,6 +177,7 @@
   "searchCapacityLabel": "क्षमता",
   "searchVehicleNumberLabel": "वाहन नंबर",
   "searchSelectHint": "सेलेक्ट करें",
+  "searchCapacityNotApplicable": "लागू नहीं",
   "searchFindTrucksButton": "ट्रक ढूंढें",
 
   "resultsTitle": "रिजल्ट",
@@ -264,6 +271,7 @@
   "walletScratchCardScratchHint": "स्क्रैच करें",
   "walletScratchCardNoReward": "कोई इनाम नहीं",
   "walletScratchCardExpired": "समाप्त",
+  "scratchCardRevealButton": "दिखाएं",
 
   "postScratchCardTitle": "आपने एक स्क्रैच कार्ड जीता है!",
   "postScratchCardSubtitle": "अपना इनाम देखने के लिए कार्ड स्क्रैच करें",
@@ -273,5 +281,12 @@
   "postScratchCardContinueButton": "जारी रखें",
 
   "walletKycRequiredMessage": "अपने वॉलेट और रिवॉर्ड तक पहुंचने के लिए कृपया अपना KYC पूरा करें",
-  "walletKycCompleteButton": "KYC पूरा करें"
+  "walletKycCompleteButton": "KYC पूरा करें",
+
+  "wheelPickerDoneButton": "पूर्ण",
+  "postLengthLabel": "लंबाई",
+  "postHeightLabel": "ऊंचाई",
+  "postSelectLengthHint": "लंबाई चुनें",
+  "postSelectHeightHint": "ऊंचाई चुनें",
+  "feetValue": "{value} फ़ीट"
 }

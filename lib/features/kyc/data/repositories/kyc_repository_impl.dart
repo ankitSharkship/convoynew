@@ -42,4 +42,13 @@ class KycRepositoryImpl implements KycRepository {
     otp: otp,
     aadhaarNumber: aadhaarNumber,
   );
+
+  @override
+  Future<AadhaarAvailabilityEntity> checkAadhaarAvailability({
+    required String userId,
+    required String aadhaarNumber,
+  }) => _remote.checkAadhaarAvailability(
+    userId: userId,
+    aadhaarNumber: aadhaarNumber,
+  );
 }

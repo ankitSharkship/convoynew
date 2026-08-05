@@ -6,6 +6,7 @@ import '../../../../core/constants/app_colors.dart';
 import '../../../../l10n/generated/app_localizations.dart';
 import '../../../../shared/utils/truck_type_i18n.dart';
 import '../../../../shared/widgets/language_switcher_button.dart';
+import '../../../../shared/widgets/wheel_number_picker.dart';
 import '../../../contacts/presentation/state/contacts_sync_notifier.dart';
 import '../../../contacts/presentation/widgets/mutual_contacts_sheet.dart';
 import '../../domain/entities/truck_search_result_entity.dart';
@@ -679,17 +680,34 @@ class _ResultCard extends ConsumerWidget {
                 value: truckTypeLabel(context, result.truckType),
               ),
               _MetaColumn(
+                icon: Icons.numbers,
+                label: l10n.searchVehicleNumberLabel,
+                value: _maskVehicleNumber(result.truckNumber),
+              ),
+            ],
+          ),
+          const SizedBox(height: 12),
+          Row(
+            children: [
+              _MetaColumn(
                 icon: Icons.fitness_center,
                 label: l10n.searchCapacityLabel,
                 value: result.capacity > 0
                     ? l10n.capacityTon(result.capacity)
                     : '—',
               ),
-              _MetaColumn(
-                icon: Icons.numbers,
-                label: l10n.searchVehicleNumberLabel,
-                value: _maskVehicleNumber(result.truckNumber),
-              ),
+              if (result.length != null)
+                _MetaColumn(
+                  icon: Icons.straighten,
+                  label: l10n.postLengthLabel,
+                  value: l10n.feetValue(displayNum(result.length!)),
+                ),
+              if (result.height != null)
+                _MetaColumn(
+                  icon: Icons.height,
+                  label: l10n.postHeightLabel,
+                  value: l10n.feetValue(displayNum(result.height!)),
+                ),
             ],
           ),
           if (showMutuals) ...[

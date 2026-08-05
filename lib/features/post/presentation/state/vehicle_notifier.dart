@@ -89,7 +89,9 @@ class VehicleNotifier extends _$VehicleNotifier {
   Future<VehicleEntity> addVehicle({
     required String vehicleNumber,
     required String truckType,
-    required int capacity,
+    required double capacity,
+    double? length,
+    double? height,
   }) async {
     final userId = await ref.read(tokenStorageProvider).getUserId();
     if (userId == null) throw const ApiException();
@@ -101,6 +103,8 @@ class VehicleNotifier extends _$VehicleNotifier {
           vehicleNumber: vehicleNumber,
           truckType: truckType,
           capacity: capacity,
+          length: length,
+          height: height,
         );
 
     final current = await future;

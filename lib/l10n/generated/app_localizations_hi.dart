@@ -92,6 +92,15 @@ class AppLocalizationsHi extends AppLocalizations {
   String get truckTypeTanker => 'टैंकर';
 
   @override
+  String get truckTypePuller => 'पुलर';
+
+  @override
+  String get truckTypeWindbladeTrailer => 'विंडब्लेड ट्रेलर';
+
+  @override
+  String get truckTypePickupTruck => 'पिकअप ट्रक/टाटा ऐस';
+
+  @override
   String get onboardingSkip => 'छोड़ें';
 
   @override
@@ -108,7 +117,7 @@ class AppLocalizationsHi extends AppLocalizations {
   String get onboardingChangeLanguage => 'भाषा बदलें';
 
   @override
-  String get phoneEnterNumberHint => 'अपना नंबर दर्ज करें';
+  String get phoneEnterNumberHint => 'मोबाइल नंबर दर्ज करें';
 
   @override
   String get phoneContinueButton => 'मोबाइल नंबर से आगे बढ़ें';
@@ -208,6 +217,16 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get kycOtpVerifyButton => 'OTP सत्यापित करें';
+
+  @override
+  String get kycCheckingAadhaar => 'जाँच की जा रही है...';
+
+  @override
+  String get kycAadhaarUnavailable => 'यह आधार इस्तेमाल नहीं किया जा सकता';
+
+  @override
+  String get kycAadhaarConflictSnackbar =>
+      'यह आधार पहले से ही किसी दूसरे खाते से सत्यापित है।';
 
   @override
   String get kycThankYou => 'आधार Verify हो गया!';
@@ -498,6 +517,9 @@ class AppLocalizationsHi extends AppLocalizations {
   String get searchSelectHint => 'सेलेक्ट करें';
 
   @override
+  String get searchCapacityNotApplicable => 'लागू नहीं';
+
+  @override
   String get searchFindTrucksButton => 'ट्रक ढूंढें';
 
   @override
@@ -612,7 +634,7 @@ class AppLocalizationsHi extends AppLocalizations {
   }
 
   @override
-  String capacityTon(int capacity) {
+  String capacityTon(num capacity) {
     return '$capacity टन';
   }
 
@@ -747,6 +769,9 @@ class AppLocalizationsHi extends AppLocalizations {
   String get walletScratchCardExpired => 'समाप्त';
 
   @override
+  String get scratchCardRevealButton => 'दिखाएं';
+
+  @override
   String get postScratchCardTitle => 'आपने एक स्क्रैच कार्ड जीता है!';
 
   @override
@@ -772,4 +797,24 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get walletKycCompleteButton => 'KYC पूरा करें';
+
+  @override
+  String get wheelPickerDoneButton => 'पूर्ण';
+
+  @override
+  String get postLengthLabel => 'लंबाई';
+
+  @override
+  String get postHeightLabel => 'ऊंचाई';
+
+  @override
+  String get postSelectLengthHint => 'लंबाई चुनें';
+
+  @override
+  String get postSelectHeightHint => 'ऊंचाई चुनें';
+
+  @override
+  String feetValue(num value) {
+    return '$value फ़ीट';
+  }
 }

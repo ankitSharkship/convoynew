@@ -1,3 +1,6 @@
+import 'dart:math' as math;
+
+import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -7,6 +10,7 @@ import '../../../../l10n/generated/app_localizations.dart';
 import '../../../wallet/presentation/utils/currency.dart';
 import '../../domain/entities/scratch_card_entity.dart';
 import '../state/scratch_cards_notifier.dart';
+import 'scratch_card_controller.dart';
 import 'scratch_card_face.dart';
 import 'scratch_card_widget.dart';
 
@@ -45,9 +49,42 @@ class ScratchCardReveal extends ConsumerStatefulWidget {
 }
 
 class _ScratchCardRevealState extends ConsumerState<ScratchCardReveal> {
+  final _scratchController = ScratchCardController();
+  late final ConfettiController _confettiController;
+  bool _revealed = false;
   bool _committing = false;
   bool _committed = false;
   String? _commitError;
+
+  @override
+  void initState() {
+    super.initState();
+    _confettiController = ConfettiController(
+      duration: const Duration(milliseconds: 800),
+    );
+  }
+
+  @override
+  void dispose() {
+    _confettiController.dispose();
+    super.dispose();
+  }
+
+  // Fired by ScratchCardWidget both when the user finishes scratching by
+  // hand and when the reveal button forces it via the controller — either
+  // path counts as the card having been revealed.
+  void _handleReveal() {
+    setState(() => _revealed = true);
+    _commit();
+  }
+
+  void _handleRevealButtonTap() {
+    if (_revealed) return;
+    // Plays over the card while the foil is still fading out, so the
+    // reward is visible underneath by the time the burst peaks.
+    _confettiController.play();
+    _scratchController.reveal();
+  }
 
   Future<void> _commit() async {
     if (_committed || _committing) return;
@@ -76,29 +113,104 @@ class _ScratchCardRevealState extends ConsumerState<ScratchCardReveal> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final rewardValue = double.tryParse(widget.card.rewardRupees ?? '') ?? 0;
     final hasReward = rewardValue > 0;
 
-    return SizedBox(
-      width: widget.width,
-      height: widget.height,
-      child: ScratchCardWidget(
-        borderRadius: BorderRadius.circular(24),
-        brushRadius: 17,
-        revealThreshold: 0.5,
-        overlay: const ScratchCardFace(),
-        onReveal: _commit,
-        child: Container(
-          width: double.infinity,
-          height: double.infinity,
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Stack(
+          alignment: Alignment.bottomCenter,
+          clipBehavior: Clip.none,
+          children: [
+            SizedBox(
+              width: widget.width,
+              height: widget.height,
+              child: ScratchCardWidget(
+                controller: _scratchController,
+                borderRadius: BorderRadius.circular(24),
+                brushRadius: 17,
+                revealThreshold: 0.5,
+                overlay: const ScratchCardFace(),
+                onReveal: _handleReveal,
+                child: Container(
+                  width: double.infinity,
+                  height: double.infinity,
+                  color: AppColors.white,
+                  alignment: Alignment.center,
+                  child: _RevealedContent(
+                    hasReward: hasReward,
+                    rewardRupees: widget.card.rewardRupees,
+                    committing: _committing,
+                    commitError: _commitError,
+                    onRetry: _commit,
+                  ),
+                ),
+              ),
+            ),
+            IgnorePointer(
+              child: ConfettiWidget(
+                confettiController: _confettiController,
+                blastDirection: -math.pi / 2,
+                blastDirectionality: BlastDirectionality.explosive,
+                emissionFrequency: 0,
+                numberOfParticles: 24,
+                maxBlastForce: 18,
+                minBlastForce: 8,
+                gravity: 0.25,
+                shouldLoop: false,
+                colors: const [
+                  AppColors.primaryBlue,
+                  AppColors.green,
+                  AppColors.red,
+                  AppColors.white,
+                ],
+              ),
+            ),
+          ],
+        ),
+        if (!_revealed) ...[
+          const SizedBox(height: 16),
+          _RevealButton(
+            label: l10n.scratchCardRevealButton,
+            onTap: _handleRevealButtonTap,
+          ),
+        ],
+      ],
+    );
+  }
+}
+
+class _RevealButton extends StatelessWidget {
+  final String label;
+  final VoidCallback onTap;
+
+  const _RevealButton({required this.label, required this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 12),
+        decoration: BoxDecoration(
           color: AppColors.white,
-          alignment: Alignment.center,
-          child: _RevealedContent(
-            hasReward: hasReward,
-            rewardRupees: widget.card.rewardRupees,
-            committing: _committing,
-            commitError: _commitError,
-            onRetry: _commit,
+          borderRadius: BorderRadius.circular(28),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.15),
+              blurRadius: 16,
+              offset: const Offset(0, 6),
+            ),
+          ],
+        ),
+        child: Text(
+          label,
+          style: const TextStyle(
+            fontSize: 15,
+            fontWeight: FontWeight.w700,
+            color: AppColors.primaryBlue,
           ),
         ),
       ),

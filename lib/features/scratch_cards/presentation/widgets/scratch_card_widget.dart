@@ -120,14 +120,30 @@ class _ScratchCardWidgetState extends State<ScratchCardWidget> {
   // tick for its own duration. So this retries every frame (bounded, so a
   // truly pathological case just gives up instead of looping forever)
   // until the render object is actually settled.
+  //
+  // The settledness check below deliberately avoids `debugNeedsPaint`:
+  // that getter's body only assigns its return value inside an `assert()`,
+  // so it's a no-op in release/profile builds — reading it there throws
+  // `LateInitializationError` on every call. That exception was thrown
+  // synchronously, before the try/catch below, so it escaped uncaught and
+  // permanently aborted capture on the very first attempt in release APKs
+  // (asserts are always enabled under `flutter run`/the emulator, which is
+  // why this only ever showed up on release builds on a real device).
+  // `transientCallbackCount` — nonzero while a ticker (e.g. this card's
+  // Hero flight/fade-in animation) is still running — is the release-safe
+  // equivalent for "don't capture yet".
   static const _maxCaptureAttempts = 40;
 
   Future<void> _captureOverlay({int attempt = 0}) async {
     if (!mounted) return;
+    // Already revealed (e.g. the reveal button was tapped before this ever
+    // got a chance to finish) — the texture is no longer needed for
+    // anything, and capturing it now would be wasted work.
+    if (_revealed) return;
     final renderObject = _overlayCaptureKey.currentContext?.findRenderObject();
     if (renderObject is! RenderRepaintBoundary) return;
 
-    if (renderObject.debugNeedsPaint) {
+    if (WidgetsBinding.instance.transientCallbackCount > 0) {
       if (attempt >= _maxCaptureAttempts) return;
       WidgetsBinding.instance.addPostFrameCallback(
         (_) => _captureOverlay(attempt: attempt + 1),
@@ -138,7 +154,7 @@ class _ScratchCardWidgetState extends State<ScratchCardWidget> {
     try {
       final dpr = MediaQuery.of(context).devicePixelRatio;
       final image = await renderObject.toImage(pixelRatio: dpr);
-      if (!mounted) {
+      if (!mounted || _revealed) {
         image.dispose();
         return;
       }
@@ -254,15 +270,24 @@ class _ScratchCardWidgetState extends State<ScratchCardWidget> {
         fit: StackFit.expand,
         children: [
           widget.child,
-          // Rendered normally (not display:none) until captured, since a
-          // RepaintBoundary needs at least one real paint pass to produce
-          // an image — Offstage flips to hiding it the instant the
-          // captured image takes over, with no visible handoff.
-          Offstage(
-            offstage: overlayImage != null,
-            child: RepaintBoundary(key: _overlayCaptureKey, child: widget.overlay),
-          ),
-          if (overlayImage != null)
+          // Mutually exclusive with the captured-texture branch below,
+          // rather than both existing and being toggled with Offstage —
+          // that older approach only ever hid this raw widget once
+          // `overlayImage` was captured, completely ignoring `_revealed`.
+          // A forced reveal (the reveal button) firing before capture had
+          // finished then left this foil stuck on screen forever, since
+          // nothing in this branch ever looked at `_overlayOpacity`. Both
+          // branches now fade via the same `_overlayOpacity`, so a reveal
+          // always uncovers `widget.child` regardless of whether the
+          // texture capture ever completed.
+          if (overlayImage == null)
+            AnimatedOpacity(
+              opacity: _overlayOpacity,
+              duration: const Duration(milliseconds: 350),
+              curve: Curves.easeOut,
+              child: RepaintBoundary(key: _overlayCaptureKey, child: widget.overlay),
+            )
+          else
             AnimatedOpacity(
               opacity: _overlayOpacity,
               duration: const Duration(milliseconds: 350),

@@ -7,6 +7,8 @@ class PostModel extends PostEntity {
     required super.vehicleNumber,
     required super.truckType,
     required super.capacity,
+    super.length,
+    super.height,
     required super.originName,
     required super.destinationNames,
     required super.status,
@@ -23,6 +25,8 @@ class PostModel extends PostEntity {
       vehicleNumber: json['vehicleNumber'] as String,
       truckType: json['truckType'] as String,
       capacity: (json['capacity'] as num?)?.toInt() ?? 0,
+      length: (json['length'] as num?)?.toDouble(),
+      height: (json['height'] as num?)?.toDouble(),
       originName:
           json['originName'] as String? ??
           (json['origin'] as Map<String, dynamic>?)?['name'] as String? ??

@@ -9,8 +9,10 @@ class VehicleRepositoryImpl implements VehicleRepository {
   VehicleRepositoryImpl(this._remote);
 
   @override
-  Future<List<VehicleEntity>> getVehicles(String userId, {String? truckNumber}) =>
-      _remote.getVehicles(userId, truckNumber: truckNumber);
+  Future<List<VehicleEntity>> getVehicles(
+    String userId, {
+    String? truckNumber,
+  }) => _remote.getVehicles(userId, truckNumber: truckNumber);
 
   @override
   Future<void> deleteVehicle({
@@ -29,11 +31,15 @@ class VehicleRepositoryImpl implements VehicleRepository {
     required String userId,
     required String vehicleNumber,
     required String truckType,
-    required int capacity,
+    required double capacity,
+    double? length,
+    double? height,
   }) => _remote.addVehicle(
     userId: userId,
     vehicleNumber: vehicleNumber,
     truckType: truckType,
     capacity: capacity,
+    length: length,
+    height: height,
   );
 }

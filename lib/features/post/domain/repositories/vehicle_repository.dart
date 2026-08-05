@@ -18,6 +18,8 @@ abstract class VehicleRepository {
     required String userId,
     required String vehicleNumber,
     required String truckType,
-    required int capacity,
+    required double capacity,
+    double? length,
+    double? height,
   });
 }

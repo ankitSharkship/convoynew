@@ -58,6 +58,8 @@ class TruckSearchResultEntity {
   final String truckNumber;
   final String truckType;
   final int capacity;
+  final double? length;
+  final double? height;
   final String origin;
   final double originDistanceKm;
   final String status;
@@ -82,6 +84,8 @@ class TruckSearchResultEntity {
     required this.truckNumber,
     required this.truckType,
     required this.capacity,
+    this.length,
+    this.height,
     required this.origin,
     required this.originDistanceKm,
     required this.status,

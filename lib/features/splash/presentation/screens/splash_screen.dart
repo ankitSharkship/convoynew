@@ -6,7 +6,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/network/dio_client.dart';
-import '../../../../l10n/generated/app_localizations.dart';
 import '../../../auth/presentation/state/auth_notifier.dart';
 import '../../../contacts/presentation/state/contacts_sync_notifier.dart';
 import '../../../devices/presentation/state/device_notifier.dart';
@@ -79,13 +78,24 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
       child: Scaffold(
         backgroundColor: AppColors.white,
         body: Center(
-          child: Text(
-            AppLocalizations.of(context)!.appName,
-            style: const TextStyle(
-              color: AppColors.primaryDarkLight,
-              fontSize: 44,
-              fontWeight: FontWeight.w900,
-              letterSpacing: -0.5,
+          child: Container(
+            width: 160,
+            height: 160,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withValues(alpha: 0.12),
+                  blurRadius: 24,
+                  offset: const Offset(0, 8),
+                ),
+              ],
+            ),
+            child: ClipOval(
+              child: Image.asset(
+                'assets/images/app_logo.png',
+                fit: BoxFit.cover,
+              ),
             ),
           ),
         ),

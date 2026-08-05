@@ -30,6 +30,9 @@
   "truckTypeRefrigeratedTruck": "ರೆಫ್ರಿಜರೇಟೆಡ್ ಟ್ರಕ್",
   "truckTypeBulker": "ಬಲ್ಕರ್",
   "truckTypeTanker": "ಟ್ಯಾಂಕರ್",
+  "truckTypePuller": "ಪುಲ್ಲರ್",
+  "truckTypeWindbladeTrailer": "ವಿಂಡ್‌ಬ್ಲೇಡ್ ಟ್ರೇಲರ್",
+  "truckTypePickupTruck": "ಪಿಕಪ್ ಟ್ರಕ್/ಟಾಟಾ ಏಸ್",
 
   "onboardingSkip": "ಬಿಟ್ಟುಬಿಡಿ",
   "onboardingGetStarted": "ಪ್ರಾರಂಭಿಸಿ",
@@ -81,6 +84,9 @@
   "kycVerifyButton": "ಆಧಾರ್ ಪರಿಶೀಲಿಸಿ",
   "kycOtpHelperText": "ನಿಮ್ಮ ಆಧಾರ್-ಲಿಂಕ್ ಮಾಡಿದ ಮೊಬೈಲ್ ನಂಬರ್‌ಗೆ OTP ಕಳುಹಿಸಲಾಗಿದೆ. ಪರಿಶೀಲಿಸಲು ದಯವಿಟ್ಟು ಅದನ್ನು ನಮೂದಿಸಿ.",
   "kycOtpVerifyButton": "OTP ಪರಿಶೀಲಿಸಿ",
+  "kycCheckingAadhaar": "ಪರಿಶೀಲಿಸಲಾಗುತ್ತಿದೆ...",
+  "kycAadhaarUnavailable": "ಈ ಆಧಾರ್ ಬಳಸಲಾಗುವುದಿಲ್ಲ",
+  "kycAadhaarConflictSnackbar": "ಈ ಆಧಾರ್ ಈಗಾಗಲೇ ಬೇರೆ ಖಾತೆಯೊಂದಿಗೆ ಪರಿಶೀಲಿಸಲ್ಪಟ್ಟಿದೆ.",
   "kycThankYou": "ಆಧಾರ್ ಪರಿಶೀಲಿಸಲಾಗಿದೆ!",
   "kycSuccessMessage": "ಇನ್ನೊಂದು ಹಂತ — ಪರಿಶೀಲನೆ ಪೂರ್ಣಗೊಳಿಸಲು ನಿಮ್ಮ ಫೋಟೋ ಖಚಿತಪಡಿಸೋಣ.",
   "faceReviewTitle": "ಈ ಫೋಟೋ ಬಳಸುವುದೇ?",
@@ -192,6 +198,7 @@
   "searchCapacityLabel": "ಸಾಮರ್ಥ್ಯ",
   "searchVehicleNumberLabel": "ವಾಹನ ಸಂಖ್ಯೆ",
   "searchSelectHint": "ಆಯ್ಕೆಮಾಡಿ",
+  "searchCapacityNotApplicable": "ಅನ್ವಯಿಸುವುದಿಲ್ಲ",
   "searchFindTrucksButton": "ಟ್ರಕ್‌ಗಳನ್ನು ಹುಡುಕಿ",
 
   "resultsTitle": "ಹುಡುಕಾಟ ಫಲಿತಾಂಶಗಳು",
@@ -249,7 +256,7 @@
 
   "capacityTon": "{capacity} ಟನ್",
   "@capacityTon": {
-    "placeholders": { "capacity": { "type": "int" } }
+    "placeholders": { "capacity": { "type": "num" } }
   },
 
   "networkOfflineBanner": "ಇಂಟರ್ನೆಟ್ ಸಂಪರ್ಕವಿಲ್ಲ",
@@ -303,6 +310,7 @@
   "walletScratchCardScratchHint": "ಸ್ಕ್ರ್ಯಾಚ್ ಮಾಡಿ",
   "walletScratchCardNoReward": "ಯಾವುದೇ ರಿವಾರ್ಡ್ ಇಲ್ಲ",
   "walletScratchCardExpired": "ಅವಧಿ ಮುಗಿದಿದೆ",
+  "scratchCardRevealButton": "ತೋರಿಸಿ",
 
   "postScratchCardTitle": "ನೀವು ಸ್ಕ್ರ್ಯಾಚ್ ಕಾರ್ಡ್ ಗಳಿಸಿದ್ದೀರಿ!",
   "postScratchCardSubtitle": "ನಿಮ್ಮ ರಿವಾರ್ಡ್ ನೋಡಲು ಕಾರ್ಡ್ ಸ್ಕ್ರ್ಯಾಚ್ ಮಾಡಿ",
@@ -312,5 +320,12 @@
   "postScratchCardContinueButton": "ಮುಂದುವರಿಸಿ",
 
   "walletKycRequiredMessage": "ನಿಮ್ಮ ವಾಲೆಟ್ ಮತ್ತು ರಿವಾರ್ಡ್‌ಗಳನ್ನು ಪ್ರವೇಶಿಸಲು ದಯವಿಟ್ಟು ನಿಮ್ಮ KYC ಪೂರ್ಣಗೊಳಿಸಿ",
-  "walletKycCompleteButton": "KYC ಪೂರ್ಣಗೊಳಿಸಿ"
+  "walletKycCompleteButton": "KYC ಪೂರ್ಣಗೊಳಿಸಿ",
+
+  "wheelPickerDoneButton": "ಮುಗಿಸಿ",
+  "postLengthLabel": "ಉದ್ದ",
+  "postHeightLabel": "ಎತ್ತರ",
+  "postSelectLengthHint": "ಉದ್ದ ಆಯ್ಕೆಮಾಡಿ",
+  "postSelectHeightHint": "ಎತ್ತರ ಆಯ್ಕೆಮಾಡಿ",
+  "feetValue": "{value} ಅಡಿ"
 }

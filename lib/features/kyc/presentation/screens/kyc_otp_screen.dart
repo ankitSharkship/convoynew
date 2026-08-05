@@ -41,8 +41,11 @@ class _KycOtpScreenState extends ConsumerState<KycOtpScreen> {
     final otp = _otpController.text;
     if (otp.length != _otpLength) return;
 
-    final success = await ref.read(kycNotifierProvider.notifier).verifyOtp(otp);
-    if (success && mounted) {
+    final notifier = ref.read(kycNotifierProvider.notifier);
+    final success = await notifier.verifyOtp(otp);
+    if (!mounted) return;
+
+    if (success) {
       await showKycSuccessDialog(
         context,
         onDismiss: () {
@@ -59,6 +62,28 @@ class _KycOtpScreenState extends ConsumerState<KycOtpScreen> {
           context.push('/face_capture', extra: '/post');
         },
       );
+      return;
+    }
+
+    if (ref.read(kycNotifierProvider).aadhaarConflict) {
+      // This OTP was genuinely correct — the Aadhaar just lost a race
+      // with another account's verification landing first. Retrying
+      // here (same OTP or even the same Aadhaar) can never succeed, so
+      // rather than leaving the user on this OTP screen, drop the whole
+      // Aadhaar+OTP session and send them back to re-enter a different
+      // Aadhaar number. A single pop is enough to make this screen
+      // unreachable via back — it's the only screen `/kyc/otp` pushed on
+      // top of `/kyc`, and there's no further "confirmation" screen
+      // beyond this one in the Aadhaar flow.
+      final l10n = AppLocalizations.of(context)!;
+      final message =
+          ref.read(kycNotifierProvider).error ??
+          l10n.kycAadhaarConflictSnackbar;
+      notifier.resetAfterConflict();
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(message)));
+      if (context.canPop()) context.pop();
     }
   }
 

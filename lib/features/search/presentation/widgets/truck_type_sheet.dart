@@ -5,19 +5,41 @@ import '../../../../l10n/generated/app_localizations.dart';
 import '../../../../shared/utils/truck_type_i18n.dart';
 import '../../../../shared/utils/truck_type_image.dart';
 
+/// Sentinel returned by [TruckTypeSheet] when the user taps "Any" — lets
+/// callers tell an explicit "clear the filter" choice apart from just
+/// dismissing the sheet without picking anything (which also resolves the
+/// future with null). No real truck type value is ever empty, so this
+/// can't collide.
+const anyTruckTypeValue = '';
+
 /// Bottom sheet for picking a truck type — a grid of illustrated cards
 /// instead of a plain text dropdown.
 class TruckTypeSheet extends StatelessWidget {
   final String? selected;
 
-  const TruckTypeSheet({super.key, required this.selected});
+  /// Shows a leading "Any" card that clears the truck-type filter —
+  /// only meaningful for the search-trucks filter, where no type at all
+  /// is a valid choice. The add-truck form always requires a specific
+  /// type, so it must never pass this.
+  final bool showAnyOption;
 
-  static Future<String?> show(BuildContext context, {String? selected}) {
+  const TruckTypeSheet({
+    super.key,
+    required this.selected,
+    this.showAnyOption = false,
+  });
+
+  static Future<String?> show(
+    BuildContext context, {
+    String? selected,
+    bool showAnyOption = false,
+  }) {
     return showModalBottomSheet<String>(
       context: context,
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
-      builder: (_) => TruckTypeSheet(selected: selected),
+      builder: (_) =>
+          TruckTypeSheet(selected: selected, showAnyOption: showAnyOption),
     );
   }
 
@@ -96,9 +118,17 @@ class TruckTypeSheet extends StatelessWidget {
                   crossAxisSpacing: 14,
                   childAspectRatio: 0.8,
                 ),
-                itemCount: truckTypes.length,
+                itemCount: truckTypes.length + (showAnyOption ? 1 : 0),
                 itemBuilder: (context, i) {
-                  final type = truckTypes[i];
+                  if (showAnyOption && i == 0) {
+                    return _TruckTypeCard(
+                      label: l10n.resultsAny,
+                      imagePath: 'assets/trucks/any.png',
+                      selected: selected == null,
+                      onTap: () => Navigator.pop(context, anyTruckTypeValue),
+                    );
+                  }
+                  final type = truckTypes[showAnyOption ? i - 1 : i];
                   return _TruckTypeCard(
                     label: truckTypeLabel(context, type),
                     imagePath: truckTypeImagePath(type),

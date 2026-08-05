@@ -6,11 +6,13 @@ import '../../../../core/services/location_service.dart';
 import '../../../../l10n/generated/app_localizations.dart';
 import '../../../contacts/presentation/state/contacts_sync_notifier.dart';
 import '../../../../shared/utils/truck_type_i18n.dart';
+import '../../../../shared/utils/truck_type_specs.dart';
 import '../../../../shared/widgets/borderless_input_decoration.dart';
 import '../../../../shared/widgets/language_switcher_button.dart';
 import '../../../../shared/widgets/location_permission_dialog.dart';
 import '../../../../shared/utils/truck_type_image.dart';
 import '../../../../shared/widgets/suggestions_overlay.dart';
+import '../../../../shared/widgets/wheel_number_picker.dart';
 import '../../../truck_map/presentation/widgets/mini_map_preview.dart';
 import '../../domain/entities/location_entity.dart';
 import '../state/search_notifier.dart';
@@ -22,6 +24,11 @@ class SearchScreen extends ConsumerStatefulWidget {
   @override
   ConsumerState<SearchScreen> createState() => _SearchScreenState();
 }
+
+/// Capacity range used when no truck type is selected, or the selected
+/// type has no entry in `truckTypeSpecs` (e.g. Tanker) — matches the
+/// dropdown's old unrestricted 6-35 ton window.
+const _fallbackCapacityRange = TruckTypeRange(6, 35);
 
 class _SearchScreenState extends ConsumerState<SearchScreen> {
   final _originController = TextEditingController();
@@ -48,10 +55,41 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
   }
 
   Future<void> _pickTruckType(String? current) async {
-    final selected = await TruckTypeSheet.show(context, selected: current);
-    if (selected != null && mounted) {
-      ref.read(searchNotifierProvider.notifier).selectTruckType(selected);
+    final selected = await TruckTypeSheet.show(
+      context,
+      selected: current,
+      showAnyOption: true,
+    );
+    if (selected == null || !mounted) return;
+    ref
+        .read(searchNotifierProvider.notifier)
+        .selectTruckType(selected == anyTruckTypeValue ? null : selected);
+  }
+
+  Future<void> _pickCapacity(
+    TruckTypeRange range,
+    String? currentDisplay,
+    AppLocalizations l10n,
+  ) async {
+    final values = searchCapacityValues(range);
+    final result = await showWheelNumberPickerSheet(
+      context,
+      title: l10n.searchCapacityLabel,
+      values: values,
+      initialValue: _parseCapacityDisplay(currentDisplay),
+      labelBuilder: (v) => l10n.capacityTon(displayNum(v)),
+    );
+    if (result != null && mounted) {
+      ref
+          .read(searchNotifierProvider.notifier)
+          .selectCapacity(l10n.capacityTon(displayNum(result)));
     }
+  }
+
+  double? _parseCapacityDisplay(String? display) {
+    if (display == null) return null;
+    final match = RegExp(r'\d+').firstMatch(display);
+    return match == null ? null : double.parse(match.group(0)!);
   }
 
   @override
@@ -71,7 +109,13 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
     });
 
     final l10n = AppLocalizations.of(context)!;
-    final capacities = List.generate(30, (i) => l10n.capacityTon(i + 6));
+    final selectedType = state.selectedTruckType;
+    final isKnownType =
+        selectedType != null && truckTypeSpecs.containsKey(selectedType);
+    final spec = isKnownType ? truckTypeSpecs[selectedType] : null;
+    final capacityEnabled = !isKnownType || spec!.capacity != null;
+    final capacityRange =
+        (isKnownType ? spec!.capacity : null) ?? _fallbackCapacityRange;
 
     return Scaffold(
       backgroundColor: AppColors.primaryBlueLight,
@@ -217,11 +261,18 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                             children: [
                               _FieldLabel(l10n.searchCapacityLabel),
                               const SizedBox(height: 8),
-                              _DropdownField(
+                              _CapacityWheelField(
+                                enabled: capacityEnabled,
                                 hintText: l10n.searchSelectHint,
-                                value: state.selectedCapacity,
-                                items: capacities,
-                                onChanged: notifier.selectCapacity,
+                                disabledText: l10n.searchCapacityNotApplicable,
+                                valueLabel: state.selectedCapacity,
+                                onTap: capacityEnabled
+                                    ? () => _pickCapacity(
+                                        capacityRange,
+                                        state.selectedCapacity,
+                                        l10n,
+                                      )
+                                    : null,
                               ),
                             ],
                           ),
@@ -516,60 +567,70 @@ class _SuggestionsList extends StatelessWidget {
   }
 }
 
-// ─── Dropdown field (capacity) ──────────────────────────────────────────────
+// ─── Capacity field (opens the wheel-picker sheet) ──────────────────────────
 
-class _DropdownField extends StatelessWidget {
+class _CapacityWheelField extends StatelessWidget {
+  final bool enabled;
   final String hintText;
-  final String? value;
-  final List<String> items;
-  final ValueChanged<String?> onChanged;
+  final String disabledText;
+  final String? valueLabel;
+  final VoidCallback? onTap;
 
-  const _DropdownField({
+  const _CapacityWheelField({
+    required this.enabled,
     required this.hintText,
-    required this.value,
-    required this.items,
-    required this.onChanged,
+    required this.disabledText,
+    required this.valueLabel,
+    required this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
-    return DropdownButtonFormField<String>(
-      value: value,
-      isExpanded: true,
-      decoration: InputDecoration(
-        hintText: hintText,
-        hintStyle: const TextStyle(color: AppColors.textTertiary, fontSize: 13),
-        filled: true,
-        fillColor: const Color(0xFFF8FAFC),
-        border: OutlineInputBorder(
+    final displayText = enabled ? (valueLabel ?? hintText) : disabledText;
+
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        height: 44,
+        padding: const EdgeInsets.symmetric(horizontal: 12),
+        decoration: BoxDecoration(
+          color: enabled ? const Color(0xFFF8FAFC) : const Color(0xFFF1F3F5),
           borderRadius: BorderRadius.circular(10),
-          borderSide: const BorderSide(color: AppColors.border),
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
-          borderSide: const BorderSide(color: AppColors.border),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
-          borderSide: const BorderSide(
-            color: AppColors.primaryBlue,
-            width: 1.5,
+          border: Border.all(
+            color: enabled
+                ? AppColors.border
+                : AppColors.border.withValues(alpha: 0.5),
           ),
         ),
-        contentPadding: const EdgeInsets.symmetric(
-          horizontal: 12,
-          vertical: 10,
+        child: Row(
+          children: [
+            Expanded(
+              child: Text(
+                displayText,
+                style: TextStyle(
+                  fontSize: 13,
+                  fontWeight: enabled && valueLabel != null
+                      ? FontWeight.w600
+                      : FontWeight.normal,
+                  color: !enabled
+                      ? AppColors.textTertiary.withValues(alpha: 0.6)
+                      : (valueLabel != null
+                            ? AppColors.textPrimary
+                            : AppColors.textTertiary),
+                ),
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+            Icon(
+              Icons.keyboard_arrow_down,
+              size: 18,
+              color: enabled
+                  ? AppColors.textTertiary
+                  : AppColors.textTertiary.withValues(alpha: 0.5),
+            ),
+          ],
         ),
       ),
-      style: const TextStyle(
-        fontSize: 13,
-        fontWeight: FontWeight.w600,
-        color: AppColors.textPrimary,
-      ),
-      items: items
-          .map((i) => DropdownMenuItem(value: i, child: Text(i)))
-          .toList(),
-      onChanged: onChanged,
     );
   }
 }

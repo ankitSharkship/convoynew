@@ -264,6 +264,24 @@ abstract class AppLocalizations {
   /// **'Tanker'**
   String get truckTypeTanker;
 
+  /// No description provided for @truckTypePuller.
+  ///
+  /// In en, this message translates to:
+  /// **'Puller'**
+  String get truckTypePuller;
+
+  /// No description provided for @truckTypeWindbladeTrailer.
+  ///
+  /// In en, this message translates to:
+  /// **'Windblade Trailer'**
+  String get truckTypeWindbladeTrailer;
+
+  /// No description provided for @truckTypePickupTruck.
+  ///
+  /// In en, this message translates to:
+  /// **'Pickup Truck/Tata Ace'**
+  String get truckTypePickupTruck;
+
   /// No description provided for @onboardingSkip.
   ///
   /// In en, this message translates to:
@@ -297,7 +315,7 @@ abstract class AppLocalizations {
   /// No description provided for @phoneEnterNumberHint.
   ///
   /// In en, this message translates to:
-  /// **'Enter Your Number'**
+  /// **'Enter Mobile Number'**
   String get phoneEnterNumberHint;
 
   /// No description provided for @phoneContinueButton.
@@ -479,6 +497,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Verify OTP'**
   String get kycOtpVerifyButton;
+
+  /// No description provided for @kycCheckingAadhaar.
+  ///
+  /// In en, this message translates to:
+  /// **'Checking...'**
+  String get kycCheckingAadhaar;
+
+  /// No description provided for @kycAadhaarUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'This Aadhaar can\'t be used'**
+  String get kycAadhaarUnavailable;
+
+  /// No description provided for @kycAadhaarConflictSnackbar.
+  ///
+  /// In en, this message translates to:
+  /// **'This Aadhaar has already been verified with another account.'**
+  String get kycAadhaarConflictSnackbar;
 
   /// No description provided for @kycThankYou.
   ///
@@ -1026,6 +1062,12 @@ abstract class AppLocalizations {
   /// **'Select'**
   String get searchSelectHint;
 
+  /// No description provided for @searchCapacityNotApplicable.
+  ///
+  /// In en, this message translates to:
+  /// **'Not applicable'**
+  String get searchCapacityNotApplicable;
+
   /// No description provided for @searchFindTrucksButton.
   ///
   /// In en, this message translates to:
@@ -1222,7 +1264,7 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'{capacity} Ton'**
-  String capacityTon(int capacity);
+  String capacityTon(num capacity);
 
   /// No description provided for @networkOfflineBanner.
   ///
@@ -1440,6 +1482,12 @@ abstract class AppLocalizations {
   /// **'Expired'**
   String get walletScratchCardExpired;
 
+  /// No description provided for @scratchCardRevealButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Reveal'**
+  String get scratchCardRevealButton;
+
   /// No description provided for @postScratchCardTitle.
   ///
   /// In en, this message translates to:
@@ -1487,6 +1535,42 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Complete KYC'**
   String get walletKycCompleteButton;
+
+  /// No description provided for @wheelPickerDoneButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Done'**
+  String get wheelPickerDoneButton;
+
+  /// No description provided for @postLengthLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Length'**
+  String get postLengthLabel;
+
+  /// No description provided for @postHeightLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Height'**
+  String get postHeightLabel;
+
+  /// No description provided for @postSelectLengthHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Select length'**
+  String get postSelectLengthHint;
+
+  /// No description provided for @postSelectHeightHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Select height'**
+  String get postSelectHeightHint;
+
+  /// No description provided for @feetValue.
+  ///
+  /// In en, this message translates to:
+  /// **'{value} ft'**
+  String feetValue(num value);
 }
 
 class _AppLocalizationsDelegate

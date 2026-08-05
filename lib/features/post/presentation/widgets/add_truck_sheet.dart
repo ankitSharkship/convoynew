@@ -6,17 +6,27 @@ import '../../../../core/constants/app_colors.dart';
 import '../../../../core/network/api_exception.dart';
 import '../../../../l10n/generated/app_localizations.dart';
 import '../../../../shared/utils/truck_type_i18n.dart';
+import '../../../../shared/utils/truck_type_specs.dart';
 import '../../../../shared/widgets/sheet_form_field.dart';
 import '../../../../shared/widgets/truck_type_thumbnail.dart';
+import '../../../../shared/widgets/wheel_number_picker.dart';
 import '../../../search/presentation/widgets/truck_type_sheet.dart';
 import '../state/vehicle_notifier.dart';
 
-final _capacities = List.generate(30, (i) => i + 6);
+/// Fallback capacity range when the selected truck type has no entry in
+/// `truckTypeSpecs` (e.g. Tanker, which isn't in the reference table) —
+/// the same 6-35 ton window the capacity field used for every type before
+/// per-type ranges existed.
+const _fallbackCapacityRange = TruckTypeRange(6, 35);
 
 /// Bottom sheet for adding a new truck. First verifies the vehicle number
 /// against the RTO verification API; only once that succeeds do the truck
-/// type/capacity fields appear. On success, pops with the created
-/// [VehicleEntity] so callers can react (e.g. auto-select it).
+/// type/capacity/length/height fields appear. Capacity/length/height are
+/// each a scroll-wheel picker (like a clock app's time picker) scoped to
+/// the selected truck type's valid range — see `truck_type_specs.dart` —
+/// and a field is hidden entirely if that truck type has no such
+/// dimension at all. On success, pops with the created [VehicleEntity] so
+/// callers can react (e.g. auto-select it).
 class AddTruckSheet extends ConsumerStatefulWidget {
   /// Prefills the truck number field and immediately triggers Vahan
   /// verification — used when opened from the truck-search picker's "no
@@ -33,7 +43,9 @@ class AddTruckSheet extends ConsumerStatefulWidget {
 class _AddTruckSheetState extends ConsumerState<AddTruckSheet> {
   final _numberCtrl = TextEditingController();
   String? _selectedType;
-  int? _selectedCapacity;
+  double? _selectedCapacity;
+  double? _selectedLength;
+  double? _selectedHeight;
 
   bool _verifying = false;
   bool _verified = false;
@@ -41,6 +53,27 @@ class _AddTruckSheetState extends ConsumerState<AddTruckSheet> {
 
   bool _submitting = false;
   String? _submitError;
+
+  TruckTypeSpec? get _spec =>
+      _selectedType == null ? null : truckTypeSpecs[_selectedType];
+
+  /// Whether the selected type has an entry in `truckTypeSpecs` at all.
+  /// False both when nothing is selected yet and for a type absent from
+  /// the reference table (e.g. Tanker) — in either case we don't know
+  /// which fields apply, so length/height stay hidden and capacity falls
+  /// back to the old unrestricted range rather than guessing.
+  bool get _isKnownType =>
+      _selectedType != null && truckTypeSpecs.containsKey(_selectedType);
+
+  /// Capacity is shown for every type except ones explicitly marked with
+  /// no capacity in the table (e.g. Windblade Trailer, Refrigerated
+  /// Truck) — and, before/absent a known type, defaults to shown so the
+  /// fallback range still works.
+  bool get _showCapacity => !_isKnownType || _spec!.capacity != null;
+
+  bool get _showLength => _isKnownType && _spec!.length != null;
+
+  bool get _showHeight => _isKnownType && _spec!.height != null;
 
   @override
   void initState() {
@@ -64,6 +97,8 @@ class _AddTruckSheetState extends ConsumerState<AddTruckSheet> {
         _verified = false;
         _selectedType = null;
         _selectedCapacity = null;
+        _selectedLength = null;
+        _selectedHeight = null;
       }
       _verifyError = null;
     });
@@ -114,11 +149,81 @@ class _AddTruckSheetState extends ConsumerState<AddTruckSheet> {
     });
   }
 
+  void _onTypeSelected(String type) {
+    // Ranges differ per type — a value valid for the previous type could
+    // be out of range (or simply not a field at all) for the new one, so
+    // always start fresh rather than silently carrying over a stale value.
+    setState(() {
+      _selectedType = type;
+      _selectedCapacity = null;
+      _selectedLength = null;
+      _selectedHeight = null;
+    });
+  }
+
+  Future<void> _pickCapacity() async {
+    final l10n = AppLocalizations.of(context)!;
+    final range = _spec?.capacity ?? _fallbackCapacityRange;
+    final values = wheelPickerValues(
+      min: range.min,
+      max: range.max,
+      step: capacityStep(range),
+    );
+    final result = await showWheelNumberPickerSheet(
+      context,
+      title: l10n.postCapacityLabel,
+      values: values,
+      initialValue: _selectedCapacity,
+      labelBuilder: (v) => l10n.capacityTon(displayNum(v)),
+    );
+    if (result != null) setState(() => _selectedCapacity = result);
+  }
+
+  Future<void> _pickLength() async {
+    final range = _spec?.length;
+    if (range == null) return;
+    final l10n = AppLocalizations.of(context)!;
+    final values = wheelPickerValues(
+      min: range.min,
+      max: range.max,
+      step: lengthStep(range),
+    );
+    final result = await showWheelNumberPickerSheet(
+      context,
+      title: l10n.postLengthLabel,
+      values: values,
+      initialValue: _selectedLength,
+      labelBuilder: (v) => l10n.feetValue(displayNum(v)),
+    );
+    if (result != null) setState(() => _selectedLength = result);
+  }
+
+  Future<void> _pickHeight() async {
+    final range = _spec?.height;
+    if (range == null) return;
+    final l10n = AppLocalizations.of(context)!;
+    final values = wheelPickerValues(
+      min: range.min - heightRangeMarginFt,
+      max: range.max + heightRangeMarginFt,
+      step: heightStep(range),
+    );
+    final result = await showWheelNumberPickerSheet(
+      context,
+      title: l10n.postHeightLabel,
+      values: values,
+      initialValue: _selectedHeight,
+      labelBuilder: (v) => l10n.feetValue(displayNum(v)),
+    );
+    if (result != null) setState(() => _selectedHeight = result);
+  }
+
   Future<void> _submit() async {
     final number = _numberCtrl.text.trim();
     final type = _selectedType;
-    final capacity = _selectedCapacity;
-    if (!_verified || type == null || capacity == null) return;
+    if (!_verified || type == null) return;
+    if (_showCapacity && _selectedCapacity == null) return;
+    if (_showLength && _selectedLength == null) return;
+    if (_showHeight && _selectedHeight == null) return;
 
     setState(() {
       _submitting = true;
@@ -130,7 +235,13 @@ class _AddTruckSheetState extends ConsumerState<AddTruckSheet> {
           .addVehicle(
             vehicleNumber: number,
             truckType: type,
-            capacity: capacity,
+            // 0 is this codebase's existing "not applicable" sentinel for
+            // capacity (see my_trucks_screen.dart's `capacity > 0` check) —
+            // used for types like Windblade Trailer that have no capacity
+            // field to select in the first place.
+            capacity: _showCapacity ? _selectedCapacity! : 0,
+            length: _showLength ? _selectedLength : null,
+            height: _showHeight ? _selectedHeight : null,
           );
       if (mounted) Navigator.pop(context, vehicle);
     } catch (e) {
@@ -147,10 +258,15 @@ class _AddTruckSheetState extends ConsumerState<AddTruckSheet> {
     final l10n = AppLocalizations.of(context)!;
     final canVerify =
         !_verifying && !_verified && _numberCtrl.text.trim().isNotEmpty;
+    final showCapacity = _showCapacity;
+    final showLength = _showLength;
+    final showHeight = _showHeight;
     final canSubmit =
         _verified &&
         _selectedType != null &&
-        _selectedCapacity != null &&
+        (!showCapacity || _selectedCapacity != null) &&
+        (!showLength || _selectedLength != null) &&
+        (!showHeight || _selectedHeight != null) &&
         !_submitting;
 
     return Padding(
@@ -254,9 +370,7 @@ class _AddTruckSheetState extends ConsumerState<AddTruckSheet> {
                             // to content (rather than a fixed width) keeps it
                             // safe for longer translated labels.
                             minimumSize: const Size(64, 48),
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 16,
-                            ),
+                            padding: const EdgeInsets.symmetric(horizontal: 16),
                             elevation: 0,
                           ),
                           child: _verifying
@@ -285,24 +399,24 @@ class _AddTruckSheetState extends ConsumerState<AddTruckSheet> {
                       ),
                     ),
                   ],
-                  if (kDebugMode && !_verified) ...[
-                    const SizedBox(height: 8),
-                    Center(
-                      child: TextButton.icon(
-                        onPressed: _numberCtrl.text.trim().isNotEmpty
-                            ? _bypassVerification
-                            : null,
-                        style: TextButton.styleFrom(
-                          foregroundColor: Colors.orange.shade800,
-                        ),
-                        icon: const Icon(Icons.bug_report_outlined, size: 16),
-                        label: const Text(
-                          'Bypass verification (dev)',
-                          style: TextStyle(fontSize: 12),
-                        ),
-                      ),
-                    ),
-                  ],
+                  // if (kDebugMode && !_verified) ...[
+                  //   const SizedBox(height: 8),
+                  //   Center(
+                  //     child: TextButton.icon(
+                  //       onPressed: _numberCtrl.text.trim().isNotEmpty
+                  //           ? _bypassVerification
+                  //           : null,
+                  //       style: TextButton.styleFrom(
+                  //         foregroundColor: Colors.orange.shade800,
+                  //       ),
+                  //       icon: const Icon(Icons.bug_report_outlined, size: 16),
+                  //       label: const Text(
+                  //         'Bypass verification (dev)',
+                  //         style: TextStyle(fontSize: 12),
+                  //       ),
+                  //     ),
+                  //   ),
+                  // ],
                   if (_verified) ...[
                     const SizedBox(height: 16),
                     SheetLabel(l10n.postTruckTypeLabel),
@@ -313,9 +427,7 @@ class _AddTruckSheetState extends ConsumerState<AddTruckSheet> {
                           context,
                           selected: _selectedType,
                         );
-                        if (type != null) {
-                          setState(() => _selectedType = type);
-                        }
+                        if (type != null) _onTypeSelected(type);
                       },
                       child: Container(
                         padding: const EdgeInsets.symmetric(
@@ -359,25 +471,42 @@ class _AddTruckSheetState extends ConsumerState<AddTruckSheet> {
                         ),
                       ),
                     ),
-                    const SizedBox(height: 16),
-                    SheetLabel(l10n.postCapacityLabel),
-                    const SizedBox(height: 6),
-                    DropdownButtonFormField<int>(
-                      value: _selectedCapacity,
-                      decoration: sheetFieldDecoration(
-                        l10n.postSelectCapacityHint,
+                    if (showCapacity) ...[
+                      const SizedBox(height: 16),
+                      SheetLabel(l10n.postCapacityLabel),
+                      const SizedBox(height: 6),
+                      _WheelPickerField(
+                        valueLabel: _selectedCapacity != null
+                            ? l10n.capacityTon(displayNum(_selectedCapacity!))
+                            : null,
+                        placeholder: l10n.postSelectCapacityHint,
+                        onTap: _pickCapacity,
                       ),
-                      isExpanded: true,
-                      items: _capacities
-                          .map(
-                            (c) => DropdownMenuItem(
-                              value: c,
-                              child: Text(l10n.capacityTon(c)),
-                            ),
-                          )
-                          .toList(),
-                      onChanged: (v) => setState(() => _selectedCapacity = v),
-                    ),
+                    ],
+                    if (showLength) ...[
+                      const SizedBox(height: 16),
+                      SheetLabel(l10n.postLengthLabel),
+                      const SizedBox(height: 6),
+                      _WheelPickerField(
+                        valueLabel: _selectedLength != null
+                            ? l10n.feetValue(displayNum(_selectedLength!))
+                            : null,
+                        placeholder: l10n.postSelectLengthHint,
+                        onTap: _pickLength,
+                      ),
+                    ],
+                    if (showHeight) ...[
+                      const SizedBox(height: 16),
+                      SheetLabel(l10n.postHeightLabel),
+                      const SizedBox(height: 6),
+                      _WheelPickerField(
+                        valueLabel: _selectedHeight != null
+                            ? l10n.feetValue(displayNum(_selectedHeight!))
+                            : null,
+                        placeholder: l10n.postSelectHeightHint,
+                        onTap: _pickHeight,
+                      ),
+                    ],
                     const SizedBox(height: 28),
                     SizedBox(
                       width: double.infinity,
@@ -428,6 +557,57 @@ class _AddTruckSheetState extends ConsumerState<AddTruckSheet> {
               ),
             ),
           ),
+        ),
+      ),
+    );
+  }
+}
+
+/// A tappable row styled like a dropdown, opening a wheel-picker sheet on
+/// tap — shared shape for the capacity/length/height fields.
+class _WheelPickerField extends StatelessWidget {
+  final String? valueLabel;
+  final String placeholder;
+  final VoidCallback onTap;
+
+  const _WheelPickerField({
+    required this.valueLabel,
+    required this.placeholder,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
+        decoration: BoxDecoration(
+          color: const Color(0xFFF8FAFC),
+          borderRadius: BorderRadius.circular(10),
+          border: Border.all(color: AppColors.border),
+        ),
+        child: Row(
+          children: [
+            Expanded(
+              child: Text(
+                valueLabel ?? placeholder,
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: valueLabel != null
+                      ? FontWeight.w600
+                      : FontWeight.normal,
+                  color: valueLabel != null
+                      ? AppColors.textPrimary
+                      : AppColors.textTertiary,
+                ),
+              ),
+            ),
+            const Icon(
+              Icons.keyboard_arrow_down,
+              color: AppColors.textTertiary,
+            ),
+          ],
         ),
       ),
     );

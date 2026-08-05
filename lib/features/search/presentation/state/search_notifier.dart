@@ -104,7 +104,9 @@ class SearchState {
     bool? originLocating,
     bool? destinationLocating,
     String? selectedTruckType,
+    bool clearSelectedTruckType = false,
     String? selectedCapacity,
+    bool clearSelectedCapacity = false,
     bool? searching,
     bool? refreshing,
     String? searchError,
@@ -134,8 +136,12 @@ class SearchState {
           this.destinationSuggestionsDismissed,
       originLocating: originLocating ?? this.originLocating,
       destinationLocating: destinationLocating ?? this.destinationLocating,
-      selectedTruckType: selectedTruckType ?? this.selectedTruckType,
-      selectedCapacity: selectedCapacity ?? this.selectedCapacity,
+      selectedTruckType: clearSelectedTruckType
+          ? null
+          : (selectedTruckType ?? this.selectedTruckType),
+      selectedCapacity: clearSelectedCapacity
+          ? null
+          : (selectedCapacity ?? this.selectedCapacity),
       searching: searching ?? this.searching,
       refreshing: refreshing ?? this.refreshing,
       searchError: clearSearchError ? null : (searchError ?? this.searchError),
@@ -296,8 +302,15 @@ class SearchNotifier extends _$SearchNotifier {
     pincode: current.pincode,
   );
 
+  /// Resets the selected capacity on every truck-type change — the
+  /// previous value may be out of the new type's range, or the new type
+  /// may not support capacity at all (e.g. Windblade Trailer).
   void selectTruckType(String? type) {
-    state = state.copyWith(selectedTruckType: type);
+    state = state.copyWith(
+      selectedTruckType: type,
+      clearSelectedTruckType: type == null,
+      clearSelectedCapacity: true,
+    );
   }
 
   void selectCapacity(String? capacity) {

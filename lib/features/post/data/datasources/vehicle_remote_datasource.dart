@@ -21,7 +21,9 @@ abstract class VehicleRemoteDataSource {
     required String userId,
     required String vehicleNumber,
     required String truckType,
-    required int capacity,
+    required double capacity,
+    double? length,
+    double? height,
   });
 }
 
@@ -93,7 +95,9 @@ class VehicleRemoteDataSourceImpl implements VehicleRemoteDataSource {
     required String userId,
     required String vehicleNumber,
     required String truckType,
-    required int capacity,
+    required double capacity,
+    double? length,
+    double? height,
   }) async {
     try {
       final response = await _dio.post(
@@ -102,6 +106,8 @@ class VehicleRemoteDataSourceImpl implements VehicleRemoteDataSource {
           'vehicleNumber': vehicleNumber,
           'truckType': truckType,
           'capacity': capacity,
+          'length': ?length,
+          'height': ?height,
         },
       );
       final data = response.data as Map<String, dynamic>;

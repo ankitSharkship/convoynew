@@ -8,6 +8,7 @@ import '../../../../shared/utils/truck_type_i18n.dart';
 import '../../../../shared/utils/truck_type_image.dart';
 import '../../../../shared/widgets/language_switcher_button.dart';
 import '../../../../shared/widgets/loader.dart';
+import '../../../../shared/widgets/wheel_number_picker.dart';
 import '../../domain/entities/vehicle_entity.dart';
 import '../state/vehicle_notifier.dart';
 import '../widgets/add_truck_sheet.dart';
@@ -166,6 +167,24 @@ class MyTrucksScreen extends ConsumerWidget {
   }
 }
 
+String _subtitle(
+  BuildContext context,
+  AppLocalizations l10n,
+  VehicleEntity vehicle,
+) {
+  final parts = <String>[truckTypeLabel(context, vehicle.truckType)];
+  if (vehicle.capacity > 0) {
+    parts.add(l10n.capacityTon(displayNum(vehicle.capacity)));
+  }
+  if (vehicle.length != null) {
+    parts.add(l10n.feetValue(displayNum(vehicle.length!)));
+  }
+  if (vehicle.height != null) {
+    parts.add(l10n.feetValue(displayNum(vehicle.height!)));
+  }
+  return parts.join(' · ');
+}
+
 class _TruckCard extends StatelessWidget {
   final VehicleEntity vehicle;
   final VoidCallback onDelete;
@@ -207,9 +226,7 @@ class _TruckCard extends StatelessWidget {
                 ),
                 const SizedBox(height: 2),
                 Text(
-                  vehicle.capacity > 0
-                      ? '${truckTypeLabel(context, vehicle.truckType)} · ${l10n.capacityTon(vehicle.capacity)}'
-                      : truckTypeLabel(context, vehicle.truckType),
+                  _subtitle(context, l10n, vehicle),
                   style: const TextStyle(
                     fontSize: 12,
                     color: AppColors.textSecondary,

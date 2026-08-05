@@ -22,11 +22,7 @@ class FaceReviewScreen extends ConsumerStatefulWidget {
   /// standalone testing entry point); the KYC flow passes `/post` instead.
   final String? nextRoute;
 
-  const FaceReviewScreen({
-    super.key,
-    required this.imageFile,
-    this.nextRoute,
-  });
+  const FaceReviewScreen({super.key, required this.imageFile, this.nextRoute});
 
   @override
   ConsumerState<FaceReviewScreen> createState() => _FaceReviewScreenState();
@@ -104,7 +100,10 @@ class _FaceReviewScreenState extends ConsumerState<FaceReviewScreen> {
       body: AnimatedSwitcher(
         duration: const Duration(milliseconds: 300),
         child: _saving
-            ? _VerifyingView(key: const ValueKey('verifying'), imageFile: widget.imageFile)
+            ? _VerifyingView(
+                key: const ValueKey('verifying'),
+                imageFile: widget.imageFile,
+              )
             : _ReviewView(
                 key: const ValueKey('review'),
                 imageFile: widget.imageFile,

@@ -30,6 +30,9 @@
   "truckTypeRefrigeratedTruck": "Refrigerated Truck",
   "truckTypeBulker": "Bulker",
   "truckTypeTanker": "Tanker",
+  "truckTypePuller": "Puller",
+  "truckTypeWindbladeTrailer": "Windblade Trailer",
+  "truckTypePickupTruck": "Pickup Truck/Tata Ace",
 
   "onboardingSkip": "Skip",
   "onboardingGetStarted": "Get Started",
@@ -37,7 +40,7 @@
   "onboardingSubtitle": "Post your truck once. Verified transporters call you. No middlemen, no running around.",
   "onboardingChangeLanguage": "Change language",
 
-  "phoneEnterNumberHint": "Enter Your Number",
+  "phoneEnterNumberHint": "Enter Mobile Number",
   "phoneContinueButton": "Continue with Mobile Number",
 
   "otpTitle": "Enter the 4-digit code",
@@ -61,7 +64,7 @@
   "callDisclaimer": "Bounut has no in-app calling. Tapping Call\nopens your phone dialer and logs it for your records.",
 
   "homeHello": "Hello",
-  "homeHeroTitle": "Your truck is ready\nto earn 💰",
+  "homeHeroTitle": "Truck Ready Hai? Ab Kaam Shuru Karein.",
   "homeHeroSubtitle": "Post now and get verified load requests instantly.",
   "homeHeroButton": "Post Truck Now",
   "homeQuickActions": "Quick Actions",
@@ -81,6 +84,9 @@
   "kycVerifyButton": "Verify Aadhar",
   "kycOtpHelperText": "OTP has been sent to your Aadhaar-linked mobile number. Please enter it to verify.",
   "kycOtpVerifyButton": "Verify OTP",
+  "kycCheckingAadhaar": "Checking...",
+  "kycAadhaarUnavailable": "This Aadhaar can't be used",
+  "kycAadhaarConflictSnackbar": "This Aadhaar has already been verified with another account.",
   "kycThankYou": "Aadhaar Verified!",
   "kycSuccessMessage": "One more step — let's confirm your photo to complete verification.",
   "faceReviewTitle": "Use this photo?",
@@ -192,6 +198,7 @@
   "searchCapacityLabel": "Capacity",
   "searchVehicleNumberLabel": "Vehicle No.",
   "searchSelectHint": "Select",
+  "searchCapacityNotApplicable": "Not applicable",
   "searchFindTrucksButton": "Find Trucks",
 
   "resultsTitle": "Search Results",
@@ -249,7 +256,7 @@
 
   "capacityTon": "{capacity} Ton",
   "@capacityTon": {
-    "placeholders": { "capacity": { "type": "int" } }
+    "placeholders": { "capacity": { "type": "num" } }
   },
 
   "networkOfflineBanner": "No internet connection",
@@ -303,6 +310,7 @@
   "walletScratchCardScratchHint": "Scratch Here",
   "walletScratchCardNoReward": "No reward",
   "walletScratchCardExpired": "Expired",
+  "scratchCardRevealButton": "Reveal",
 
   "postScratchCardTitle": "You've Earned a Scratch Card!",
   "postScratchCardSubtitle": "Scratch the card to reveal your reward",
@@ -312,5 +320,15 @@
   "postScratchCardContinueButton": "Continue",
 
   "walletKycRequiredMessage": "Please complete your KYC to access the wallet and rewards",
-  "walletKycCompleteButton": "Complete KYC"
+  "walletKycCompleteButton": "Complete KYC",
+
+  "wheelPickerDoneButton": "Done",
+  "postLengthLabel": "Length",
+  "postHeightLabel": "Height",
+  "postSelectLengthHint": "Select length",
+  "postSelectHeightHint": "Select height",
+  "feetValue": "{value} ft",
+  "@feetValue": {
+    "placeholders": { "value": { "type": "num" } }
+  }
 }

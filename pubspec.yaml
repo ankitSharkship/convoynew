@@ -2,7 +2,7 @@ name: convoynew
 description: "Sharkship Convoy"
 publish_to: "none"
 
-version: 1.0.0+6
+version: 1.0.0+7
 
 environment:
   sdk: ^3.11.5
@@ -39,6 +39,7 @@ dependencies:
   uuid: ^4.5.1
   package_info_plus: ^8.1.2
   device_info_plus: ^11.2.0
+  confetti: ^0.8.0
 
 dev_dependencies:
   flutter_test:

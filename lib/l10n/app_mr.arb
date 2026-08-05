@@ -32,6 +32,9 @@
   "truckTypeRefrigeratedTruck": "रेफ्रिजरेटेड ट्रक",
   "truckTypeBulker": "बल्कर",
   "truckTypeTanker": "टँकर",
+  "truckTypePuller": "पुलर",
+  "truckTypeWindbladeTrailer": "विंडब्लेड ट्रेलर",
+  "truckTypePickupTruck": "पिकअप ट्रक/टाटा एस",
 
   "onboardingSkip": "स्किप करा",
   "onboardingGetStarted": "सुरू करा",
@@ -97,6 +100,9 @@
   "kycVerifyButton": "आधार Verify करा",
   "kycOtpHelperText": "तुमच्या आधारला जोडलेल्या मोबाइल नंबरवर OTP पाठवला आहे. तो टाकून Verify करा.",
   "kycOtpVerifyButton": "OTP Verify करा",
+  "kycCheckingAadhaar": "तपासत आहे...",
+  "kycAadhaarUnavailable": "हा आधार वापरता येणार नाही",
+  "kycAadhaarConflictSnackbar": "हा आधार आधीच दुसऱ्या खात्याशी सत्यापित झाला आहे.",
   "kycThankYou": "आधार Verify झाला!",
   "kycSuccessMessage": "आता फक्त एक स्टेप बाकी आहे. तुमचा फोटो Verify करूया.",
   "faceReviewTitle": "हा फोटो वापरायचा?",
@@ -272,6 +278,7 @@
   "searchVehicleNumberLabel": "वाहन नंबर",
 
   "searchSelectHint": "निवडा",
+  "searchCapacityNotApplicable": "लागू नाही",
 
   "searchFindTrucksButton": "ट्रक शोधा",
 
@@ -422,6 +429,7 @@
   "walletScratchCardNoReward": "बक्षीस नाही",
 
   "walletScratchCardExpired": "मुदत संपली",
+  "scratchCardRevealButton": "दाखवा",
 
   "postScratchCardTitle": "तुम्ही स्क्रॅच कार्ड जिंकले आहे!",
 
@@ -437,5 +445,17 @@
 
   "walletKycRequiredMessage": "तुमचे वॉलेट आणि रिवॉर्ड्स अ‍ॅक्सेस करण्यासाठी कृपया तुमचे KYC पूर्ण करा",
 
-  "walletKycCompleteButton": "KYC पूर्ण करा"
+  "walletKycCompleteButton": "KYC पूर्ण करा",
+
+  "wheelPickerDoneButton": "पूर्ण",
+
+  "postLengthLabel": "लांबी",
+
+  "postHeightLabel": "उंची",
+
+  "postSelectLengthHint": "लांबी निवडा",
+
+  "postSelectHeightHint": "उंची निवडा",
+
+  "feetValue": "{value} फूट"
 }

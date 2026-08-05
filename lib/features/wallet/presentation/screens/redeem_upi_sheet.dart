@@ -59,7 +59,11 @@ class _RedeemUpiSheetState extends ConsumerState<RedeemUpiSheet> {
       if (!mounted) return;
       Navigator.pop(context);
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(AppLocalizations.of(context)!.walletRedeemSuccessMessage)),
+        SnackBar(
+          content: Text(
+            AppLocalizations.of(context)!.walletRedeemSuccessMessage,
+          ),
+        ),
       );
     } catch (e) {
       if (!mounted) return;
@@ -74,7 +78,11 @@ class _RedeemUpiSheetState extends ConsumerState<RedeemUpiSheet> {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
     final available =
-        ref.watch(walletNotifierProvider).valueOrNull?.wallet.availableBalance ??
+        ref
+            .watch(walletNotifierProvider)
+            .valueOrNull
+            ?.wallet
+            .availableBalance ??
         '0.00';
 
     return Container(

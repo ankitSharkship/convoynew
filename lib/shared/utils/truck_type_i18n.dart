@@ -15,6 +15,9 @@ const truckTypes = [
   'Refrigerated Truck',
   'Bulker',
   'Tanker',
+  'Puller',
+  'Windblade Trailer',
+  'Pickup Truck/Tata Ace',
 ];
 
 /// Translates a canonical truck type value for display. Falls back to the
@@ -42,6 +45,12 @@ String truckTypeLabel(BuildContext context, String rawType) {
       return l10n.truckTypeBulker;
     case 'Tanker':
       return l10n.truckTypeTanker;
+    case 'Puller':
+      return l10n.truckTypePuller;
+    case 'Windblade Trailer':
+      return l10n.truckTypeWindbladeTrailer;
+    case 'Pickup Truck/Tata Ace':
+      return l10n.truckTypePickupTruck;
     default:
       return rawType;
   }

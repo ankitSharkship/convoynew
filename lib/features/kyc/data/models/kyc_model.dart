@@ -38,7 +38,20 @@ class VerifyAadhaarOtpResultModel extends VerifyAadhaarOtpResultEntity {
     // 'approved' here. Full approval is confirmed separately via
     // GET /api/kyc/status after the photo step (see FaceReviewScreen).
     final status =
-        user?['kycStatus'] as String? ?? json['status'] as String? ?? 'in_progress';
+        user?['kycStatus'] as String? ??
+        json['status'] as String? ??
+        'in_progress';
     return VerifyAadhaarOtpResultModel(status: status);
+  }
+}
+
+class AadhaarAvailabilityModel extends AadhaarAvailabilityEntity {
+  const AadhaarAvailabilityModel({required super.available, super.message});
+
+  factory AadhaarAvailabilityModel.fromJson(Map<String, dynamic> json) {
+    return AadhaarAvailabilityModel(
+      available: json['available'] as bool? ?? true,
+      message: json['message'] as String?,
+    );
   }
 }

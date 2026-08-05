@@ -92,6 +92,15 @@ class AppLocalizationsKn extends AppLocalizations {
   String get truckTypeTanker => 'ಟ್ಯಾಂಕರ್';
 
   @override
+  String get truckTypePuller => 'ಪುಲ್ಲರ್';
+
+  @override
+  String get truckTypeWindbladeTrailer => 'ವಿಂಡ್‌ಬ್ಲೇಡ್ ಟ್ರೇಲರ್';
+
+  @override
+  String get truckTypePickupTruck => 'ಪಿಕಪ್ ಟ್ರಕ್/ಟಾಟಾ ಏಸ್';
+
+  @override
   String get onboardingSkip => 'ಬಿಟ್ಟುಬಿಡಿ';
 
   @override
@@ -209,6 +218,16 @@ class AppLocalizationsKn extends AppLocalizations {
 
   @override
   String get kycOtpVerifyButton => 'OTP ಪರಿಶೀಲಿಸಿ';
+
+  @override
+  String get kycCheckingAadhaar => 'ಪರಿಶೀಲಿಸಲಾಗುತ್ತಿದೆ...';
+
+  @override
+  String get kycAadhaarUnavailable => 'ಈ ಆಧಾರ್ ಬಳಸಲಾಗುವುದಿಲ್ಲ';
+
+  @override
+  String get kycAadhaarConflictSnackbar =>
+      'ಈ ಆಧಾರ್ ಈಗಾಗಲೇ ಬೇರೆ ಖಾತೆಯೊಂದಿಗೆ ಪರಿಶೀಲಿಸಲ್ಪಟ್ಟಿದೆ.';
 
   @override
   String get kycThankYou => 'ಆಧಾರ್ ಪರಿಶೀಲಿಸಲಾಗಿದೆ!';
@@ -499,6 +518,9 @@ class AppLocalizationsKn extends AppLocalizations {
   String get searchSelectHint => 'ಆಯ್ಕೆಮಾಡಿ';
 
   @override
+  String get searchCapacityNotApplicable => 'ಅನ್ವಯಿಸುವುದಿಲ್ಲ';
+
+  @override
   String get searchFindTrucksButton => 'ಟ್ರಕ್‌ಗಳನ್ನು ಹುಡುಕಿ';
 
   @override
@@ -613,7 +635,7 @@ class AppLocalizationsKn extends AppLocalizations {
   }
 
   @override
-  String capacityTon(int capacity) {
+  String capacityTon(num capacity) {
     return '$capacity ಟನ್';
   }
 
@@ -750,6 +772,9 @@ class AppLocalizationsKn extends AppLocalizations {
   String get walletScratchCardExpired => 'ಅವಧಿ ಮುಗಿದಿದೆ';
 
   @override
+  String get scratchCardRevealButton => 'ತೋರಿಸಿ';
+
+  @override
   String get postScratchCardTitle => 'ನೀವು ಸ್ಕ್ರ್ಯಾಚ್ ಕಾರ್ಡ್ ಗಳಿಸಿದ್ದೀರಿ!';
 
   @override
@@ -775,4 +800,24 @@ class AppLocalizationsKn extends AppLocalizations {
 
   @override
   String get walletKycCompleteButton => 'KYC ಪೂರ್ಣಗೊಳಿಸಿ';
+
+  @override
+  String get wheelPickerDoneButton => 'ಮುಗಿಸಿ';
+
+  @override
+  String get postLengthLabel => 'ಉದ್ದ';
+
+  @override
+  String get postHeightLabel => 'ಎತ್ತರ';
+
+  @override
+  String get postSelectLengthHint => 'ಉದ್ದ ಆಯ್ಕೆಮಾಡಿ';
+
+  @override
+  String get postSelectHeightHint => 'ಎತ್ತರ ಆಯ್ಕೆಮಾಡಿ';
+
+  @override
+  String feetValue(num value) {
+    return '$value ಅಡಿ';
+  }
 }

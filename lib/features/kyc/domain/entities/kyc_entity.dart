@@ -31,3 +31,13 @@ class VerifyAadhaarOtpResultEntity {
 
   bool get isApproved => status == 'approved';
 }
+
+/// Result of a pure, side-effect-free `/aadhaar/check` lookup — purely a UX
+/// convenience for live-typing feedback. `send-otp` enforces the identical
+/// check regardless, so this result is never the actual source of truth.
+class AadhaarAvailabilityEntity {
+  final bool available;
+  final String? message;
+
+  const AadhaarAvailabilityEntity({required this.available, this.message});
+}
