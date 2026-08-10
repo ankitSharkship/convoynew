@@ -99,12 +99,6 @@ class PostSuccessScreen extends ConsumerWidget {
                 icon: const Icon(Icons.search, size: 18),
                 label: Text(l10n.postSuccessGoToDashboard),
               ),
-              const SizedBox(height: 12),
-              TextButton(
-                onPressed: () =>
-                    navigateToPostTruck(context, ref, replace: true),
-                child: Text(l10n.postSuccessPostAnother),
-              ),
               const SizedBox(height: 24),
             ],
           ),

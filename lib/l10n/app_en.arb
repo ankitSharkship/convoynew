@@ -38,6 +38,12 @@
   "onboardingGetStarted": "Get Started",
   "onboardingTitle": "Loads come\nto you, every day.",
   "onboardingSubtitle": "Post your truck once. Verified transporters call you. No middlemen, no running around.",
+  "onboardingPage2Title": "Ab koi truck Khaali nahi chalega",
+  "onboardingPage2Subtitle": "Apna truck list kijiye. Load owners aapko dhoondh lenge.",
+  "onboardingPage2Button": "Aage Badhein",
+  "onboardingPage3Title": "Verified Loads.\nSeedha Connection.",
+  "onboardingPage3Subtitle": "Genuine Loads aapke har trip ke liye.",
+  "onboardingPage3Button": "Shuru Karein",
   "onboardingChangeLanguage": "Change language",
 
   "phoneEnterNumberHint": "Enter Mobile Number",
@@ -234,6 +240,9 @@
   },
   "resultsViewAllMutuals": "View All",
   "resultsPostedBy": "Posted By: {userName}",
+  "resultsCallSheetTitle": "Who would you like to call?",
+  "resultsContactLabel": "Contact",
+  "resultsPostedByLabel": "Posted By",
   "@resultsPostedBy": {
     "placeholders": { "userName": { "type": "String" } }
   },

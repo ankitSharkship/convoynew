@@ -11,6 +11,7 @@ import '../../../contacts/presentation/state/contacts_sync_notifier.dart';
 import '../../../contacts/presentation/widgets/mutual_contacts_sheet.dart';
 import '../../domain/entities/truck_search_result_entity.dart';
 import '../state/search_notifier.dart';
+import '../widgets/call_contact_sheet.dart';
 
 String _maskVehicleNumber(String number) {
   final buffer = StringBuffer();
@@ -601,7 +602,9 @@ class _ResultCard extends ConsumerWidget {
                 ),
               ),
               GestureDetector(
-                onTap: () => _callNumber(context, result.displayContactNumber),
+                onTap: () => result.hasAlternateContact
+                    ? CallContactSheet.show(context, result)
+                    : _callNumber(context, result.displayContactNumber),
                 child: Container(
                   width: 40,
                   height: 40,

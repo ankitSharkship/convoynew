@@ -21,7 +21,7 @@ class MiniMapPreview extends StatelessWidget {
     final l10n = AppLocalizations.of(context)!;
 
     return ClipRRect(
-      borderRadius: BorderRadius.circular(24),
+      borderRadius: BorderRadius.circular(20),
       child: GestureDetector(
         onTap: () => context.push('/truck-map'),
         child: Stack(

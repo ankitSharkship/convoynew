@@ -22,15 +22,10 @@ String? truckTypeImagePath(String rawType) {
       return 'assets/trucks/refrigerated.webp';
     case 'Bulker':
       return 'assets/trucks/bulker.webp';
-    // No dedicated tanker photo yet — bulker is the closest visual stand-in
-    // (both are cylindrical tank trucks) until a real one is provided.
     case 'Tanker':
-      return 'assets/trucks/bulker.webp';
-    // FLAG FOR REVIEW: neither of these 2 have dedicated artwork yet —
-    // reusing the closest existing shape as a stand-in until real photos
-    // exist.
+      return 'assets/trucks/tanker.webp';
     case 'Puller':
-      return 'assets/trucks/flat_bed_trailer.webp';
+      return 'assets/trucks/puller.webp';
     case 'Windblade Trailer':
       return 'assets/trucks/windblade_trailer.png';
     case 'Pickup Truck/Tata Ace':

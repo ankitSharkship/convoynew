@@ -61,9 +61,10 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
       showAnyOption: true,
     );
     if (selected == null || !mounted) return;
+    final isAny = selected == anyTruckTypeValue;
     ref
         .read(searchNotifierProvider.notifier)
-        .selectTruckType(selected == anyTruckTypeValue ? null : selected);
+        .selectTruckType(isAny ? null : selected, isAny: isAny);
   }
 
   Future<void> _pickCapacity(
@@ -247,7 +248,9 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                                         context,
                                         state.selectedTruckType!,
                                       )
-                                    : null,
+                                    : (state.truckTypeIsAny
+                                          ? l10n.resultsAny
+                                          : null),
                                 onTap: () =>
                                     _pickTruckType(state.selectedTruckType),
                               ),

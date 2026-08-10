@@ -64,6 +64,7 @@ class ProfileScreen extends ConsumerWidget {
                           color: AppColors.textTertiary,
                         ),
                         const SizedBox(height: 12),
+
                         Text(
                           ApiException.messageFor(e),
                           textAlign: TextAlign.center,

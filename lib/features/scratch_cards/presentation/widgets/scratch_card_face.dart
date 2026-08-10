@@ -41,15 +41,17 @@ class ScratchCardFace extends StatelessWidget {
           return Stack(
             fit: StackFit.expand,
             children: [
-              const Positioned.fill(child: CustomPaint(painter: _SunburstPainter())),
+              const Positioned.fill(
+                child: CustomPaint(painter: _SunburstPainter()),
+              ),
               Center(
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Icon(
-                      Icons.sell_outlined,
+                      Icons.card_giftcard_rounded,
                       color: AppColors.white,
-                      size: scale * 0.22,
+                      size: scale * 0.18,
                     ),
                     SizedBox(height: scale * 0.06),
                     Padding(
@@ -62,17 +64,17 @@ class ScratchCardFace extends StatelessWidget {
                         style: TextStyle(
                           color: AppColors.white,
                           fontSize: scale * textScale,
-                          fontWeight: FontWeight.w800,
+                          fontWeight: FontWeight.w600,
                           letterSpacing: 0.4,
                         ),
                       ),
                     ),
                     SizedBox(height: scale * 0.05),
-                    Container(
-                      width: scale * 0.16,
-                      height: 2,
-                      color: AppColors.white.withValues(alpha: 0.6),
-                    ),
+                    // Container(
+                    //   width: scale * 0.16,
+                    //   height: 2,
+                    //   color: AppColors.white.withValues(alpha: 0.6),
+                    // ),
                   ],
                 ),
               ),
@@ -100,10 +102,18 @@ class _SunburstPainter extends CustomPainter {
     for (var i = 0; i < rayCount; i += 2) {
       final angle = (2 * math.pi / rayCount) * i;
       final halfWidth = (math.pi / rayCount) * 0.5;
-      final p1 = center +
-          Offset(radius * math.cos(angle - halfWidth), radius * math.sin(angle - halfWidth));
-      final p2 = center +
-          Offset(radius * math.cos(angle + halfWidth), radius * math.sin(angle + halfWidth));
+      final p1 =
+          center +
+          Offset(
+            radius * math.cos(angle - halfWidth),
+            radius * math.sin(angle - halfWidth),
+          );
+      final p2 =
+          center +
+          Offset(
+            radius * math.cos(angle + halfWidth),
+            radius * math.sin(angle + halfWidth),
+          );
       final path = Path()
         ..moveTo(center.dx, center.dy)
         ..lineTo(p1.dx, p1.dy)

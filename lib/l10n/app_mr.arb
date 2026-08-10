@@ -37,11 +37,17 @@
   "truckTypePickupTruck": "पिकअप ट्रक/टाटा एस",
 
   "onboardingSkip": "स्किप करा",
-  "onboardingGetStarted": "सुरू करा",
+  "onboardingGetStarted": "सुरु करा",
 
-  "onboardingTitle": "लोड रोज\nतुमच्यापर्यंत पोहोचतात.",
+  "onboardingTitle": "लोड्स दररोज\nतुमच्याकडे येतील.",
 
-  "onboardingSubtitle": "एकदाच ट्रक पोस्ट करा. Verified Transporter थेट तुम्हाला Call करतील. कोणताही दलाल नाही, धावपळ नाही.",
+  "onboardingSubtitle": "तुमचा ट्रक एकदा पोस्ट करा. वेरिफाइड ट्रान्सपोर्टर तुम्हाला कॉल करतील. मध्यस्थ नाही, धावपळ नाही.",
+  "onboardingPage2Title": "आता कोणताही ट्रक रिकामा जाणार नाही",
+  "onboardingPage2Subtitle": "तुमचा ट्रक सूचीबद्ध करा. मालमालक तुम्हाला शोधतील.",
+  "onboardingPage2Button": "पुढे चला",
+  "onboardingPage3Title": "व्हेरिफाइड लोड.\nथेट कनेक्शन.",
+  "onboardingPage3Subtitle": "प्रत्येक ट्रिपसाठी अस्सल लोड्स.",
+  "onboardingPage3Button": "सुरु करा",
 
   "onboardingChangeLanguage": "भाषा बदला",
 
@@ -68,7 +74,7 @@
 
   "homeHello": "नमस्कार 👋",
 
-  "homeHeroTitle": "तुमचा ट्रक कमाईसाठी\nतयार आहे 💰",
+  "homeHeroTitle": "ट्रक तयार आहे? आता काम सुरू करा.",
 
   "homeHeroSubtitle": "आत्ताच ट्रक पोस्ट करा आणि लगेच Verified Load मिळवा.",
 
@@ -84,13 +90,13 @@
 
   "homeSearchTrucksSubtitle": "उपलब्ध ट्रक पाहा",
 
-  "homeManageSection": "तुमच्या पोस्ट आणि शोध",
+  "homeManageSection": "पोस्ट आणि सर्च व्यवस्थापित करा",
 
-  "homeViewAll": "सगळं पहा",
+  "homeViewAll": "सर्व पहा",
 
-  "homeRecentPosts": "अलीकडच्या पोस्ट",
+  "homeRecentPosts": "अलीकडील पोस्ट",
 
-  "homeRecentSearch": "अलीकडचे शोध",
+  "homeRecentSearch": "अलीकडील शोध",
 
   "homeNoRecentPosts": "अजून कोणतीही पोस्ट नाही",
 
@@ -237,7 +243,7 @@
 
   "profileKycRejected": "Reject",
 
-  "profileKycPending": "बाकी आहे",
+  "profileKycPending": "प्रलंबित",
 
   "profileKycPhotoPending": "फोटो बाकी आहे",
 
@@ -245,7 +251,7 @@
 
   "profileMyVehicles": "माझी वाहनं",
 
-  "profileTermsPrivacy": "Terms & Privacy",
+  "profileTermsPrivacy": "अटी आणि गोपनीयता",
 
   "profileHelp": "24×7 Driver Support",
 
@@ -325,6 +331,9 @@
   "resultsViewAllMutuals": "सगळे पहा",
 
   "resultsPostedBy": "पोस्ट केलं: {userName}",
+  "resultsCallSheetTitle": "तुम्हाला कोणाला कॉल करायचा आहे?",
+  "resultsContactLabel": "संपर्क",
+  "resultsPostedByLabel": "पोस्ट केलं",
 
     "mutualContactsSheetTitle": "कॉमन Contact",
 
@@ -340,7 +349,7 @@
 
   "navHome": "होम",
 
-  "navSearch": "शोधा",
+  "navSearch": "शोध",
 
   "navWallet": "वॉलेट",
 

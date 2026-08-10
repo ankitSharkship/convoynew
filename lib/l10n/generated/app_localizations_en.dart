@@ -114,6 +114,25 @@ class AppLocalizationsEn extends AppLocalizations {
       'Post your truck once. Verified transporters call you. No middlemen, no running around.';
 
   @override
+  String get onboardingPage2Title => 'Ab koi truck Khaali nahi chalega';
+
+  @override
+  String get onboardingPage2Subtitle =>
+      'Apna truck list kijiye. Load owners aapko dhoondh lenge.';
+
+  @override
+  String get onboardingPage2Button => 'Aage Badhein';
+
+  @override
+  String get onboardingPage3Title => 'Verified Loads.\nSeedha Connection.';
+
+  @override
+  String get onboardingPage3Subtitle => 'Genuine Loads aapke har trip ke liye.';
+
+  @override
+  String get onboardingPage3Button => 'Shuru Karein';
+
+  @override
   String get onboardingChangeLanguage => 'Change language';
 
   @override
@@ -161,7 +180,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get homeHello => 'Hello';
 
   @override
-  String get homeHeroTitle => 'Your truck is ready\nto earn 💰';
+  String get homeHeroTitle => 'Truck Ready Hai? Ab Kaam Shuru Karein.';
 
   @override
   String get homeHeroSubtitle =>
@@ -598,6 +617,15 @@ class AppLocalizationsEn extends AppLocalizations {
   String resultsPostedBy(String userName) {
     return 'Posted By: $userName';
   }
+
+  @override
+  String get resultsCallSheetTitle => 'Who would you like to call?';
+
+  @override
+  String get resultsContactLabel => 'Contact';
+
+  @override
+  String get resultsPostedByLabel => 'Posted By';
 
   @override
   String get mutualContactsSheetTitle => 'Mutual Contacts';

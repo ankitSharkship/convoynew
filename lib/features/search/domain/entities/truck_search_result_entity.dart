@@ -117,8 +117,23 @@ class TruckSearchResultEntity {
       ? contactNumber!
       : userMobile;
 
-  bool get hasAlternateContact =>
-      contactName != null && contactName!.isNotEmpty;
+  /// True only when a genuinely different contact was set at posting time.
+  /// The API always returns *a* contactName/contactNumber — falling back
+  /// to the poster's own details — even when "me" was selected, so a
+  /// non-empty contactNumber alone doesn't mean it differs from the
+  /// poster's own number. Comparing the actual numbers (last 10 digits,
+  /// to ignore country-code/formatting differences) is the only reliable
+  /// signal.
+  bool get hasAlternateContact {
+    final contact = contactNumber;
+    if (contact == null || contact.isEmpty) return false;
+    return _lastTenDigits(contact) != _lastTenDigits(userMobile);
+  }
+}
+
+String _lastTenDigits(String raw) {
+  final digits = raw.replaceAll(RegExp(r'\D'), '');
+  return digits.length > 10 ? digits.substring(digits.length - 10) : digits;
 }
 
 class TruckSearchResultPage {

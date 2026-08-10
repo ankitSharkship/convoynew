@@ -6,14 +6,47 @@ import '../../../../l10n/generated/app_localizations.dart';
 import '../../../../shared/widgets/language_switcher_button.dart';
 import '../state/onboarding_notifier.dart';
 
-// NOTE: content (title/subtitle/copy) is intentionally identical across all
-// three pages for now — only the illustration changes. The images/text will
-// be revisited later.
 const _pageImages = [
   'assets/images/truck2.webp',
   'assets/images/truck4.webp',
   'assets/images/truck3.webp',
 ];
+
+String _titleFor(AppLocalizations l10n, int page) {
+  switch (page) {
+    case 0:
+      return l10n.onboardingTitle;
+    case 1:
+      return l10n.onboardingPage2Title;
+    default:
+      return l10n.onboardingPage3Title;
+  }
+}
+
+String _subtitleFor(AppLocalizations l10n, int page) {
+  switch (page) {
+    case 0:
+      return l10n.onboardingSubtitle;
+    case 1:
+      return l10n.onboardingPage2Subtitle;
+    default:
+      return l10n.onboardingPage3Subtitle;
+  }
+}
+
+/// The last page's button submits (handled by `_onGetStarted`'s own
+/// page-index check) — only the label changes here to match: "Get
+/// Started" on page 1, "Next" on page 2, "Start" on the final page.
+String _buttonTextFor(AppLocalizations l10n, int page) {
+  switch (page) {
+    case 0:
+      return l10n.onboardingGetStarted;
+    case 1:
+      return l10n.onboardingPage2Button;
+    default:
+      return l10n.onboardingPage3Button;
+  }
+}
 
 class OnboardingScreen extends ConsumerStatefulWidget {
   const OnboardingScreen({super.key});
@@ -66,8 +99,8 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                   onPageChanged: (i) => setState(() => _currentPage = i),
                   itemBuilder: (context, index) => _OnboardingPage(
                     image: _pageImages[index],
-                    title: l10n.onboardingTitle,
-                    subtitle: l10n.onboardingSubtitle,
+                    title: _titleFor(l10n, index),
+                    subtitle: _subtitleFor(l10n, index),
                   ),
                 ),
                 Positioned(
@@ -135,7 +168,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                   elevation: 0,
                 ),
                 child: Text(
-                  l10n.onboardingGetStarted,
+                  _buttonTextFor(l10n, _currentPage),
                   style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w700,

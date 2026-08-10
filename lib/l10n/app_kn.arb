@@ -34,13 +34,19 @@
   "truckTypeWindbladeTrailer": "ವಿಂಡ್‌ಬ್ಲೇಡ್ ಟ್ರೇಲರ್",
   "truckTypePickupTruck": "ಪಿಕಪ್ ಟ್ರಕ್/ಟಾಟಾ ಏಸ್",
 
-  "onboardingSkip": "ಬಿಟ್ಟುಬಿಡಿ",
+  "onboardingSkip": "ಸ್ಕಿಪ್ ಮಾಡಿ",
   "onboardingGetStarted": "ಪ್ರಾರಂಭಿಸಿ",
-  "onboardingTitle": "ಲೋಡ್‌ಗಳು ಪ್ರತಿದಿನ\nನಿಮ್ಮ ಬಳಿಗೆ ಬರುತ್ತವೆ.",
-  "onboardingSubtitle": "ನಿಮ್ಮ ಟ್ರಕ್ ಅನ್ನು ಒಮ್ಮೆ ಪೋಸ್ಟ್ ಮಾಡಿ. ಪರಿಶೀಲಿತ ಟ್ರಾನ್ಸ್‌ಪೋರ್ಟರ್‌ಗಳು ನಿಮಗೆ ಕರೆ ಮಾಡುತ್ತಾರೆ. ಯಾವುದೇ ಮಧ್ಯವರ್ತಿಗಳಿಲ್ಲ, ಅಲೆದಾಡುವಿಕೆ ಇಲ್ಲ.",
-  "onboardingChangeLanguage": "ಭಾಷೆ ಬದಲಾಯಿಸಿ",
+  "onboardingTitle": "ಲೋಡ್‌ಗಳು ಪ್ರತಿದಿನ\nನಿಮ್ಮ ಬಳಿಗೆ ಬರುತ್ತದೆ.",
+  "onboardingSubtitle": "ನಿಮ್ಮ ಟ್ರಕ್ ಅನ್ನು ಒಮ್ಮೆ ಪೋಸ್ಟ್ ಮಾಡಿ. ವೆರಿಫೈಡ್ ಟ್ರಾನ್ಸ್‌ಪೋರ್ಟರ್‌ಗಳು ನಿಮಗೆ ಕರೆ ಮಾಡುತ್ತಾರೆ. ಮಧ್ಯವರ್ತಿಗಳಿಲ್ಲ, ಅಲೆದಾಟಕ್ಕಿಲ್ಲ.",
+  "onboardingPage2Title": "ಇನ್ನು ಮುಂದೆ ಟ್ರಕ್ ಖಾಲಿ ಓಡುವುದಿಲ್ಲ",
+  "onboardingPage2Subtitle": "ನಿಮ್ಮ ಟ್ರಕ್ ಅನ್ನು ಪಟ್ಟಿಗೆ ಸೇರಿಸಿ. ಸರಕು ಮಾಲೀಕರು ನಿಮ್ಮನ್ನು ಹುಡುಕುತ್ತಾರೆ.",
+  "onboardingPage2Button": "ಮುಂದುವರಿಸಿ",
+  "onboardingPage3Title": "ವೆರಿಫೈಡ್ ಲೋಡ್‌ಗಳು.\nನೇರ ಸಂಪರ್ಕ.",
+  "onboardingPage3Subtitle": "ನಿಮ್ಮ ಪ್ರತಿ ಟ್ರಿಪ್‌ಗೆ ನೈಜ ಲೋಡ್‌ಗಳು.",
+  "onboardingPage3Button": "ಪ್ರಾರಂಭಿಸಿ",
+  "onboardingChangeLanguage": "ಭಾಷೆ ಬದಲಿಸಿ",
 
-  "phoneEnterNumberHint": "ನಿಮ್ಮ ನಂಬರ್ ನಮೂದಿಸಿ",
+  "phoneEnterNumberHint": "ಮೊಬೈಲ್ ಸಂಖ್ಯೆ ನಮೂದಿಸಿ",
   "phoneContinueButton": "ಮೊಬೈಲ್ ನಂಬರ್‌ನೊಂದಿಗೆ ಮುಂದುವರಿಸಿ",
 
   "otpTitle": "4-ಅಂಕಿಯ ಕೋಡ್ ನಮೂದಿಸಿ",
@@ -64,7 +70,7 @@
   "callDisclaimer": "Bonut ನಲ್ಲಿ ಇನ್-ಆ್ಯಪ್ ಕರೆ ಇಲ್ಲ. ಕರೆ ಮೇಲೆ ಟ್ಯಾಪ್ ಮಾಡಿದಾಗ\nಇದು ನಿಮ್ಮ ಫೋನ್ ಡಯಲರ್ ಅನ್ನು ತೆರೆಯುತ್ತದೆ ಮತ್ತು ದಾಖಲೆಗಾಗಿ ಅದನ್ನು ಲಾಗ್ ಮಾಡುತ್ತದೆ.",
 
   "homeHello": "ನಮಸ್ಕಾರ",
-  "homeHeroTitle": "ನಿಮ್ಮ ಟ್ರಕ್ ಗಳಿಸಲು\nಸಿದ್ಧವಾಗಿದೆ 💰",
+  "homeHeroTitle": "ಟ್ರಕ್ ಸಿದ್ಧವಿದೆಯೇ? ಈಗ ಕೆಲಸ ಪ್ರಾರಂಭಿಸಿ.",
   "homeHeroSubtitle": "ಈಗಲೇ ಪೋಸ್ಟ್ ಮಾಡಿ ಮತ್ತು ತಕ್ಷಣ ಪರಿಶೀಲಿತ ಲೋಡ್ ವಿನಂತಿಗಳನ್ನು ಪಡೆಯಿರಿ.",
   "homeHeroButton": "ಈಗ ಟ್ರಕ್ ಪೋಸ್ಟ್ ಮಾಡಿ",
   "homeQuickActions": "ತ್ವರಿತ ಕ್ರಿಯೆಗಳು",
@@ -72,8 +78,8 @@
   "homePostNewTruckSubtitle": "30 ಸೆಕೆಂಡುಗಳಲ್ಲಿ ಸಿದ್ಧ",
   "homeSearchTrucks": "ಟ್ರಕ್‌ಗಳನ್ನು ಹುಡುಕಿ",
   "homeSearchTrucksSubtitle": "ಲಭ್ಯವಿರುವ ವಾಹನಗಳನ್ನು ಹುಡುಕಿ",
-  "homeManageSection": "ಪೋಸ್ಟ್ ಮತ್ತು ಹುಡುಕಾಟಗಳನ್ನು ನಿರ್ವಹಿಸಿ",
-  "homeViewAll": "ಎಲ್ಲವನ್ನೂ ವೀಕ್ಷಿಸಿ",
+  "homeManageSection": "ಪೋಸ್ಟ್‌ಗಳು ಮತ್ತು ಹುಡುಕಾಟಗಳನ್ನು ನಿರ್ವಹಿಸಿ",
+  "homeViewAll": "ಎಲ್ಲಾ ನೋಡಿ",
   "homeRecentPosts": "ಇತ್ತೀಚಿನ ಪೋಸ್ಟ್‌ಗಳು",
   "homeRecentSearch": "ಇತ್ತೀಚಿನ ಹುಡುಕಾಟ",
   "homeNoRecentPosts": "ಯಾವುದೇ ಇತ್ತೀಚಿನ ಪೋಸ್ಟ್‌ಗಳಿಲ್ಲ",
@@ -165,7 +171,7 @@
 
   "profileTitle": "ಪ್ರೊಫೈಲ್",
   "profileAccountSection": "ಖಾತೆ",
-  "profileVerifiedDriver": "✓ ಪರಿಶೀಲಿತ",
+  "profileVerifiedDriver": "✓ Verified",
   "profileLanguage": "ಭಾಷೆ",
   "profileLogoutTitle": "ಲಾಗ್‌ಔಟ್",
   "profileLogoutConfirm": "ನೀವು ಖಚಿತವಾಗಿ ಲಾಗ್‌ಔಟ್ ಮಾಡಲು ಬಯಸುವಿರಾ?",
@@ -234,6 +240,9 @@
   },
   "resultsViewAllMutuals": "ಎಲ್ಲವನ್ನೂ ವೀಕ್ಷಿಸಿ",
   "resultsPostedBy": "ಪೋಸ್ಟ್ ಮಾಡಿದವರು: {userName}",
+  "resultsCallSheetTitle": "ನೀವು ಯಾರಿಗೆ ಕರೆ ಮಾಡಲು ಬಯಸುತ್ತೀರಿ?",
+  "resultsContactLabel": "ಸಂಪರ್ಕ",
+  "resultsPostedByLabel": "ಪೋಸ್ಟ್ ಮಾಡಿದವರು",
   "@resultsPostedBy": {
     "placeholders": { "userName": { "type": "String" } }
   },
@@ -244,8 +253,8 @@
   "contactsPermissionRationale": "ಇತರ ಬಳಕೆದಾರರೊಂದಿಗೆ ಪರಸ್ಪರ ಸಂಪರ್ಕಗಳನ್ನು ತೋರಿಸಲು Bonut ನಿಮ್ಮ ಸಂಪರ್ಕಗಳನ್ನು ಬಳಸುತ್ತದೆ. ನಿಮ್ಮ ಸಂಪರ್ಕಗಳನ್ನು ಎಂದಿಗೂ ಹಂಚಿಕೊಳ್ಳಲಾಗುವುದಿಲ್ಲ — ಸುರಕ್ಷಿತ ಏಕಮುಖ ಹ್ಯಾಶ್‌ಗಳನ್ನು ಮಾತ್ರ ಸಿಂಕ್ ಮಾಡಲಾಗುತ್ತದೆ.",
   "contactsPermissionDeniedMessage": "ಸಂಪರ್ಕಗಳ ಅನುಮತಿ ನಿರಾಕರಿಸಲಾಗಿದೆ. ಪರಸ್ಪರ ಸಂಪರ್ಕಗಳನ್ನು ನೋಡಲು ಸೆಟ್ಟಿಂಗ್‌ಗಳಲ್ಲಿ ಅದನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ.",
 
-  "navHome": "ಮುಖಪುಟ",
-  "navSearch": "ಹುಡುಕಿ",
+  "navHome": "ಹೋಮ್",
+  "navSearch": "ಹುಡುಕಾಟ",
   "navWallet": "ವಾಲೆಟ್",
   "navProfile": "ಪ್ರೊಫೈಲ್",
 

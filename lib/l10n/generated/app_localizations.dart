@@ -306,6 +306,42 @@ abstract class AppLocalizations {
   /// **'Post your truck once. Verified transporters call you. No middlemen, no running around.'**
   String get onboardingSubtitle;
 
+  /// No description provided for @onboardingPage2Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Ab koi truck Khaali nahi chalega'**
+  String get onboardingPage2Title;
+
+  /// No description provided for @onboardingPage2Subtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Apna truck list kijiye. Load owners aapko dhoondh lenge.'**
+  String get onboardingPage2Subtitle;
+
+  /// No description provided for @onboardingPage2Button.
+  ///
+  /// In en, this message translates to:
+  /// **'Aage Badhein'**
+  String get onboardingPage2Button;
+
+  /// No description provided for @onboardingPage3Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Verified Loads.\nSeedha Connection.'**
+  String get onboardingPage3Title;
+
+  /// No description provided for @onboardingPage3Subtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Genuine Loads aapke har trip ke liye.'**
+  String get onboardingPage3Subtitle;
+
+  /// No description provided for @onboardingPage3Button.
+  ///
+  /// In en, this message translates to:
+  /// **'Shuru Karein'**
+  String get onboardingPage3Button;
+
   /// No description provided for @onboardingChangeLanguage.
   ///
   /// In en, this message translates to:
@@ -387,7 +423,7 @@ abstract class AppLocalizations {
   /// No description provided for @homeHeroTitle.
   ///
   /// In en, this message translates to:
-  /// **'Your truck is ready\nto earn 💰'**
+  /// **'Truck Ready Hai? Ab Kaam Shuru Karein.'**
   String get homeHeroTitle;
 
   /// No description provided for @homeHeroSubtitle.
@@ -1199,6 +1235,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Posted By: {userName}'**
   String resultsPostedBy(String userName);
+
+  /// No description provided for @resultsCallSheetTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Who would you like to call?'**
+  String get resultsCallSheetTitle;
+
+  /// No description provided for @resultsContactLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Contact'**
+  String get resultsContactLabel;
+
+  /// No description provided for @resultsPostedByLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Posted By'**
+  String get resultsPostedByLabel;
 
   /// No description provided for @mutualContactsSheetTitle.
   ///

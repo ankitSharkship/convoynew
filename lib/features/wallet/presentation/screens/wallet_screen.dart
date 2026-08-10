@@ -7,7 +7,6 @@ import '../../../../core/constants/app_colors.dart';
 import '../../../../core/network/api_exception.dart';
 import '../../../../l10n/generated/app_localizations.dart';
 import '../../../../shared/widgets/language_switcher_button.dart';
-import '../../../../shared/widgets/loader.dart';
 import '../../../kyc/presentation/navigation/post_truck_gate.dart';
 import '../../../profile/presentation/state/profile_notifier.dart';
 import '../../../scratch_cards/domain/entities/scratch_card_entity.dart';
@@ -68,7 +67,7 @@ class WalletScreen extends ConsumerWidget {
                   ),
                   Expanded(
                     child: walletAsync.when(
-                      loading: () => const AppLoader(),
+                      loading: () => const _WalletSkeleton(),
                       error: (e, _) => Center(
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 32),
@@ -232,7 +231,10 @@ class _ScratchCardsTab extends ConsumerWidget {
     final cardsAsync = ref.watch(scratchCardsNotifierProvider);
 
     return cardsAsync.when(
-      loading: () => const AppLoader(),
+      loading: () => const Padding(
+        padding: EdgeInsets.fromLTRB(20, 16, 20, 32),
+        child: _ScratchCardGridSkeleton(),
+      ),
       error: (e, _) => Center(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 32),
@@ -344,6 +346,222 @@ class _TransactionsTab extends ConsumerWidget {
               ),
             ),
         ],
+      ),
+    );
+  }
+}
+
+// ─── Skeleton loader ─────────────────────────────────────────────────────────
+
+/// Mirrors the loaded wallet page's layout (balance card, tab row, scratch
+/// card grid) instead of a bare spinner, so the page doesn't visibly jump
+/// in shape once real data arrives.
+class _WalletSkeleton extends StatefulWidget {
+  const _WalletSkeleton();
+
+  @override
+  State<_WalletSkeleton> createState() => _WalletSkeletonState();
+}
+
+class _WalletSkeletonState extends State<_WalletSkeleton>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _pulseController;
+
+  @override
+  void initState() {
+    super.initState();
+    _pulseController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 900),
+    )..repeat(reverse: true);
+  }
+
+  @override
+  void dispose() {
+    _pulseController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView(
+      physics: const NeverScrollableScrollPhysics(),
+      padding: const EdgeInsets.fromLTRB(20, 8, 20, 32),
+      children: [
+        // Pulses the balance card + tab row directly — the grid below
+        // pulses on its own timer (it's reused standalone by
+        // _ScratchCardsTab), and nesting two out-of-phase pulses would
+        // just look flickery rather than smoothly synced.
+        AnimatedBuilder(
+          animation: _pulseController,
+          builder: (context, child) => Opacity(
+            opacity: 0.4 + (_pulseController.value * 0.4),
+            child: child,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const _BalanceCardSkeleton(),
+              const SizedBox(height: 20),
+              Row(
+                children: [
+                  _SkeletonBox(width: 90, height: 16),
+                  const SizedBox(width: 24),
+                  _SkeletonBox(width: 80, height: 16),
+                ],
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 20),
+        const _ScratchCardGridSkeleton(),
+      ],
+    );
+  }
+}
+
+class _BalanceCardSkeleton extends StatelessWidget {
+  const _BalanceCardSkeleton();
+
+  @override
+  Widget build(BuildContext context) {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(24),
+      child: Container(
+        width: double.infinity,
+        padding: const EdgeInsets.all(20),
+        decoration: const BoxDecoration(color: AppColors.primaryDark),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                _DarkSkeletonBox(width: 150, height: 12),
+                const Spacer(),
+                _DarkSkeletonBox(width: 22, height: 22, radius: 11),
+              ],
+            ),
+            const SizedBox(height: 12),
+            _DarkSkeletonBox(width: 140, height: 30),
+            const SizedBox(height: 24),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Expanded(
+                  child: _DarkSkeletonBox(width: double.infinity, height: 14),
+                ),
+                const SizedBox(width: 12),
+                _DarkSkeletonBox(width: 90, height: 34, radius: 20),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+/// Self-pulsing so it looks right whether it's embedded in [_WalletSkeleton]
+/// or shown standalone by [_ScratchCardsTab] while its own data is still
+/// loading.
+class _ScratchCardGridSkeleton extends StatefulWidget {
+  const _ScratchCardGridSkeleton();
+
+  @override
+  State<_ScratchCardGridSkeleton> createState() =>
+      _ScratchCardGridSkeletonState();
+}
+
+class _ScratchCardGridSkeletonState extends State<_ScratchCardGridSkeleton>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _pulseController;
+
+  @override
+  void initState() {
+    super.initState();
+    _pulseController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 900),
+    )..repeat(reverse: true);
+  }
+
+  @override
+  void dispose() {
+    _pulseController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedBuilder(
+      animation: _pulseController,
+      builder: (context, child) =>
+          Opacity(opacity: 0.4 + (_pulseController.value * 0.4), child: child),
+      child: GridView.count(
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        crossAxisCount: 2,
+        mainAxisSpacing: 14,
+        crossAxisSpacing: 14,
+        childAspectRatio: 0.95,
+        children: List.generate(
+          4,
+          (_) => const _SkeletonBox(
+            width: double.infinity,
+            height: double.infinity,
+            radius: 20,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _SkeletonBox extends StatelessWidget {
+  final double width;
+  final double height;
+  final double radius;
+
+  const _SkeletonBox({
+    required this.width,
+    required this.height,
+    this.radius = 6,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: width,
+      height: height,
+      decoration: BoxDecoration(
+        color: AppColors.chipBackground,
+        borderRadius: BorderRadius.circular(radius),
+      ),
+    );
+  }
+}
+
+/// Same as [_SkeletonBox] but tinted for the dark balance-card background —
+/// a light-grey block would barely be visible against navy.
+class _DarkSkeletonBox extends StatelessWidget {
+  final double width;
+  final double height;
+  final double radius;
+
+  const _DarkSkeletonBox({
+    required this.width,
+    required this.height,
+    this.radius = 6,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: width,
+      height: height,
+      decoration: BoxDecoration(
+        color: AppColors.white.withValues(alpha: 0.15),
+        borderRadius: BorderRadius.circular(radius),
       ),
     );
   }

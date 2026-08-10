@@ -101,23 +101,42 @@ class AppLocalizationsKn extends AppLocalizations {
   String get truckTypePickupTruck => 'ಪಿಕಪ್ ಟ್ರಕ್/ಟಾಟಾ ಏಸ್';
 
   @override
-  String get onboardingSkip => 'ಬಿಟ್ಟುಬಿಡಿ';
+  String get onboardingSkip => 'ಸ್ಕಿಪ್ ಮಾಡಿ';
 
   @override
   String get onboardingGetStarted => 'ಪ್ರಾರಂಭಿಸಿ';
 
   @override
-  String get onboardingTitle => 'ಲೋಡ್‌ಗಳು ಪ್ರತಿದಿನ\nನಿಮ್ಮ ಬಳಿಗೆ ಬರುತ್ತವೆ.';
+  String get onboardingTitle => 'ಲೋಡ್‌ಗಳು ಪ್ರತಿದಿನ\nನಿಮ್ಮ ಬಳಿಗೆ ಬರುತ್ತದೆ.';
 
   @override
   String get onboardingSubtitle =>
-      'ನಿಮ್ಮ ಟ್ರಕ್ ಅನ್ನು ಒಮ್ಮೆ ಪೋಸ್ಟ್ ಮಾಡಿ. ಪರಿಶೀಲಿತ ಟ್ರಾನ್ಸ್‌ಪೋರ್ಟರ್‌ಗಳು ನಿಮಗೆ ಕರೆ ಮಾಡುತ್ತಾರೆ. ಯಾವುದೇ ಮಧ್ಯವರ್ತಿಗಳಿಲ್ಲ, ಅಲೆದಾಡುವಿಕೆ ಇಲ್ಲ.';
+      'ನಿಮ್ಮ ಟ್ರಕ್ ಅನ್ನು ಒಮ್ಮೆ ಪೋಸ್ಟ್ ಮಾಡಿ. ವೆರಿಫೈಡ್ ಟ್ರಾನ್ಸ್‌ಪೋರ್ಟರ್‌ಗಳು ನಿಮಗೆ ಕರೆ ಮಾಡುತ್ತಾರೆ. ಮಧ್ಯವರ್ತಿಗಳಿಲ್ಲ, ಅಲೆದಾಟಕ್ಕಿಲ್ಲ.';
 
   @override
-  String get onboardingChangeLanguage => 'ಭಾಷೆ ಬದಲಾಯಿಸಿ';
+  String get onboardingPage2Title => 'ಇನ್ನು ಮುಂದೆ ಟ್ರಕ್ ಖಾಲಿ ಓಡುವುದಿಲ್ಲ';
 
   @override
-  String get phoneEnterNumberHint => 'ನಿಮ್ಮ ನಂಬರ್ ನಮೂದಿಸಿ';
+  String get onboardingPage2Subtitle =>
+      'ನಿಮ್ಮ ಟ್ರಕ್ ಅನ್ನು ಪಟ್ಟಿಗೆ ಸೇರಿಸಿ. ಸರಕು ಮಾಲೀಕರು ನಿಮ್ಮನ್ನು ಹುಡುಕುತ್ತಾರೆ.';
+
+  @override
+  String get onboardingPage2Button => 'ಮುಂದುವರಿಸಿ';
+
+  @override
+  String get onboardingPage3Title => 'ವೆರಿಫೈಡ್ ಲೋಡ್‌ಗಳು.\nನೇರ ಸಂಪರ್ಕ.';
+
+  @override
+  String get onboardingPage3Subtitle => 'ನಿಮ್ಮ ಪ್ರತಿ ಟ್ರಿಪ್‌ಗೆ ನೈಜ ಲೋಡ್‌ಗಳು.';
+
+  @override
+  String get onboardingPage3Button => 'ಪ್ರಾರಂಭಿಸಿ';
+
+  @override
+  String get onboardingChangeLanguage => 'ಭಾಷೆ ಬದಲಿಸಿ';
+
+  @override
+  String get phoneEnterNumberHint => 'ಮೊಬೈಲ್ ಸಂಖ್ಯೆ ನಮೂದಿಸಿ';
 
   @override
   String get phoneContinueButton => 'ಮೊಬೈಲ್ ನಂಬರ್‌ನೊಂದಿಗೆ ಮುಂದುವರಿಸಿ';
@@ -161,7 +180,7 @@ class AppLocalizationsKn extends AppLocalizations {
   String get homeHello => 'ನಮಸ್ಕಾರ';
 
   @override
-  String get homeHeroTitle => 'ನಿಮ್ಮ ಟ್ರಕ್ ಗಳಿಸಲು\nಸಿದ್ಧವಾಗಿದೆ 💰';
+  String get homeHeroTitle => 'ಟ್ರಕ್ ಸಿದ್ಧವಿದೆಯೇ? ಈಗ ಕೆಲಸ ಪ್ರಾರಂಭಿಸಿ.';
 
   @override
   String get homeHeroSubtitle =>
@@ -186,10 +205,10 @@ class AppLocalizationsKn extends AppLocalizations {
   String get homeSearchTrucksSubtitle => 'ಲಭ್ಯವಿರುವ ವಾಹನಗಳನ್ನು ಹುಡುಕಿ';
 
   @override
-  String get homeManageSection => 'ಪೋಸ್ಟ್ ಮತ್ತು ಹುಡುಕಾಟಗಳನ್ನು ನಿರ್ವಹಿಸಿ';
+  String get homeManageSection => 'ಪೋಸ್ಟ್‌ಗಳು ಮತ್ತು ಹುಡುಕಾಟಗಳನ್ನು ನಿರ್ವಹಿಸಿ';
 
   @override
-  String get homeViewAll => 'ಎಲ್ಲವನ್ನೂ ವೀಕ್ಷಿಸಿ';
+  String get homeViewAll => 'ಎಲ್ಲಾ ನೋಡಿ';
 
   @override
   String get homeRecentPosts => 'ಇತ್ತೀಚಿನ ಪೋಸ್ಟ್‌ಗಳು';
@@ -429,7 +448,7 @@ class AppLocalizationsKn extends AppLocalizations {
   String get profileAccountSection => 'ಖಾತೆ';
 
   @override
-  String get profileVerifiedDriver => '✓ ಪರಿಶೀಲಿತ';
+  String get profileVerifiedDriver => '✓ Verified';
 
   @override
   String get profileLanguage => 'ಭಾಷೆ';
@@ -601,6 +620,15 @@ class AppLocalizationsKn extends AppLocalizations {
   }
 
   @override
+  String get resultsCallSheetTitle => 'ನೀವು ಯಾರಿಗೆ ಕರೆ ಮಾಡಲು ಬಯಸುತ್ತೀರಿ?';
+
+  @override
+  String get resultsContactLabel => 'ಸಂಪರ್ಕ';
+
+  @override
+  String get resultsPostedByLabel => 'ಪೋಸ್ಟ್ ಮಾಡಿದವರು';
+
+  @override
   String get mutualContactsSheetTitle => 'ಪರಸ್ಪರ ಸಂಪರ್ಕಗಳು';
 
   @override
@@ -618,10 +646,10 @@ class AppLocalizationsKn extends AppLocalizations {
       'ಸಂಪರ್ಕಗಳ ಅನುಮತಿ ನಿರಾಕರಿಸಲಾಗಿದೆ. ಪರಸ್ಪರ ಸಂಪರ್ಕಗಳನ್ನು ನೋಡಲು ಸೆಟ್ಟಿಂಗ್‌ಗಳಲ್ಲಿ ಅದನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ.';
 
   @override
-  String get navHome => 'ಮುಖಪುಟ';
+  String get navHome => 'ಹೋಮ್';
 
   @override
-  String get navSearch => 'ಹುಡುಕಿ';
+  String get navSearch => 'ಹುಡುಕಾಟ';
 
   @override
   String get navWallet => 'ವಾಲೆಟ್';

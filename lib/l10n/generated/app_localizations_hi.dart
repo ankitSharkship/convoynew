@@ -101,17 +101,36 @@ class AppLocalizationsHi extends AppLocalizations {
   String get truckTypePickupTruck => 'पिकअप ट्रक/टाटा ऐस';
 
   @override
-  String get onboardingSkip => 'छोड़ें';
+  String get onboardingSkip => 'स्किप करें';
 
   @override
   String get onboardingGetStarted => 'शुरू करें';
 
   @override
-  String get onboardingTitle => 'लोड हर दिन\nआपके पास आते हैं।';
+  String get onboardingTitle => 'लोड हर दिन\nआपके पास आएंगे।';
 
   @override
   String get onboardingSubtitle =>
-      'बस एक बार पोस्ट करें। Verified ट्रांसपोर्टर आपको सीधे कॉल करेंगे। कोई बिचौलिया नहीं।';
+      'अपना ट्रक एक बार पोस्ट करें। वेरिफाइड ट्रांसपोर्टर आपको कॉल करेंगे। कोई बिचौलिया नहीं, कोई भागदौड़ नहीं।';
+
+  @override
+  String get onboardingPage2Title => 'अब कोई ट्रक खाली नहीं चलेगा';
+
+  @override
+  String get onboardingPage2Subtitle =>
+      'अपना ट्रक लिस्ट करें। लोड मालिक आपको ढूंढ लेंगे।';
+
+  @override
+  String get onboardingPage2Button => 'आगे बढ़ें';
+
+  @override
+  String get onboardingPage3Title => 'वेरिफाइड लोड\nसीधा कनेक्शन';
+
+  @override
+  String get onboardingPage3Subtitle => 'लोड आपकी हर ट्रिप के लिए';
+
+  @override
+  String get onboardingPage3Button => 'शुरू करें';
 
   @override
   String get onboardingChangeLanguage => 'भाषा बदलें';
@@ -160,7 +179,7 @@ class AppLocalizationsHi extends AppLocalizations {
   String get homeHello => 'नमस्ते';
 
   @override
-  String get homeHeroTitle => 'आपका ट्रक कमाई के लिए\nतैयार है 💰';
+  String get homeHeroTitle => 'ट्रक तैयार है? अब काम शुरू करें।';
 
   @override
   String get homeHeroSubtitle =>
@@ -185,7 +204,7 @@ class AppLocalizationsHi extends AppLocalizations {
   String get homeSearchTrucksSubtitle => 'आस-पास के ट्रक देखें';
 
   @override
-  String get homeManageSection => 'पोस्ट और खोज प्रबंधित करें';
+  String get homeManageSection => 'पोस्ट और सर्च मैनेज करें';
 
   @override
   String get homeViewAll => 'सभी देखें';
@@ -194,7 +213,7 @@ class AppLocalizationsHi extends AppLocalizations {
   String get homeRecentPosts => 'हाल की पोस्ट';
 
   @override
-  String get homeRecentSearch => 'हाल की खोज';
+  String get homeRecentSearch => 'हाल की सर्च';
 
   @override
   String get homeNoRecentPosts => 'कोई हाल की पोस्ट नहीं';
@@ -427,7 +446,7 @@ class AppLocalizationsHi extends AppLocalizations {
   String get profileAccountSection => 'खाता';
 
   @override
-  String get profileVerifiedDriver => '✓ सत्यापित';
+  String get profileVerifiedDriver => '✓ Verified';
 
   @override
   String get profileLanguage => 'भाषा';
@@ -451,7 +470,7 @@ class AppLocalizationsHi extends AppLocalizations {
   String get profileKycRejected => 'अस्वीकृत';
 
   @override
-  String get profileKycPending => 'लंबित';
+  String get profileKycPending => 'पेंडिंग';
 
   @override
   String get profileKycPhotoPending => 'फ़ोटो लंबित';
@@ -464,7 +483,7 @@ class AppLocalizationsHi extends AppLocalizations {
   String get profileMyVehicles => 'मेरे वाहन';
 
   @override
-  String get profileTermsPrivacy => 'Terms & Privacy';
+  String get profileTermsPrivacy => 'नियम और गोपनीयता';
 
   @override
   String get profileHelp => '24×7 ड्राइवर सहायता';
@@ -600,6 +619,15 @@ class AppLocalizationsHi extends AppLocalizations {
   }
 
   @override
+  String get resultsCallSheetTitle => 'आप किसे कॉल करना चाहेंगे?';
+
+  @override
+  String get resultsContactLabel => 'संपर्क';
+
+  @override
+  String get resultsPostedByLabel => 'पोस्टकर्ता';
+
+  @override
   String get mutualContactsSheetTitle => 'कॉमन कॉन्टैक्ट';
 
   @override
@@ -620,13 +648,13 @@ class AppLocalizationsHi extends AppLocalizations {
   String get navHome => 'होम';
 
   @override
-  String get navSearch => 'ढूंढें';
+  String get navSearch => 'सर्च';
 
   @override
   String get navWallet => 'वॉलेट';
 
   @override
-  String get navProfile => 'प्रोफ़ाइल';
+  String get navProfile => 'प्रोफाइल';
 
   @override
   String truckCardMoreDestinations(int count) {

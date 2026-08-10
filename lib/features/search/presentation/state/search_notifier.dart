@@ -52,6 +52,12 @@ class SearchState {
   final bool originLocating;
   final bool destinationLocating;
   final String? selectedTruckType;
+
+  /// True when the user explicitly picked "Any" in the truck-type sheet,
+  /// as opposed to never having picked anything — both leave
+  /// [selectedTruckType] null, but the field needs to tell them apart to
+  /// show "Any" instead of falling back to the placeholder hint.
+  final bool truckTypeIsAny;
   final String? selectedCapacity;
   final bool searching;
   final bool refreshing;
@@ -71,6 +77,7 @@ class SearchState {
     this.originLocating = false,
     this.destinationLocating = false,
     this.selectedTruckType,
+    this.truckTypeIsAny = false,
     this.selectedCapacity,
     this.searching = false,
     this.refreshing = false,
@@ -105,6 +112,7 @@ class SearchState {
     bool? destinationLocating,
     String? selectedTruckType,
     bool clearSelectedTruckType = false,
+    bool? truckTypeIsAny,
     String? selectedCapacity,
     bool clearSelectedCapacity = false,
     bool? searching,
@@ -139,6 +147,7 @@ class SearchState {
       selectedTruckType: clearSelectedTruckType
           ? null
           : (selectedTruckType ?? this.selectedTruckType),
+      truckTypeIsAny: truckTypeIsAny ?? this.truckTypeIsAny,
       selectedCapacity: clearSelectedCapacity
           ? null
           : (selectedCapacity ?? this.selectedCapacity),
@@ -305,10 +314,16 @@ class SearchNotifier extends _$SearchNotifier {
   /// Resets the selected capacity on every truck-type change — the
   /// previous value may be out of the new type's range, or the new type
   /// may not support capacity at all (e.g. Windblade Trailer).
-  void selectTruckType(String? type) {
+  ///
+  /// [isAny] distinguishes an explicit "Any" pick from [type] simply being
+  /// null because nothing's been chosen yet — both clear the filter the
+  /// same way, but the field needs to know which happened to show "Any"
+  /// instead of falling back to its placeholder hint.
+  void selectTruckType(String? type, {bool isAny = false}) {
     state = state.copyWith(
       selectedTruckType: type,
       clearSelectedTruckType: type == null,
+      truckTypeIsAny: isAny,
       clearSelectedCapacity: true,
     );
   }
