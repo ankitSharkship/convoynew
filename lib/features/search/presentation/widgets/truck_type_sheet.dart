@@ -123,7 +123,7 @@ class TruckTypeSheet extends StatelessWidget {
                   if (showAnyOption && i == 0) {
                     return _TruckTypeCard(
                       label: l10n.resultsAny,
-                      imagePath: 'assets/trucks/any.png',
+                      imagePath: 'assets/trucks/any.webp',
                       selected: selected == null,
                       onTap: () => Navigator.pop(context, anyTruckTypeValue),
                     );

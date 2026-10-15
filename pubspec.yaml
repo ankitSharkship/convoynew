@@ -1,8 +1,8 @@
 name: convoynew
-description: "Sharkship Convoy"
+description: "Bonut"
 publish_to: "none"
 
-version: 1.0.0+7
+version: 1.0.0+1
 
 environment:
   sdk: ^3.11.5
@@ -56,5 +56,6 @@ flutter:
   assets:
     - .env
     - assets/images/
+    - assets/images/corouselImages/
     - assets/trucks/
     - shorebird.yaml

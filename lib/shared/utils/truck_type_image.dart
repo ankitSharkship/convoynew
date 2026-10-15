@@ -27,9 +27,9 @@ String? truckTypeImagePath(String rawType) {
     case 'Puller':
       return 'assets/trucks/puller.webp';
     case 'Windblade Trailer':
-      return 'assets/trucks/windblade_trailer.png';
+      return 'assets/trucks/windblade_trailer.webp';
     case 'Pickup Truck/Tata Ace':
-      return 'assets/trucks/tata_ace.png';
+      return 'assets/trucks/tata_ace.webp';
     default:
       return null;
   }

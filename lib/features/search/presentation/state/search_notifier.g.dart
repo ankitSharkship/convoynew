@@ -83,7 +83,7 @@ final searchTrucksUseCaseProvider =
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef SearchTrucksUseCaseRef = AutoDisposeProviderRef<SearchTrucksUseCase>;
-String _$searchNotifierHash() => r'9ee08277f83620ad2d3e49e25f5f4dc7cf62a502';
+String _$searchNotifierHash() => r'e6953d0c0fa3eaf36ac665285b746a2d70b52fe5';
 
 /// See also [SearchNotifier].
 @ProviderFor(SearchNotifier)

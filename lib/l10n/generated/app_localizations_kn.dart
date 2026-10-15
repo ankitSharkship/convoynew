@@ -107,14 +107,14 @@ class AppLocalizationsKn extends AppLocalizations {
   String get onboardingGetStarted => 'ಪ್ರಾರಂಭಿಸಿ';
 
   @override
-  String get onboardingTitle => 'ಲೋಡ್‌ಗಳು ಪ್ರತಿದಿನ\nನಿಮ್ಮ ಬಳಿಗೆ ಬರುತ್ತದೆ.';
+  String get onboardingTitle => 'ಲೋಡ್‌ಗಳು ~ಪ್ರತಿದಿನ~\nನಿಮ್ಮ ಬಳಿಗೆ ಬರುತ್ತದೆ.';
 
   @override
   String get onboardingSubtitle =>
       'ನಿಮ್ಮ ಟ್ರಕ್ ಅನ್ನು ಒಮ್ಮೆ ಪೋಸ್ಟ್ ಮಾಡಿ. ವೆರಿಫೈಡ್ ಟ್ರಾನ್ಸ್‌ಪೋರ್ಟರ್‌ಗಳು ನಿಮಗೆ ಕರೆ ಮಾಡುತ್ತಾರೆ. ಮಧ್ಯವರ್ತಿಗಳಿಲ್ಲ, ಅಲೆದಾಟಕ್ಕಿಲ್ಲ.';
 
   @override
-  String get onboardingPage2Title => 'ಇನ್ನು ಮುಂದೆ ಟ್ರಕ್ ಖಾಲಿ ಓಡುವುದಿಲ್ಲ';
+  String get onboardingPage2Title => 'ಇನ್ನು ಮುಂದೆ ಟ್ರಕ್ ~ಖಾಲಿ ಓಡುವುದಿಲ್ಲ~';
 
   @override
   String get onboardingPage2Subtitle =>
@@ -124,7 +124,7 @@ class AppLocalizationsKn extends AppLocalizations {
   String get onboardingPage2Button => 'ಮುಂದುವರಿಸಿ';
 
   @override
-  String get onboardingPage3Title => 'ವೆರಿಫೈಡ್ ಲೋಡ್‌ಗಳು.\nನೇರ ಸಂಪರ್ಕ.';
+  String get onboardingPage3Title => 'ವೆರಿಫೈಡ್ ಲೋಡ್‌ಗಳು.\n~ನೇರ ಸಂಪರ್ಕ.~';
 
   @override
   String get onboardingPage3Subtitle => 'ನಿಮ್ಮ ಪ್ರತಿ ಟ್ರಿಪ್‌ಗೆ ನೈಜ ಲೋಡ್‌ಗಳು.';
@@ -162,6 +162,22 @@ class AppLocalizationsKn extends AppLocalizations {
   String get otpResendCode => 'ಕೋಡ್ ಮತ್ತೆ ಕಳುಹಿಸಿ';
 
   @override
+  String get enterNameTitle => 'ನಾವು ನಿಮ್ಮನ್ನು ಏನೆಂದು ಕರೆಯಬೇಕು?';
+
+  @override
+  String get enterNameSubtitle => 'ಮುಂದುವರಿಸಲು ನಿಮ್ಮ ಹೆಸರನ್ನು ನಮೂದಿಸಿ';
+
+  @override
+  String get enterNameHint => 'ನಿಮ್ಮ ಹೆಸರನ್ನು ನಮೂದಿಸಿ';
+
+  @override
+  String get enterNameButton => 'ಮುಂದುವರಿಸಿ';
+
+  @override
+  String get enterNameError =>
+      'ನಿಮ್ಮ ಹೆಸರನ್ನು ಉಳಿಸಲಾಗಲಿಲ್ಲ. ದಯವಿಟ್ಟು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.';
+
+  @override
   String get callDialerHint => 'ನಿಮ್ಮ ಫೋನ್ ಡಯಲರ್ ತೆರೆಯುತ್ತದೆ';
 
   @override
@@ -184,10 +200,31 @@ class AppLocalizationsKn extends AppLocalizations {
 
   @override
   String get homeHeroSubtitle =>
-      'ಈಗಲೇ ಪೋಸ್ಟ್ ಮಾಡಿ ಮತ್ತು ತಕ್ಷಣ ಪರಿಶೀಲಿತ ಲೋಡ್ ವಿನಂತಿಗಳನ್ನು ಪಡೆಯಿರಿ.';
+      'ವೆರಿಫೈಡ್ ಲೋಡ್ ವಿನಂತಿಗಳು ನೇರವಾಗಿ ನಿಮ್ಮ ಮೊಬೈಲ್‌ಗೆ.';
 
   @override
-  String get homeHeroButton => 'ಈಗ ಟ್ರಕ್ ಪೋಸ್ಟ್ ಮಾಡಿ';
+  String get homeHeroButton => 'ಟ್ರಕ್ ಲಿಸ್ಟ್ ಮಾಡಿ';
+
+  @override
+  String get homeCarousel2Title => 'ಇಂದಿನ ಮೊದಲ ಲೋಡ್ ಹಿಡಿಯುವಿರಾ?';
+
+  @override
+  String get homeCarousel2Subtitle =>
+      '100% ವೆರಿಫೈಡ್ ಲೋಡ್‌ಗಳು. ವಂಚನೆ ಇಲ್ಲ, ಲಾಭ ಮಾತ್ರ.';
+
+  @override
+  String get homeCarousel3Title => 'ಖಾಲಿ ಟ್ರಕ್... ಅತ್ಯಂತ ದುಬಾರಿ.';
+
+  @override
+  String get homeCarousel3Subtitle =>
+      'ಇಂದೇ ಲಿಸ್ಟ್ ಮಾಡಿ, ವೆರಿಫೈಡ್ ಲೋಡ್‌ಗಳನ್ನು ತಕ್ಷಣ ಪಡೆಯಿರಿ.';
+
+  @override
+  String get homeCarousel4Title => 'ನಿಮ್ಮ ಟ್ರಕ್. ನಿಮ್ಮ ಶ್ರಮ. ಖಚಿತ ಲಾಭ.';
+
+  @override
+  String get homeCarousel4Subtitle =>
+      'ವೆರಿಫೈಡ್ ಲೋಡ್‌ಗಳು. ಸರಿಯಾದ ದರ. ಸಮಯಕ್ಕೆ ಪಾವತಿ.';
 
   @override
   String get homeQuickActions => 'ತ್ವರಿತ ಕ್ರಿಯೆಗಳು';
@@ -540,7 +577,7 @@ class AppLocalizationsKn extends AppLocalizations {
   String get searchCapacityNotApplicable => 'ಅನ್ವಯಿಸುವುದಿಲ್ಲ';
 
   @override
-  String get searchFindTrucksButton => 'ಟ್ರಕ್‌ಗಳನ್ನು ಹುಡುಕಿ';
+  String get searchFindTrucksButton => 'ಟ್ರಕ್ ಅನ್ನು ಹುಡುಕಿ ';
 
   @override
   String get resultsTitle => 'ಹುಡುಕಾಟ ಫಲಿತಾಂಶಗಳು';

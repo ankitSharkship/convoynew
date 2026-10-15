@@ -108,7 +108,7 @@ class _TruckMapScreenState extends ConsumerState<TruckMapScreen> {
             children: [
               TileLayer(
                 urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-                userAgentPackageName: 'com.sharkship.convoy',
+                userAgentPackageName: 'com.sharkship.bonut',
               ),
               MarkerLayer(
                 markers: [
@@ -159,16 +159,16 @@ class _TruckMapScreenState extends ConsumerState<TruckMapScreen> {
             const Positioned.fill(
               child: IgnorePointer(
                 child: Center(
-                  child: CircularProgressIndicator(color: AppColors.primaryBlue),
+                  child: CircularProgressIndicator(
+                    color: AppColors.primaryBlue,
+                  ),
                 ),
               ),
             ),
           if (state.userLocation != null)
             Positioned(
               right: 20,
-              bottom: _sheetVisible
-                  ? screenHeight * _sheetExtent + 16
-                  : 24,
+              bottom: _sheetVisible ? screenHeight * _sheetExtent + 16 : 24,
               child: FloatingActionButton(
                 heroTag: 'truck_map_recenter',
                 backgroundColor: AppColors.white,
@@ -195,12 +195,18 @@ class _TruckMapScreenState extends ConsumerState<TruckMapScreen> {
               minChildSize: _sheetMinSize,
               maxChildSize: _sheetMaxSize,
               snap: true,
-              snapSizes: const [_sheetMinSize, _sheetInitialSize, _sheetMaxSize],
+              snapSizes: const [
+                _sheetMinSize,
+                _sheetInitialSize,
+                _sheetMaxSize,
+              ],
               builder: (context, scrollController) {
                 return Container(
                   decoration: const BoxDecoration(
                     color: AppColors.white,
-                    borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+                    borderRadius: BorderRadius.vertical(
+                      top: Radius.circular(20),
+                    ),
                     boxShadow: [
                       BoxShadow(
                         color: Colors.black12,
@@ -329,7 +335,11 @@ class _BackButton extends StatelessWidget {
             ),
           ],
         ),
-        child: const Icon(Icons.arrow_back, size: 18, color: AppColors.primaryBlue),
+        child: const Icon(
+          Icons.arrow_back,
+          size: 18,
+          color: AppColors.primaryBlue,
+        ),
       ),
     );
   }

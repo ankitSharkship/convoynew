@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.sharkship.convoy"
+    namespace = "com.sharkship.bonut"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
@@ -21,7 +21,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.sharkship.convoy"
+        applicationId = "com.sharkship.bonut"
         minSdk = flutter.minSdkVersion
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode

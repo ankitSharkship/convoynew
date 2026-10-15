@@ -8,6 +8,7 @@ import '../../../../l10n/generated/app_localizations.dart';
 import '../../../../shared/widgets/borderless_input_decoration.dart';
 import '../../../../shared/widgets/language_switcher_button.dart';
 import '../../../contacts/presentation/state/contacts_sync_notifier.dart';
+import '../../../profile/presentation/state/profile_notifier.dart';
 import '../state/auth_notifier.dart';
 
 class OtpScreen extends ConsumerStatefulWidget {
@@ -60,6 +61,18 @@ class _OtpScreenState extends ConsumerState<OtpScreen> {
         .verifyOtp(widget.phone, _otpController.text);
   }
 
+  Future<void> _proceedAfterLogin() async {
+    var hasName = true;
+    try {
+      hasName = await ref.read(checkHasNameUseCaseProvider).execute();
+    } catch (_) {
+      // Fail open — don't trap the user on a transient profile-fetch error;
+      // Home already tolerates a failed profile load.
+    }
+    if (!mounted) return;
+    context.go(hasName ? '/home' : '/auth/enter-name');
+  }
+
   Future<void> _resend() async {
     if (_resendSeconds > 0) return;
     _otpController.clear();
@@ -85,7 +98,7 @@ class _OtpScreenState extends ConsumerState<OtpScreen> {
         ref
             .read(contactsSyncNotifierProvider.notifier)
             .syncIfStale(force: true);
-        context.go('/home');
+        _proceedAfterLogin();
       } else if (next is AuthError) {
         _otpController.clear();
         _focusNode.requestFocus();

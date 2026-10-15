@@ -107,14 +107,14 @@ class AppLocalizationsEn extends AppLocalizations {
   String get onboardingGetStarted => 'Get Started';
 
   @override
-  String get onboardingTitle => 'Loads come\nto you, every day.';
+  String get onboardingTitle => 'Loads come\nto you, ~every day.~';
 
   @override
   String get onboardingSubtitle =>
       'Post your truck once. Verified transporters call you. No middlemen, no running around.';
 
   @override
-  String get onboardingPage2Title => 'Ab koi truck Khaali nahi chalega';
+  String get onboardingPage2Title => 'Ab koi truck ~Khaali nahi chalega~';
 
   @override
   String get onboardingPage2Subtitle =>
@@ -124,7 +124,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get onboardingPage2Button => 'Aage Badhein';
 
   @override
-  String get onboardingPage3Title => 'Verified Loads.\nSeedha Connection.';
+  String get onboardingPage3Title => 'Verified Loads.\n~Seedha Connection.~';
 
   @override
   String get onboardingPage3Subtitle => 'Genuine Loads aapke har trip ke liye.';
@@ -162,6 +162,21 @@ class AppLocalizationsEn extends AppLocalizations {
   String get otpResendCode => 'Resend code';
 
   @override
+  String get enterNameTitle => 'What should we call you?';
+
+  @override
+  String get enterNameSubtitle => 'Enter your name to continue';
+
+  @override
+  String get enterNameHint => 'Enter your name';
+
+  @override
+  String get enterNameButton => 'Continue';
+
+  @override
+  String get enterNameError => 'Couldn\'t save your name. Please try again.';
+
+  @override
   String get callDialerHint => 'Opens your phone dialer';
 
   @override
@@ -184,10 +199,31 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get homeHeroSubtitle =>
-      'Post now and get verified load requests instantly.';
+      'Verified load requests seedha aapke mobile par.';
 
   @override
-  String get homeHeroButton => 'Post Truck Now';
+  String get homeHeroButton => 'Truck List Karein';
+
+  @override
+  String get homeCarousel2Title => 'Aaj Ka Pehla Load Pakde?';
+
+  @override
+  String get homeCarousel2Subtitle =>
+      '100% verified loads. No fraud, only fayda.';
+
+  @override
+  String get homeCarousel3Title => 'Khali Truck... Sabse Mehenga Hota Hai.';
+
+  @override
+  String get homeCarousel3Subtitle =>
+      'Aaj hi list karo, verified loads pao turant.';
+
+  @override
+  String get homeCarousel4Title => 'Aapka Truck. Aapki Mehnat. Pakka Fayda.';
+
+  @override
+  String get homeCarousel4Subtitle =>
+      'Verified loads. Sahi rate. Time pe payment.';
 
   @override
   String get homeQuickActions => 'Quick Actions';

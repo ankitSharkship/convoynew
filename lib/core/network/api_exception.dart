@@ -69,6 +69,8 @@ class ApiException implements Exception {
       case DioExceptionType.badResponse:
       case DioExceptionType.cancel:
         return false;
+      case DioExceptionType.transformTimeout:
+        return false;
     }
   }
 

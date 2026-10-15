@@ -297,7 +297,7 @@ abstract class AppLocalizations {
   /// No description provided for @onboardingTitle.
   ///
   /// In en, this message translates to:
-  /// **'Loads come\nto you, every day.'**
+  /// **'Loads come\nto you, ~every day.~'**
   String get onboardingTitle;
 
   /// No description provided for @onboardingSubtitle.
@@ -309,7 +309,7 @@ abstract class AppLocalizations {
   /// No description provided for @onboardingPage2Title.
   ///
   /// In en, this message translates to:
-  /// **'Ab koi truck Khaali nahi chalega'**
+  /// **'Ab koi truck ~Khaali nahi chalega~'**
   String get onboardingPage2Title;
 
   /// No description provided for @onboardingPage2Subtitle.
@@ -327,7 +327,7 @@ abstract class AppLocalizations {
   /// No description provided for @onboardingPage3Title.
   ///
   /// In en, this message translates to:
-  /// **'Verified Loads.\nSeedha Connection.'**
+  /// **'Verified Loads.\n~Seedha Connection.~'**
   String get onboardingPage3Title;
 
   /// No description provided for @onboardingPage3Subtitle.
@@ -390,6 +390,36 @@ abstract class AppLocalizations {
   /// **'Resend code'**
   String get otpResendCode;
 
+  /// No description provided for @enterNameTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'What should we call you?'**
+  String get enterNameTitle;
+
+  /// No description provided for @enterNameSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your name to continue'**
+  String get enterNameSubtitle;
+
+  /// No description provided for @enterNameHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your name'**
+  String get enterNameHint;
+
+  /// No description provided for @enterNameButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue'**
+  String get enterNameButton;
+
+  /// No description provided for @enterNameError.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t save your name. Please try again.'**
+  String get enterNameError;
+
   /// No description provided for @callDialerHint.
   ///
   /// In en, this message translates to:
@@ -429,14 +459,50 @@ abstract class AppLocalizations {
   /// No description provided for @homeHeroSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Post now and get verified load requests instantly.'**
+  /// **'Verified load requests seedha aapke mobile par.'**
   String get homeHeroSubtitle;
 
   /// No description provided for @homeHeroButton.
   ///
   /// In en, this message translates to:
-  /// **'Post Truck Now'**
+  /// **'Truck List Karein'**
   String get homeHeroButton;
+
+  /// No description provided for @homeCarousel2Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Aaj Ka Pehla Load Pakde?'**
+  String get homeCarousel2Title;
+
+  /// No description provided for @homeCarousel2Subtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'100% verified loads. No fraud, only fayda.'**
+  String get homeCarousel2Subtitle;
+
+  /// No description provided for @homeCarousel3Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Khali Truck... Sabse Mehenga Hota Hai.'**
+  String get homeCarousel3Title;
+
+  /// No description provided for @homeCarousel3Subtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Aaj hi list karo, verified loads pao turant.'**
+  String get homeCarousel3Subtitle;
+
+  /// No description provided for @homeCarousel4Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Aapka Truck. Aapki Mehnat. Pakka Fayda.'**
+  String get homeCarousel4Title;
+
+  /// No description provided for @homeCarousel4Subtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Verified loads. Sahi rate. Time pe payment.'**
+  String get homeCarousel4Subtitle;
 
   /// No description provided for @homeQuickActions.
   ///

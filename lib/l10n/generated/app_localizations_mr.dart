@@ -107,14 +107,14 @@ class AppLocalizationsMr extends AppLocalizations {
   String get onboardingGetStarted => 'सुरु करा';
 
   @override
-  String get onboardingTitle => 'लोड्स दररोज\nतुमच्याकडे येतील.';
+  String get onboardingTitle => 'लोड्स ~दररोज~\nतुमच्याकडे येतील.';
 
   @override
   String get onboardingSubtitle =>
       'तुमचा ट्रक एकदा पोस्ट करा. वेरिफाइड ट्रान्सपोर्टर तुम्हाला कॉल करतील. मध्यस्थ नाही, धावपळ नाही.';
 
   @override
-  String get onboardingPage2Title => 'आता कोणताही ट्रक रिकामा जाणार नाही';
+  String get onboardingPage2Title => 'आता कोणताही ट्रक ~रिकामा जाणार नाही~';
 
   @override
   String get onboardingPage2Subtitle =>
@@ -124,7 +124,7 @@ class AppLocalizationsMr extends AppLocalizations {
   String get onboardingPage2Button => 'पुढे चला';
 
   @override
-  String get onboardingPage3Title => 'व्हेरिफाइड लोड.\nथेट कनेक्शन.';
+  String get onboardingPage3Title => 'व्हेरिफाइड लोड.\n~थेट कनेक्शन.~';
 
   @override
   String get onboardingPage3Subtitle => 'प्रत्येक ट्रिपसाठी अस्सल लोड्स.';
@@ -161,6 +161,22 @@ class AppLocalizationsMr extends AppLocalizations {
   String get otpResendCode => 'OTP पुन्हा पाठवा';
 
   @override
+  String get enterNameTitle => 'आम्ही तुम्हाला काय म्हणावे?';
+
+  @override
+  String get enterNameSubtitle => 'सुरू ठेवण्यासाठी तुमचे नाव टाका';
+
+  @override
+  String get enterNameHint => 'तुमचे नाव टाका';
+
+  @override
+  String get enterNameButton => 'सुरू ठेवा';
+
+  @override
+  String get enterNameError =>
+      'तुमचे नाव जतन करता आले नाही. कृपया पुन्हा प्रयत्न करा.';
+
+  @override
   String get callDialerHint => 'तुमचा फोन Dialer उघडेल';
 
   @override
@@ -183,10 +199,31 @@ class AppLocalizationsMr extends AppLocalizations {
 
   @override
   String get homeHeroSubtitle =>
-      'आत्ताच ट्रक पोस्ट करा आणि लगेच Verified Load मिळवा.';
+      'व्हेरिफाइड लोड विनंत्या थेट तुमच्या मोबाइलवर.';
 
   @override
-  String get homeHeroButton => 'ट्रक पोस्ट करा';
+  String get homeHeroButton => 'ट्रक लिस्ट करा';
+
+  @override
+  String get homeCarousel2Title => 'आजचा पहिला लोड पकडा?';
+
+  @override
+  String get homeCarousel2Subtitle =>
+      '100% व्हेरिफाइड लोड्स. फसवणूक नाही, फक्त फायदा.';
+
+  @override
+  String get homeCarousel3Title => 'रिकामा ट्रक... सर्वात महाग असतो.';
+
+  @override
+  String get homeCarousel3Subtitle =>
+      'आजच लिस्ट करा, व्हेरिफाइड लोड लगेच मिळवा.';
+
+  @override
+  String get homeCarousel4Title => 'तुमचा ट्रक. तुमची मेहनत. पक्का फायदा.';
+
+  @override
+  String get homeCarousel4Subtitle =>
+      'व्हेरिफाइड लोड्स. योग्य दर. वेळेवर पेमेंट.';
 
   @override
   String get homeQuickActions => 'काय करायचं?';

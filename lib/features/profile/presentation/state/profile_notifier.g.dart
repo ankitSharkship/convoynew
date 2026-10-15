@@ -142,7 +142,46 @@ final uploadProfilePhotoUseCaseProvider =
 // ignore: unused_element
 typedef UploadProfilePhotoUseCaseRef =
     AutoDisposeProviderRef<UploadProfilePhotoUseCase>;
-String _$profileNotifierHash() => r'1dffcc385229880fa92cb6683ff306772651f26e';
+String _$checkHasNameUseCaseHash() =>
+    r'0b004c9e6789adcfac6600f88310ce4aa0f438c1';
+
+/// See also [checkHasNameUseCase].
+@ProviderFor(checkHasNameUseCase)
+final checkHasNameUseCaseProvider =
+    AutoDisposeProvider<CheckHasNameUseCase>.internal(
+      checkHasNameUseCase,
+      name: r'checkHasNameUseCaseProvider',
+      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+          ? null
+          : _$checkHasNameUseCaseHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
+
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef CheckHasNameUseCaseRef = AutoDisposeProviderRef<CheckHasNameUseCase>;
+String _$updateProfileNameUseCaseHash() =>
+    r'cb648417c10ab3aa873e46de57733005a596fd97';
+
+/// See also [updateProfileNameUseCase].
+@ProviderFor(updateProfileNameUseCase)
+final updateProfileNameUseCaseProvider =
+    AutoDisposeProvider<UpdateProfileNameUseCase>.internal(
+      updateProfileNameUseCase,
+      name: r'updateProfileNameUseCaseProvider',
+      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+          ? null
+          : _$updateProfileNameUseCaseHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
+
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef UpdateProfileNameUseCaseRef =
+    AutoDisposeProviderRef<UpdateProfileNameUseCase>;
+String _$profileNotifierHash() => r'd4a655918792629f69993b6dd82645913320c735';
 
 /// See also [ProfileNotifier].
 @ProviderFor(ProfileNotifier)

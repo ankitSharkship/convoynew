@@ -7,6 +7,14 @@ abstract class ProfileRepository {
   Future<ProfileEntity> getProfile();
   Future<ProfileEntity> updatePhotoPath(String path);
 
+  /// True once the user has a non-empty name on file. Checks the raw cached
+  /// profile, not [ProfileEntity.name] — that field defaults to "Pilot" when
+  /// empty, which would otherwise mask a missing name.
+  Future<bool> hasName();
+
+  /// Updates the user's name on the server and returns the refreshed entity.
+  Future<ProfileEntity> updateName(String name);
+
   /// Uploads [imageFile] as the user's profile photo on the server.
   Future<void> uploadPhoto(File imageFile);
 

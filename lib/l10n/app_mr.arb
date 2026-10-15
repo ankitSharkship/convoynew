@@ -39,13 +39,13 @@
   "onboardingSkip": "स्किप करा",
   "onboardingGetStarted": "सुरु करा",
 
-  "onboardingTitle": "लोड्स दररोज\nतुमच्याकडे येतील.",
+  "onboardingTitle": "लोड्स ~दररोज~\nतुमच्याकडे येतील.",
 
   "onboardingSubtitle": "तुमचा ट्रक एकदा पोस्ट करा. वेरिफाइड ट्रान्सपोर्टर तुम्हाला कॉल करतील. मध्यस्थ नाही, धावपळ नाही.",
-  "onboardingPage2Title": "आता कोणताही ट्रक रिकामा जाणार नाही",
+  "onboardingPage2Title": "आता कोणताही ट्रक ~रिकामा जाणार नाही~",
   "onboardingPage2Subtitle": "तुमचा ट्रक सूचीबद्ध करा. मालमालक तुम्हाला शोधतील.",
   "onboardingPage2Button": "पुढे चला",
-  "onboardingPage3Title": "व्हेरिफाइड लोड.\nथेट कनेक्शन.",
+  "onboardingPage3Title": "व्हेरिफाइड लोड.\n~थेट कनेक्शन.~",
   "onboardingPage3Subtitle": "प्रत्येक ट्रिपसाठी अस्सल लोड्स.",
   "onboardingPage3Button": "सुरु करा",
 
@@ -64,6 +64,12 @@
 
   "otpResendCode": "OTP पुन्हा पाठवा",
 
+  "enterNameTitle": "आम्ही तुम्हाला काय म्हणावे?",
+  "enterNameSubtitle": "सुरू ठेवण्यासाठी तुमचे नाव टाका",
+  "enterNameHint": "तुमचे नाव टाका",
+  "enterNameButton": "सुरू ठेवा",
+  "enterNameError": "तुमचे नाव जतन करता आले नाही. कृपया पुन्हा प्रयत्न करा.",
+
   "callDialerHint": "तुमचा फोन Dialer उघडेल",
 
   "callCalling": "Call सुरू आहे…",
@@ -76,9 +82,21 @@
 
   "homeHeroTitle": "ट्रक तयार आहे? आता काम सुरू करा.",
 
-  "homeHeroSubtitle": "आत्ताच ट्रक पोस्ट करा आणि लगेच Verified Load मिळवा.",
+  "homeHeroSubtitle": "व्हेरिफाइड लोड विनंत्या थेट तुमच्या मोबाइलवर.",
 
-  "homeHeroButton": "ट्रक पोस्ट करा",
+  "homeHeroButton": "ट्रक लिस्ट करा",
+
+  "homeCarousel2Title": "आजचा पहिला लोड पकडा?",
+
+  "homeCarousel2Subtitle": "100% व्हेरिफाइड लोड्स. फसवणूक नाही, फक्त फायदा.",
+
+  "homeCarousel3Title": "रिकामा ट्रक... सर्वात महाग असतो.",
+
+  "homeCarousel3Subtitle": "आजच लिस्ट करा, व्हेरिफाइड लोड लगेच मिळवा.",
+
+  "homeCarousel4Title": "तुमचा ट्रक. तुमची मेहनत. पक्का फायदा.",
+
+  "homeCarousel4Subtitle": "व्हेरिफाइड लोड्स. योग्य दर. वेळेवर पेमेंट.",
 
   "homeQuickActions": "काय करायचं?",
 

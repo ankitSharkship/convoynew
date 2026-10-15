@@ -10,6 +10,7 @@ import '../../../auth/presentation/state/auth_notifier.dart';
 import '../../../contacts/presentation/state/contacts_sync_notifier.dart';
 import '../../../devices/presentation/state/device_notifier.dart';
 import '../../../onboarding/presentation/state/onboarding_notifier.dart';
+import '../../../profile/presentation/state/profile_notifier.dart';
 
 class SplashScreen extends ConsumerStatefulWidget {
   const SplashScreen({super.key});
@@ -65,7 +66,15 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
             })
             .catchError((_) {}),
       );
-      context.go('/home');
+      var hasName = true;
+      try {
+        hasName = await ref.read(checkHasNameUseCaseProvider).execute();
+      } catch (_) {
+        // Fail open — don't trap the user on a transient profile-fetch
+        // error; Home already tolerates a failed profile load.
+      }
+      if (!mounted) return;
+      context.go(hasName ? '/home' : '/auth/enter-name');
     } else {
       context.go('/auth/phone');
     }
@@ -79,7 +88,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
         backgroundColor: AppColors.white,
         body: Center(
           child: Container(
-            width: 160,
+            width: 260,
             height: 160,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
@@ -91,11 +100,9 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
                 ),
               ],
             ),
-            child: ClipOval(
-              child: Image.asset(
-                'assets/images/app_logo.png',
-                fit: BoxFit.cover,
-              ),
+            child: Image.asset(
+              'assets/images/app_logo.png',
+              fit: BoxFit.fitWidth,
             ),
           ),
         ),

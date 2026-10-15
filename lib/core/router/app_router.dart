@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import '../../features/auth/presentation/screens/enter_name_screen.dart';
 import '../../features/auth/presentation/screens/otp_screen.dart';
 import '../../features/auth/presentation/screens/phone_screen.dart';
 import '../../features/call/presentation/screens/call_screen.dart';
@@ -59,6 +60,10 @@ GoRouter appRouter(AppRouterRef ref) {
           final phone = state.uri.queryParameters['phone'] ?? '';
           return OtpScreen(phone: phone);
         },
+      ),
+      GoRoute(
+        path: '/auth/enter-name',
+        builder: (_, __) => const EnterNameScreen(),
       ),
       GoRoute(
         path: '/call',

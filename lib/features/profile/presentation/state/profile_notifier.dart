@@ -7,8 +7,10 @@ import '../../data/datasources/profile_local_datasource.dart';
 import '../../data/datasources/profile_remote_datasource.dart';
 import '../../data/repositories/profile_repository_impl.dart';
 import '../../domain/entities/profile_entity.dart';
+import '../../domain/usecases/check_has_name_usecase.dart';
 import '../../domain/usecases/get_cached_profile_usecase.dart';
 import '../../domain/usecases/get_profile_usecase.dart';
+import '../../domain/usecases/update_profile_name_usecase.dart';
 import '../../domain/usecases/update_profile_usecase.dart';
 import '../../domain/usecases/upload_profile_photo_usecase.dart';
 
@@ -63,6 +65,18 @@ UploadProfilePhotoUseCase uploadProfilePhotoUseCase(
 }
 
 @riverpod
+CheckHasNameUseCase checkHasNameUseCase(CheckHasNameUseCaseRef ref) {
+  return CheckHasNameUseCase(ref.watch(profileRepositoryProvider));
+}
+
+@riverpod
+UpdateProfileNameUseCase updateProfileNameUseCase(
+  UpdateProfileNameUseCaseRef ref,
+) {
+  return UpdateProfileNameUseCase(ref.watch(profileRepositoryProvider));
+}
+
+@riverpod
 class ProfileNotifier extends _$ProfileNotifier {
   @override
   Future<ProfileEntity> build() async {
@@ -105,5 +119,11 @@ class ProfileNotifier extends _$ProfileNotifier {
   Future<void> uploadPhoto(File imageFile) async {
     final useCase = ref.read(uploadProfilePhotoUseCaseProvider);
     await useCase.execute(imageFile);
+  }
+
+  Future<void> updateName(String name) async {
+    final useCase = ref.read(updateProfileNameUseCaseProvider);
+    final updated = await useCase.execute(name);
+    state = AsyncData(updated);
   }
 }

@@ -16,6 +16,7 @@ class ProfilePhotoBytes {
 
 abstract class ProfileRemoteDataSource {
   Future<ProfileModel?> getProfile(String userId);
+  Future<ProfileModel> updateProfile(String userId, String name);
   Future<void> uploadProfilePhoto(String userId, File imageFile);
 
   /// Returns null if the user has no profile photo uploaded yet (404).
@@ -37,6 +38,23 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
       return ProfileModel.fromJson(user);
     } on DioException catch (e) {
       if (e.response?.statusCode == 404) return null;
+      throw ApiException.fromDioException(e);
+    } catch (_) {
+      throw const ApiException();
+    }
+  }
+
+  @override
+  Future<ProfileModel> updateProfile(String userId, String name) async {
+    try {
+      final response = await _dio.put(
+        '/api/user/profile/$userId',
+        data: {'name': name},
+      );
+      final data = response.data as Map<String, dynamic>;
+      final user = (data['user'] as Map<String, dynamic>?) ?? data;
+      return ProfileModel.fromJson(user);
+    } on DioException catch (e) {
       throw ApiException.fromDioException(e);
     } catch (_) {
       throw const ApiException();

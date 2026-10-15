@@ -86,6 +86,22 @@ class ProfileRepositoryImpl implements ProfileRepository {
   }
 
   @override
+  Future<bool> hasName() async {
+    await getProfile();
+    final cached = _local.getCachedProfile();
+    return (cached?.name.trim().isNotEmpty) ?? false;
+  }
+
+  @override
+  Future<ProfileEntity> updateName(String name) async {
+    final userId = await _tokenStorage.getUserId();
+    if (userId == null) throw const ApiException();
+    final updated = await _remote.updateProfile(userId, name);
+    await _local.saveProfile(updated);
+    return _toEntity(updated);
+  }
+
+  @override
   Future<void> uploadPhoto(File imageFile) async {
     final userId = await _tokenStorage.getUserId();
     if (userId == null) throw const ApiException();
