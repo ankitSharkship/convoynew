@@ -119,6 +119,35 @@
   "homeNoRecentPosts": "अजून कोणतीही पोस्ट नाही",
 
   "homeNoRecentSearches": "अजून कोणताही शोध नाही",
+  "homeTrendingReels": "ट्रेंडिंग रोड रील्स",
+  "homeViewFeed": "सर्व पहा",
+  "homeNoReelsYet": "अजून कोणतीही रील नाही",
+
+  "reelCreateSheetTitle": "नवीन रील",
+  "reelCreateRecordOption": "व्हिडिओ रेकॉर्ड करा",
+  "reelCreateRecordOptionSubtitle": "तुमचा कॅमेरा वापरा",
+  "reelCreateGalleryOption": "गॅलरीमधून निवडा",
+  "reelCreateGalleryOptionSubtitle": "विद्यमान व्हिडिओ निवडा",
+  "reelRecordCameraError": "कॅमेरा अ‍ॅक्सेस करता आला नाही",
+  "reelRecordHint": "रेकॉर्ड करण्यासाठी टॅप करा",
+  "reelTrimTitle": "तुमची रील ट्रिम करा",
+  "reelTrimSelectedDuration": "{seconds}s निवडले",
+  "@reelTrimSelectedDuration": {
+    "placeholders": { "seconds": { "type": "String" } }
+  },
+  "reelTrimNext": "पुढे",
+  "reelDetailsTitle": "रील तपशील",
+  "reelDetailsTitleLabel": "शीर्षक",
+  "reelDetailsTitleHint": "तुमच्या रीलला शीर्षक द्या",
+  "reelDetailsDescriptionLabel": "वर्णन (ऐच्छिक)",
+  "reelDetailsDescriptionHint": "वर्णन जोडा",
+  "reelDetailsTitleRequired": "कृपया शीर्षक टाका",
+  "reelPostButton": "रील पोस्ट करा",
+  "reelUploadingTitle": "तुमची रील अपलोड होत आहे…",
+  "reelUploadingSubtitle": "कृपया अ‍ॅप बंद करू नका",
+  "reelUploadSuccessTitle": "रील अपलोड झाली!",
+  "reelUploadSuccessSubtitle": "तुमची रील प्रक्रिया होत आहे आणि लवकरच फीडमध्ये दिसेल.",
+  "reelBackToReels": "रील्सवर परत जा",
   "kycVerifyTitle": "आधार कार्ड Verify करा",
   "kycAadhaarHint": "XXXX XXXX XXXX",
   "kycVerifyButton": "आधार Verify करा",
@@ -372,6 +401,7 @@
   "navWallet": "वॉलेट",
 
   "navProfile": "प्रोफाइल",
+  "navReels": "रील्स",
 
 
 
@@ -484,5 +514,43 @@
 
   "postSelectHeightHint": "उंची निवडा",
 
-  "feetValue": "{value} फूट"
+  "feetValue": "{value} फूट",
+
+  "reelCommentsTitle": "टिप्पण्या",
+  "reelCommentsEmpty": "अजून टिप्पणी नाही. पहिली टिप्पणी तुमची!",
+  "reelCommentHint": "टिप्पणी जोडा…",
+  "reelCommentPost": "पोस्ट",
+  "reelCommentDelete": "हटवा",
+  "reelFollow": "फॉलो करा",
+  "reelFollowing": "फॉलो करत आहात",
+  "reelShareText": "{title} — ही रील Convoy वर पहा",
+  "reelCategoryAll": "सर्व",
+  "reelDetailsCategoriesLabel": "श्रेणी",
+  "reelDetailsCategoriesHint": "1 ते 5 निवडा",
+  "reelDetailsCategoriesRequired": "किमान एक श्रेणी निवडा",
+  "reelDetailsHashtagsLabel": "हॅशटॅग (ऐच्छिक)",
+  "reelDetailsHashtagsHint": "#trucklife #nightrun",
+  "reelDetailsHashtagsMax": "तुम्ही जास्तीत जास्त 10 हॅशटॅग जोडू शकता",
+  "profileMyUploads": "माझे अपलोड",
+  "uploadsCreatorInsights": "क्रिएटर इनसाइट्स",
+  "uploadsNewPost": "नवीन पोस्ट",
+  "uploadsStatReels": "रील्स",
+  "uploadsStatTotalViews": "एकूण व्ह्यूज",
+  "uploadsStatAppreciation": "कौतुक",
+  "uploadsThisWeek": "या आठवड्यात +{count}",
+  "uploadsAllReelsTab": "सर्व रील्स ({count})",
+  "uploadsCategoryTab": "{name} ({count})",
+  "uploadsEmpty": "तुम्ही अजून एकही रील अपलोड केलेली नाही",
+  "uploadsRecordCta": "रील रेकॉर्ड / अपलोड करा",
+  "uploadsMenuEdit": "संपादित करा",
+  "uploadsMenuDelete": "हटवा",
+  "uploadsMenuComingSoon": "लवकरच येत आहे",
+  "uploadsStatusProcessing": "प्रक्रिया सुरू",
+  "uploadsStatusRejected": "नाकारले",
+  "uploadsStatusFailed": "अयशस्वी",
+  "uploadsPostedToday": "आज",
+  "uploadsPostedYesterday": "काल",
+  "uploadsPostedDaysAgo": "{days} दिवसांपूर्वी",
+  "uploadsPostedWeeksAgo": "{weeks} आठवड्यांपूर्वी",
+  "uploadsPostedMonthsAgo": "{months} महिन्यांपूर्वी"
 }

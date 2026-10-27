@@ -20,9 +20,16 @@ import '../../features/post/presentation/screens/my_trips_screen.dart';
 import '../../features/post/presentation/screens/my_trucks_screen.dart';
 import '../../features/post/presentation/screens/post_form_screen.dart';
 import '../../features/post/presentation/screens/post_success_screen.dart';
+import '../constants/feature_flags.dart';
 import '../../features/scratch_cards/domain/entities/scratch_card_entity.dart';
 import '../../features/scratch_cards/presentation/screens/post_scratch_card_screen.dart';
 import '../../features/profile/presentation/screens/profile_screen.dart';
+import '../../features/reels/presentation/screens/my_uploads_screen.dart';
+import '../../features/reels/presentation/screens/reel_details_screen.dart';
+import '../../features/reels/presentation/screens/reel_record_screen.dart';
+import '../../features/reels/presentation/screens/reel_trim_screen.dart';
+import '../../features/reels/presentation/screens/reel_upload_success_screen.dart';
+import '../../features/reels/presentation/screens/reels_screen.dart';
 import '../../features/search/presentation/screens/search_results_screen.dart';
 import '../../features/search/presentation/screens/search_screen.dart';
 import '../../features/splash/presentation/screens/splash_screen.dart';
@@ -96,18 +103,19 @@ GoRouter appRouter(AppRouterRef ref) {
               return PostFormScreen(editingTrip: trip);
             },
           ),
-          GoRoute(
-            path: 'scratch-card',
-            builder: (context, state) {
-              final extra = state.extra as Map<String, dynamic>? ?? {};
-              return PostScratchCardScreen(
-                truckType: extra['truckType'] as String? ?? 'Open Body',
-                capacity: extra['capacity'] as int? ?? 9,
-                origin: extra['origin'] as String? ?? 'Bhiwandi, MH',
-                scratchCard: extra['scratchCard'] as ScratchCardEntity,
-              );
-            },
-          ),
+          if (FeatureFlags.scratchCardsEnabled)
+            GoRoute(
+              path: 'scratch-card',
+              builder: (context, state) {
+                final extra = state.extra as Map<String, dynamic>? ?? {};
+                return PostScratchCardScreen(
+                  truckType: extra['truckType'] as String? ?? 'Open Body',
+                  capacity: extra['capacity'] as int? ?? 9,
+                  origin: extra['origin'] as String? ?? 'Bhiwandi, MH',
+                  scratchCard: extra['scratchCard'] as ScratchCardEntity,
+                );
+              },
+            ),
         ],
       ),
       GoRoute(
@@ -153,6 +161,28 @@ GoRouter appRouter(AppRouterRef ref) {
         builder: (_, __) => const MyTripsScreen(),
       ),
       GoRoute(
+        path: '/profile/uploads',
+        builder: (_, __) => const MyUploadsScreen(),
+      ),
+      GoRoute(
+        path: '/reels/create/record',
+        builder: (_, __) => const ReelRecordScreen(),
+      ),
+      GoRoute(
+        path: '/reels/create/trim',
+        builder: (context, state) =>
+            ReelTrimScreen(videoPath: state.extra as String),
+      ),
+      GoRoute(
+        path: '/reels/create/details',
+        builder: (context, state) =>
+            ReelDetailsScreen(videoPath: state.extra as String),
+      ),
+      GoRoute(
+        path: '/reels/create/success',
+        builder: (_, __) => const ReelUploadSuccessScreen(),
+      ),
+      GoRoute(
         path: '/home/manage',
         builder: (_, __) => const ManageHistoryScreen(),
       ),
@@ -182,12 +212,18 @@ GoRouter appRouter(AppRouterRef ref) {
           ),
           StatefulShellBranch(
             routes: [
-              GoRoute(
-                path: '/wallet',
-                builder: (_, __) => const WalletScreen(),
-              ),
+              GoRoute(path: '/reels', builder: (_, __) => const ReelsScreen()),
             ],
           ),
+          if (FeatureFlags.walletEnabled)
+            StatefulShellBranch(
+              routes: [
+                GoRoute(
+                  path: '/wallet',
+                  builder: (_, __) => const WalletScreen(),
+                ),
+              ],
+            ),
           StatefulShellBranch(
             routes: [
               GoRoute(

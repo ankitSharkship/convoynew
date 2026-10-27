@@ -34,7 +34,6 @@ class ApiException implements Exception {
       if (errorMessage is String && errorMessage.trim().isNotEmpty) {
         return ApiException(errorMessage);
       }
-
       final detail = data['detail'];
       if (detail is String && detail.trim().isNotEmpty) {
         return ApiException(detail);

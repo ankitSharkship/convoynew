@@ -9,6 +9,7 @@ import '../../../../shared/widgets/language_switcher_button.dart';
 import '../../../kyc/presentation/navigation/post_truck_gate.dart';
 import '../../../profile/presentation/state/profile_notifier.dart';
 import '../widgets/history_slivers.dart';
+import '../widgets/trending_reels_section.dart';
 
 const _homePreviewLimit = 3;
 const _carouselAutoAdvanceInterval = Duration(seconds: 4);
@@ -149,6 +150,9 @@ class _HomeContentState extends ConsumerState<_HomeContent> {
                       ],
                     ),
                   ),
+                  const SizedBox(height: 24),
+
+                  const TrendingReelsSection(),
                   const SizedBox(height: 24),
 
                   Padding(

@@ -200,6 +200,7 @@ class _TruckTypeCard extends StatelessWidget {
                                 size: 32,
                                 color: AppColors.textTertiary,
                               ),
+
                             ),
                     ),
                   ),

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../core/constants/app_colors.dart';
+import '../../../../core/constants/feature_flags.dart';
 import '../../../../core/services/location_service.dart';
 import '../../../../l10n/generated/app_localizations.dart';
 import '../../../../shared/utils/phone_number_formatter.dart';
@@ -135,7 +136,7 @@ class _PostFormScreenState extends ConsumerState<PostFormScreen> {
           'capacity': done.post.capacity,
           'origin': done.post.originName,
         };
-        if (scratchCard != null) {
+        if (FeatureFlags.scratchCardsEnabled && scratchCard != null) {
           context.pushReplacement(
             '/post/scratch-card',
             extra: {...extra, 'scratchCard': scratchCard},

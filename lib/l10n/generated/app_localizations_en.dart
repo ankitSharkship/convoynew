@@ -259,6 +259,84 @@ class AppLocalizationsEn extends AppLocalizations {
   String get homeNoRecentSearches => 'No recent searches';
 
   @override
+  String get homeTrendingReels => 'Trending Road Reels';
+
+  @override
+  String get homeViewFeed => 'View Feed';
+
+  @override
+  String get homeNoReelsYet => 'No reels yet';
+
+  @override
+  String get reelCreateSheetTitle => 'New Reel';
+
+  @override
+  String get reelCreateRecordOption => 'Record a video';
+
+  @override
+  String get reelCreateRecordOptionSubtitle => 'Use your camera';
+
+  @override
+  String get reelCreateGalleryOption => 'Choose from gallery';
+
+  @override
+  String get reelCreateGalleryOptionSubtitle => 'Pick an existing video';
+
+  @override
+  String get reelRecordCameraError => 'Couldn\'t access the camera';
+
+  @override
+  String get reelRecordHint => 'Tap to record';
+
+  @override
+  String get reelTrimTitle => 'Trim Your Reel';
+
+  @override
+  String reelTrimSelectedDuration(String seconds) {
+    return '${seconds}s selected';
+  }
+
+  @override
+  String get reelTrimNext => 'Next';
+
+  @override
+  String get reelDetailsTitle => 'Reel Details';
+
+  @override
+  String get reelDetailsTitleLabel => 'Title';
+
+  @override
+  String get reelDetailsTitleHint => 'Give your reel a title';
+
+  @override
+  String get reelDetailsDescriptionLabel => 'Description (optional)';
+
+  @override
+  String get reelDetailsDescriptionHint => 'Add a description';
+
+  @override
+  String get reelDetailsTitleRequired => 'Please enter a title';
+
+  @override
+  String get reelPostButton => 'Post Reel';
+
+  @override
+  String get reelUploadingTitle => 'Uploading your reel…';
+
+  @override
+  String get reelUploadingSubtitle => 'Please don\'t close the app';
+
+  @override
+  String get reelUploadSuccessTitle => 'Reel Uploaded!';
+
+  @override
+  String get reelUploadSuccessSubtitle =>
+      'Your reel is being processed and will appear in the feed shortly.';
+
+  @override
+  String get reelBackToReels => 'Back to Reels';
+
+  @override
   String get kycVerifyTitle => 'Verify Aadhar Card';
 
   @override
@@ -693,6 +771,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get navProfile => 'Profile';
 
   @override
+  String get navReels => 'Reels';
+
+  @override
   String truckCardMoreDestinations(int count) {
     return '+$count more';
   }
@@ -879,5 +960,130 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String feetValue(num value) {
     return '$value ft';
+  }
+
+  @override
+  String get reelCommentsTitle => 'Comments';
+
+  @override
+  String get reelCommentsEmpty => 'No comments yet. Be the first!';
+
+  @override
+  String get reelCommentHint => 'Add a comment…';
+
+  @override
+  String get reelCommentPost => 'Post';
+
+  @override
+  String get reelCommentDelete => 'Delete';
+
+  @override
+  String get reelFollow => 'Follow';
+
+  @override
+  String get reelFollowing => 'Following';
+
+  @override
+  String reelShareText(String title) {
+    return '$title — watch this reel on Convoy';
+  }
+
+  @override
+  String get reelCategoryAll => 'All';
+
+  @override
+  String get reelDetailsCategoriesLabel => 'Categories';
+
+  @override
+  String get reelDetailsCategoriesHint => 'Pick 1 to 5';
+
+  @override
+  String get reelDetailsCategoriesRequired => 'Pick at least one category';
+
+  @override
+  String get reelDetailsHashtagsLabel => 'Hashtags (optional)';
+
+  @override
+  String get reelDetailsHashtagsHint => '#trucklife #nightrun';
+
+  @override
+  String get reelDetailsHashtagsMax => 'You can add up to 10 hashtags';
+
+  @override
+  String get profileMyUploads => 'My Uploads';
+
+  @override
+  String get uploadsCreatorInsights => 'Creator Insights';
+
+  @override
+  String get uploadsNewPost => 'New Post';
+
+  @override
+  String get uploadsStatReels => 'Reels';
+
+  @override
+  String get uploadsStatTotalViews => 'Total Views';
+
+  @override
+  String get uploadsStatAppreciation => 'Appreciation';
+
+  @override
+  String uploadsThisWeek(int count) {
+    return '+$count this wk';
+  }
+
+  @override
+  String uploadsAllReelsTab(int count) {
+    return 'All Reels ($count)';
+  }
+
+  @override
+  String uploadsCategoryTab(String name, int count) {
+    return '$name ($count)';
+  }
+
+  @override
+  String get uploadsEmpty => 'You haven\'t uploaded any reels yet';
+
+  @override
+  String get uploadsRecordCta => 'Record / Upload Reel';
+
+  @override
+  String get uploadsMenuEdit => 'Edit';
+
+  @override
+  String get uploadsMenuDelete => 'Delete';
+
+  @override
+  String get uploadsMenuComingSoon => 'Coming soon';
+
+  @override
+  String get uploadsStatusProcessing => 'Processing';
+
+  @override
+  String get uploadsStatusRejected => 'Rejected';
+
+  @override
+  String get uploadsStatusFailed => 'Failed';
+
+  @override
+  String get uploadsPostedToday => 'Today';
+
+  @override
+  String get uploadsPostedYesterday => 'Yesterday';
+
+  @override
+  String uploadsPostedDaysAgo(int days) {
+    return '${days}d ago';
+  }
+
+  @override
+  String uploadsPostedWeeksAgo(int weeks) {
+    return '${weeks}w ago';
+  }
+
+  @override
+  String uploadsPostedMonthsAgo(int months) {
+    return '${months}mo ago';
   }
 }

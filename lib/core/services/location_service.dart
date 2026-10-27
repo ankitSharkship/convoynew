@@ -51,6 +51,27 @@ class CurrentLocation {
 }
 
 class LocationService {
+  /// Raw coordinates, but only if location is already usable — never prompts
+  /// for permission and never throws. For optional, best-effort tagging.
+  Future<({double lat, double lng})?> getPositionIfPermitted() async {
+    try {
+      if (!await Geolocator.isLocationServiceEnabled()) return null;
+      final permission = await Geolocator.checkPermission();
+      if (permission != LocationPermission.always &&
+          permission != LocationPermission.whileInUse) {
+        return null;
+      }
+      final position = await Geolocator.getCurrentPosition(
+        locationSettings: const LocationSettings(
+          timeLimit: Duration(seconds: 6),
+        ),
+      );
+      return (lat: position.latitude, lng: position.longitude);
+    } catch (_) {
+      return null;
+    }
+  }
+
   Future<CurrentLocation> getCurrentLocation() async {
     if (!await Geolocator.isLocationServiceEnabled()) {
       throw const LocationServiceException(

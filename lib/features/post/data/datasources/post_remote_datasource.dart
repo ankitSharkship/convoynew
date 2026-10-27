@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import '../../../../core/network/api_exception.dart';
+import '../../../../core/constants/feature_flags.dart';
 import '../../../scratch_cards/data/models/scratch_card_model.dart';
 import '../../../search/domain/entities/location_entity.dart';
 import '../../domain/entities/post_entity.dart';
@@ -50,7 +51,9 @@ class PostRemoteDataSourceImpl implements PostRemoteDataSource {
       // (at most one per user per UTC day) — the two fields are redundant,
       // so a non-null card is all that's needed to decide whether to route
       // through the reveal screen.
-      final scratchCardJson = data['scratchCard'] as Map<String, dynamic>?;
+      final scratchCardJson = FeatureFlags.scratchCardsEnabled
+          ? data['scratchCard'] as Map<String, dynamic>?
+          : null;
       final scratchCard = scratchCardJson != null
           ? ScratchCardModel.fromJson(scratchCardJson)
           : null;

@@ -91,6 +91,7 @@ class ProfileScreen extends ConsumerWidget {
                   profilePhotoUrl: profile.profilePhotoUrl,
                   onTapVehicles: () => context.push('/profile/vehicles'),
                   onTapTrips: () => context.push('/profile/trips'),
+                  onTapUploads: () => context.push('/profile/uploads'),
                   onTapKyc: () => navigateToKycVerification(
                     context,
                     ref,
@@ -144,6 +145,7 @@ class _ProfileContent extends StatelessWidget {
   final String? profilePhotoUrl;
   final VoidCallback onTapVehicles;
   final VoidCallback onTapTrips;
+  final VoidCallback onTapUploads;
   final VoidCallback onTapKyc;
   final VoidCallback onLogout;
 
@@ -156,6 +158,7 @@ class _ProfileContent extends StatelessWidget {
     this.profilePhotoUrl,
     required this.onTapVehicles,
     required this.onTapTrips,
+    required this.onTapUploads,
     required this.onTapKyc,
     required this.onLogout,
   });
@@ -309,6 +312,12 @@ class _ProfileContent extends StatelessWidget {
                   icon: Icons.map_outlined,
                   label: l10n.tripsTitle,
                   onTap: onTapTrips,
+                ),
+                _Divider(),
+                _ProfileItem(
+                  icon: Icons.video_library_outlined,
+                  label: l10n.profileMyUploads,
+                  onTap: onTapUploads,
                 ),
                 _Divider(),
                 _ProfileItem(

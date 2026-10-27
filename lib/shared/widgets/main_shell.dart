@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../core/constants/app_colors.dart';
+import '../../core/constants/feature_flags.dart';
 import '../../l10n/generated/app_localizations.dart';
 
 class MainShell extends StatelessWidget {
@@ -45,10 +46,16 @@ class MainShell extends StatelessWidget {
               label: l10n.navSearch,
             ),
             BottomNavigationBarItem(
-              icon: const Icon(Icons.account_balance_wallet_outlined),
-              activeIcon: const Icon(Icons.account_balance_wallet),
-              label: l10n.navWallet,
+              icon: const Icon(Icons.play_circle_outline),
+              activeIcon: const Icon(Icons.play_circle),
+              label: l10n.navReels,
             ),
+            if (FeatureFlags.walletEnabled)
+              BottomNavigationBarItem(
+                icon: const Icon(Icons.account_balance_wallet_outlined),
+                activeIcon: const Icon(Icons.account_balance_wallet),
+                label: l10n.navWallet,
+              ),
             BottomNavigationBarItem(
               icon: const Icon(Icons.person_outline),
               activeIcon: const Icon(Icons.person),

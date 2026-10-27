@@ -260,6 +260,84 @@ class AppLocalizationsKn extends AppLocalizations {
   String get homeNoRecentSearches => 'ಯಾವುದೇ ಇತ್ತೀಚಿನ ಹುಡುಕಾಟಗಳಿಲ್ಲ';
 
   @override
+  String get homeTrendingReels => 'ಟ್ರೆಂಡಿಂಗ್ ರೋಡ್ ರೀಲ್ಸ್';
+
+  @override
+  String get homeViewFeed => 'ಎಲ್ಲಾ ನೋಡಿ';
+
+  @override
+  String get homeNoReelsYet => 'ಇನ್ನೂ ಯಾವುದೇ ರೀಲ್‌ಗಳಿಲ್ಲ';
+
+  @override
+  String get reelCreateSheetTitle => 'ಹೊಸ ರೀಲ್';
+
+  @override
+  String get reelCreateRecordOption => 'ವೀಡಿಯೊ ರೆಕಾರ್ಡ್ ಮಾಡಿ';
+
+  @override
+  String get reelCreateRecordOptionSubtitle => 'ನಿಮ್ಮ ಕ್ಯಾಮೆರಾ ಬಳಸಿ';
+
+  @override
+  String get reelCreateGalleryOption => 'ಗ್ಯಾಲರಿಯಿಂದ ಆಯ್ಕೆಮಾಡಿ';
+
+  @override
+  String get reelCreateGalleryOptionSubtitle => 'ಇರುವ ವೀಡಿಯೊ ಆಯ್ಕೆಮಾಡಿ';
+
+  @override
+  String get reelRecordCameraError => 'ಕ್ಯಾಮೆರಾ ಪ್ರವೇಶಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ';
+
+  @override
+  String get reelRecordHint => 'ರೆಕಾರ್ಡ್ ಮಾಡಲು ಟ್ಯಾಪ್ ಮಾಡಿ';
+
+  @override
+  String get reelTrimTitle => 'ನಿಮ್ಮ ರೀಲ್ ಟ್ರಿಮ್ ಮಾಡಿ';
+
+  @override
+  String reelTrimSelectedDuration(String seconds) {
+    return '${seconds}s ಆಯ್ಕೆಯಾಗಿದೆ';
+  }
+
+  @override
+  String get reelTrimNext => 'ಮುಂದೆ';
+
+  @override
+  String get reelDetailsTitle => 'ರೀಲ್ ವಿವರಗಳು';
+
+  @override
+  String get reelDetailsTitleLabel => 'ಶೀರ್ಷಿಕೆ';
+
+  @override
+  String get reelDetailsTitleHint => 'ನಿಮ್ಮ ರೀಲ್‌ಗೆ ಒಂದು ಶೀರ್ಷಿಕೆ ನೀಡಿ';
+
+  @override
+  String get reelDetailsDescriptionLabel => 'ವಿವರಣೆ (ಐಚ್ಛಿಕ)';
+
+  @override
+  String get reelDetailsDescriptionHint => 'ವಿವರಣೆ ಸೇರಿಸಿ';
+
+  @override
+  String get reelDetailsTitleRequired => 'ದಯವಿಟ್ಟು ಶೀರ್ಷಿಕೆ ನಮೂದಿಸಿ';
+
+  @override
+  String get reelPostButton => 'ರೀಲ್ ಪೋಸ್ಟ್ ಮಾಡಿ';
+
+  @override
+  String get reelUploadingTitle => 'ನಿಮ್ಮ ರೀಲ್ ಅಪ್‌ಲೋಡ್ ಆಗುತ್ತಿದೆ…';
+
+  @override
+  String get reelUploadingSubtitle => 'ದಯವಿಟ್ಟು ಅಪ್ಲಿಕೇಶನ್ ಮುಚ್ಚಬೇಡಿ';
+
+  @override
+  String get reelUploadSuccessTitle => 'ರೀಲ್ ಅಪ್‌ಲೋಡ್ ಆಗಿದೆ!';
+
+  @override
+  String get reelUploadSuccessSubtitle =>
+      'ನಿಮ್ಮ ರೀಲ್ ಪ್ರಕ್ರಿಯೆಗೊಳ್ಳುತ್ತಿದೆ ಮತ್ತು ಶೀಘ್ರದಲ್ಲೇ ಫೀಡ್‌ನಲ್ಲಿ ಕಾಣಿಸುತ್ತದೆ.';
+
+  @override
+  String get reelBackToReels => 'ರೀಲ್ಸ್‌ಗೆ ಹಿಂತಿರುಗಿ';
+
+  @override
   String get kycVerifyTitle => 'ಆಧಾರ್ ಕಾರ್ಡ್ ಪರಿಶೀಲಿಸಿ';
 
   @override
@@ -695,6 +773,9 @@ class AppLocalizationsKn extends AppLocalizations {
   String get navProfile => 'ಪ್ರೊಫೈಲ್';
 
   @override
+  String get navReels => 'ರೀಲ್ಸ್';
+
+  @override
   String truckCardMoreDestinations(int count) {
     return '+$count ಇನ್ನಷ್ಟು';
   }
@@ -884,5 +965,131 @@ class AppLocalizationsKn extends AppLocalizations {
   @override
   String feetValue(num value) {
     return '$value ಅಡಿ';
+  }
+
+  @override
+  String get reelCommentsTitle => 'ಕಾಮೆಂಟ್‌ಗಳು';
+
+  @override
+  String get reelCommentsEmpty => 'ಇನ್ನೂ ಕಾಮೆಂಟ್‌ಗಳಿಲ್ಲ. ಮೊದಲಿಗರಾಗಿ!';
+
+  @override
+  String get reelCommentHint => 'ಕಾಮೆಂಟ್ ಸೇರಿಸಿ…';
+
+  @override
+  String get reelCommentPost => 'ಪೋಸ್ಟ್';
+
+  @override
+  String get reelCommentDelete => 'ಅಳಿಸಿ';
+
+  @override
+  String get reelFollow => 'ಫಾಲೋ ಮಾಡಿ';
+
+  @override
+  String get reelFollowing => 'ಫಾಲೋ ಮಾಡುತ್ತಿದ್ದೀರಿ';
+
+  @override
+  String reelShareText(String title) {
+    return '$title — ಈ ರೀಲ್ ಅನ್ನು Convoy ನಲ್ಲಿ ನೋಡಿ';
+  }
+
+  @override
+  String get reelCategoryAll => 'ಎಲ್ಲಾ';
+
+  @override
+  String get reelDetailsCategoriesLabel => 'ವರ್ಗಗಳು';
+
+  @override
+  String get reelDetailsCategoriesHint => '1 ರಿಂದ 5 ಆಯ್ಕೆಮಾಡಿ';
+
+  @override
+  String get reelDetailsCategoriesRequired => 'ಕನಿಷ್ಠ ಒಂದು ವರ್ಗವನ್ನು ಆಯ್ಕೆಮಾಡಿ';
+
+  @override
+  String get reelDetailsHashtagsLabel => 'ಹ್ಯಾಶ್‌ಟ್ಯಾಗ್‌ಗಳು (ಐಚ್ಛಿಕ)';
+
+  @override
+  String get reelDetailsHashtagsHint => '#trucklife #nightrun';
+
+  @override
+  String get reelDetailsHashtagsMax =>
+      'ನೀವು ಗರಿಷ್ಠ 10 ಹ್ಯಾಶ್‌ಟ್ಯಾಗ್‌ಗಳನ್ನು ಸೇರಿಸಬಹುದು';
+
+  @override
+  String get profileMyUploads => 'ನನ್ನ ಅಪ್‌ಲೋಡ್‌ಗಳು';
+
+  @override
+  String get uploadsCreatorInsights => 'ಕ್ರಿಯೇಟರ್ ಇನ್‌ಸೈಟ್ಸ್';
+
+  @override
+  String get uploadsNewPost => 'ಹೊಸ ಪೋಸ್ಟ್';
+
+  @override
+  String get uploadsStatReels => 'ರೀಲ್‌ಗಳು';
+
+  @override
+  String get uploadsStatTotalViews => 'ಒಟ್ಟು ವೀಕ್ಷಣೆಗಳು';
+
+  @override
+  String get uploadsStatAppreciation => 'ಮೆಚ್ಚುಗೆ';
+
+  @override
+  String uploadsThisWeek(int count) {
+    return 'ಈ ವಾರ +$count';
+  }
+
+  @override
+  String uploadsAllReelsTab(int count) {
+    return 'ಎಲ್ಲಾ ರೀಲ್‌ಗಳು ($count)';
+  }
+
+  @override
+  String uploadsCategoryTab(String name, int count) {
+    return '$name ($count)';
+  }
+
+  @override
+  String get uploadsEmpty => 'ನೀವು ಇನ್ನೂ ಯಾವುದೇ ರೀಲ್ ಅಪ್‌ಲೋಡ್ ಮಾಡಿಲ್ಲ';
+
+  @override
+  String get uploadsRecordCta => 'ರೀಲ್ ರೆಕಾರ್ಡ್ / ಅಪ್‌ಲೋಡ್';
+
+  @override
+  String get uploadsMenuEdit => 'ಎಡಿಟ್';
+
+  @override
+  String get uploadsMenuDelete => 'ಅಳಿಸಿ';
+
+  @override
+  String get uploadsMenuComingSoon => 'ಶೀಘ್ರದಲ್ಲೇ ಬರಲಿದೆ';
+
+  @override
+  String get uploadsStatusProcessing => 'ಪ್ರಕ್ರಿಯೆಯಲ್ಲಿದೆ';
+
+  @override
+  String get uploadsStatusRejected => 'ತಿರಸ್ಕರಿಸಲಾಗಿದೆ';
+
+  @override
+  String get uploadsStatusFailed => 'ವಿಫಲವಾಗಿದೆ';
+
+  @override
+  String get uploadsPostedToday => 'ಇಂದು';
+
+  @override
+  String get uploadsPostedYesterday => 'ನಿನ್ನೆ';
+
+  @override
+  String uploadsPostedDaysAgo(int days) {
+    return '$days ದಿನಗಳ ಹಿಂದೆ';
+  }
+
+  @override
+  String uploadsPostedWeeksAgo(int weeks) {
+    return '$weeks ವಾರಗಳ ಹಿಂದೆ';
+  }
+
+  @override
+  String uploadsPostedMonthsAgo(int months) {
+    return '$months ತಿಂಗಳ ಹಿಂದೆ';
   }
 }

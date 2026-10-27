@@ -570,6 +570,156 @@ abstract class AppLocalizations {
   /// **'No recent searches'**
   String get homeNoRecentSearches;
 
+  /// No description provided for @homeTrendingReels.
+  ///
+  /// In en, this message translates to:
+  /// **'Trending Road Reels'**
+  String get homeTrendingReels;
+
+  /// No description provided for @homeViewFeed.
+  ///
+  /// In en, this message translates to:
+  /// **'View Feed'**
+  String get homeViewFeed;
+
+  /// No description provided for @homeNoReelsYet.
+  ///
+  /// In en, this message translates to:
+  /// **'No reels yet'**
+  String get homeNoReelsYet;
+
+  /// No description provided for @reelCreateSheetTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'New Reel'**
+  String get reelCreateSheetTitle;
+
+  /// No description provided for @reelCreateRecordOption.
+  ///
+  /// In en, this message translates to:
+  /// **'Record a video'**
+  String get reelCreateRecordOption;
+
+  /// No description provided for @reelCreateRecordOptionSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Use your camera'**
+  String get reelCreateRecordOptionSubtitle;
+
+  /// No description provided for @reelCreateGalleryOption.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose from gallery'**
+  String get reelCreateGalleryOption;
+
+  /// No description provided for @reelCreateGalleryOptionSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick an existing video'**
+  String get reelCreateGalleryOptionSubtitle;
+
+  /// No description provided for @reelRecordCameraError.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t access the camera'**
+  String get reelRecordCameraError;
+
+  /// No description provided for @reelRecordHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap to record'**
+  String get reelRecordHint;
+
+  /// No description provided for @reelTrimTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Trim Your Reel'**
+  String get reelTrimTitle;
+
+  /// No description provided for @reelTrimSelectedDuration.
+  ///
+  /// In en, this message translates to:
+  /// **'{seconds}s selected'**
+  String reelTrimSelectedDuration(String seconds);
+
+  /// No description provided for @reelTrimNext.
+  ///
+  /// In en, this message translates to:
+  /// **'Next'**
+  String get reelTrimNext;
+
+  /// No description provided for @reelDetailsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Reel Details'**
+  String get reelDetailsTitle;
+
+  /// No description provided for @reelDetailsTitleLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Title'**
+  String get reelDetailsTitleLabel;
+
+  /// No description provided for @reelDetailsTitleHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Give your reel a title'**
+  String get reelDetailsTitleHint;
+
+  /// No description provided for @reelDetailsDescriptionLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Description (optional)'**
+  String get reelDetailsDescriptionLabel;
+
+  /// No description provided for @reelDetailsDescriptionHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a description'**
+  String get reelDetailsDescriptionHint;
+
+  /// No description provided for @reelDetailsTitleRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a title'**
+  String get reelDetailsTitleRequired;
+
+  /// No description provided for @reelPostButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Post Reel'**
+  String get reelPostButton;
+
+  /// No description provided for @reelUploadingTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Uploading your reel…'**
+  String get reelUploadingTitle;
+
+  /// No description provided for @reelUploadingSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Please don\'t close the app'**
+  String get reelUploadingSubtitle;
+
+  /// No description provided for @reelUploadSuccessTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Reel Uploaded!'**
+  String get reelUploadSuccessTitle;
+
+  /// No description provided for @reelUploadSuccessSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your reel is being processed and will appear in the feed shortly.'**
+  String get reelUploadSuccessSubtitle;
+
+  /// No description provided for @reelBackToReels.
+  ///
+  /// In en, this message translates to:
+  /// **'Back to Reels'**
+  String get reelBackToReels;
+
   /// No description provided for @kycVerifyTitle.
   ///
   /// In en, this message translates to:
@@ -1374,6 +1524,12 @@ abstract class AppLocalizations {
   /// **'Profile'**
   String get navProfile;
 
+  /// No description provided for @navReels.
+  ///
+  /// In en, this message translates to:
+  /// **'Reels'**
+  String get navReels;
+
   /// No description provided for @truckCardMoreDestinations.
   ///
   /// In en, this message translates to:
@@ -1691,6 +1847,228 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{value} ft'**
   String feetValue(num value);
+
+  /// No description provided for @reelCommentsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Comments'**
+  String get reelCommentsTitle;
+
+  /// No description provided for @reelCommentsEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No comments yet. Be the first!'**
+  String get reelCommentsEmpty;
+
+  /// No description provided for @reelCommentHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a comment…'**
+  String get reelCommentHint;
+
+  /// No description provided for @reelCommentPost.
+  ///
+  /// In en, this message translates to:
+  /// **'Post'**
+  String get reelCommentPost;
+
+  /// No description provided for @reelCommentDelete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get reelCommentDelete;
+
+  /// No description provided for @reelFollow.
+  ///
+  /// In en, this message translates to:
+  /// **'Follow'**
+  String get reelFollow;
+
+  /// No description provided for @reelFollowing.
+  ///
+  /// In en, this message translates to:
+  /// **'Following'**
+  String get reelFollowing;
+
+  /// No description provided for @reelShareText.
+  ///
+  /// In en, this message translates to:
+  /// **'{title} — watch this reel on Convoy'**
+  String reelShareText(String title);
+
+  /// No description provided for @reelCategoryAll.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get reelCategoryAll;
+
+  /// No description provided for @reelDetailsCategoriesLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Categories'**
+  String get reelDetailsCategoriesLabel;
+
+  /// No description provided for @reelDetailsCategoriesHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick 1 to 5'**
+  String get reelDetailsCategoriesHint;
+
+  /// No description provided for @reelDetailsCategoriesRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick at least one category'**
+  String get reelDetailsCategoriesRequired;
+
+  /// No description provided for @reelDetailsHashtagsLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Hashtags (optional)'**
+  String get reelDetailsHashtagsLabel;
+
+  /// No description provided for @reelDetailsHashtagsHint.
+  ///
+  /// In en, this message translates to:
+  /// **'#trucklife #nightrun'**
+  String get reelDetailsHashtagsHint;
+
+  /// No description provided for @reelDetailsHashtagsMax.
+  ///
+  /// In en, this message translates to:
+  /// **'You can add up to 10 hashtags'**
+  String get reelDetailsHashtagsMax;
+
+  /// No description provided for @profileMyUploads.
+  ///
+  /// In en, this message translates to:
+  /// **'My Uploads'**
+  String get profileMyUploads;
+
+  /// No description provided for @uploadsCreatorInsights.
+  ///
+  /// In en, this message translates to:
+  /// **'Creator Insights'**
+  String get uploadsCreatorInsights;
+
+  /// No description provided for @uploadsNewPost.
+  ///
+  /// In en, this message translates to:
+  /// **'New Post'**
+  String get uploadsNewPost;
+
+  /// No description provided for @uploadsStatReels.
+  ///
+  /// In en, this message translates to:
+  /// **'Reels'**
+  String get uploadsStatReels;
+
+  /// No description provided for @uploadsStatTotalViews.
+  ///
+  /// In en, this message translates to:
+  /// **'Total Views'**
+  String get uploadsStatTotalViews;
+
+  /// No description provided for @uploadsStatAppreciation.
+  ///
+  /// In en, this message translates to:
+  /// **'Appreciation'**
+  String get uploadsStatAppreciation;
+
+  /// No description provided for @uploadsThisWeek.
+  ///
+  /// In en, this message translates to:
+  /// **'+{count} this wk'**
+  String uploadsThisWeek(int count);
+
+  /// No description provided for @uploadsAllReelsTab.
+  ///
+  /// In en, this message translates to:
+  /// **'All Reels ({count})'**
+  String uploadsAllReelsTab(int count);
+
+  /// No description provided for @uploadsCategoryTab.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} ({count})'**
+  String uploadsCategoryTab(String name, int count);
+
+  /// No description provided for @uploadsEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'You haven\'t uploaded any reels yet'**
+  String get uploadsEmpty;
+
+  /// No description provided for @uploadsRecordCta.
+  ///
+  /// In en, this message translates to:
+  /// **'Record / Upload Reel'**
+  String get uploadsRecordCta;
+
+  /// No description provided for @uploadsMenuEdit.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit'**
+  String get uploadsMenuEdit;
+
+  /// No description provided for @uploadsMenuDelete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get uploadsMenuDelete;
+
+  /// No description provided for @uploadsMenuComingSoon.
+  ///
+  /// In en, this message translates to:
+  /// **'Coming soon'**
+  String get uploadsMenuComingSoon;
+
+  /// No description provided for @uploadsStatusProcessing.
+  ///
+  /// In en, this message translates to:
+  /// **'Processing'**
+  String get uploadsStatusProcessing;
+
+  /// No description provided for @uploadsStatusRejected.
+  ///
+  /// In en, this message translates to:
+  /// **'Rejected'**
+  String get uploadsStatusRejected;
+
+  /// No description provided for @uploadsStatusFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed'**
+  String get uploadsStatusFailed;
+
+  /// No description provided for @uploadsPostedToday.
+  ///
+  /// In en, this message translates to:
+  /// **'Today'**
+  String get uploadsPostedToday;
+
+  /// No description provided for @uploadsPostedYesterday.
+  ///
+  /// In en, this message translates to:
+  /// **'Yesterday'**
+  String get uploadsPostedYesterday;
+
+  /// No description provided for @uploadsPostedDaysAgo.
+  ///
+  /// In en, this message translates to:
+  /// **'{days}d ago'**
+  String uploadsPostedDaysAgo(int days);
+
+  /// No description provided for @uploadsPostedWeeksAgo.
+  ///
+  /// In en, this message translates to:
+  /// **'{weeks}w ago'**
+  String uploadsPostedWeeksAgo(int weeks);
+
+  /// No description provided for @uploadsPostedMonthsAgo.
+  ///
+  /// In en, this message translates to:
+  /// **'{months}mo ago'**
+  String uploadsPostedMonthsAgo(int months);
 }
 
 class _AppLocalizationsDelegate
