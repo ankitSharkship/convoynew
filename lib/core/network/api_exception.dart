@@ -27,7 +27,6 @@ class ApiException implements Exception {
     if (isConnectivityError(e)) {
       return const ApiException._connectivity();
     }
-
     final data = e.response?.data;
     if (data is Map) {
       final errorMessage = data['error_message'];

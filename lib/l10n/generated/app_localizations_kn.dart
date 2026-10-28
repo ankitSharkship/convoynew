@@ -242,7 +242,7 @@ class AppLocalizationsKn extends AppLocalizations {
   String get homeSearchTrucksSubtitle => 'ಲಭ್ಯವಿರುವ ವಾಹನಗಳನ್ನು ಹುಡುಕಿ';
 
   @override
-  String get homeManageSection => 'ಪೋಸ್ಟ್‌ಗಳು ಮತ್ತು ಹುಡುಕಾಟಗಳನ್ನು ನಿರ್ವಹಿಸಿ';
+  String get profileRecentPostsSearches => 'ಇತ್ತೀಚಿನ ಪೋಸ್ಟ್ ಮತ್ತು ಹುಡುಕಾಟಗಳು';
 
   @override
   String get homeViewAll => 'ಎಲ್ಲಾ ನೋಡಿ';
@@ -828,6 +828,18 @@ class AppLocalizationsKn extends AppLocalizations {
   String get truckMapDetailsTitle => 'ಟ್ರಕ್ ವಿವರಗಳು';
 
   @override
+  String get truckDetailsRequestOneToOne => '1:1 ವಿನಂತಿ';
+
+  @override
+  String get truckDetailsCallDriver => 'ಬುಕ್ ಮಾಡಲು ಡ್ರೈವರ್‌ಗೆ ಕರೆ ಮಾಡಿ';
+
+  @override
+  String get truckDetailsRequestSoon => '1:1 ವಿನಂತಿಗಳು ಶೀಘ್ರದಲ್ಲೇ ಬರಲಿವೆ';
+
+  @override
+  String get truckDetailsClose => 'ಮುಚ್ಚಿ';
+
+  @override
   String truckMapViewList(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
@@ -1092,4 +1104,92 @@ class AppLocalizationsKn extends AppLocalizations {
   String uploadsPostedMonthsAgo(int months) {
     return '$months ತಿಂಗಳ ಹಿಂದೆ';
   }
+
+  @override
+  String get navHeatmap => 'ಹೀಟ್‌ಮ್ಯಾಪ್';
+
+  @override
+  String get heatmapTitle => 'ಚಟುವಟಿಕೆ ಹೀಟ್‌ಮ್ಯಾಪ್';
+
+  @override
+  String get heatmapTabTrucks => 'ಟ್ರಕ್‌ಗಳು';
+
+  @override
+  String get heatmapTabReels => 'ರೀಲ್ಸ್';
+
+  @override
+  String get heatmapLoading => 'ಹೀಟ್‌ಮ್ಯಾಪ್ ಲೋಡ್ ಆಗುತ್ತಿದೆ…';
+
+  @override
+  String get heatmapErrorGeneric => 'ಹೀಟ್‌ಮ್ಯಾಪ್ ಲೋಡ್ ಮಾಡಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ';
+
+  @override
+  String get heatmapEmptyTrucks => 'ತೋರಿಸಲು ಇನ್ನೂ ಯಾವುದೇ ಲೈವ್ ಟ್ರಕ್‌ಗಳಿಲ್ಲ';
+
+  @override
+  String get heatmapEmptyReels => 'ಸ್ಥಳದೊಂದಿಗೆ ಇತ್ತೀಚಿನ ರೀಲ್ಸ್ ಇನ್ನೂ ಇಲ್ಲ';
+
+  @override
+  String get heatmapZoomOutHint => 'ಹೆಚ್ಚಿನ ಚಟುವಟಿಕೆ ನೋಡಲು ಜೂಮ್ ಔಟ್ ಮಾಡಿ';
+
+  @override
+  String get heatmapLegendLow => 'ಕಡಿಮೆ';
+
+  @override
+  String get heatmapLegendHigh => 'ಹೆಚ್ಚು';
+
+  @override
+  String get heatmapMyLocation => 'ನನ್ನ ಸ್ಥಳ';
+
+  @override
+  String heatmapCellTrucks(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'ಈ ಪ್ರದೇಶದಲ್ಲಿ $count ಟ್ರಕ್‌ಗಳು',
+      one: 'ಈ ಪ್ರದೇಶದಲ್ಲಿ 1 ಟ್ರಕ್',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String heatmapCellReels(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'ಈ ಪ್ರದೇಶದಲ್ಲಿ $count ರೀಲ್ಸ್',
+      one: 'ಈ ಪ್ರದೇಶದಲ್ಲಿ 1 ರೀಲ್',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get heatmapNoTrucksInView => 'ಈ ಪ್ರದೇಶದಲ್ಲಿ ಈಗ ಯಾವುದೇ ಟ್ರಕ್‌ಗಳಿಲ್ಲ';
+
+  @override
+  String get heatmapPinsTruncated =>
+      'ಕೇಂದ್ರಕ್ಕೆ ಹತ್ತಿರದ ಟ್ರಕ್‌ಗಳನ್ನು ತೋರಿಸಲಾಗುತ್ತಿದೆ — ಇನ್ನಷ್ಟು ನೋಡಲು ಜೂಮ್ ಇನ್ ಮಾಡಿ';
+
+  @override
+  String get heatmapPinsModeHint =>
+      'ಪ್ರತ್ಯೇಕ ಟ್ರಕ್‌ಗಳು · ವಿವರಗಳಿಗಾಗಿ ಪಿನ್ ಒತ್ತಿ';
+
+  @override
+  String get heatmapPinLoading => 'ಟ್ರಕ್ ವಿವರಗಳು ಲೋಡ್ ಆಗುತ್ತಿವೆ…';
+
+  @override
+  String get heatmapPinUnavailable => 'ಈ ಟ್ರಕ್ ಪೋಸ್ಟ್ ಇನ್ನು ಲಭ್ಯವಿಲ್ಲ';
+
+  @override
+  String get heatmapPinDetailError =>
+      'ಟ್ರಕ್ ವಿವರಗಳನ್ನು ಲೋಡ್ ಮಾಡಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ';
+
+  @override
+  String get reelsAreaThisArea => 'ಈ ಪ್ರದೇಶ';
+
+  @override
+  String get reelsAreaShowAll => 'ಎಲ್ಲಾ ರೀಲ್ಸ್ ತೋರಿಸಿ';
+
+  @override
+  String get reelsAreaEmpty => 'ಈ ಪ್ರದೇಶದಲ್ಲಿ ಈಗ ಯಾವುದೇ ರೀಲ್ಸ್ ಇಲ್ಲ';
 }

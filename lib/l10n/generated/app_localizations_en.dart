@@ -241,7 +241,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get homeSearchTrucksSubtitle => 'Find available vehicles';
 
   @override
-  String get homeManageSection => 'Manage Post & Searches';
+  String get profileRecentPostsSearches => 'Recent Post & Searches';
 
   @override
   String get homeViewAll => 'View All';
@@ -825,6 +825,18 @@ class AppLocalizationsEn extends AppLocalizations {
   String get truckMapDetailsTitle => 'Truck Details';
 
   @override
+  String get truckDetailsRequestOneToOne => 'Request 1:1';
+
+  @override
+  String get truckDetailsCallDriver => 'Call Driver to Book';
+
+  @override
+  String get truckDetailsRequestSoon => '1:1 requests are coming soon';
+
+  @override
+  String get truckDetailsClose => 'Close';
+
+  @override
   String truckMapViewList(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
@@ -1086,4 +1098,90 @@ class AppLocalizationsEn extends AppLocalizations {
   String uploadsPostedMonthsAgo(int months) {
     return '${months}mo ago';
   }
+
+  @override
+  String get navHeatmap => 'Heatmap';
+
+  @override
+  String get heatmapTitle => 'Activity Heatmap';
+
+  @override
+  String get heatmapTabTrucks => 'Trucks';
+
+  @override
+  String get heatmapTabReels => 'Reels';
+
+  @override
+  String get heatmapLoading => 'Loading heatmap…';
+
+  @override
+  String get heatmapErrorGeneric => 'Couldn\'t load the heatmap';
+
+  @override
+  String get heatmapEmptyTrucks => 'No live trucks to show yet';
+
+  @override
+  String get heatmapEmptyReels => 'No recent reels with a location yet';
+
+  @override
+  String get heatmapZoomOutHint => 'Zoom out to see more activity';
+
+  @override
+  String get heatmapLegendLow => 'Fewer';
+
+  @override
+  String get heatmapLegendHigh => 'More';
+
+  @override
+  String get heatmapMyLocation => 'My location';
+
+  @override
+  String heatmapCellTrucks(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count trucks in this area',
+      one: '1 truck in this area',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String heatmapCellReels(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count reels in this area',
+      one: '1 reel in this area',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get heatmapNoTrucksInView => 'No trucks in this area right now';
+
+  @override
+  String get heatmapPinsTruncated =>
+      'Showing the trucks closest to the centre — zoom in to see more';
+
+  @override
+  String get heatmapPinsModeHint => 'Individual trucks · tap a pin for details';
+
+  @override
+  String get heatmapPinLoading => 'Loading truck details…';
+
+  @override
+  String get heatmapPinUnavailable => 'This truck post is no longer available';
+
+  @override
+  String get heatmapPinDetailError => 'Couldn\'t load truck details';
+
+  @override
+  String get reelsAreaThisArea => 'This area';
+
+  @override
+  String get reelsAreaShowAll => 'Show all reels';
+
+  @override
+  String get reelsAreaEmpty => 'No reels in this area right now';
 }

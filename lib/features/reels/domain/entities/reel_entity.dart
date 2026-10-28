@@ -129,6 +129,24 @@ class ReelEntity {
   }
 }
 
+/// What the server says about the heatmap area a feed was narrowed to (present only
+/// for an area request of `GET /api/reels`).
+class ReelsAreaEntity {
+  final String h3Cell;
+
+  /// "Delhi, Delhi" — the most common place label among the area's reels, if any.
+  final String? label;
+
+  /// How many reels the area holds (what made it glow on the heatmap).
+  final int total;
+
+  const ReelsAreaEntity({
+    required this.h3Cell,
+    this.label,
+    required this.total,
+  });
+}
+
 /// A page of reels from `GET /api/reels`, with just enough info to drive
 /// infinite scroll (`hasMore`) without the UI layer needing to know about
 /// limit/offset/total itself.
@@ -136,5 +154,12 @@ class ReelsPageEntity {
   final List<ReelEntity> items;
   final bool hasMore;
 
-  const ReelsPageEntity({required this.items, required this.hasMore});
+  /// Set only when the feed was narrowed to a heatmap area.
+  final ReelsAreaEntity? area;
+
+  const ReelsPageEntity({
+    required this.items,
+    required this.hasMore,
+    this.area,
+  });
 }

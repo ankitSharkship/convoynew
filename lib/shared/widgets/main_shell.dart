@@ -50,6 +50,11 @@ class MainShell extends StatelessWidget {
               activeIcon: const Icon(Icons.play_circle),
               label: l10n.navReels,
             ),
+            BottomNavigationBarItem(
+              icon: const Icon(Icons.local_fire_department_outlined),
+              activeIcon: const Icon(Icons.local_fire_department),
+              label: l10n.navHeatmap,
+            ),
             if (FeatureFlags.walletEnabled)
               BottomNavigationBarItem(
                 icon: const Icon(Icons.account_balance_wallet_outlined),

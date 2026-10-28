@@ -6,6 +6,7 @@ import '../../domain/entities/my_uploads_entity.dart';
 import '../../domain/entities/reel_comment_entity.dart';
 import '../../domain/entities/reel_engagement_entity.dart';
 import '../../domain/entities/reel_entity.dart';
+import '../../domain/entities/reels_feed_key.dart';
 import '../models/reel_model.dart';
 
 abstract class ReelsRemoteDataSource {
@@ -13,6 +14,8 @@ abstract class ReelsRemoteDataSource {
     required int limit,
     required int offset,
     String? categoryId,
+    String? areaCell,
+    ReelsSort sort = ReelsSort.latest,
   });
   Future<List<ReelCategoryEntity>> getCategories();
   Future<ReelLikeResultEntity> likeReel(String reelId);
@@ -54,6 +57,8 @@ class ReelsRemoteDataSourceImpl implements ReelsRemoteDataSource {
     required int limit,
     required int offset,
     String? categoryId,
+    String? areaCell,
+    ReelsSort sort = ReelsSort.latest,
   }) => _guard(() async {
     final response = await _dio.get(
       '/api/reels',
@@ -61,6 +66,9 @@ class ReelsRemoteDataSourceImpl implements ReelsRemoteDataSource {
         'limit': limit,
         'offset': offset,
         if (categoryId != null) 'category': categoryId,
+        'h3Cell': ?areaCell,
+        // Omitted for the default so the plain feed's request is unchanged.
+        if (sort != ReelsSort.latest) 'sort': sort.apiValue,
       },
     );
     final data = response.data as Map<String, dynamic>;
@@ -69,9 +77,17 @@ class ReelsRemoteDataSourceImpl implements ReelsRemoteDataSource {
         .toList();
     final total = data['total'] as int? ?? items.length;
     final respOffset = data['offset'] as int? ?? offset;
+    final area = data['area'];
     return ReelsPageEntity(
       items: items,
       hasMore: respOffset + items.length < total,
+      area: area is Map<String, dynamic> && area['h3Cell'] is String
+          ? ReelsAreaEntity(
+              h3Cell: area['h3Cell'] as String,
+              label: area['label'] as String?,
+              total: (area['total'] as num?)?.toInt() ?? items.length,
+            )
+          : null,
     );
   });
 

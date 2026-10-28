@@ -6,8 +6,8 @@ import '../../../../l10n/generated/app_localizations.dart';
 import '../../../../shared/widgets/language_switcher_button.dart';
 import '../widgets/history_slivers.dart';
 
-/// Full, uncapped version of Home's "Manage Post & Searches" section —
-/// reached via that section's "View All" link.
+/// Full list of the user's recent posts and searches — opened from the
+/// "Recent Post & Searches" row on the Profile page.
 class ManageHistoryScreen extends StatefulWidget {
   const ManageHistoryScreen({super.key});
 
@@ -40,7 +40,7 @@ class _ManageHistoryScreenState extends State<ManageHistoryScreen> {
                   ),
                   Expanded(
                     child: Text(
-                      l10n.homeManageSection,
+                      l10n.profileRecentPostsSearches,
                       style: const TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.w700,

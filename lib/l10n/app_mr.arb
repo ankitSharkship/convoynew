@@ -108,7 +108,7 @@
 
   "homeSearchTrucksSubtitle": "उपलब्ध ट्रक पाहा",
 
-  "homeManageSection": "पोस्ट आणि सर्च व्यवस्थापित करा",
+  "profileRecentPostsSearches": "अलीकडील पोस्ट आणि शोध",
 
   "homeViewAll": "सर्व पहा",
 
@@ -436,6 +436,10 @@
   "truckMapCountFound": "{count, plural, one{1 ट्रक जवळ आहे} other{{count} ट्रक जवळ आहेत}}",
 
   "truckMapDetailsTitle": "ट्रकची माहिती",
+  "truckDetailsRequestOneToOne": "1:1 विनंती करा",
+  "truckDetailsCallDriver": "बुक करण्यासाठी ड्रायव्हरला कॉल करा",
+  "truckDetailsRequestSoon": "1:1 विनंत्या लवकरच येत आहेत",
+  "truckDetailsClose": "बंद करा",
 
   "truckMapViewList": "{count, plural, one{यादी पहा (1)} other{यादी पहा ({count})}}",
 
@@ -552,5 +556,31 @@
   "uploadsPostedYesterday": "काल",
   "uploadsPostedDaysAgo": "{days} दिवसांपूर्वी",
   "uploadsPostedWeeksAgo": "{weeks} आठवड्यांपूर्वी",
-  "uploadsPostedMonthsAgo": "{months} महिन्यांपूर्वी"
+  "uploadsPostedMonthsAgo": "{months} महिन्यांपूर्वी",
+
+  "navHeatmap": "हीटमॅप",
+  "heatmapTitle": "अ‍ॅक्टिव्हिटी हीटमॅप",
+  "heatmapTabTrucks": "ट्रक",
+  "heatmapTabReels": "रील्स",
+  "heatmapLoading": "हीटमॅप लोड होत आहे…",
+  "heatmapErrorGeneric": "हीटमॅप लोड करता आला नाही",
+  "heatmapEmptyTrucks": "दाखवण्यासाठी अजून कोणताही लाइव्ह ट्रक नाही",
+  "heatmapEmptyReels": "लोकेशनसह अलीकडील रील्स अजून नाहीत",
+  "heatmapZoomOutHint": "अधिक अ‍ॅक्टिव्हिटी पाहण्यासाठी झूम आउट करा",
+  "heatmapLegendLow": "कमी",
+  "heatmapLegendHigh": "जास्त",
+  "heatmapMyLocation": "माझे स्थान",
+  "heatmapCellTrucks": "{count, plural, one{या भागात 1 ट्रक} other{या भागात {count} ट्रक}}",
+  "@heatmapCellTrucks": { "placeholders": { "count": { "type": "int" } } },
+  "heatmapCellReels": "{count, plural, one{या भागात 1 रील} other{या भागात {count} रील्स}}",
+  "@heatmapCellReels": { "placeholders": { "count": { "type": "int" } } },
+  "heatmapNoTrucksInView": "या भागात सध्या कोणताही ट्रक नाही",
+  "heatmapPinsTruncated": "केंद्राच्या सर्वात जवळचे ट्रक दाखवत आहोत — अधिक पाहण्यासाठी झूम इन करा",
+  "heatmapPinsModeHint": "वैयक्तिक ट्रक · तपशिलांसाठी पिनवर टॅप करा",
+  "heatmapPinLoading": "ट्रकचा तपशील लोड होत आहे…",
+  "heatmapPinUnavailable": "ही ट्रक पोस्ट आता उपलब्ध नाही",
+  "heatmapPinDetailError": "ट्रकचा तपशील लोड करता आला नाही",
+  "reelsAreaThisArea": "हा परिसर",
+  "reelsAreaShowAll": "सर्व रील्स दाखवा",
+  "reelsAreaEmpty": "या भागात सध्या कोणतीही रील नाही"
 }

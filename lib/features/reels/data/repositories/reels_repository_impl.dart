@@ -2,6 +2,7 @@ import '../../domain/entities/my_uploads_entity.dart';
 import '../../domain/entities/reel_comment_entity.dart';
 import '../../domain/entities/reel_engagement_entity.dart';
 import '../../domain/entities/reel_entity.dart';
+import '../../domain/entities/reels_feed_key.dart';
 import '../../domain/repositories/reels_repository.dart';
 import '../datasources/reels_remote_datasource.dart';
 
@@ -15,7 +16,15 @@ class ReelsRepositoryImpl implements ReelsRepository {
     required int limit,
     required int offset,
     String? categoryId,
-  }) => _remote.getReels(limit: limit, offset: offset, categoryId: categoryId);
+    String? areaCell,
+    ReelsSort sort = ReelsSort.latest,
+  }) => _remote.getReels(
+    limit: limit,
+    offset: offset,
+    categoryId: categoryId,
+    areaCell: areaCell,
+    sort: sort,
+  );
 
   @override
   Future<List<ReelCategoryEntity>> getCategories() => _remote.getCategories();

@@ -534,11 +534,11 @@ abstract class AppLocalizations {
   /// **'Find available vehicles'**
   String get homeSearchTrucksSubtitle;
 
-  /// No description provided for @homeManageSection.
+  /// No description provided for @profileRecentPostsSearches.
   ///
   /// In en, this message translates to:
-  /// **'Manage Post & Searches'**
-  String get homeManageSection;
+  /// **'Recent Post & Searches'**
+  String get profileRecentPostsSearches;
 
   /// No description provided for @homeViewAll.
   ///
@@ -1608,6 +1608,30 @@ abstract class AppLocalizations {
   /// **'Truck Details'**
   String get truckMapDetailsTitle;
 
+  /// No description provided for @truckDetailsRequestOneToOne.
+  ///
+  /// In en, this message translates to:
+  /// **'Request 1:1'**
+  String get truckDetailsRequestOneToOne;
+
+  /// No description provided for @truckDetailsCallDriver.
+  ///
+  /// In en, this message translates to:
+  /// **'Call Driver to Book'**
+  String get truckDetailsCallDriver;
+
+  /// No description provided for @truckDetailsRequestSoon.
+  ///
+  /// In en, this message translates to:
+  /// **'1:1 requests are coming soon'**
+  String get truckDetailsRequestSoon;
+
+  /// No description provided for @truckDetailsClose.
+  ///
+  /// In en, this message translates to:
+  /// **'Close'**
+  String get truckDetailsClose;
+
   /// No description provided for @truckMapViewList.
   ///
   /// In en, this message translates to:
@@ -2069,6 +2093,144 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{months}mo ago'**
   String uploadsPostedMonthsAgo(int months);
+
+  /// No description provided for @navHeatmap.
+  ///
+  /// In en, this message translates to:
+  /// **'Heatmap'**
+  String get navHeatmap;
+
+  /// No description provided for @heatmapTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Activity Heatmap'**
+  String get heatmapTitle;
+
+  /// No description provided for @heatmapTabTrucks.
+  ///
+  /// In en, this message translates to:
+  /// **'Trucks'**
+  String get heatmapTabTrucks;
+
+  /// No description provided for @heatmapTabReels.
+  ///
+  /// In en, this message translates to:
+  /// **'Reels'**
+  String get heatmapTabReels;
+
+  /// No description provided for @heatmapLoading.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading heatmap…'**
+  String get heatmapLoading;
+
+  /// No description provided for @heatmapErrorGeneric.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load the heatmap'**
+  String get heatmapErrorGeneric;
+
+  /// No description provided for @heatmapEmptyTrucks.
+  ///
+  /// In en, this message translates to:
+  /// **'No live trucks to show yet'**
+  String get heatmapEmptyTrucks;
+
+  /// No description provided for @heatmapEmptyReels.
+  ///
+  /// In en, this message translates to:
+  /// **'No recent reels with a location yet'**
+  String get heatmapEmptyReels;
+
+  /// No description provided for @heatmapZoomOutHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Zoom out to see more activity'**
+  String get heatmapZoomOutHint;
+
+  /// No description provided for @heatmapLegendLow.
+  ///
+  /// In en, this message translates to:
+  /// **'Fewer'**
+  String get heatmapLegendLow;
+
+  /// No description provided for @heatmapLegendHigh.
+  ///
+  /// In en, this message translates to:
+  /// **'More'**
+  String get heatmapLegendHigh;
+
+  /// No description provided for @heatmapMyLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'My location'**
+  String get heatmapMyLocation;
+
+  /// No description provided for @heatmapCellTrucks.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, one{1 truck in this area} other{{count} trucks in this area}}'**
+  String heatmapCellTrucks(int count);
+
+  /// No description provided for @heatmapCellReels.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, one{1 reel in this area} other{{count} reels in this area}}'**
+  String heatmapCellReels(int count);
+
+  /// No description provided for @heatmapNoTrucksInView.
+  ///
+  /// In en, this message translates to:
+  /// **'No trucks in this area right now'**
+  String get heatmapNoTrucksInView;
+
+  /// No description provided for @heatmapPinsTruncated.
+  ///
+  /// In en, this message translates to:
+  /// **'Showing the trucks closest to the centre — zoom in to see more'**
+  String get heatmapPinsTruncated;
+
+  /// No description provided for @heatmapPinsModeHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Individual trucks · tap a pin for details'**
+  String get heatmapPinsModeHint;
+
+  /// No description provided for @heatmapPinLoading.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading truck details…'**
+  String get heatmapPinLoading;
+
+  /// No description provided for @heatmapPinUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'This truck post is no longer available'**
+  String get heatmapPinUnavailable;
+
+  /// No description provided for @heatmapPinDetailError.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load truck details'**
+  String get heatmapPinDetailError;
+
+  /// No description provided for @reelsAreaThisArea.
+  ///
+  /// In en, this message translates to:
+  /// **'This area'**
+  String get reelsAreaThisArea;
+
+  /// No description provided for @reelsAreaShowAll.
+  ///
+  /// In en, this message translates to:
+  /// **'Show all reels'**
+  String get reelsAreaShowAll;
+
+  /// No description provided for @reelsAreaEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No reels in this area right now'**
+  String get reelsAreaEmpty;
 }
 
 class _AppLocalizationsDelegate

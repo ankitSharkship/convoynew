@@ -8,10 +8,8 @@ import '../../../../l10n/generated/app_localizations.dart';
 import '../../../../shared/widgets/language_switcher_button.dart';
 import '../../../kyc/presentation/navigation/post_truck_gate.dart';
 import '../../../profile/presentation/state/profile_notifier.dart';
-import '../widgets/history_slivers.dart';
 import '../widgets/trending_reels_section.dart';
 
-const _homePreviewLimit = 3;
 const _carouselAutoAdvanceInterval = Duration(seconds: 4);
 const _carouselImages = [
   'assets/images/corouselImages/I111.png',
@@ -44,8 +42,6 @@ class _HomeContent extends ConsumerStatefulWidget {
 }
 
 class _HomeContentState extends ConsumerState<_HomeContent> {
-  int _selectedTab = 0;
-
   @override
   Widget build(BuildContext context) {
     final firstName = widget.userName.split(' ').first;
@@ -154,82 +150,9 @@ class _HomeContentState extends ConsumerState<_HomeContent> {
 
                   const TrendingReelsSection(),
                   const SizedBox(height: 24),
-
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: Text(
-                            l10n.homeManageSection,
-                            style: const TextStyle(
-                              fontSize: 17,
-                              fontWeight: FontWeight.w700,
-                              color: AppColors.textPrimary,
-                            ),
-                          ),
-                        ),
-                        GestureDetector(
-                          onTap: () => context.push('/home/manage'),
-                          child: Text(
-                            l10n.homeViewAll,
-                            style: const TextStyle(
-                              fontSize: 13,
-                              fontWeight: FontWeight.w600,
-                              color: AppColors.primaryBlue,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 12),
-
-                  // Tab selector
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Container(
-                      height: 46,
-                      padding: const EdgeInsets.all(4),
-                      decoration: BoxDecoration(
-                        color: AppColors.white,
-                        borderRadius: BorderRadius.circular(12),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withValues(alpha: 0.04),
-                            blurRadius: 8,
-                            offset: const Offset(0, 2),
-                          ),
-                        ],
-                      ),
-                      child: Row(
-                        children: [
-                          TabItem(
-                            label: l10n.homeRecentPosts,
-                            selected: _selectedTab == 0,
-                            onTap: () => setState(() => _selectedTab = 0),
-                          ),
-                          TabItem(
-                            label: l10n.homeRecentSearch,
-                            selected: _selectedTab == 1,
-                            onTap: () => setState(() => _selectedTab = 1),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 14),
                 ],
               ),
             ),
-          ),
-
-          // Tab content
-          SliverPadding(
-            padding: const EdgeInsets.fromLTRB(10, 0, 20, 10),
-            sliver: _selectedTab == 0
-                ? const PostHistorySliver(limit: _homePreviewLimit)
-                : const SearchHistorySliver(limit: _homePreviewLimit),
           ),
         ],
       ),

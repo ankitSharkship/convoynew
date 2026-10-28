@@ -9,6 +9,7 @@ import '../../features/auth/presentation/screens/enter_name_screen.dart';
 import '../../features/auth/presentation/screens/otp_screen.dart';
 import '../../features/auth/presentation/screens/phone_screen.dart';
 import '../../features/call/presentation/screens/call_screen.dart';
+import '../../features/heatmap/presentation/screens/heatmap_screen.dart';
 import '../../features/home/presentation/screens/home_screen.dart';
 import '../../features/home/presentation/screens/manage_history_screen.dart';
 import '../../features/kyc/presentation/screens/face_review_screen.dart';
@@ -213,6 +214,14 @@ GoRouter appRouter(AppRouterRef ref) {
           StatefulShellBranch(
             routes: [
               GoRoute(path: '/reels', builder: (_, __) => const ReelsScreen()),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: '/heatmap',
+                builder: (_, __) => const HeatmapScreen(),
+              ),
             ],
           ),
           if (FeatureFlags.walletEnabled)

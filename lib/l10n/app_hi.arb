@@ -81,7 +81,7 @@
   "homePostNewTruckSubtitle": "30 सेकंड में हो जाएगा",
   "homeSearchTrucks": "ट्रक ढूंढें",
   "homeSearchTrucksSubtitle": "आस-पास के ट्रक देखें",
-  "homeManageSection": "पोस्ट और सर्च मैनेज करें",
+  "profileRecentPostsSearches": "हाल की पोस्ट और खोजें",
   "homeViewAll": "सभी देखें",
   "homeRecentPosts": "हाल की पोस्ट",
   "homeRecentSearch": "हाल की सर्च",
@@ -286,6 +286,10 @@
     "placeholders": { "count": { "type": "int" } }
   },
   "truckMapDetailsTitle": "ट्रक विवरण",
+  "truckDetailsRequestOneToOne": "1:1 अनुरोध करें",
+  "truckDetailsCallDriver": "बुक करने के लिए ड्राइवर को कॉल करें",
+  "truckDetailsRequestSoon": "1:1 अनुरोध जल्द आ रहे हैं",
+  "truckDetailsClose": "बंद करें",
   "truckMapViewList": "{count, plural, one{सूची देखें (1)} other{सूची देखें ({count})}}",
   "@truckMapViewList": {
     "placeholders": { "count": { "type": "int" } }
@@ -377,5 +381,31 @@
   "uploadsPostedYesterday": "कल",
   "uploadsPostedDaysAgo": "{days} दिन पहले",
   "uploadsPostedWeeksAgo": "{weeks} सप्ताह पहले",
-  "uploadsPostedMonthsAgo": "{months} माह पहले"
+  "uploadsPostedMonthsAgo": "{months} माह पहले",
+
+  "navHeatmap": "हीटमैप",
+  "heatmapTitle": "गतिविधि हीटमैप",
+  "heatmapTabTrucks": "ट्रक",
+  "heatmapTabReels": "रील्स",
+  "heatmapLoading": "हीटमैप लोड हो रहा है…",
+  "heatmapErrorGeneric": "हीटमैप लोड नहीं हो सका",
+  "heatmapEmptyTrucks": "अभी दिखाने के लिए कोई लाइव ट्रक नहीं है",
+  "heatmapEmptyReels": "अभी लोकेशन वाली कोई हालिया रील नहीं है",
+  "heatmapZoomOutHint": "ज़्यादा गतिविधि देखने के लिए ज़ूम आउट करें",
+  "heatmapLegendLow": "कम",
+  "heatmapLegendHigh": "ज़्यादा",
+  "heatmapMyLocation": "मेरी लोकेशन",
+  "heatmapCellTrucks": "{count, plural, one{इस क्षेत्र में 1 ट्रक} other{इस क्षेत्र में {count} ट्रक}}",
+  "@heatmapCellTrucks": { "placeholders": { "count": { "type": "int" } } },
+  "heatmapCellReels": "{count, plural, one{इस क्षेत्र में 1 रील} other{इस क्षेत्र में {count} रील्स}}",
+  "@heatmapCellReels": { "placeholders": { "count": { "type": "int" } } },
+  "heatmapNoTrucksInView": "इस क्षेत्र में अभी कोई ट्रक नहीं है",
+  "heatmapPinsTruncated": "केंद्र के सबसे पास के ट्रक दिखाए जा रहे हैं — और देखने के लिए ज़ूम इन करें",
+  "heatmapPinsModeHint": "अलग-अलग ट्रक · जानकारी के लिए पिन दबाएं",
+  "heatmapPinLoading": "ट्रक की जानकारी लोड हो रही है…",
+  "heatmapPinUnavailable": "यह ट्रक पोस्ट अब उपलब्ध नहीं है",
+  "heatmapPinDetailError": "ट्रक की जानकारी लोड नहीं हो सकी",
+  "reelsAreaThisArea": "यह क्षेत्र",
+  "reelsAreaShowAll": "सभी रील्स दिखाएं",
+  "reelsAreaEmpty": "इस क्षेत्र में अभी कोई रील नहीं है"
 }

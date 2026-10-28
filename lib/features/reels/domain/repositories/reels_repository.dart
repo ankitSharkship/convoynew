@@ -2,12 +2,15 @@ import '../entities/my_uploads_entity.dart';
 import '../entities/reel_comment_entity.dart';
 import '../entities/reel_engagement_entity.dart';
 import '../entities/reel_entity.dart';
+import '../entities/reels_feed_key.dart';
 
 abstract class ReelsRepository {
   Future<ReelsPageEntity> getReels({
     required int limit,
     required int offset,
     String? categoryId,
+    String? areaCell,
+    ReelsSort sort = ReelsSort.latest,
   });
   Future<List<ReelCategoryEntity>> getCategories();
   Future<ReelLikeResultEntity> likeReel(String reelId);

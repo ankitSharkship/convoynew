@@ -241,7 +241,7 @@ class AppLocalizationsMr extends AppLocalizations {
   String get homeSearchTrucksSubtitle => 'उपलब्ध ट्रक पाहा';
 
   @override
-  String get homeManageSection => 'पोस्ट आणि सर्च व्यवस्थापित करा';
+  String get profileRecentPostsSearches => 'अलीकडील पोस्ट आणि शोध';
 
   @override
   String get homeViewAll => 'सर्व पहा';
@@ -826,6 +826,18 @@ class AppLocalizationsMr extends AppLocalizations {
   String get truckMapDetailsTitle => 'ट्रकची माहिती';
 
   @override
+  String get truckDetailsRequestOneToOne => '1:1 विनंती करा';
+
+  @override
+  String get truckDetailsCallDriver => 'बुक करण्यासाठी ड्रायव्हरला कॉल करा';
+
+  @override
+  String get truckDetailsRequestSoon => '1:1 विनंत्या लवकरच येत आहेत';
+
+  @override
+  String get truckDetailsClose => 'बंद करा';
+
+  @override
   String truckMapViewList(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
@@ -1088,4 +1100,90 @@ class AppLocalizationsMr extends AppLocalizations {
   String uploadsPostedMonthsAgo(int months) {
     return '$months महिन्यांपूर्वी';
   }
+
+  @override
+  String get navHeatmap => 'हीटमॅप';
+
+  @override
+  String get heatmapTitle => 'अ‍ॅक्टिव्हिटी हीटमॅप';
+
+  @override
+  String get heatmapTabTrucks => 'ट्रक';
+
+  @override
+  String get heatmapTabReels => 'रील्स';
+
+  @override
+  String get heatmapLoading => 'हीटमॅप लोड होत आहे…';
+
+  @override
+  String get heatmapErrorGeneric => 'हीटमॅप लोड करता आला नाही';
+
+  @override
+  String get heatmapEmptyTrucks => 'दाखवण्यासाठी अजून कोणताही लाइव्ह ट्रक नाही';
+
+  @override
+  String get heatmapEmptyReels => 'लोकेशनसह अलीकडील रील्स अजून नाहीत';
+
+  @override
+  String get heatmapZoomOutHint => 'अधिक अ‍ॅक्टिव्हिटी पाहण्यासाठी झूम आउट करा';
+
+  @override
+  String get heatmapLegendLow => 'कमी';
+
+  @override
+  String get heatmapLegendHigh => 'जास्त';
+
+  @override
+  String get heatmapMyLocation => 'माझे स्थान';
+
+  @override
+  String heatmapCellTrucks(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'या भागात $count ट्रक',
+      one: 'या भागात 1 ट्रक',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String heatmapCellReels(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'या भागात $count रील्स',
+      one: 'या भागात 1 रील',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get heatmapNoTrucksInView => 'या भागात सध्या कोणताही ट्रक नाही';
+
+  @override
+  String get heatmapPinsTruncated =>
+      'केंद्राच्या सर्वात जवळचे ट्रक दाखवत आहोत — अधिक पाहण्यासाठी झूम इन करा';
+
+  @override
+  String get heatmapPinsModeHint => 'वैयक्तिक ट्रक · तपशिलांसाठी पिनवर टॅप करा';
+
+  @override
+  String get heatmapPinLoading => 'ट्रकचा तपशील लोड होत आहे…';
+
+  @override
+  String get heatmapPinUnavailable => 'ही ट्रक पोस्ट आता उपलब्ध नाही';
+
+  @override
+  String get heatmapPinDetailError => 'ट्रकचा तपशील लोड करता आला नाही';
+
+  @override
+  String get reelsAreaThisArea => 'हा परिसर';
+
+  @override
+  String get reelsAreaShowAll => 'सर्व रील्स दाखवा';
+
+  @override
+  String get reelsAreaEmpty => 'या भागात सध्या कोणतीही रील नाही';
 }

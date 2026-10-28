@@ -196,12 +196,12 @@ class _SystemHash {
   }
 }
 
-String _$reelsFeedNotifierHash() => r'2197dc606755c944bbc7da052f3741b02b45a148';
+String _$reelsFeedNotifierHash() => r'2466d35de557d567130f33fa5203e1efab072492';
 
 abstract class _$ReelsFeedNotifier extends BuildlessAutoDisposeNotifier<ReelsFeedState> {
-  late final String? categoryId;
+  late final ReelsFeedKey feedKey;
 
-  ReelsFeedState build(String? categoryId);
+  ReelsFeedState build(ReelsFeedKey feedKey);
 }
 
 /// See also [ReelsFeedNotifier].
@@ -214,13 +214,13 @@ class ReelsFeedNotifierFamily extends Family<ReelsFeedState> {
   const ReelsFeedNotifierFamily();
 
   /// See also [ReelsFeedNotifier].
-  ReelsFeedNotifierProvider call(String? categoryId) {
-    return ReelsFeedNotifierProvider(categoryId);
+  ReelsFeedNotifierProvider call(ReelsFeedKey feedKey) {
+    return ReelsFeedNotifierProvider(feedKey);
   }
 
   @override
   ReelsFeedNotifierProvider getProviderOverride(covariant ReelsFeedNotifierProvider provider) {
-    return call(provider.categoryId);
+    return call(provider.feedKey);
   }
 
   static const Iterable<ProviderOrFamily>? _dependencies = null;
@@ -242,9 +242,9 @@ class ReelsFeedNotifierFamily extends Family<ReelsFeedState> {
 class ReelsFeedNotifierProvider
     extends AutoDisposeNotifierProviderImpl<ReelsFeedNotifier, ReelsFeedState> {
   /// See also [ReelsFeedNotifier].
-  ReelsFeedNotifierProvider(String? categoryId)
+  ReelsFeedNotifierProvider(ReelsFeedKey feedKey)
     : this._internal(
-        () => ReelsFeedNotifier()..categoryId = categoryId,
+        () => ReelsFeedNotifier()..feedKey = feedKey,
         from: reelsFeedNotifierProvider,
         name: r'reelsFeedNotifierProvider',
         debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -252,7 +252,7 @@ class ReelsFeedNotifierProvider
             : _$reelsFeedNotifierHash,
         dependencies: ReelsFeedNotifierFamily._dependencies,
         allTransitiveDependencies: ReelsFeedNotifierFamily._allTransitiveDependencies,
-        categoryId: categoryId,
+        feedKey: feedKey,
       );
 
   ReelsFeedNotifierProvider._internal(
@@ -262,14 +262,14 @@ class ReelsFeedNotifierProvider
     required super.allTransitiveDependencies,
     required super.debugGetCreateSourceHash,
     required super.from,
-    required this.categoryId,
+    required this.feedKey,
   }) : super.internal();
 
-  final String? categoryId;
+  final ReelsFeedKey feedKey;
 
   @override
   ReelsFeedState runNotifierBuild(covariant ReelsFeedNotifier notifier) {
-    return notifier.build(categoryId);
+    return notifier.build(feedKey);
   }
 
   @override
@@ -277,13 +277,13 @@ class ReelsFeedNotifierProvider
     return ProviderOverride(
       origin: this,
       override: ReelsFeedNotifierProvider._internal(
-        () => create()..categoryId = categoryId,
+        () => create()..feedKey = feedKey,
         from: from,
         name: null,
         dependencies: null,
         allTransitiveDependencies: null,
         debugGetCreateSourceHash: null,
-        categoryId: categoryId,
+        feedKey: feedKey,
       ),
     );
   }
@@ -295,13 +295,13 @@ class ReelsFeedNotifierProvider
 
   @override
   bool operator ==(Object other) {
-    return other is ReelsFeedNotifierProvider && other.categoryId == categoryId;
+    return other is ReelsFeedNotifierProvider && other.feedKey == feedKey;
   }
 
   @override
   int get hashCode {
     var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, categoryId.hashCode);
+    hash = _SystemHash.combine(hash, feedKey.hashCode);
 
     return _SystemHash.finish(hash);
   }
@@ -310,8 +310,8 @@ class ReelsFeedNotifierProvider
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 mixin ReelsFeedNotifierRef on AutoDisposeNotifierProviderRef<ReelsFeedState> {
-  /// The parameter `categoryId` of this provider.
-  String? get categoryId;
+  /// The parameter `feedKey` of this provider.
+  ReelsFeedKey get feedKey;
 }
 
 class _ReelsFeedNotifierProviderElement
@@ -320,7 +320,30 @@ class _ReelsFeedNotifierProviderElement
   _ReelsFeedNotifierProviderElement(super.provider);
 
   @override
-  String? get categoryId => (origin as ReelsFeedNotifierProvider).categoryId;
+  ReelsFeedKey get feedKey => (origin as ReelsFeedNotifierProvider).feedKey;
 }
+String _$selectedReelAreaHash() => r'e75bb595731697066e1a04ae8318e82d569560f1';
+
+/// The Reels-heatmap hotspot the Reels tab is narrowed to (its H3 cell), or `null`
+/// for the normal feed. Set by the heatmap when a hotspot is tapped; cleared by the
+/// area chip on the Reels tab.
+///
+/// `keepAlive` because the heatmap sets it before the Reels tab has ever listened —
+/// an auto-disposed provider would forget the value before the tab got to read it.
+///
+/// Copied from [SelectedReelArea].
+@ProviderFor(SelectedReelArea)
+final selectedReelAreaProvider =
+    NotifierProvider<SelectedReelArea, String?>.internal(
+      SelectedReelArea.new,
+      name: r'selectedReelAreaProvider',
+      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+          ? null
+          : _$selectedReelAreaHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
+
+typedef _$SelectedReelArea = Notifier<String?>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

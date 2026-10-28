@@ -13,8 +13,9 @@ import '../../../../shared/widgets/location_permission_dialog.dart';
 import '../../../../shared/utils/truck_type_image.dart';
 import '../../../../shared/widgets/suggestions_overlay.dart';
 import '../../../../shared/widgets/wheel_number_picker.dart';
-import '../../../truck_map/presentation/widgets/mini_map_preview.dart';
+import '../../../home/presentation/widgets/history_slivers.dart';
 import '../../domain/entities/location_entity.dart';
+import '../../../home/presentation/state/home_notifier.dart';
 import '../state/search_notifier.dart';
 import '../widgets/truck_type_sheet.dart';
 
@@ -29,6 +30,9 @@ class SearchScreen extends ConsumerStatefulWidget {
 /// type has no entry in `truckTypeSpecs` (e.g. Tanker) — matches the
 /// dropdown's old unrestricted 6-35 ton window.
 const _fallbackCapacityRange = TruckTypeRange(6, 35);
+
+/// Recent searches listed under the form (all of them: Profile > Recent Post & Searches).
+const _recentSearchLimit = 5;
 
 class _SearchScreenState extends ConsumerState<SearchScreen> {
   final _originController = TextEditingController();
@@ -299,7 +303,13 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                                 ref
                                     .read(contactsSyncNotifierProvider.notifier)
                                     .syncIfStale();
-                                context.push('/search/results');
+                                // The search is saved as it runs: refresh the
+                                // recent list once the user comes back.
+                                context.push('/search/results').then((_) {
+                                  if (mounted) {
+                                    ref.invalidate(searchHistoryNotifierProvider);
+                                  }
+                                });
                               }
                             : null,
                         style: ElevatedButton.styleFrom(
@@ -339,7 +349,21 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                 ),
               ),
               const SizedBox(height: 20),
-              const SizedBox(height: 200, child: MiniMapPreview()),
+              Text(
+                l10n.homeRecentSearch,
+                style: const TextStyle(
+                  fontSize: 17,
+                  fontWeight: FontWeight.w700,
+                  color: AppColors.textPrimary,
+                ),
+              ),
+              const SizedBox(height: 12),
+              // Not scrollable on its own: the page's SingleChildScrollView scrolls.
+              CustomScrollView(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                slivers: const [SearchHistorySliver(limit: _recentSearchLimit)],
+              ),
             ],
           ),
         ),

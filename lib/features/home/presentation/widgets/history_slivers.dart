@@ -309,7 +309,9 @@ class SearchCard extends ConsumerWidget {
               ? l10n.capacityTon(search.capacity!)
               : null,
         );
-    context.push('/search/results');
+    context.push('/search/results').then((_) {
+      if (context.mounted) ref.invalidate(searchHistoryNotifierProvider);
+    });
   }
 
   @override

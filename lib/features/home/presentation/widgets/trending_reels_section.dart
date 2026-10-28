@@ -6,6 +6,7 @@ import '../../../../core/constants/app_colors.dart';
 import '../../../../l10n/generated/app_localizations.dart';
 import '../../../reels/domain/entities/reel_entity.dart';
 import '../../../reels/presentation/state/reels_notifier.dart';
+import '../../../reels/domain/entities/reels_feed_key.dart';
 
 const _trendingReelsPreviewLimit = 8;
 const _reelCardWidth = 150.0;
@@ -21,7 +22,7 @@ class TrendingReelsSection extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final feed = ref.watch(reelsFeedNotifierProvider(null));
+    final feed = ref.watch(reelsFeedNotifierProvider(const ReelsFeedKey()));
     final l10n = AppLocalizations.of(context)!;
 
     // Nothing loaded, nothing in flight, nothing to retry — rather than a

@@ -6,6 +6,7 @@ import '../../../../core/network/dio_client.dart';
 import '../../data/datasources/reels_remote_datasource.dart';
 import '../../data/repositories/reels_repository_impl.dart';
 import '../../domain/entities/reel_entity.dart';
+import '../../domain/entities/reels_feed_key.dart';
 import '../../domain/usecases/get_reels_usecase.dart';
 import '../../domain/usecases/reel_engagement_usecases.dart';
 
@@ -73,17 +74,35 @@ class SelectedReelCategory extends _$SelectedReelCategory {
   void select(String? categoryId) => state = categoryId;
 }
 
+/// The Reels-heatmap hotspot the Reels tab is narrowed to (its H3 cell), or `null`
+/// for the normal feed. Set by the heatmap when a hotspot is tapped; cleared by the
+/// area chip on the Reels tab.
+///
+/// `keepAlive` because the heatmap sets it before the Reels tab has ever listened —
+/// an auto-disposed provider would forget the value before the tab got to read it.
+@Riverpod(keepAlive: true)
+class SelectedReelArea extends _$SelectedReelArea {
+  @override
+  String? build() => null;
+
+  void select(String? h3Cell) => state = h3Cell;
+}
+
 class ReelsFeedState {
   final List<ReelEntity> items;
   final bool isLoading;
   final bool hasMore;
   final String? error;
 
+  /// What the server said about the area, for an area feed (label, total).
+  final ReelsAreaEntity? area;
+
   const ReelsFeedState({
     this.items = const [],
     this.isLoading = false,
     this.hasMore = true,
     this.error,
+    this.area,
   });
 
   ReelsFeedState copyWith({
@@ -91,28 +110,42 @@ class ReelsFeedState {
     bool? isLoading,
     bool? hasMore,
     String? error,
+    ReelsAreaEntity? area,
   }) {
     return ReelsFeedState(
       items: items ?? this.items,
       isLoading: isLoading ?? this.isLoading,
       hasMore: hasMore ?? this.hasMore,
       error: error,
+      area: area ?? this.area,
     );
   }
 }
 
+/// [existing] followed by the reels of [page] it doesn't already hold. A ranked
+/// feed (popular) can shift between page requests, so the same reel may come back on
+/// the next page; showing it twice in a swipe feed would look like a bug.
+List<ReelEntity> appendNewReels(List<ReelEntity> existing, List<ReelEntity> page) {
+  final seen = {for (final r in existing) r.id};
+  return [
+    ...existing,
+    for (final r in page)
+      if (seen.add(r.id)) r,
+  ];
+}
+
 /// Backs both the home screen's "Trending Road Reels" preview rail (the
-/// unfiltered feed, `categoryId == null`, just taking the first few items)
+/// unfiltered feed, an empty [ReelsFeedKey], just taking the first few items)
 /// and the full-screen Reels tab's infinite-scroll feed — one shared feed
-/// per category, same as Home's post/search history sections reuse a single
-/// provider for their preview + "view all".
+/// per [ReelsFeedKey] (category and/or heatmap area), same as Home's post/search
+/// history sections reuse a single provider for their preview + "view all".
 @riverpod
 class ReelsFeedNotifier extends _$ReelsFeedNotifier {
   final _likesInFlight = <String>{};
   final _followsInFlight = <String>{};
 
   @override
-  ReelsFeedState build(String? categoryId) {
+  ReelsFeedState build(ReelsFeedKey feedKey) {
     Future.microtask(loadNextPage);
     return const ReelsFeedState();
   }
@@ -126,12 +159,15 @@ class ReelsFeedNotifier extends _$ReelsFeedNotifier {
           .execute(
             limit: _reelsPageSize,
             offset: state.items.length,
-            categoryId: categoryId,
+            categoryId: feedKey.categoryId,
+            areaCell: feedKey.areaCell,
+            sort: feedKey.sort,
           );
       state = state.copyWith(
-        items: [...state.items, ...page.items],
+        items: appendNewReels(state.items, page.items),
         isLoading: false,
         hasMore: page.hasMore,
+        area: page.area,
       );
     } catch (e) {
       state = state.copyWith(isLoading: false, error: e.toString());
@@ -146,8 +182,18 @@ class ReelsFeedNotifier extends _$ReelsFeedNotifier {
     try {
       final page = await ref
           .read(getReelsUseCaseProvider)
-          .execute(limit: _reelsPageSize, offset: 0, categoryId: categoryId);
-      state = ReelsFeedState(items: page.items, hasMore: page.hasMore);
+          .execute(
+            limit: _reelsPageSize,
+            offset: 0,
+            categoryId: feedKey.categoryId,
+            areaCell: feedKey.areaCell,
+            sort: feedKey.sort,
+          );
+      state = ReelsFeedState(
+        items: page.items,
+        hasMore: page.hasMore,
+        area: page.area,
+      );
     } catch (e) {
       state = state.copyWith(isLoading: false, error: e.toString());
     }

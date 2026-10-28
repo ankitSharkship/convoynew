@@ -1,5 +1,6 @@
 import '../entities/my_uploads_entity.dart';
 import '../entities/reel_entity.dart';
+import '../entities/reels_feed_key.dart';
 import '../repositories/reels_repository.dart';
 
 class GetReelsUseCase {
@@ -11,10 +12,14 @@ class GetReelsUseCase {
     required int limit,
     required int offset,
     String? categoryId,
+    String? areaCell,
+    ReelsSort sort = ReelsSort.latest,
   }) => _repository.getReels(
     limit: limit,
     offset: offset,
     categoryId: categoryId,
+    areaCell: areaCell,
+    sort: sort,
   );
 }
 

@@ -8,6 +8,7 @@ import 'package:video_player/video_player.dart';
 import '../../../../core/constants/app_colors.dart';
 import '../../../../l10n/generated/app_localizations.dart';
 import '../../domain/entities/reel_entity.dart';
+import '../../domain/entities/reels_feed_key.dart';
 import '../state/reels_notifier.dart';
 import '../widgets/reel_action_rail.dart';
 import '../widgets/reel_avatar.dart';
@@ -64,6 +65,66 @@ class _ReelsScreenState extends ConsumerState<ReelsScreen> {
   bool _startedFirstActivation = false;
   Timer? _viewTimer;
 
+  /// Whether this screen is actually on screen. The Reels tab lives in the tab
+  /// stack, which keeps it mounted (but with tickers off) while another tab is
+  /// showing — so without this its video would keep playing, audibly, behind the
+  /// Heatmap or Home tab.
+  bool _visible = true;
+
+  /// What to do to carry on playing once the screen is visible again — set when
+  /// playback was held back or stopped only because the screen was hidden. Null
+  /// when the user themselves had paused (then it must stay paused).
+  VoidCallback? _resumeWhenVisible;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final visible = TickerMode.valuesOf(context).enabled;
+    if (visible != _visible) {
+      _visible = visible;
+      _onVisibilityChanged();
+    }
+  }
+
+  void _onVisibilityChanged() {
+    final controller = _activeController;
+    if (!_visible) {
+      if (controller != null && controller.value.isPlaying) {
+        // Left before the view threshold? Then it was not a view.
+        _viewTimer?.cancel();
+        controller.pause();
+        final index = _activeIndex;
+        final token = _activationToken;
+        if (index < _lastItems.length) {
+          final reelId = _lastItems[index].id;
+          _resumeWhenVisible = () => _startPlayback(reelId, token, controller);
+        }
+      }
+      return;
+    }
+    final resume = _resumeWhenVisible;
+    _resumeWhenVisible = null;
+    resume?.call();
+    // The first reel is only started while visible, so a feed that finished
+    // loading in the background gets going now.
+    if (!_startedFirstActivation && mounted) setState(() {});
+  }
+
+  /// Plays [controller] and starts counting toward a view of [reelId], unless a
+  /// newer activation has replaced it meanwhile.
+  Future<void> _startPlayback(
+    String reelId,
+    int token,
+    VideoPlayerController controller,
+  ) async {
+    if (!mounted || token != _activationToken || _activeController != controller) {
+      return;
+    }
+    await controller.play();
+    if (!mounted || token != _activationToken) return;
+    _scheduleViewReport(reelId, token, controller);
+  }
+
   @override
   void dispose() {
     _viewTimer?.cancel();
@@ -83,6 +144,7 @@ class _ReelsScreenState extends ConsumerState<ReelsScreen> {
   void _activate(List<ReelEntity> items, int index) {
     final token = ++_activationToken;
     _viewTimer?.cancel();
+    _resumeWhenVisible = null;
 
     final outgoing = _activeController;
     if (outgoing != null) {
@@ -130,8 +192,14 @@ class _ReelsScreenState extends ConsumerState<ReelsScreen> {
         return;
       }
       setState(() => _activeController = controller);
-      await controller.play();
-      _scheduleViewReport(reel.id, token, controller);
+      if (_visible) {
+        await controller.play();
+        _scheduleViewReport(reel.id, token, controller);
+      } else {
+        // Loaded while the screen is hidden: hold it, don't play behind the
+        // user's back; it starts when the screen is shown.
+        _resumeWhenVisible = () => _startPlayback(reel.id, token, controller);
+      }
     } catch (_) {
       if (_activeController == controller) {
         _activeController = null;
@@ -141,9 +209,14 @@ class _ReelsScreenState extends ConsumerState<ReelsScreen> {
     }
   }
 
-  ReelsFeedNotifier get _feedNotifier => ref.read(
-    reelsFeedNotifierProvider(ref.read(selectedReelCategoryProvider)).notifier,
+  /// Which feed the screen is on: the category chip and/or the heatmap area.
+  ReelsFeedKey get _feedKey => ReelsFeedKey(
+    categoryId: ref.read(selectedReelCategoryProvider),
+    areaCell: ref.read(selectedReelAreaProvider),
   );
+
+  ReelsFeedNotifier get _feedNotifier =>
+      ref.read(reelsFeedNotifierProvider(_feedKey).notifier);
 
   /// Reports one view after the reel has played for [_viewThreshold], unless
   /// the user has swiped away (token changed) before then.
@@ -168,6 +241,8 @@ class _ReelsScreenState extends ConsumerState<ReelsScreen> {
   void _resetPlayback() {
     _activationToken++;
     _viewTimer?.cancel();
+    _resumeWhenVisible = null;
+    if (_pageController.hasClients) _pageController.jumpToPage(0);
     final outgoing = _activeController;
     if (outgoing != null) {
       outgoing.pause();
@@ -184,6 +259,10 @@ class _ReelsScreenState extends ConsumerState<ReelsScreen> {
     setState(_resetPlayback);
     ref.read(selectedReelCategoryProvider.notifier).select(categoryId);
   }
+
+  /// Drops the heatmap-area filter, back to the normal feed (the playback reset
+  /// happens in the listener on [selectedReelAreaProvider]).
+  void _clearArea() => ref.read(selectedReelAreaProvider.notifier).select(null);
 
   Future<void> _share(ReelEntity reel) async {
     final l10n = AppLocalizations.of(context)!;
@@ -251,7 +330,9 @@ class _ReelsScreenState extends ConsumerState<ReelsScreen> {
     final l10n = AppLocalizations.of(context)!;
     final categories = ref.watch(reelCategoriesProvider).valueOrNull;
     final selected = ref.watch(selectedReelCategoryProvider);
-    if (categories == null || categories.isEmpty) return const SizedBox();
+    final area = ref.watch(selectedReelAreaProvider);
+    final hasCategories = categories != null && categories.isNotEmpty;
+    if (!hasCategories && area == null) return const SizedBox();
 
     Widget chip(String label, String? id) {
       final isSelected = selected == id;
@@ -279,6 +360,60 @@ class _ReelsScreenState extends ConsumerState<ReelsScreen> {
       );
     }
 
+    // The heatmap area the feed is narrowed to: leads the row, tap to clear.
+    Widget areaChip(String cell) {
+      final label =
+          ref
+              .watch(
+                reelsFeedNotifierProvider(
+                  ReelsFeedKey(categoryId: selected, areaCell: cell),
+                ),
+              )
+              .area
+              ?.label ??
+          l10n.reelsAreaThisArea;
+      return Padding(
+        padding: const EdgeInsets.only(right: 8),
+        child: Semantics(
+          button: true,
+          label: l10n.reelsAreaShowAll,
+          child: GestureDetector(
+            onTap: _clearArea,
+            child: Container(
+              padding: const EdgeInsets.only(left: 10, right: 8),
+              decoration: BoxDecoration(
+                color: AppColors.primaryBlue,
+                borderRadius: BorderRadius.circular(18),
+                border: Border.all(color: Colors.white70),
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Icon(Icons.place, size: 15, color: Colors.white),
+                  const SizedBox(width: 4),
+                  ConstrainedBox(
+                    constraints: const BoxConstraints(maxWidth: 150),
+                    child: Text(
+                      label,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 13,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 6),
+                  const Icon(Icons.close, size: 16, color: Colors.white),
+                ],
+              ),
+            ),
+          ),
+        ),
+      );
+    }
+
     return Positioned(
       top: MediaQuery.of(context).padding.top + 10,
       left: 12,
@@ -287,8 +422,11 @@ class _ReelsScreenState extends ConsumerState<ReelsScreen> {
       child: ListView(
         scrollDirection: Axis.horizontal,
         children: [
-          chip(l10n.reelCategoryAll, null),
-          for (final c in categories) chip(c.name, c.id),
+          if (area != null) areaChip(area),
+          if (hasCategories) ...[
+            chip(l10n.reelCategoryAll, null),
+            for (final c in categories) chip(c.name, c.id),
+          ],
         ],
       ),
     );
@@ -410,8 +548,16 @@ class _ReelsScreenState extends ConsumerState<ReelsScreen> {
   @override
   Widget build(BuildContext context) {
     final category = ref.watch(selectedReelCategoryProvider);
-    final feed = ref.watch(reelsFeedNotifierProvider(category));
+    final area = ref.watch(selectedReelAreaProvider);
+    final feedKey = ReelsFeedKey(categoryId: category, areaCell: area);
+    final feed = ref.watch(reelsFeedNotifierProvider(feedKey));
     final l10n = AppLocalizations.of(context)!;
+
+    // The area is set from outside (a tap on the Reels heatmap, or its chip):
+    // start the new feed cleanly from its first reel, like a category change does.
+    ref.listen<String?>(selectedReelAreaProvider, (previous, next) {
+      if (previous != next && mounted) setState(_resetPlayback);
+    });
 
     if (feed.items.isEmpty && feed.isLoading) {
       return _statusScaffold(
@@ -439,6 +585,27 @@ class _ReelsScreenState extends ConsumerState<ReelsScreen> {
       );
     }
 
+    if (feed.items.isEmpty && feedKey.hasArea) {
+      // The hotspot can empty out between the heatmap and here (reels age out of
+      // its window, or the only ones are the viewer's own).
+      return _statusScaffold(
+        Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              l10n.reelsAreaEmpty,
+              style: const TextStyle(color: Colors.white),
+            ),
+            TextButton(
+              onPressed: _clearArea,
+              child: Text(l10n.reelsAreaShowAll),
+            ),
+          ],
+        ),
+        withFab: true,
+      );
+    }
+
     if (feed.items.isEmpty) {
       return _statusScaffold(
         Text(
@@ -456,7 +623,7 @@ class _ReelsScreenState extends ConsumerState<ReelsScreen> {
             feed.items[0].id != previousItems[0].id);
     _lastItems = feed.items;
 
-    if (!_startedFirstActivation) {
+    if (!_startedFirstActivation && _visible) {
       _startedFirstActivation = true;
       WidgetsBinding.instance.addPostFrameCallback((_) {
         if (mounted) _activate(feed.items, 0);

@@ -90,7 +90,7 @@
   "homePostNewTruckSubtitle": "Ready in 30 seconds",
   "homeSearchTrucks": "Search Trucks",
   "homeSearchTrucksSubtitle": "Find available vehicles",
-  "homeManageSection": "Manage Post & Searches",
+  "profileRecentPostsSearches": "Recent Post & Searches",
   "homeViewAll": "View All",
   "homeRecentPosts": "Recent Posts",
   "homeRecentSearch": "Recent Search",
@@ -325,6 +325,10 @@
     "placeholders": { "count": { "type": "int" } }
   },
   "truckMapDetailsTitle": "Truck Details",
+  "truckDetailsRequestOneToOne": "Request 1:1",
+  "truckDetailsCallDriver": "Call Driver to Book",
+  "truckDetailsRequestSoon": "1:1 requests are coming soon",
+  "truckDetailsClose": "Close",
   "truckMapViewList": "{count, plural, one{View List (1)} other{View List ({count})}}",
   "@truckMapViewList": {
     "placeholders": { "count": { "type": "int" } }
@@ -426,5 +430,31 @@
   "uploadsPostedWeeksAgo": "{weeks}w ago",
   "@uploadsPostedWeeksAgo": { "placeholders": { "weeks": { "type": "int" } } },
   "uploadsPostedMonthsAgo": "{months}mo ago",
-  "@uploadsPostedMonthsAgo": { "placeholders": { "months": { "type": "int" } } }
+  "@uploadsPostedMonthsAgo": { "placeholders": { "months": { "type": "int" } } },
+
+  "navHeatmap": "Heatmap",
+  "heatmapTitle": "Activity Heatmap",
+  "heatmapTabTrucks": "Trucks",
+  "heatmapTabReels": "Reels",
+  "heatmapLoading": "Loading heatmap…",
+  "heatmapErrorGeneric": "Couldn't load the heatmap",
+  "heatmapEmptyTrucks": "No live trucks to show yet",
+  "heatmapEmptyReels": "No recent reels with a location yet",
+  "heatmapZoomOutHint": "Zoom out to see more activity",
+  "heatmapLegendLow": "Fewer",
+  "heatmapLegendHigh": "More",
+  "heatmapMyLocation": "My location",
+  "heatmapCellTrucks": "{count, plural, one{1 truck in this area} other{{count} trucks in this area}}",
+  "@heatmapCellTrucks": { "placeholders": { "count": { "type": "int" } } },
+  "heatmapCellReels": "{count, plural, one{1 reel in this area} other{{count} reels in this area}}",
+  "@heatmapCellReels": { "placeholders": { "count": { "type": "int" } } },
+  "heatmapNoTrucksInView": "No trucks in this area right now",
+  "heatmapPinsTruncated": "Showing the trucks closest to the centre — zoom in to see more",
+  "heatmapPinsModeHint": "Individual trucks · tap a pin for details",
+  "heatmapPinLoading": "Loading truck details…",
+  "heatmapPinUnavailable": "This truck post is no longer available",
+  "heatmapPinDetailError": "Couldn't load truck details",
+  "reelsAreaThisArea": "This area",
+  "reelsAreaShowAll": "Show all reels",
+  "reelsAreaEmpty": "No reels in this area right now"
 }

@@ -90,7 +90,7 @@
   "homePostNewTruckSubtitle": "30 ಸೆಕೆಂಡುಗಳಲ್ಲಿ ಸಿದ್ಧ",
   "homeSearchTrucks": "ಟ್ರಕ್‌ಗಳನ್ನು ಹುಡುಕಿ",
   "homeSearchTrucksSubtitle": "ಲಭ್ಯವಿರುವ ವಾಹನಗಳನ್ನು ಹುಡುಕಿ",
-  "homeManageSection": "ಪೋಸ್ಟ್‌ಗಳು ಮತ್ತು ಹುಡುಕಾಟಗಳನ್ನು ನಿರ್ವಹಿಸಿ",
+  "profileRecentPostsSearches": "ಇತ್ತೀಚಿನ ಪೋಸ್ಟ್ ಮತ್ತು ಹುಡುಕಾಟಗಳು",
   "homeViewAll": "ಎಲ್ಲಾ ನೋಡಿ",
   "homeRecentPosts": "ಇತ್ತೀಚಿನ ಪೋಸ್ಟ್‌ಗಳು",
   "homeRecentSearch": "ಇತ್ತೀಚಿನ ಹುಡುಕಾಟ",
@@ -325,6 +325,10 @@
     "placeholders": { "count": { "type": "int" } }
   },
   "truckMapDetailsTitle": "ಟ್ರಕ್ ವಿವರಗಳು",
+  "truckDetailsRequestOneToOne": "1:1 ವಿನಂತಿ",
+  "truckDetailsCallDriver": "ಬುಕ್ ಮಾಡಲು ಡ್ರೈವರ್‌ಗೆ ಕರೆ ಮಾಡಿ",
+  "truckDetailsRequestSoon": "1:1 ವಿನಂತಿಗಳು ಶೀಘ್ರದಲ್ಲೇ ಬರಲಿವೆ",
+  "truckDetailsClose": "ಮುಚ್ಚಿ",
   "truckMapViewList": "{count, plural, one{ಪಟ್ಟಿ ನೋಡಿ (1)} other{ಪಟ್ಟಿ ನೋಡಿ ({count})}}",
   "@truckMapViewList": {
     "placeholders": { "count": { "type": "int" } }
@@ -416,5 +420,31 @@
   "uploadsPostedYesterday": "ನಿನ್ನೆ",
   "uploadsPostedDaysAgo": "{days} ದಿನಗಳ ಹಿಂದೆ",
   "uploadsPostedWeeksAgo": "{weeks} ವಾರಗಳ ಹಿಂದೆ",
-  "uploadsPostedMonthsAgo": "{months} ತಿಂಗಳ ಹಿಂದೆ"
+  "uploadsPostedMonthsAgo": "{months} ತಿಂಗಳ ಹಿಂದೆ",
+
+  "navHeatmap": "ಹೀಟ್‌ಮ್ಯಾಪ್",
+  "heatmapTitle": "ಚಟುವಟಿಕೆ ಹೀಟ್‌ಮ್ಯಾಪ್",
+  "heatmapTabTrucks": "ಟ್ರಕ್‌ಗಳು",
+  "heatmapTabReels": "ರೀಲ್ಸ್",
+  "heatmapLoading": "ಹೀಟ್‌ಮ್ಯಾಪ್ ಲೋಡ್ ಆಗುತ್ತಿದೆ…",
+  "heatmapErrorGeneric": "ಹೀಟ್‌ಮ್ಯಾಪ್ ಲೋಡ್ ಮಾಡಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ",
+  "heatmapEmptyTrucks": "ತೋರಿಸಲು ಇನ್ನೂ ಯಾವುದೇ ಲೈವ್ ಟ್ರಕ್‌ಗಳಿಲ್ಲ",
+  "heatmapEmptyReels": "ಸ್ಥಳದೊಂದಿಗೆ ಇತ್ತೀಚಿನ ರೀಲ್ಸ್ ಇನ್ನೂ ಇಲ್ಲ",
+  "heatmapZoomOutHint": "ಹೆಚ್ಚಿನ ಚಟುವಟಿಕೆ ನೋಡಲು ಜೂಮ್ ಔಟ್ ಮಾಡಿ",
+  "heatmapLegendLow": "ಕಡಿಮೆ",
+  "heatmapLegendHigh": "ಹೆಚ್ಚು",
+  "heatmapMyLocation": "ನನ್ನ ಸ್ಥಳ",
+  "heatmapCellTrucks": "{count, plural, one{ಈ ಪ್ರದೇಶದಲ್ಲಿ 1 ಟ್ರಕ್} other{ಈ ಪ್ರದೇಶದಲ್ಲಿ {count} ಟ್ರಕ್‌ಗಳು}}",
+  "@heatmapCellTrucks": { "placeholders": { "count": { "type": "int" } } },
+  "heatmapCellReels": "{count, plural, one{ಈ ಪ್ರದೇಶದಲ್ಲಿ 1 ರೀಲ್} other{ಈ ಪ್ರದೇಶದಲ್ಲಿ {count} ರೀಲ್ಸ್}}",
+  "@heatmapCellReels": { "placeholders": { "count": { "type": "int" } } },
+  "heatmapNoTrucksInView": "ಈ ಪ್ರದೇಶದಲ್ಲಿ ಈಗ ಯಾವುದೇ ಟ್ರಕ್‌ಗಳಿಲ್ಲ",
+  "heatmapPinsTruncated": "ಕೇಂದ್ರಕ್ಕೆ ಹತ್ತಿರದ ಟ್ರಕ್‌ಗಳನ್ನು ತೋರಿಸಲಾಗುತ್ತಿದೆ — ಇನ್ನಷ್ಟು ನೋಡಲು ಜೂಮ್ ಇನ್ ಮಾಡಿ",
+  "heatmapPinsModeHint": "ಪ್ರತ್ಯೇಕ ಟ್ರಕ್‌ಗಳು · ವಿವರಗಳಿಗಾಗಿ ಪಿನ್ ಒತ್ತಿ",
+  "heatmapPinLoading": "ಟ್ರಕ್ ವಿವರಗಳು ಲೋಡ್ ಆಗುತ್ತಿವೆ…",
+  "heatmapPinUnavailable": "ಈ ಟ್ರಕ್ ಪೋಸ್ಟ್ ಇನ್ನು ಲಭ್ಯವಿಲ್ಲ",
+  "heatmapPinDetailError": "ಟ್ರಕ್ ವಿವರಗಳನ್ನು ಲೋಡ್ ಮಾಡಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ",
+  "reelsAreaThisArea": "ಈ ಪ್ರದೇಶ",
+  "reelsAreaShowAll": "ಎಲ್ಲಾ ರೀಲ್ಸ್ ತೋರಿಸಿ",
+  "reelsAreaEmpty": "ಈ ಪ್ರದೇಶದಲ್ಲಿ ಈಗ ಯಾವುದೇ ರೀಲ್ಸ್ ಇಲ್ಲ"
 }
