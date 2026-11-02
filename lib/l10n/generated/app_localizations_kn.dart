@@ -269,21 +269,6 @@ class AppLocalizationsKn extends AppLocalizations {
   String get homeNoReelsYet => 'ಇನ್ನೂ ಯಾವುದೇ ರೀಲ್‌ಗಳಿಲ್ಲ';
 
   @override
-  String get reelCreateSheetTitle => 'ಹೊಸ ರೀಲ್';
-
-  @override
-  String get reelCreateRecordOption => 'ವೀಡಿಯೊ ರೆಕಾರ್ಡ್ ಮಾಡಿ';
-
-  @override
-  String get reelCreateRecordOptionSubtitle => 'ನಿಮ್ಮ ಕ್ಯಾಮೆರಾ ಬಳಸಿ';
-
-  @override
-  String get reelCreateGalleryOption => 'ಗ್ಯಾಲರಿಯಿಂದ ಆಯ್ಕೆಮಾಡಿ';
-
-  @override
-  String get reelCreateGalleryOptionSubtitle => 'ಇರುವ ವೀಡಿಯೊ ಆಯ್ಕೆಮಾಡಿ';
-
-  @override
   String get reelRecordCameraError => 'ಕ್ಯಾಮೆರಾ ಪ್ರವೇಶಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ';
 
   @override
@@ -1064,16 +1049,24 @@ class AppLocalizationsKn extends AppLocalizations {
   String get uploadsEmpty => 'ನೀವು ಇನ್ನೂ ಯಾವುದೇ ರೀಲ್ ಅಪ್‌ಲೋಡ್ ಮಾಡಿಲ್ಲ';
 
   @override
-  String get uploadsRecordCta => 'ರೀಲ್ ರೆಕಾರ್ಡ್ / ಅಪ್‌ಲೋಡ್';
-
-  @override
-  String get uploadsMenuEdit => 'ಎಡಿಟ್';
+  String get uploadsRecordCta => 'ರೀಲ್ ಅಪ್‌ಲೋಡ್ ಮಾಡಿ';
 
   @override
   String get uploadsMenuDelete => 'ಅಳಿಸಿ';
 
   @override
-  String get uploadsMenuComingSoon => 'ಶೀಘ್ರದಲ್ಲೇ ಬರಲಿದೆ';
+  String get uploadsDeleteConfirmTitle => 'ಈ ರೀಲ್ ಅಳಿಸಬೇಕೆ?';
+
+  @override
+  String get uploadsDeleteConfirmBody =>
+      'ಈ ರೀಲ್ ಮತ್ತು ಅದರ ಲೈಕ್‌ಗಳು ಹಾಗೂ ಕಾಮೆಂಟ್‌ಗಳು ಶಾಶ್ವತವಾಗಿ ಅಳಿಸಲ್ಪಡುತ್ತವೆ. ಇದನ್ನು ಹಿಂದಿರುಗಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ.';
+
+  @override
+  String get uploadsDeleteSuccess => 'ರೀಲ್ ಅಳಿಸಲಾಗಿದೆ';
+
+  @override
+  String get uploadsReelNotPlayable =>
+      'ಈ ರೀಲ್ ಅನ್ನು ಇನ್ನೂ ಪ್ಲೇ ಮಾಡಲು ಸಾಧ್ಯವಿಲ್ಲ';
 
   @override
   String get uploadsStatusProcessing => 'ಪ್ರಕ್ರಿಯೆಯಲ್ಲಿದೆ';
@@ -1192,4 +1185,599 @@ class AppLocalizationsKn extends AppLocalizations {
 
   @override
   String get reelsAreaEmpty => 'ಈ ಪ್ರದೇಶದಲ್ಲಿ ಈಗ ಯಾವುದೇ ರೀಲ್ಸ್ ಇಲ್ಲ';
+
+  @override
+  String get walletTxnCallHold => '1:1 ಕರೆಗಾಗಿ ತಡೆಹಿಡಿಯಲಾಗಿದೆ';
+
+  @override
+  String get walletTxnCallRelease => '1:1 ಕರೆಯ ತಡೆಹಿಡಿದ ಹಣ ಮರಳಿದೆ';
+
+  @override
+  String get walletTxnCallDebit => '1:1 ಕರೆಗೆ ಪಾವತಿ';
+
+  @override
+  String get walletTxnCallEarning => '1:1 ಕರೆಯ ಗಳಿಕೆ';
+
+  @override
+  String get oneToOneSheetTitle => '1:1 ಲೈವ್ ಸೆಷನ್ ವಿನಂತಿ';
+
+  @override
+  String get oneToOneSheetBadge => 'ನೇರ ಸಂಪರ್ಕ';
+
+  @override
+  String oneToOneSheetSubtitle(String name) {
+    return 'ಸರಕು, ಮಾರ್ಗ ವಿವರಗಳು ಮತ್ತು ಬುಕಿಂಗ್ ಬಗ್ಗೆ $name ಅವರೊಂದಿಗೆ ಖಾಸಗಿ ಲೈವ್ ಕರೆಯಲ್ಲಿ ಮಾತನಾಡಿ.';
+  }
+
+  @override
+  String get oneToOneDriverFallback => 'ಚಾಲಕ';
+
+  @override
+  String get oneToOneHowTitle => 'ಮೊದಲು ಚಾಲಕ ದೃಢೀಕರಿಸುತ್ತಾರೆ';
+
+  @override
+  String get oneToOneHowBody =>
+      'ಚಾಲಕ ನಿಮ್ಮ ವಿನಂತಿಯನ್ನು ನೋಡಿ ನಂತರ ನಿಮಗೆ ಕರೆ ಮಾಡುತ್ತಾರೆ. ನೀವು ಅವರನ್ನು ನೋಡಿ ಕೇಳಬಹುದು ಮತ್ತು ನಿಮ್ಮ ಮೈಕ್ರೊಫೋನ್ ಮೂಲಕ ಮಾತನಾಡುತ್ತೀರಿ.';
+
+  @override
+  String get oneToOneTopicLabel => 'ಚರ್ಚೆಯ ವಿಷಯ';
+
+  @override
+  String get oneToOneRequiredTag => 'ಅಗತ್ಯ';
+
+  @override
+  String get oneToOneTopicHint => 'ಉದಾ: ಮಾರ್ಗ ಸ್ಥಿತಿ, ಲೋಡ್ ಮಾತುಕತೆ, ರವಾನೆ ಸಮಯ';
+
+  @override
+  String get oneToOneTopicRequired =>
+      'ನೀವು ಏನು ಚರ್ಚಿಸಲು ಬಯಸುತ್ತೀರಿ ಎಂದು ಚಾಲಕರಿಗೆ ತಿಳಿಸಿ';
+
+  @override
+  String get oneToOneDurationLabel => 'ಸೆಷನ್ ಅವಧಿ';
+
+  @override
+  String oneToOneDurationMinutes(int minutes) {
+    return '$minutes ನಿಮಿಷ';
+  }
+
+  @override
+  String get oneToOneDurationQuick => 'ಸಣ್ಣ ಮಾತುಕತೆ';
+
+  @override
+  String get oneToOneDurationReview => 'ಮಾರ್ಗ ಪರಿಶೀಲನೆ';
+
+  @override
+  String get oneToOneDurationDeep => 'ವಿವರವಾದ ಬುಕಿಂಗ್';
+
+  @override
+  String get oneToOneOfferLabel => 'ನಿಮ್ಮ ಕೊಡುಗೆ';
+
+  @override
+  String get oneToOneOfferHint => '₹ ನಲ್ಲಿ ಮೊತ್ತ';
+
+  @override
+  String oneToOneOfferRange(String min, String max) {
+    return '$min ರಿಂದ $max ನಡುವೆ ಕೊಡುಗೆ ನೀಡಿ';
+  }
+
+  @override
+  String oneToOneHoldExplainer(String hold, String amount) {
+    return 'ಸಂಪರ್ಕ ವೆಚ್ಚವಾಗಿ ಈಗ $hold ತಡೆಹಿಡಿಯಲಾಗುತ್ತದೆ. ಕರೆಯ ನಂತರ ನೀವು ಆರಿಸಿ: ತೃಪ್ತರಾದರೆ ಪೂರ್ಣ $amount ಪಾವತಿಸಿ, ಇಲ್ಲದಿದ್ದರೆ ಕೇವಲ $hold.';
+  }
+
+  @override
+  String oneToOneWalletAvailable(String amount) {
+    return 'ವಾಲೆಟ್: $amount ಲಭ್ಯ';
+  }
+
+  @override
+  String oneToOneNeedMoney(String amount) {
+    return 'ಈ ವಿನಂತಿ ಕಳುಹಿಸಲು ನಿಮ್ಮ ವಾಲೆಟ್‌ಗೆ $amount ಸೇರಿಸಿ';
+  }
+
+  @override
+  String get oneToOneAddMoneyButton => 'ಹಣ ಸೇರಿಸಿ';
+
+  @override
+  String get oneToOneMoneyAdded => 'ಟೆಸ್ಟ್ ಹಣ ಸೇರಿಸಲಾಗಿದೆ';
+
+  @override
+  String get oneToOneRechargeSoon => 'ವಾಲೆಟ್ ರೀಚಾರ್ಜ್ ಶೀಘ್ರದಲ್ಲೇ ಬರಲಿದೆ';
+
+  @override
+  String get oneToOneSendButton => 'ವಿನಂತಿ ಕಳುಹಿಸಿ';
+
+  @override
+  String get oneToOneStatusTitle => 'ನಿಮ್ಮ 1:1 ವಿನಂತಿ';
+
+  @override
+  String oneToOneStatusPending(String name) {
+    return '$name ಅವರ ಪ್ರತಿಕ್ರಿಯೆಗಾಗಿ ಕಾಯಲಾಗುತ್ತಿದೆ';
+  }
+
+  @override
+  String oneToOneStatusAccepted(String name) {
+    return '$name ಒಪ್ಪಿಕೊಂಡಿದ್ದಾರೆ. ಅವರು ಶೀಘ್ರದಲ್ಲೇ ನಿಮಗೆ ಕರೆ ಮಾಡುತ್ತಾರೆ';
+  }
+
+  @override
+  String oneToOneStatusRinging(String name) {
+    return '$name ನಿಮಗೆ ಕರೆ ಮಾಡುತ್ತಿದ್ದಾರೆ…';
+  }
+
+  @override
+  String oneToOneStatusLive(String name) {
+    return '$name ಅವರೊಂದಿಗೆ ಕರೆ ನಡೆಯುತ್ತಿದೆ';
+  }
+
+  @override
+  String get oneToOneStatusAwaitingFeedback =>
+      'ಕರೆ ಮುಗಿದಿದೆ. ಪಾವತಿ ಪೂರ್ಣಗೊಳಿಸಲು ಹೇಗಿತ್ತು ಎಂದು ತಿಳಿಸಿ';
+
+  @override
+  String oneToOneStatusCompleted(String amount) {
+    return 'ಕರೆ ಪೂರ್ಣಗೊಂಡಿದೆ. ನೀವು $amount ಪಾವತಿಸಿದ್ದೀರಿ';
+  }
+
+  @override
+  String oneToOneStatusRejected(String name) {
+    return '$name ಅವರು ಈಗ ನಿಮ್ಮ ಕರೆ ತೆಗೆದುಕೊಳ್ಳಲಾಗುವುದಿಲ್ಲ. ನಿಮ್ಮ ಹಣವನ್ನು ಬಿಡುಗಡೆ ಮಾಡಲಾಗಿದೆ';
+  }
+
+  @override
+  String get oneToOneStatusExpired =>
+      'ಸಮಯಕ್ಕೆ ಪ್ರತಿಕ್ರಿಯೆ ಸಿಗಲಿಲ್ಲ. ನಿಮ್ಮ ಹಣವನ್ನು ಬಿಡುಗಡೆ ಮಾಡಲಾಗಿದೆ';
+
+  @override
+  String get oneToOneStatusCancelled =>
+      'ವಿನಂತಿ ರದ್ದುಗೊಂಡಿದೆ. ನಿಮ್ಮ ಹಣವನ್ನು ಬಿಡುಗಡೆ ಮಾಡಲಾಗಿದೆ';
+
+  @override
+  String get oneToOneStatusFailed =>
+      'ಕರೆ ಸಂಪರ್ಕಗೊಳ್ಳಲಿಲ್ಲ. ಏನೂ ಶುಲ್ಕ ವಿಧಿಸಲಾಗಿಲ್ಲ';
+
+  @override
+  String oneToOneOfferSummary(String amount, int minutes) {
+    return 'ಕೊಡುಗೆ $amount · $minutes ನಿಮಿಷ';
+  }
+
+  @override
+  String oneToOneFrozenSummary(String hold) {
+    return 'ವಿನಂತಿ ಮುಗಿಯುವವರೆಗೆ $hold ತಡೆಹಿಡಿಯಲಾಗಿದೆ';
+  }
+
+  @override
+  String oneToOneExpiresIn(String time) {
+    return '$time ರಲ್ಲಿ ಮುಕ್ತಾಯ';
+  }
+
+  @override
+  String get oneToOneCancelButton => 'ವಿನಂತಿ ರದ್ದುಮಾಡಿ';
+
+  @override
+  String get oneToOneDoneButton => 'ಸರಿ';
+
+  @override
+  String get oneToOneStatusLoadError => 'ನಿಮ್ಮ ವಿನಂತಿಯನ್ನು ಲೋಡ್ ಮಾಡಲಾಗಲಿಲ್ಲ';
+
+  @override
+  String get oneToOneBannerTitle => '1:1 ವೀಡಿಯೊ ವಿನಂತಿ ಬಾಕಿ ಇದೆ';
+
+  @override
+  String oneToOneBannerOffered(String amount) {
+    return '$amount ಕೊಡುಗೆ';
+  }
+
+  @override
+  String oneToOneBannerMore(int count) {
+    return '+$count ಇನ್ನಷ್ಟು';
+  }
+
+  @override
+  String get oneToOneBannerReview => 'ಪರಿಶೀಲಿಸಿ';
+
+  @override
+  String get oneToOneRequesterFallback => 'ವಿನಂತಿದಾರ';
+
+  @override
+  String get oneToOneIncomingTitle => '1:1 ವೀಡಿಯೊ ವಿನಂತಿ';
+
+  @override
+  String oneToOneIncomingFrom(String name) {
+    return '$name ನಿಮ್ಮೊಂದಿಗೆ ಲೈವ್ 1:1 ಕರೆ ಬಯಸುತ್ತಾರೆ';
+  }
+
+  @override
+  String get oneToOneIncomingTopicLabel => 'ಅವರು ಚರ್ಚಿಸಲು ಬಯಸುವುದು';
+
+  @override
+  String get oneToOneEarningsTitle => 'ನಿಮ್ಮ ಗಳಿಕೆ';
+
+  @override
+  String oneToOneEarningsBody(String hold, String amount, String name) {
+    return 'ಕರೆ 30 ಸೆಕೆಂಡ್ ಸಂಪರ್ಕದಲ್ಲಿದ್ದರೆ ಕನಿಷ್ಠ $hold. ನಂತರ $name ತೃಪ್ತರಾದರೆ ಪೂರ್ಣ $amount.';
+  }
+
+  @override
+  String get oneToOneAcceptButton => 'ಒಪ್ಪಿಕೊಳ್ಳಿ';
+
+  @override
+  String get oneToOneRejectButton => 'ತಿರಸ್ಕರಿಸಿ';
+
+  @override
+  String get oneToOneRejectConfirmTitle => 'ಈ ವಿನಂತಿಯನ್ನು ತಿರಸ್ಕರಿಸಬೇಕೆ?';
+
+  @override
+  String oneToOneRejectConfirmBody(String name) {
+    return '$name ಅವರ ಹಣ ಬಿಡುಗಡೆಯಾಗುತ್ತದೆ ಮತ್ತು ವಿನಂತಿ ಮುಚ್ಚಲಾಗುತ್ತದೆ.';
+  }
+
+  @override
+  String get oneToOneKeepButton => 'ಇರಲಿ';
+
+  @override
+  String oneToOneIncomingAccepted(String name) {
+    return 'ನೀವು $name ಅವರ ವಿನಂತಿಯನ್ನು ಒಪ್ಪಿಕೊಂಡಿದ್ದೀರಿ';
+  }
+
+  @override
+  String get oneToOneIncomingRejected => 'ನೀವು ಈ ವಿನಂತಿಯನ್ನು ತಿರಸ್ಕರಿಸಿದ್ದೀರಿ';
+
+  @override
+  String get oneToOneIncomingExpired => 'ಈ ವಿನಂತಿ ಮುಗಿದಿದೆ';
+
+  @override
+  String oneToOneIncomingCancelled(String name) {
+    return '$name ಈ ವಿನಂತಿಯನ್ನು ರದ್ದುಗೊಳಿಸಿದ್ದಾರೆ';
+  }
+
+  @override
+  String oneToOneIncomingFeedback(String name) {
+    return 'ಕರೆ ಮುಗಿದಿದೆ. $name ಅವರ ಪ್ರತಿಕ್ರಿಯೆಗಾಗಿ ಕಾಯಲಾಗುತ್ತಿದೆ';
+  }
+
+  @override
+  String oneToOneIncomingCompleted(String amount) {
+    return 'ಕರೆ ಪೂರ್ಣಗೊಂಡಿದೆ. ನೀವು $amount ಗಳಿಸಿದ್ದೀರಿ';
+  }
+
+  @override
+  String get oneToOneBannerReadyTitle => '1:1 ಕರೆ ಪ್ರಾರಂಭಿಸಲು ಸಿದ್ಧ';
+
+  @override
+  String get oneToOneBannerStart => 'ಪ್ರಾರಂಭಿಸಿ';
+
+  @override
+  String get oneToOneStartCallButton => 'ಕರೆ ಪ್ರಾರಂಭಿಸಿ';
+
+  @override
+  String oneToOneStartCallHint(String name) {
+    return '$name ಅವರ ಫೋನ್ 45 ಸೆಕೆಂಡ್ ರಿಂಗ್ ಆಗುತ್ತದೆ. ಪ್ರಾರಂಭಿಸುವ ಮೊದಲು ವಾಹನವನ್ನು ಸುರಕ್ಷಿತವಾಗಿ ನಿಲ್ಲಿಸಿ.';
+  }
+
+  @override
+  String callRingingTitle(String name) {
+    return '$name ಅವರಿಗೆ ಕರೆ ಮಾಡಲಾಗುತ್ತಿದೆ…';
+  }
+
+  @override
+  String get callRingingHint => 'ಅವರ ಫೋನ್ ರಿಂಗ್ ಆಗುತ್ತಿದೆ';
+
+  @override
+  String callWaitingForPeer(String name) {
+    return '$name ಸೇರಲು ಕಾಯಲಾಗುತ್ತಿದೆ…';
+  }
+
+  @override
+  String callPeerDropped(String name) {
+    return '$name ಅವರ ಸಂಪರ್ಕ ಕಳೆದುಹೋಯಿತು. ಅವರು ಮರಳುವವರೆಗೆ ಕಾಯಲಾಗುತ್ತಿದೆ…';
+  }
+
+  @override
+  String get callYouDropped =>
+      'ನಿಮ್ಮ ಸಂಪರ್ಕ ಕಡಿತಗೊಂಡಿದೆ. ಮರುಸಂಪರ್ಕಿಸಲಾಗುತ್ತಿದೆ…';
+
+  @override
+  String get callServerUnreachable =>
+      'ಸರ್ವರ್ ಸಂಪರ್ಕಿಸಲು ಆಗುತ್ತಿಲ್ಲ. ಕರೆ ಮುಂದುವರಿಯುತ್ತದೆ, ಆದರೆ ಸಮಯ ಲೆಕ್ಕಕ್ಕೆ ಬರದಿರಬಹುದು.';
+
+  @override
+  String get callReconnectButton => 'ಮರುಸಂಪರ್ಕಿಸಿ';
+
+  @override
+  String callTimeLeft(String time) {
+    return '$time ಉಳಿದಿದೆ';
+  }
+
+  @override
+  String get callCounted => 'ಕರೆ ಲೆಕ್ಕಕ್ಕೆ ಬಂದಿದೆ';
+
+  @override
+  String callCountsAfter(int seconds) {
+    return 'ಒಟ್ಟಿಗೆ $seconds ಸೆಕೆಂಡ್ ಆದ ಮೇಲೆ ಕರೆ ಲೆಕ್ಕಕ್ಕೆ ಬರುತ್ತದೆ';
+  }
+
+  @override
+  String get callEndButton => 'ಮುಗಿಸಿ';
+
+  @override
+  String get callCancelRingButton => 'ರದ್ದುಮಾಡಿ';
+
+  @override
+  String get callEndConfirmTitle => 'ಕರೆ ಮುಗಿಸಬೇಕೇ?';
+
+  @override
+  String callEndConfirmCounted(String name) {
+    return 'ಈ ಕರೆ ಲೆಕ್ಕಕ್ಕೆ ಬಂದಿದೆ. ಹೇಗಿತ್ತು ಎಂದು $name ಅವರನ್ನು ಕೇಳಲಾಗುತ್ತದೆ.';
+  }
+
+  @override
+  String get callEndConfirmNotCounted =>
+      'ಈ ಕರೆ ಇನ್ನೂ ಲೆಕ್ಕಕ್ಕೆ ಬಂದಿಲ್ಲ. ಈಗ ಮುಗಿಸಿದರೆ ಯಾವುದೇ ಶುಲ್ಕ ಇರುವುದಿಲ್ಲ.';
+
+  @override
+  String get callKeepGoing => 'ಮುಂದುವರಿಸಿ';
+
+  @override
+  String get callMute => 'ಮ್ಯೂಟ್';
+
+  @override
+  String get callUnmute => 'ಅನ್‌ಮ್ಯೂಟ್';
+
+  @override
+  String get callCameraOff => 'ಕ್ಯಾಮೆರಾ ಆಫ್';
+
+  @override
+  String get callCameraOn => 'ಕ್ಯಾಮೆರಾ ಆನ್';
+
+  @override
+  String get callFlip => 'ತಿರುಗಿಸಿ';
+
+  @override
+  String get callSpeaker => 'ಸ್ಪೀಕರ್';
+
+  @override
+  String get callChat => 'ಚಾಟ್';
+
+  @override
+  String callAudioOnlyNote(String name) {
+    return 'ನಿಮ್ಮ ಮೈಕ್ರೋಫೋನ್ ಮಾತ್ರ ಆನ್ ಆಗಿದೆ. $name ನಿಮ್ಮನ್ನು ನೋಡಲು ಸಾಧ್ಯವಿಲ್ಲ.';
+  }
+
+  @override
+  String get callSafetyTitle => 'ವಾಹನ ಚಲಾಯಿಸುವಾಗ ಫೋನ್ ಬಳಸಬೇಡಿ';
+
+  @override
+  String get callSafetyBody =>
+      'ಈ ಕರೆ ತೆಗೆದುಕೊಳ್ಳುವ ಮೊದಲು ವಾಹನವನ್ನು ಸುರಕ್ಷಿತವಾಗಿ ನಿಲ್ಲಿಸಿ. ವಾಹನ ಚಲಿಸುವಾಗ ಪರದೆ ನೋಡಬೇಡಿ ಅಥವಾ ಟೈಪ್ ಮಾಡಬೇಡಿ.';
+
+  @override
+  String get callSafetyOk => 'ನಾನು ವಾಹನ ನಿಲ್ಲಿಸಿದ್ದೇನೆ';
+
+  @override
+  String get callChatTitle => 'ಚಾಟ್';
+
+  @override
+  String get callChatHint => 'ಸಂದೇಶ ಟೈಪ್ ಮಾಡಿ';
+
+  @override
+  String get callChatEmpty => 'ಸಂದೇಶಗಳು ಈ ಕರೆಯವರೆಗೆ ಮಾತ್ರ ಇರುತ್ತವೆ.';
+
+  @override
+  String get callChatSendFailed => 'ಕಳುಹಿಸಲು ಆಗಲಿಲ್ಲ. ನಿಮ್ಮ ಸಂಪರ್ಕ ಪರಿಶೀಲಿಸಿ.';
+
+  @override
+  String get callStarting => 'ಕರೆ ಪ್ರಾರಂಭವಾಗುತ್ತಿದೆ…';
+
+  @override
+  String get callPermissionMic =>
+      'ಕರೆಯಲ್ಲಿ ಭಾಗವಹಿಸಲು ಮೈಕ್ರೋಫೋನ್‌ಗೆ ಅನುಮತಿ ನೀಡಿ.';
+
+  @override
+  String get callPermissionCamera =>
+      'ಇನ್ನೊಬ್ಬರು ನಿಮ್ಮನ್ನು ನೋಡಲು ಕ್ಯಾಮೆರಾಗೆ ಅನುಮತಿ ನೀಡಿ.';
+
+  @override
+  String get callOpenSettings => 'ಸೆಟ್ಟಿಂಗ್ಸ್ ತೆರೆಯಿರಿ';
+
+  @override
+  String get callClose => 'ಮುಚ್ಚಿ';
+
+  @override
+  String get callEndedTitle => 'ಕರೆ ಮುಗಿಯಿತು';
+
+  @override
+  String callEndedDriverCounted(
+    String duration,
+    String name,
+    String callAmount,
+    String offer,
+  ) {
+    return 'ನೀವು $duration ಕಾಲ ಕರೆಯಲ್ಲಿದ್ದಿರಿ. ಈಗ $name ಅವರು ತೃಪ್ತರಾಗಿದ್ದರೇ ಎಂದು ತಿಳಿಸುತ್ತಾರೆ. ನಿಮಗೆ ಖಚಿತವಾಗಿ $callAmount ಸಿಗುತ್ತದೆ, ತೃಪ್ತರಾದರೆ $offer.';
+  }
+
+  @override
+  String callEndedRequesterCounted(String name) {
+    return '$name ಅವರೊಂದಿಗಿನ ಕರೆಗೆ ಧನ್ಯವಾದಗಳು.';
+  }
+
+  @override
+  String callEndedTooShort(int seconds) {
+    return 'ಕರೆ ಲೆಕ್ಕಕ್ಕೆ ಬರಲು ತುಂಬಾ ಚಿಕ್ಕದಾಗಿತ್ತು ($seconds ಸೆಕೆಂಡ್‌ಗಿಂತ ಕಡಿಮೆ). ಯಾವುದೇ ಶುಲ್ಕ ವಿಧಿಸಲಾಗಿಲ್ಲ.';
+  }
+
+  @override
+  String callEndedUnanswered(String name) {
+    return '$name ಕರೆ ಸ್ವೀಕರಿಸಲಿಲ್ಲ. ವಿನಂತಿಯ ಅವಧಿ ಮುಗಿಯುವವರೆಗೆ ನೀವು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಬಹುದು.';
+  }
+
+  @override
+  String callEndedDeclined(String name) {
+    return '$name ಕರೆಯನ್ನು ನಿರಾಕರಿಸಿದರು. ವಿನಂತಿ ಮುಚ್ಚಲಾಗಿದೆ.';
+  }
+
+  @override
+  String get callEndedUnconfirmed =>
+      'ನೀವು ಕರೆಯಿಂದ ಹೊರಬಂದಿರಿ. ಸರ್ವರ್ ಸಂಪರ್ಕಿಸಲು ಆಗಲಿಲ್ಲ, ಆದ್ದರಿಂದ ಶೀಘ್ರದಲ್ಲೇ ಇತ್ಯರ್ಥವಾಗುತ್ತದೆ.';
+
+  @override
+  String get callEndedOther => 'ಕರೆ ಮುಗಿದಿದೆ.';
+
+  @override
+  String get callDoneButton => 'ಮುಗಿಯಿತು';
+
+  @override
+  String callIncomingTitle(String name) {
+    return '$name ನಿಮಗೆ ಕರೆ ಮಾಡುತ್ತಿದ್ದಾರೆ';
+  }
+
+  @override
+  String callIncomingOffer(String amount, int minutes) {
+    return '$amount ಪ್ರಸ್ತಾಪ · $minutes ನಿಮಿಷ';
+  }
+
+  @override
+  String callIncomingHint(String name) {
+    return 'ನೀವು $name ಅವರನ್ನು ಕೇಳುತ್ತೀರಿ ಮತ್ತು ಅವರ ಕ್ಯಾಮೆರಾ ನೋಡುತ್ತೀರಿ. ನಿಮ್ಮ ಮೈಕ್ರೋಫೋನ್ ಮಾತ್ರ ಆನ್ ಇರುತ್ತದೆ.';
+  }
+
+  @override
+  String get callAnswer => 'ಸ್ವೀಕರಿಸಿ';
+
+  @override
+  String get callDecline => 'ನಿರಾಕರಿಸಿ';
+
+  @override
+  String get callDeclineHint =>
+      'ನಿರಾಕರಿಸಿದರೆ ನಿಮ್ಮ ವಿನಂತಿ ರದ್ದಾಗುತ್ತದೆ ಮತ್ತು ನಿಮ್ಮ ಹಣ ಬಿಡುಗಡೆಯಾಗುತ್ತದೆ.';
+
+  @override
+  String callRingSeconds(int seconds) {
+    return 'ರಿಂಗ್ ಆಗುತ್ತಿದೆ · $seconds ಸೆ';
+  }
+
+  @override
+  String callMissed(String name) {
+    return 'ನೀವು ಕರೆ ತಪ್ಪಿಸಿಕೊಂಡಿರಿ. $name ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಬಹುದು, ಅಥವಾ ನೀವು ನಿಮ್ಮ ವಿನಂತಿಯನ್ನು ರದ್ದುಮಾಡಬಹುದು.';
+  }
+
+  @override
+  String get callRejoinTitle => 'ನೀವು ಇನ್ನೂ ಕರೆಯಲ್ಲಿದ್ದೀರಿ';
+
+  @override
+  String callRejoinBody(String name) {
+    return '$name ಅವರೊಂದಿಗಿನ ನಿಮ್ಮ ಕರೆ ಇನ್ನೂ ನಡೆಯುತ್ತಿದೆ. ಮುಂದುವರಿಸಲು ಮತ್ತೆ ಸೇರಿ.';
+  }
+
+  @override
+  String get callRejoinButton => 'ಮತ್ತೆ ಸೇರಿ';
+
+  @override
+  String get callRejoinEndButton => 'ಕರೆ ಮುಗಿಸಿ';
+
+  @override
+  String get callFeedbackTitle => 'ಕರೆಯಿಂದ ನೀವು ತೃಪ್ತರಾಗಿದ್ದೀರಾ?';
+
+  @override
+  String callFeedbackBody(String name) {
+    return '$name ಅವರಿಗೆ ಎಷ್ಟು ಪಾವತಿಯಾಗುತ್ತದೆ ಎಂಬುದನ್ನು ನಿಮ್ಮ ಉತ್ತರ ನಿರ್ಧರಿಸುತ್ತದೆ.';
+  }
+
+  @override
+  String callFeedbackYes(String amount) {
+    return 'ಹೌದು, $amount ಪಾವತಿಸಿ';
+  }
+
+  @override
+  String callFeedbackNo(String amount) {
+    return 'ಇಲ್ಲ, $amount ಮಾತ್ರ ಪಾವತಿಸಿ';
+  }
+
+  @override
+  String callFeedbackNoNote(String amount) {
+    return '$amount ಕರೆ ಸಂಪರ್ಕಿಸುವ ವೆಚ್ಚ.';
+  }
+
+  @override
+  String get callFeedbackLater => 'ನಂತರ ನಿರ್ಧರಿಸುತ್ತೇನೆ';
+
+  @override
+  String callFeedbackLaterNote(String amount) {
+    return '24 ಗಂಟೆಗಳಲ್ಲಿ ಉತ್ತರಿಸದಿದ್ದರೆ $amount ಮಾತ್ರ ಪಾವತಿಯಾಗುತ್ತದೆ.';
+  }
+
+  @override
+  String callFeedbackThanks(String amount) {
+    return 'ಧನ್ಯವಾದಗಳು! ನೀವು $amount ಪಾವತಿಸಿದ್ದೀರಿ.';
+  }
+
+  @override
+  String get callDeclineFailed =>
+      'ಸರ್ವರ್ ಸಂಪರ್ಕಿಸಲು ಆಗಲಿಲ್ಲ. ನಿಮ್ಮ ಸಂಪರ್ಕ ಪರಿಶೀಲಿಸಿ ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.';
+
+  @override
+  String get callOngoingTitle => 'ಕರೆ ನಡೆಯುತ್ತಿದೆ';
+
+  @override
+  String callOngoingText(String name) {
+    return '$name ಅವರೊಂದಿಗಿನ ನಿಮ್ಮ ಕರೆಗೆ ಮರಳಲು ಟ್ಯಾಪ್ ಮಾಡಿ';
+  }
+
+  @override
+  String get rechargeTitle => 'ನಿಮ್ಮ ವಾಲೆಟ್‌ಗೆ ಹಣ ಸೇರಿಸಿ';
+
+  @override
+  String get rechargeAmountLabel => 'ಸೇರಿಸಬೇಕಾದ ಮೊತ್ತ (₹)';
+
+  @override
+  String rechargeRange(String min, String max) {
+    return 'ಒಂದು ಬಾರಿಗೆ ₹$min ರಿಂದ ₹$max ನಡುವೆ';
+  }
+
+  @override
+  String rechargeInvalidAmount(String min, String max) {
+    return '₹$min ರಿಂದ ₹$max ನಡುವಿನ ಮೊತ್ತ ನಮೂದಿಸಿ';
+  }
+
+  @override
+  String get rechargeAddedToWallet => 'ನಿಮ್ಮ ವಾಲೆಟ್‌ಗೆ ಸೇರುತ್ತದೆ';
+
+  @override
+  String get rechargeGatewayFee => 'ಪಾವತಿ ಗೇಟ್‌ವೇ ಶುಲ್ಕ';
+
+  @override
+  String get rechargeYouPay => 'ನೀವು ಪಾವತಿಸುವುದು';
+
+  @override
+  String rechargePayButton(String amount) {
+    return '$amount ಪಾವತಿಸಿ';
+  }
+
+  @override
+  String get rechargeUnavailable => 'ಈಗ ಹಣ ಸೇರಿಸುವುದು ಲಭ್ಯವಿಲ್ಲ';
+
+  @override
+  String get rechargeCreating => 'ನಿಮ್ಮ ಪಾವತಿ ಸಿದ್ಧವಾಗುತ್ತಿದೆ…';
+
+  @override
+  String get rechargePaying => 'ಪಾವತಿ ವಿಂಡೋದಲ್ಲಿ ಪಾವತಿ ಪೂರ್ಣಗೊಳಿಸಿ';
+
+  @override
+  String get rechargeConfirming => 'ನಿಮ್ಮ ಪಾವತಿಯನ್ನು ದೃಢೀಕರಿಸಲಾಗುತ್ತಿದೆ…';
+
+  @override
+  String rechargeDone(String amount) {
+    return '$amount ನಿಮ್ಮ ವಾಲೆಟ್‌ಗೆ ಸೇರಿದೆ';
+  }
+
+  @override
+  String get rechargePending =>
+      'ನಾವು ಇನ್ನೂ ನಿಮ್ಮ ಪಾವತಿಯನ್ನು ದೃಢೀಕರಿಸುತ್ತಿದ್ದೇವೆ. ನಿಮ್ಮ ಬ್ಯಾಲೆನ್ಸ್ ಶೀಘ್ರದಲ್ಲೇ ಅಪ್‌ಡೇಟ್ ಆಗುತ್ತದೆ. ಮತ್ತೆ ಪಾವತಿಸುವ ಅಗತ್ಯವಿಲ್ಲ.';
+
+  @override
+  String get rechargeFailedGeneric =>
+      'ಪಾವತಿ ಪೂರ್ಣಗೊಳ್ಳಲಿಲ್ಲ. ನಿಮಗೆ ಯಾವುದೇ ಶುಲ್ಕ ವಿಧಿಸಲಾಗಿಲ್ಲ.';
+
+  @override
+  String get rechargeClose => 'ಮುಚ್ಚಿ';
 }

@@ -3,6 +3,8 @@ import 'dart:ui';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../core/constants/feature_flags.dart';
+
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/network/api_exception.dart';
 import '../../../../l10n/generated/app_localizations.dart';
@@ -14,6 +16,7 @@ import '../../../scratch_cards/presentation/state/scratch_cards_notifier.dart';
 import '../../../scratch_cards/presentation/widgets/scratch_card_grid_tile.dart';
 import '../../domain/entities/wallet_entity.dart';
 import '../state/wallet_notifier.dart';
+import '../widgets/recharge_sheet.dart';
 import '../widgets/wallet_balance_card.dart';
 import '../widgets/wallet_transaction_tile.dart';
 import 'redeem_upi_sheet.dart';
@@ -116,6 +119,11 @@ class WalletScreen extends ConsumerWidget {
                                             0
                                     ? null
                                     : () => showRedeemUpiSheet(context),
+                                onAddMoneyTap:
+                                    FeatureFlags.rechargeEnabled &&
+                                        !data.wallet.isFrozen
+                                    ? () => RechargeSheet.show(context)
+                                    : null,
                               ),
                             ),
                             const SizedBox(height: 12),

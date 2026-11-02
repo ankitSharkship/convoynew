@@ -10,6 +10,8 @@ abstract class DeviceRemoteDataSource {
     required String fcmToken,
     String? appVersion,
     String? deviceName,
+    String? voipToken,
+    bool? voipSandbox,
   });
 
   Future<void> logoutDevice({
@@ -31,6 +33,8 @@ class DeviceRemoteDataSourceImpl implements DeviceRemoteDataSource {
     required String fcmToken,
     String? appVersion,
     String? deviceName,
+    String? voipToken,
+    bool? voipSandbox,
   }) async {
     try {
       await _dio.post(
@@ -41,6 +45,8 @@ class DeviceRemoteDataSourceImpl implements DeviceRemoteDataSource {
           'fcmToken': fcmToken,
           'appVersion': ?appVersion,
           'deviceName': ?deviceName,
+          'voipToken': ?voipToken,
+          'voipSandbox': ?voipSandbox,
         },
       );
     } on DioException catch (e) {

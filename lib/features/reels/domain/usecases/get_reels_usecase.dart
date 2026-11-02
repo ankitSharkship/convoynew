@@ -38,3 +38,11 @@ class GetMyUploadsUseCase {
 
   Future<MyUploadsEntity> execute() => _repository.getMyUploads();
 }
+
+class DeleteReelUseCase {
+  final ReelsRepository _repository;
+
+  DeleteReelUseCase(this._repository);
+
+  Future<void> execute(String reelId) => _repository.deleteReel(reelId);
+}

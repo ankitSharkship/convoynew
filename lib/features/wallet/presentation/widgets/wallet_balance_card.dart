@@ -17,11 +17,15 @@ class WalletBalanceCard extends StatelessWidget {
   final WalletEntity wallet;
   final VoidCallback? onRedeemTap;
 
+  /// Adds real money through Razorpay; null hides the button (recharge is off).
+  final VoidCallback? onAddMoneyTap;
+
   const WalletBalanceCard({
     super.key,
     required this.userName,
     required this.wallet,
     required this.onRedeemTap,
+    this.onAddMoneyTap,
   });
 
   @override
@@ -116,6 +120,13 @@ class WalletBalanceCard extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(width: 12),
+                    if (onAddMoneyTap != null) ...[
+                      _RedeemPill(
+                        onTap: onAddMoneyTap,
+                        label: l10n.oneToOneAddMoneyButton,
+                      ),
+                      const SizedBox(width: 8),
+                    ],
                     _RedeemPill(
                       onTap: onRedeemTap,
                       label: l10n.walletRedeemButton,

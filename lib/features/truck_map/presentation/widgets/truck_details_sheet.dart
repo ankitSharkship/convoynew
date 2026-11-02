@@ -3,10 +3,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../core/constants/app_colors.dart';
+import '../../../../core/constants/feature_flags.dart';
 import '../../../../l10n/generated/app_localizations.dart';
 import '../../../../shared/utils/truck_type_i18n.dart';
 import '../../../../shared/widgets/wheel_number_picker.dart';
 import '../../../contacts/presentation/state/contacts_sync_notifier.dart';
+import '../../../call_request/presentation/state/call_request_notifier.dart';
+import '../../../call_request/presentation/widgets/request_one_to_one_sheet.dart';
 import '../../../contacts/presentation/widgets/mutual_contacts_sheet.dart';
 import '../../../search/domain/entities/truck_search_result_entity.dart';
 
@@ -71,6 +74,9 @@ class TruckDetailsSheet extends ConsumerWidget {
     final capacity = result.capacity > 0
         ? l10n.capacityTon(result.capacity)
         : null;
+    // You can't ask yourself for a call: hide the button on your own post.
+    final isOwnPost =
+        ref.watch(currentUserIdProvider).valueOrNull == result.userId;
 
     return Container(
       constraints: BoxConstraints(
@@ -320,13 +326,15 @@ class TruckDetailsSheet extends ConsumerWidget {
                 ),
               ),
               const SizedBox(height: 16),
-              _SheetButton(
-                icon: Icons.videocam,
-                label: l10n.truckDetailsRequestOneToOne,
-                filled: true,
-                onTap: () => _requestOneToOne(context),
-              ),
-              const SizedBox(height: 10),
+              if (!(FeatureFlags.oneToOneEnabled && isOwnPost)) ...[
+                _SheetButton(
+                  icon: Icons.videocam,
+                  label: l10n.truckDetailsRequestOneToOne,
+                  filled: true,
+                  onTap: () => _requestOneToOne(context, result),
+                ),
+                const SizedBox(height: 10),
+              ],
               _SheetButton(
                 icon: Icons.phone,
                 label: l10n.truckDetailsCallDriver,
@@ -360,11 +368,26 @@ String fullLocation(String name, String? city, String? state, String? pincode) {
   return text.isEmpty ? pin : '$text $pin';
 }
 
-/// The Request 1:1 form is built separately; until it lands the button says so.
-void _requestOneToOne(BuildContext context) {
-  ScaffoldMessenger.of(context).showSnackBar(
-    SnackBar(
-      content: Text(AppLocalizations.of(context)!.truckDetailsRequestSoon),
+/// Opens the paid 1:1 request form. While FeatureFlags.oneToOneEnabled is off
+/// (backend not live yet) the button just says it is coming soon.
+void _requestOneToOne(BuildContext context, TruckSearchResultEntity truck) {
+  if (FeatureFlags.oneToOneEnabled) {
+    RequestOneToOneSheet.show(context, truck);
+    return;
+  }
+  // A dialog, not a snackbar: this runs inside an open bottom sheet, which
+  // would cover a snackbar and make the tap look like it did nothing.
+  final l10n = AppLocalizations.of(context)!;
+  showDialog<void>(
+    context: context,
+    builder: (dialogContext) => AlertDialog(
+      content: Text(l10n.truckDetailsRequestSoon),
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.of(dialogContext).pop(),
+          child: Text(l10n.callClose),
+        ),
+      ],
     ),
   );
 }

@@ -7,7 +7,9 @@ plugins {
 
 android {
     namespace = "com.sharkship.bonut"
-    compileSdk = flutter.compileSdkVersion
+    // permission_handler_android (1:1 calls) compiles against SDK 37; compiling
+    // against a newer SDK is backward compatible and changes nothing at runtime.
+    compileSdk = maxOf(flutter.compileSdkVersion, 37)
     ndkVersion = flutter.ndkVersion
 
     compileOptions {

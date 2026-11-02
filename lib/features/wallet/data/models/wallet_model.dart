@@ -5,12 +5,17 @@ class WalletModel extends WalletEntity {
     required super.availableBalance,
     required super.reservedBalance,
     required super.status,
+    super.callCommitments,
+    super.spendableBalance,
   });
 
   factory WalletModel.fromJson(Map<String, dynamic> json) => WalletModel(
     availableBalance: json['availableBalance'] as String,
     reservedBalance: json['reservedBalance'] as String,
     status: json['status'] as String,
+    // Both are new: tolerate a backend that doesn't send them yet.
+    callCommitments: json['callCommitments'] as String? ?? '0.00',
+    spendableBalance: json['spendableBalance'] as String?,
   );
 }
 

@@ -4,10 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../core/constants/app_colors.dart';
+import '../../../../core/constants/feature_flags.dart';
 import '../../../../l10n/generated/app_localizations.dart';
 import '../../../../shared/widgets/language_switcher_button.dart';
 import '../../../kyc/presentation/navigation/post_truck_gate.dart';
 import '../../../profile/presentation/state/profile_notifier.dart';
+import '../../../call_request/presentation/widgets/incoming_request_banner.dart';
 import '../widgets/trending_reels_section.dart';
 
 const _carouselAutoAdvanceInterval = Duration(seconds: 4);
@@ -27,7 +29,20 @@ class HomeScreen extends ConsumerWidget {
     final displayName = profileAsync.valueOrNull?.name ?? 'Pilot';
     return Scaffold(
       backgroundColor: AppColors.primaryBlueLight,
-      body: _HomeContent(userName: displayName),
+      body: Stack(
+        children: [
+          _HomeContent(userName: displayName),
+          // The driver's pending 1:1 requests, floating just above the bottom
+          // navigation bar. Empty (takes no space) when nothing is waiting.
+          if (FeatureFlags.oneToOneEnabled)
+            const Positioned(
+              left: 16,
+              right: 16,
+              bottom: 12,
+              child: IncomingRequestBanner(),
+            ),
+        ],
+      ),
     );
   }
 }

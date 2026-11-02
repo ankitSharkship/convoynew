@@ -9,7 +9,7 @@ import '../../../../shared/widgets/language_switcher_button.dart';
 import '../../domain/entities/my_uploads_entity.dart';
 import '../state/my_uploads_notifier.dart';
 import '../widgets/reel_formatters.dart';
-import '../widgets/reel_source_sheet.dart';
+import '../widgets/reel_delete.dart';
 
 /// The signed-in user's own reels: creator totals up top, category tabs, and
 /// a two-column grid with views / likes / posted-ago per reel.
@@ -52,7 +52,7 @@ class _MyUploadsScreenState extends ConsumerState<MyUploadsScreen> {
       floatingActionButton: FloatingActionButton.extended(
         backgroundColor: AppColors.primaryBlue,
         foregroundColor: Colors.white,
-        onPressed: () => openCreateReelFlow(context),
+        onPressed: () => context.push('/reels/create/record'),
         icon: const Icon(Icons.videocam),
         label: Text(
           l10n.uploadsRecordCta,
@@ -245,7 +245,7 @@ class _InsightsCard extends StatelessWidget {
                   foregroundColor: AppColors.primaryBlueDark,
                   shape: const StadiumBorder(),
                 ),
-                onPressed: () => openCreateReelFlow(context),
+                onPressed: () => context.push('/reels/create/record'),
                 icon: const Icon(Icons.add_circle_outline, size: 18),
                 label: Text(l10n.uploadsNewPost),
               ),
@@ -258,9 +258,7 @@ class _InsightsCard extends StatelessWidget {
                 child: _StatTile(
                   label: l10n.uploadsStatReels,
                   value: '${data.totalReels}',
-                  footer: thisWeek > 0
-                      ? l10n.uploadsThisWeek(thisWeek)
-                      : null,
+                  footer: thisWeek > 0 ? l10n.uploadsThisWeek(thisWeek) : null,
                   footerColor: AppColors.green,
                 ),
               ),
@@ -394,7 +392,9 @@ class _TabChip extends StatelessWidget {
   }
 }
 
-class _UploadCard extends StatelessWidget {
+enum _CardAction { delete }
+
+class _UploadCard extends ConsumerWidget {
   final MyUploadItemEntity item;
 
   const _UploadCard({required this.item});
@@ -415,8 +415,19 @@ class _UploadCard extends StatelessWidget {
     return l10n.uploadsPostedMonthsAgo(days ~/ 30);
   }
 
+  void _open(BuildContext context, AppLocalizations l10n) {
+    final reel = item.reel;
+    if (reel.status == 'ready' && reel.streamUrl != null) {
+      context.push('/reels/view', extra: reel);
+    } else {
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(l10n.uploadsReelNotPlayable)));
+    }
+  }
+
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context)!;
     final reel = item.reel;
     final isReady = reel.status == 'ready';
@@ -427,116 +438,125 @@ class _UploadCard extends StatelessWidget {
       _ => l10n.uploadsStatusProcessing,
     };
 
-    return Container(
-      decoration: BoxDecoration(
-        color: AppColors.white,
-        borderRadius: BorderRadius.circular(16),
-      ),
-      clipBehavior: Clip.antiAlias,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Expanded(
-            child: Stack(
-              fit: StackFit.expand,
-              children: [
-                if (reel.thumbnailUrl != null)
-                  Image.network(
-                    reel.thumbnailUrl!,
-                    fit: BoxFit.cover,
-                    errorBuilder: (context, error, stackTrace) =>
-                        const ColoredBox(color: AppColors.primaryDark),
-                  )
-                else
-                  const ColoredBox(color: AppColors.primaryDark),
-                const Positioned.fill(
-                  child: DecoratedBox(
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.center,
-                        end: Alignment.bottomCenter,
-                        colors: [Colors.transparent, Colors.black54],
-                      ),
-                    ),
-                  ),
-                ),
-                Positioned(
-                  top: 8,
-                  left: 8,
-                  child: PopupMenuButton<void>(
-                    padding: EdgeInsets.zero,
-                    tooltip: '',
-                    // Edit / delete have no backend endpoint yet.
-                    itemBuilder: (_) => [
-                      PopupMenuItem<void>(
-                        enabled: false,
-                        child: Text(
-                          '${l10n.uploadsMenuEdit} · ${l10n.uploadsMenuComingSoon}',
-                        ),
-                      ),
-                      PopupMenuItem<void>(
-                        enabled: false,
-                        child: Text(
-                          '${l10n.uploadsMenuDelete} · ${l10n.uploadsMenuComingSoon}',
-                        ),
-                      ),
-                    ],
-                    child: Container(
-                      width: 28,
-                      height: 28,
-                      decoration: const BoxDecoration(
-                        color: Colors.black45,
-                        shape: BoxShape.circle,
-                      ),
-                      child: const Icon(
-                        Icons.more_vert,
-                        size: 18,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                ),
-                if (statusLabel != null)
-                  Positioned(
-                    top: 10,
-                    right: 8,
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 8,
-                        vertical: 3,
-                      ),
+    return GestureDetector(
+      onTap: () => _open(context, l10n),
+      child: Container(
+        decoration: BoxDecoration(
+          color: AppColors.white,
+          borderRadius: BorderRadius.circular(16),
+        ),
+        clipBehavior: Clip.antiAlias,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              child: Stack(
+                fit: StackFit.expand,
+                children: [
+                  if (reel.thumbnailUrl != null)
+                    Image.network(
+                      reel.thumbnailUrl!,
+                      fit: BoxFit.cover,
+                      errorBuilder: (context, error, stackTrace) =>
+                          const ColoredBox(color: AppColors.primaryDark),
+                    )
+                  else
+                    const ColoredBox(color: AppColors.primaryDark),
+                  const Positioned.fill(
+                    child: DecoratedBox(
                       decoration: BoxDecoration(
-                        color: reel.status == 'processing' ||
-                                reel.status == 'pending_upload'
-                            ? Colors.black54
-                            : AppColors.red,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Text(
-                        statusLabel,
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 10,
-                          fontWeight: FontWeight.w600,
+                        gradient: LinearGradient(
+                          begin: Alignment.center,
+                          end: Alignment.bottomCenter,
+                          colors: [Colors.transparent, Colors.black54],
                         ),
                       ),
                     ),
                   ),
-                Positioned(
-                  left: 10,
-                  right: 10,
-                  bottom: 8,
-                  child: Row(
-                    children: [
-                      if (isReady && item.viewCount != null) ...[
-                        const Icon(
-                          Icons.visibility_outlined,
-                          size: 16,
+                  Positioned(
+                    top: 8,
+                    left: 8,
+                    child: PopupMenuButton<_CardAction>(
+                      padding: EdgeInsets.zero,
+                      tooltip: '',
+                      onSelected: (action) {
+                        if (action == _CardAction.delete) {
+                          confirmAndDeleteReel(context, ref, reel);
+                        }
+                      },
+                      itemBuilder: (_) => [
+                        PopupMenuItem<_CardAction>(
+                          value: _CardAction.delete,
+                          child: Text(l10n.uploadsMenuDelete),
+                        ),
+                      ],
+                      child: Container(
+                        width: 28,
+                        height: 28,
+                        decoration: const BoxDecoration(
+                          color: Colors.black45,
+                          shape: BoxShape.circle,
+                        ),
+                        child: const Icon(
+                          Icons.more_vert,
+                          size: 18,
                           color: Colors.white,
                         ),
-                        const SizedBox(width: 4),
+                      ),
+                    ),
+                  ),
+                  if (statusLabel != null)
+                    Positioned(
+                      top: 10,
+                      right: 8,
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 8,
+                          vertical: 3,
+                        ),
+                        decoration: BoxDecoration(
+                          color:
+                              reel.status == 'processing' ||
+                                  reel.status == 'pending_upload'
+                              ? Colors.black54
+                              : AppColors.red,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Text(
+                          statusLabel,
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 10,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ),
+                    ),
+                  Positioned(
+                    left: 10,
+                    right: 10,
+                    bottom: 8,
+                    child: Row(
+                      children: [
+                        if (isReady && item.viewCount != null) ...[
+                          const Icon(
+                            Icons.visibility_outlined,
+                            size: 16,
+                            color: Colors.white,
+                          ),
+                          const SizedBox(width: 4),
+                          Text(
+                            formatCount(item.viewCount!),
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 12,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ],
+                        const Spacer(),
                         Text(
-                          formatCount(item.viewCount!),
+                          _duration(reel.durationSeconds),
                           style: const TextStyle(
                             color: Colors.white,
                             fontSize: 12,
@@ -544,67 +564,58 @@ class _UploadCard extends StatelessWidget {
                           ),
                         ),
                       ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(10, 8, 10, 8),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    reel.title,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600,
+                      color: AppColors.textPrimary,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Row(
+                    children: [
+                      const Icon(
+                        Icons.favorite_border,
+                        size: 14,
+                        color: AppColors.red,
+                      ),
+                      const SizedBox(width: 3),
+                      Text(
+                        formatCount(reel.likeCount),
+                        style: const TextStyle(
+                          fontSize: 12,
+                          color: AppColors.red,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
                       const Spacer(),
                       Text(
-                        _duration(reel.durationSeconds),
+                        _postedAgo(l10n, reel.createdAt),
                         style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 12,
-                          fontWeight: FontWeight.w600,
+                          fontSize: 11,
+                          color: AppColors.textSecondary,
                         ),
                       ),
                     ],
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(10, 8, 10, 8),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  reel.title,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w600,
-                    color: AppColors.textPrimary,
-                  ),
-                ),
-                const SizedBox(height: 4),
-                Row(
-                  children: [
-                    const Icon(
-                      Icons.favorite_border,
-                      size: 14,
-                      color: AppColors.red,
-                    ),
-                    const SizedBox(width: 3),
-                    Text(
-                      formatCount(reel.likeCount),
-                      style: const TextStyle(
-                        fontSize: 12,
-                        color: AppColors.red,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    const Spacer(),
-                    Text(
-                      _postedAgo(l10n, reel.createdAt),
-                      style: const TextStyle(
-                        fontSize: 11,
-                        color: AppColors.textSecondary,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

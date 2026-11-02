@@ -1,9 +1,14 @@
+import 'package:convoynew/core/constants/feature_flags.dart';
+import 'package:convoynew/features/call_request/presentation/widgets/request_one_to_one_sheet.dart';
 import 'package:convoynew/features/search/domain/entities/truck_search_result_entity.dart';
 import 'package:convoynew/features/truck_map/presentation/widgets/truck_details_sheet.dart';
+import 'package:convoynew/features/wallet/presentation/state/wallet_notifier.dart';
 import 'package:convoynew/l10n/generated/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
+
+import '../call_request/support.dart' show FakeWallet;
 
 TruckSearchResultEntity _post() => TruckSearchResultEntity(
   truckId: 't',
@@ -70,6 +75,7 @@ void main() {
   ) async {
     await tester.pumpWidget(
       ProviderScope(
+        overrides: [walletNotifierProvider.overrideWith(() => FakeWallet('1000.00'))],
         child: MaterialApp(
           localizationsDelegates: AppLocalizations.localizationsDelegates,
           supportedLocales: AppLocalizations.supportedLocales,
@@ -86,6 +92,16 @@ void main() {
     expect(find.text('Call Driver to Book'), findsOneWidget);
     await tester.tap(find.text('Request 1:1'));
     await tester.pump();
-    expect(find.text('1:1 requests are coming soon'), findsOneWidget);
+    await tester.pump(const Duration(milliseconds: 300));
+    if (FeatureFlags.oneToOneEnabled) {
+      // the real request form opens (see request_one_to_one_sheet_test.dart)
+      expect(find.text('1:1 requests are coming soon'), findsNothing);
+      expect(find.byType(RequestOneToOneSheet), findsOneWidget);
+    } else {
+      // switched off: a visible message (a dialog, since a snackbar would hide
+      // behind the open sheet) instead of silence
+      expect(find.text('1:1 requests are coming soon'), findsOneWidget);
+      expect(find.byType(AlertDialog), findsOneWidget);
+    }
   });
 }

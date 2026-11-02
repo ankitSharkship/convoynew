@@ -6,6 +6,7 @@ import '../../../../core/network/dio_client.dart';
 import '../../data/datasources/wallet_remote_datasource.dart';
 import '../../data/repositories/wallet_repository_impl.dart';
 import '../../domain/entities/wallet_entity.dart';
+import '../../domain/usecases/dev_credit_wallet_usecase.dart';
 import '../../domain/usecases/get_wallet_transactions_usecase.dart';
 import '../../domain/usecases/get_wallet_usecase.dart';
 import '../../domain/usecases/redeem_wallet_usecase.dart';
@@ -37,6 +38,11 @@ GetWalletTransactionsUseCase getWalletTransactionsUseCase(
 @riverpod
 RedeemWalletUseCase redeemWalletUseCase(RedeemWalletUseCaseRef ref) {
   return RedeemWalletUseCase(ref.watch(walletRepositoryProvider));
+}
+
+@riverpod
+DevCreditWalletUseCase devCreditWalletUseCase(DevCreditWalletUseCaseRef ref) {
+  return DevCreditWalletUseCase(ref.watch(walletRepositoryProvider));
 }
 
 class WalletData {
@@ -80,11 +86,7 @@ class WalletNotifier extends _$WalletNotifier {
     if (current == null) return;
     state = AsyncData(
       WalletData(
-        wallet: WalletEntity(
-          availableBalance: availableBalance,
-          reservedBalance: current.wallet.reservedBalance,
-          status: current.wallet.status,
-        ),
+        wallet: current.wallet.withAvailableBalance(availableBalance),
         transactions: current.transactions,
       ),
     );
@@ -113,6 +115,23 @@ class WalletNotifier extends _$WalletNotifier {
         );
     _pendingIdempotencyKey = null;
 
+    ref.invalidateSelf();
+    await future;
+  }
+
+  /// DEV ONLY (FeatureFlags.devWalletCreditEnabled): adds [amount] rupees of test
+  /// money to the caller's wallet, then reloads it. Throws [ApiException]
+  /// (a 404 means the server isn't running with the dev credit switched on).
+  Future<void> devCredit(int amount) async {
+    final userId = await ref.read(tokenStorageProvider).getUserId();
+    if (userId == null) throw const ApiException();
+    await ref
+        .read(devCreditWalletUseCaseProvider)
+        .execute(
+          userId: userId,
+          amount: amount,
+          idempotencyKey: const Uuid().v4(),
+        );
     ref.invalidateSelf();
     await future;
   }

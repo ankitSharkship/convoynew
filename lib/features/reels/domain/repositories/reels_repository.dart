@@ -27,4 +27,5 @@ abstract class ReelsRepository {
   Future<FollowResultEntity> followUser(String userId);
   Future<FollowResultEntity> unfollowUser(String userId);
   Future<MyUploadsEntity> getMyUploads();
+  Future<void> deleteReel(String reelId);
 }

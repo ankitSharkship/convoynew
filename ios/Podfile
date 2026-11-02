@@ -39,5 +39,19 @@ end
 post_install do |installer|
   installer.pods_project.targets.each do |target|
     flutter_additional_ios_build_settings(target)
+
+    # permission_handler only compiles in the permissions the app asks for. The
+    # 1:1 call screens need the microphone (both sides) and camera (driver);
+    # without these flags every request silently answers "denied".
+    target.build_configurations.each do |config|
+      # Some pods (the CallKit plugin) declare an older minimum than the app and
+      # than their own dependencies (CryptoSwift needs 15.6): use the app's.
+      config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '15.6'
+      config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] ||= [
+        '$(inherited)',
+        'PERMISSION_CAMERA=1',
+        'PERMISSION_MICROPHONE=1',
+      ]
+    end
   end
 end

@@ -23,6 +23,23 @@ final getMyUploadsUseCaseProvider = AutoDisposeProvider<GetMyUploadsUseCase>.int
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef GetMyUploadsUseCaseRef = AutoDisposeProviderRef<GetMyUploadsUseCase>;
+String _$deleteReelUseCaseHash() => r'b612ffa69957f6c324b23e8594bf0fec0d91c881';
+
+/// See also [deleteReelUseCase].
+@ProviderFor(deleteReelUseCase)
+final deleteReelUseCaseProvider = AutoDisposeProvider<DeleteReelUseCase>.internal(
+  deleteReelUseCase,
+  name: r'deleteReelUseCaseProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$deleteReelUseCaseHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef DeleteReelUseCaseRef = AutoDisposeProviderRef<DeleteReelUseCase>;
 String _$myUploadsHash() => r'289af62438fdbcf253cf9972a8418de110d0fc98';
 
 /// See also [myUploads].

@@ -7,14 +7,16 @@ import 'reel_formatters.dart';
 /// Right-hand vertical stack of like / comment / share buttons with counts.
 class ReelActionRail extends StatelessWidget {
   final ReelEntity reel;
-  final VoidCallback onLike;
+
+  /// Null makes the like button display-only (e.g. on the creator's own reel).
+  final VoidCallback? onLike;
   final VoidCallback onComment;
   final VoidCallback onShare;
 
   const ReelActionRail({
     super.key,
     required this.reel,
-    required this.onLike,
+    this.onLike,
     required this.onComment,
     required this.onShare,
   });
@@ -51,13 +53,13 @@ class _RailButton extends StatelessWidget {
   final IconData icon;
   final Color color;
   final int count;
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
 
   const _RailButton({
     required this.icon,
     this.color = Colors.white,
     required this.count,
-    required this.onTap,
+    this.onTap,
   });
 
   @override

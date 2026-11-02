@@ -16,7 +16,7 @@ class GeoBox {
   double get centerLng => (minLng + maxLng) / 2;
   double get latSpan => maxLat - minLat;
   double get lngSpan => maxLng - minLng;
-
+ 
   /// True when [other] lies entirely inside this box.
   bool containsBox(GeoBox other) =>
       other.minLat >= minLat &&

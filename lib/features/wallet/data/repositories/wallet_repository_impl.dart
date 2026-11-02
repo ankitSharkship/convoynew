@@ -24,4 +24,15 @@ class WalletRepositoryImpl implements WalletRepository {
     upiId: upiId,
     idempotencyKey: idempotencyKey,
   );
+
+  @override
+  Future<void> devCredit({
+    required String userId,
+    required int amount,
+    required String idempotencyKey,
+  }) => _remote.devCredit(
+    userId: userId,
+    amount: amount,
+    idempotencyKey: idempotencyKey,
+  );
 }

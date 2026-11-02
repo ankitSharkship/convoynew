@@ -12,11 +12,17 @@ abstract class DeviceLocalDataSource {
   Future<String?> getLastSyncedFcmToken();
 
   Future<void> saveLastSyncedFcmToken(String token);
+
+  /// The VoIP token (iPhone) last sent to the server.
+  Future<String?> getLastSyncedVoipToken();
+
+  Future<void> saveLastSyncedVoipToken(String token);
 }
 
 class DeviceLocalDataSourceImpl implements DeviceLocalDataSource {
   static const _deviceIdKey = 'device_id';
   static const _lastSyncedFcmTokenKey = 'last_synced_fcm_token';
+  static const _lastSyncedVoipTokenKey = 'last_synced_voip_token';
 
   final FlutterSecureStorage _secureStorage;
   final SharedPreferences _prefs;
@@ -45,4 +51,12 @@ class DeviceLocalDataSourceImpl implements DeviceLocalDataSource {
   @override
   Future<void> saveLastSyncedFcmToken(String token) =>
       _prefs.setString(_lastSyncedFcmTokenKey, token);
+
+  @override
+  Future<String?> getLastSyncedVoipToken() =>
+      Future.value(_prefs.getString(_lastSyncedVoipTokenKey));
+
+  @override
+  Future<void> saveLastSyncedVoipToken(String token) =>
+      _prefs.setString(_lastSyncedVoipTokenKey, token);
 }

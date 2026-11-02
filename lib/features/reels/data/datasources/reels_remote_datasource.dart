@@ -32,6 +32,7 @@ abstract class ReelsRemoteDataSource {
   Future<FollowResultEntity> followUser(String userId);
   Future<FollowResultEntity> unfollowUser(String userId);
   Future<MyUploadsEntity> getMyUploads();
+  Future<void> deleteReel(String reelId);
 }
 
 class ReelsRemoteDataSourceImpl implements ReelsRemoteDataSource {
@@ -186,6 +187,11 @@ class ReelsRemoteDataSourceImpl implements ReelsRemoteDataSource {
   Future<FollowResultEntity> unfollowUser(String userId) => _guard(() async {
     final response = await _dio.delete('/api/users/$userId/follow');
     return followResultFromJson(response.data as Map<String, dynamic>);
+  });
+
+  @override
+  Future<void> deleteReel(String reelId) => _guard(() async {
+    await _dio.delete('/api/reels/$reelId');
   });
 
   @override

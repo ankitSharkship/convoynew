@@ -588,36 +588,6 @@ abstract class AppLocalizations {
   /// **'No reels yet'**
   String get homeNoReelsYet;
 
-  /// No description provided for @reelCreateSheetTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'New Reel'**
-  String get reelCreateSheetTitle;
-
-  /// No description provided for @reelCreateRecordOption.
-  ///
-  /// In en, this message translates to:
-  /// **'Record a video'**
-  String get reelCreateRecordOption;
-
-  /// No description provided for @reelCreateRecordOptionSubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Use your camera'**
-  String get reelCreateRecordOptionSubtitle;
-
-  /// No description provided for @reelCreateGalleryOption.
-  ///
-  /// In en, this message translates to:
-  /// **'Choose from gallery'**
-  String get reelCreateGalleryOption;
-
-  /// No description provided for @reelCreateGalleryOptionSubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Pick an existing video'**
-  String get reelCreateGalleryOptionSubtitle;
-
   /// No description provided for @reelRecordCameraError.
   ///
   /// In en, this message translates to:
@@ -2025,14 +1995,8 @@ abstract class AppLocalizations {
   /// No description provided for @uploadsRecordCta.
   ///
   /// In en, this message translates to:
-  /// **'Record / Upload Reel'**
+  /// **'Upload Reel'**
   String get uploadsRecordCta;
-
-  /// No description provided for @uploadsMenuEdit.
-  ///
-  /// In en, this message translates to:
-  /// **'Edit'**
-  String get uploadsMenuEdit;
 
   /// No description provided for @uploadsMenuDelete.
   ///
@@ -2040,11 +2004,29 @@ abstract class AppLocalizations {
   /// **'Delete'**
   String get uploadsMenuDelete;
 
-  /// No description provided for @uploadsMenuComingSoon.
+  /// No description provided for @uploadsDeleteConfirmTitle.
   ///
   /// In en, this message translates to:
-  /// **'Coming soon'**
-  String get uploadsMenuComingSoon;
+  /// **'Delete this reel?'**
+  String get uploadsDeleteConfirmTitle;
+
+  /// No description provided for @uploadsDeleteConfirmBody.
+  ///
+  /// In en, this message translates to:
+  /// **'This permanently removes the reel along with its likes and comments. This can\'t be undone.'**
+  String get uploadsDeleteConfirmBody;
+
+  /// No description provided for @uploadsDeleteSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Reel deleted'**
+  String get uploadsDeleteSuccess;
+
+  /// No description provided for @uploadsReelNotPlayable.
+  ///
+  /// In en, this message translates to:
+  /// **'This reel can\'t be played yet'**
+  String get uploadsReelNotPlayable;
 
   /// No description provided for @uploadsStatusProcessing.
   ///
@@ -2231,6 +2213,941 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'No reels in this area right now'**
   String get reelsAreaEmpty;
+
+  /// No description provided for @walletTxnCallHold.
+  ///
+  /// In en, this message translates to:
+  /// **'Held for 1:1 call'**
+  String get walletTxnCallHold;
+
+  /// No description provided for @walletTxnCallRelease.
+  ///
+  /// In en, this message translates to:
+  /// **'1:1 call hold released'**
+  String get walletTxnCallRelease;
+
+  /// No description provided for @walletTxnCallDebit.
+  ///
+  /// In en, this message translates to:
+  /// **'Paid for 1:1 call'**
+  String get walletTxnCallDebit;
+
+  /// No description provided for @walletTxnCallEarning.
+  ///
+  /// In en, this message translates to:
+  /// **'1:1 call earning'**
+  String get walletTxnCallEarning;
+
+  /// No description provided for @oneToOneSheetTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Request 1:1 Live Session'**
+  String get oneToOneSheetTitle;
+
+  /// No description provided for @oneToOneSheetBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'DIRECT CONNECT'**
+  String get oneToOneSheetBadge;
+
+  /// No description provided for @oneToOneSheetSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Talk to {name} on a private live call about freight, route details and booking.'**
+  String oneToOneSheetSubtitle(String name);
+
+  /// No description provided for @oneToOneDriverFallback.
+  ///
+  /// In en, this message translates to:
+  /// **'the driver'**
+  String get oneToOneDriverFallback;
+
+  /// No description provided for @oneToOneHowTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'The driver confirms first'**
+  String get oneToOneHowTitle;
+
+  /// No description provided for @oneToOneHowBody.
+  ///
+  /// In en, this message translates to:
+  /// **'The driver reviews your request, then calls you. You see and hear them and speak through your microphone.'**
+  String get oneToOneHowBody;
+
+  /// No description provided for @oneToOneTopicLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Session discussion topic'**
+  String get oneToOneTopicLabel;
+
+  /// No description provided for @oneToOneRequiredTag.
+  ///
+  /// In en, this message translates to:
+  /// **'Required'**
+  String get oneToOneRequiredTag;
+
+  /// No description provided for @oneToOneTopicHint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. Route status, load negotiation, dispatch schedule'**
+  String get oneToOneTopicHint;
+
+  /// No description provided for @oneToOneTopicRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Tell the driver what you want to discuss'**
+  String get oneToOneTopicRequired;
+
+  /// No description provided for @oneToOneDurationLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Session duration'**
+  String get oneToOneDurationLabel;
+
+  /// No description provided for @oneToOneDurationMinutes.
+  ///
+  /// In en, this message translates to:
+  /// **'{minutes} mins'**
+  String oneToOneDurationMinutes(int minutes);
+
+  /// No description provided for @oneToOneDurationQuick.
+  ///
+  /// In en, this message translates to:
+  /// **'Quick chat'**
+  String get oneToOneDurationQuick;
+
+  /// No description provided for @oneToOneDurationReview.
+  ///
+  /// In en, this message translates to:
+  /// **'Route review'**
+  String get oneToOneDurationReview;
+
+  /// No description provided for @oneToOneDurationDeep.
+  ///
+  /// In en, this message translates to:
+  /// **'Deep booking'**
+  String get oneToOneDurationDeep;
+
+  /// No description provided for @oneToOneOfferLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Your offer'**
+  String get oneToOneOfferLabel;
+
+  /// No description provided for @oneToOneOfferHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Amount in ₹'**
+  String get oneToOneOfferHint;
+
+  /// No description provided for @oneToOneOfferRange.
+  ///
+  /// In en, this message translates to:
+  /// **'Offer between {min} and {max}'**
+  String oneToOneOfferRange(String min, String max);
+
+  /// No description provided for @oneToOneHoldExplainer.
+  ///
+  /// In en, this message translates to:
+  /// **'{hold} is frozen now as the cost of connecting. After the call you choose: pay the full {amount} if you\'re satisfied, otherwise only {hold}.'**
+  String oneToOneHoldExplainer(String hold, String amount);
+
+  /// No description provided for @oneToOneWalletAvailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Wallet: {amount} available'**
+  String oneToOneWalletAvailable(String amount);
+
+  /// No description provided for @oneToOneNeedMoney.
+  ///
+  /// In en, this message translates to:
+  /// **'Add {amount} to your wallet to send this request'**
+  String oneToOneNeedMoney(String amount);
+
+  /// No description provided for @oneToOneAddMoneyButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Add money'**
+  String get oneToOneAddMoneyButton;
+
+  /// No description provided for @oneToOneMoneyAdded.
+  ///
+  /// In en, this message translates to:
+  /// **'Test money added'**
+  String get oneToOneMoneyAdded;
+
+  /// No description provided for @oneToOneRechargeSoon.
+  ///
+  /// In en, this message translates to:
+  /// **'Wallet recharge is coming soon'**
+  String get oneToOneRechargeSoon;
+
+  /// No description provided for @oneToOneSendButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Send request'**
+  String get oneToOneSendButton;
+
+  /// No description provided for @oneToOneStatusTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your 1:1 request'**
+  String get oneToOneStatusTitle;
+
+  /// No description provided for @oneToOneStatusPending.
+  ///
+  /// In en, this message translates to:
+  /// **'Waiting for {name} to respond'**
+  String oneToOneStatusPending(String name);
+
+  /// No description provided for @oneToOneStatusAccepted.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} accepted. They will call you shortly'**
+  String oneToOneStatusAccepted(String name);
+
+  /// No description provided for @oneToOneStatusRinging.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} is calling you…'**
+  String oneToOneStatusRinging(String name);
+
+  /// No description provided for @oneToOneStatusLive.
+  ///
+  /// In en, this message translates to:
+  /// **'On a call with {name}'**
+  String oneToOneStatusLive(String name);
+
+  /// No description provided for @oneToOneStatusAwaitingFeedback.
+  ///
+  /// In en, this message translates to:
+  /// **'Call finished. Tell us how it went to complete payment'**
+  String get oneToOneStatusAwaitingFeedback;
+
+  /// No description provided for @oneToOneStatusCompleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Call completed. You paid {amount}'**
+  String oneToOneStatusCompleted(String amount);
+
+  /// No description provided for @oneToOneStatusRejected.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} can\'t take your call right now. Your money has been released'**
+  String oneToOneStatusRejected(String name);
+
+  /// No description provided for @oneToOneStatusExpired.
+  ///
+  /// In en, this message translates to:
+  /// **'No response in time. Your money has been released'**
+  String get oneToOneStatusExpired;
+
+  /// No description provided for @oneToOneStatusCancelled.
+  ///
+  /// In en, this message translates to:
+  /// **'Request cancelled. Your money has been released'**
+  String get oneToOneStatusCancelled;
+
+  /// No description provided for @oneToOneStatusFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'The call didn\'t connect. Nothing was charged'**
+  String get oneToOneStatusFailed;
+
+  /// No description provided for @oneToOneOfferSummary.
+  ///
+  /// In en, this message translates to:
+  /// **'Offer {amount} · {minutes} min'**
+  String oneToOneOfferSummary(String amount, int minutes);
+
+  /// No description provided for @oneToOneFrozenSummary.
+  ///
+  /// In en, this message translates to:
+  /// **'{hold} is frozen until the request ends'**
+  String oneToOneFrozenSummary(String hold);
+
+  /// No description provided for @oneToOneExpiresIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Expires in {time}'**
+  String oneToOneExpiresIn(String time);
+
+  /// No description provided for @oneToOneCancelButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel request'**
+  String get oneToOneCancelButton;
+
+  /// No description provided for @oneToOneDoneButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Done'**
+  String get oneToOneDoneButton;
+
+  /// No description provided for @oneToOneStatusLoadError.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load your request'**
+  String get oneToOneStatusLoadError;
+
+  /// No description provided for @oneToOneBannerTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'1:1 Video Request Pending'**
+  String get oneToOneBannerTitle;
+
+  /// No description provided for @oneToOneBannerOffered.
+  ///
+  /// In en, this message translates to:
+  /// **'{amount} offered'**
+  String oneToOneBannerOffered(String amount);
+
+  /// No description provided for @oneToOneBannerMore.
+  ///
+  /// In en, this message translates to:
+  /// **'+{count} more'**
+  String oneToOneBannerMore(int count);
+
+  /// No description provided for @oneToOneBannerReview.
+  ///
+  /// In en, this message translates to:
+  /// **'Review'**
+  String get oneToOneBannerReview;
+
+  /// No description provided for @oneToOneRequesterFallback.
+  ///
+  /// In en, this message translates to:
+  /// **'the requester'**
+  String get oneToOneRequesterFallback;
+
+  /// No description provided for @oneToOneIncomingTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'1:1 video request'**
+  String get oneToOneIncomingTitle;
+
+  /// No description provided for @oneToOneIncomingFrom.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} wants a live 1:1 call with you'**
+  String oneToOneIncomingFrom(String name);
+
+  /// No description provided for @oneToOneIncomingTopicLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'They want to discuss'**
+  String get oneToOneIncomingTopicLabel;
+
+  /// No description provided for @oneToOneEarningsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'What you earn'**
+  String get oneToOneEarningsTitle;
+
+  /// No description provided for @oneToOneEarningsBody.
+  ///
+  /// In en, this message translates to:
+  /// **'At least {hold} once the call has been connected for 30 seconds. The full {amount} if {name} is satisfied afterwards.'**
+  String oneToOneEarningsBody(String hold, String amount, String name);
+
+  /// No description provided for @oneToOneAcceptButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Accept'**
+  String get oneToOneAcceptButton;
+
+  /// No description provided for @oneToOneRejectButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Reject'**
+  String get oneToOneRejectButton;
+
+  /// No description provided for @oneToOneRejectConfirmTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Reject this request?'**
+  String get oneToOneRejectConfirmTitle;
+
+  /// No description provided for @oneToOneRejectConfirmBody.
+  ///
+  /// In en, this message translates to:
+  /// **'{name}\'s money is released and the request is closed.'**
+  String oneToOneRejectConfirmBody(String name);
+
+  /// No description provided for @oneToOneKeepButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep it'**
+  String get oneToOneKeepButton;
+
+  /// No description provided for @oneToOneIncomingAccepted.
+  ///
+  /// In en, this message translates to:
+  /// **'You accepted {name}\'s request'**
+  String oneToOneIncomingAccepted(String name);
+
+  /// No description provided for @oneToOneIncomingRejected.
+  ///
+  /// In en, this message translates to:
+  /// **'You declined this request'**
+  String get oneToOneIncomingRejected;
+
+  /// No description provided for @oneToOneIncomingExpired.
+  ///
+  /// In en, this message translates to:
+  /// **'This request expired'**
+  String get oneToOneIncomingExpired;
+
+  /// No description provided for @oneToOneIncomingCancelled.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} cancelled this request'**
+  String oneToOneIncomingCancelled(String name);
+
+  /// No description provided for @oneToOneIncomingFeedback.
+  ///
+  /// In en, this message translates to:
+  /// **'Call finished. Waiting for {name}\'s feedback'**
+  String oneToOneIncomingFeedback(String name);
+
+  /// No description provided for @oneToOneIncomingCompleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Call completed. You earned {amount}'**
+  String oneToOneIncomingCompleted(String amount);
+
+  /// No description provided for @oneToOneBannerReadyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'1:1 call ready to start'**
+  String get oneToOneBannerReadyTitle;
+
+  /// No description provided for @oneToOneBannerStart.
+  ///
+  /// In en, this message translates to:
+  /// **'Start'**
+  String get oneToOneBannerStart;
+
+  /// No description provided for @oneToOneStartCallButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Start call'**
+  String get oneToOneStartCallButton;
+
+  /// No description provided for @oneToOneStartCallHint.
+  ///
+  /// In en, this message translates to:
+  /// **'{name}\'s phone will ring for 45 seconds. Park safely before you start.'**
+  String oneToOneStartCallHint(String name);
+
+  /// No description provided for @callRingingTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Calling {name}…'**
+  String callRingingTitle(String name);
+
+  /// No description provided for @callRingingHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Their phone is ringing'**
+  String get callRingingHint;
+
+  /// No description provided for @callWaitingForPeer.
+  ///
+  /// In en, this message translates to:
+  /// **'Waiting for {name} to join…'**
+  String callWaitingForPeer(String name);
+
+  /// No description provided for @callPeerDropped.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} lost connection. Waiting for them to come back…'**
+  String callPeerDropped(String name);
+
+  /// No description provided for @callYouDropped.
+  ///
+  /// In en, this message translates to:
+  /// **'Your connection dropped. Reconnecting…'**
+  String get callYouDropped;
+
+  /// No description provided for @callServerUnreachable.
+  ///
+  /// In en, this message translates to:
+  /// **'Can\'t reach the server. The call goes on, but its time may not be counted.'**
+  String get callServerUnreachable;
+
+  /// No description provided for @callReconnectButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Reconnect'**
+  String get callReconnectButton;
+
+  /// No description provided for @callTimeLeft.
+  ///
+  /// In en, this message translates to:
+  /// **'{time} left'**
+  String callTimeLeft(String time);
+
+  /// No description provided for @callCounted.
+  ///
+  /// In en, this message translates to:
+  /// **'Counts as a call'**
+  String get callCounted;
+
+  /// No description provided for @callCountsAfter.
+  ///
+  /// In en, this message translates to:
+  /// **'Counts as a call after {seconds}s together'**
+  String callCountsAfter(int seconds);
+
+  /// No description provided for @callEndButton.
+  ///
+  /// In en, this message translates to:
+  /// **'End'**
+  String get callEndButton;
+
+  /// No description provided for @callCancelRingButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get callCancelRingButton;
+
+  /// No description provided for @callEndConfirmTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'End the call?'**
+  String get callEndConfirmTitle;
+
+  /// No description provided for @callEndConfirmCounted.
+  ///
+  /// In en, this message translates to:
+  /// **'This call has counted. {name} will be asked how it went.'**
+  String callEndConfirmCounted(String name);
+
+  /// No description provided for @callEndConfirmNotCounted.
+  ///
+  /// In en, this message translates to:
+  /// **'This call hasn\'t counted yet. If you end it now, nothing is charged.'**
+  String get callEndConfirmNotCounted;
+
+  /// No description provided for @callKeepGoing.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep going'**
+  String get callKeepGoing;
+
+  /// No description provided for @callMute.
+  ///
+  /// In en, this message translates to:
+  /// **'Mute'**
+  String get callMute;
+
+  /// No description provided for @callUnmute.
+  ///
+  /// In en, this message translates to:
+  /// **'Unmute'**
+  String get callUnmute;
+
+  /// No description provided for @callCameraOff.
+  ///
+  /// In en, this message translates to:
+  /// **'Camera off'**
+  String get callCameraOff;
+
+  /// No description provided for @callCameraOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Camera on'**
+  String get callCameraOn;
+
+  /// No description provided for @callFlip.
+  ///
+  /// In en, this message translates to:
+  /// **'Flip'**
+  String get callFlip;
+
+  /// No description provided for @callSpeaker.
+  ///
+  /// In en, this message translates to:
+  /// **'Speaker'**
+  String get callSpeaker;
+
+  /// No description provided for @callChat.
+  ///
+  /// In en, this message translates to:
+  /// **'Chat'**
+  String get callChat;
+
+  /// No description provided for @callAudioOnlyNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Only your microphone is on. {name} can\'t see you.'**
+  String callAudioOnlyNote(String name);
+
+  /// No description provided for @callSafetyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Don\'t use the phone while driving'**
+  String get callSafetyTitle;
+
+  /// No description provided for @callSafetyBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Park safely before taking this call. Never look at the screen or type while the vehicle is moving.'**
+  String get callSafetyBody;
+
+  /// No description provided for @callSafetyOk.
+  ///
+  /// In en, this message translates to:
+  /// **'I\'m parked'**
+  String get callSafetyOk;
+
+  /// No description provided for @callChatTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Chat'**
+  String get callChatTitle;
+
+  /// No description provided for @callChatHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Type a message'**
+  String get callChatHint;
+
+  /// No description provided for @callChatEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Messages only last for this call.'**
+  String get callChatEmpty;
+
+  /// No description provided for @callChatSendFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t send. Check your connection.'**
+  String get callChatSendFailed;
+
+  /// No description provided for @callStarting.
+  ///
+  /// In en, this message translates to:
+  /// **'Starting the call…'**
+  String get callStarting;
+
+  /// No description provided for @callPermissionMic.
+  ///
+  /// In en, this message translates to:
+  /// **'Allow the microphone to take part in the call.'**
+  String get callPermissionMic;
+
+  /// No description provided for @callPermissionCamera.
+  ///
+  /// In en, this message translates to:
+  /// **'Allow the camera so the other person can see you.'**
+  String get callPermissionCamera;
+
+  /// No description provided for @callOpenSettings.
+  ///
+  /// In en, this message translates to:
+  /// **'Open settings'**
+  String get callOpenSettings;
+
+  /// No description provided for @callClose.
+  ///
+  /// In en, this message translates to:
+  /// **'Close'**
+  String get callClose;
+
+  /// No description provided for @callEndedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Call ended'**
+  String get callEndedTitle;
+
+  /// No description provided for @callEndedDriverCounted.
+  ///
+  /// In en, this message translates to:
+  /// **'You were on the call for {duration}. {name} will now say if they were satisfied. You earn {callAmount} for sure, and {offer} if they are.'**
+  String callEndedDriverCounted(
+    String duration,
+    String name,
+    String callAmount,
+    String offer,
+  );
+
+  /// No description provided for @callEndedRequesterCounted.
+  ///
+  /// In en, this message translates to:
+  /// **'Thanks for your call with {name}.'**
+  String callEndedRequesterCounted(String name);
+
+  /// No description provided for @callEndedTooShort.
+  ///
+  /// In en, this message translates to:
+  /// **'The call was too short to count (under {seconds} seconds). Nothing was charged.'**
+  String callEndedTooShort(int seconds);
+
+  /// No description provided for @callEndedUnanswered.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} didn\'t pick up. You can try again until the request expires.'**
+  String callEndedUnanswered(String name);
+
+  /// No description provided for @callEndedDeclined.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} declined the call. The request is closed.'**
+  String callEndedDeclined(String name);
+
+  /// No description provided for @callEndedUnconfirmed.
+  ///
+  /// In en, this message translates to:
+  /// **'You left the call. We couldn\'t reach the server, so it will be settled shortly.'**
+  String get callEndedUnconfirmed;
+
+  /// No description provided for @callEndedOther.
+  ///
+  /// In en, this message translates to:
+  /// **'The call has ended.'**
+  String get callEndedOther;
+
+  /// No description provided for @callDoneButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Done'**
+  String get callDoneButton;
+
+  /// No description provided for @callIncomingTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} is calling you'**
+  String callIncomingTitle(String name);
+
+  /// No description provided for @callIncomingOffer.
+  ///
+  /// In en, this message translates to:
+  /// **'{amount} offered · {minutes} min'**
+  String callIncomingOffer(String amount, int minutes);
+
+  /// No description provided for @callIncomingHint.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'ll hear {name} and see their camera. Only your microphone is on.'**
+  String callIncomingHint(String name);
+
+  /// No description provided for @callAnswer.
+  ///
+  /// In en, this message translates to:
+  /// **'Answer'**
+  String get callAnswer;
+
+  /// No description provided for @callDecline.
+  ///
+  /// In en, this message translates to:
+  /// **'Decline'**
+  String get callDecline;
+
+  /// No description provided for @callDeclineHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Declining cancels your request and releases your money.'**
+  String get callDeclineHint;
+
+  /// No description provided for @callRingSeconds.
+  ///
+  /// In en, this message translates to:
+  /// **'Ringing · {seconds}s'**
+  String callRingSeconds(int seconds);
+
+  /// No description provided for @callMissed.
+  ///
+  /// In en, this message translates to:
+  /// **'You missed the call. {name} can try again, or you can cancel your request.'**
+  String callMissed(String name);
+
+  /// No description provided for @callRejoinTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'re still in a call'**
+  String get callRejoinTitle;
+
+  /// No description provided for @callRejoinBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Your call with {name} is still going. Rejoin to carry on.'**
+  String callRejoinBody(String name);
+
+  /// No description provided for @callRejoinButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Rejoin'**
+  String get callRejoinButton;
+
+  /// No description provided for @callRejoinEndButton.
+  ///
+  /// In en, this message translates to:
+  /// **'End call'**
+  String get callRejoinEndButton;
+
+  /// No description provided for @callFeedbackTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Were you satisfied with the call?'**
+  String get callFeedbackTitle;
+
+  /// No description provided for @callFeedbackBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Your answer decides what {name} is paid.'**
+  String callFeedbackBody(String name);
+
+  /// No description provided for @callFeedbackYes.
+  ///
+  /// In en, this message translates to:
+  /// **'Yes, pay {amount}'**
+  String callFeedbackYes(String amount);
+
+  /// No description provided for @callFeedbackNo.
+  ///
+  /// In en, this message translates to:
+  /// **'No, pay only {amount}'**
+  String callFeedbackNo(String amount);
+
+  /// No description provided for @callFeedbackNoNote.
+  ///
+  /// In en, this message translates to:
+  /// **'{amount} is the cost of connecting the call.'**
+  String callFeedbackNoNote(String amount);
+
+  /// No description provided for @callFeedbackLater.
+  ///
+  /// In en, this message translates to:
+  /// **'Decide later'**
+  String get callFeedbackLater;
+
+  /// No description provided for @callFeedbackLaterNote.
+  ///
+  /// In en, this message translates to:
+  /// **'If you don\'t answer within 24 hours, only {amount} is paid.'**
+  String callFeedbackLaterNote(String amount);
+
+  /// No description provided for @callFeedbackThanks.
+  ///
+  /// In en, this message translates to:
+  /// **'Thanks! You paid {amount}.'**
+  String callFeedbackThanks(String amount);
+
+  /// No description provided for @callDeclineFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t reach the server. Check your connection and try again.'**
+  String get callDeclineFailed;
+
+  /// No description provided for @callOngoingTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Call in progress'**
+  String get callOngoingTitle;
+
+  /// No description provided for @callOngoingText.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap to return to your call with {name}'**
+  String callOngoingText(String name);
+
+  /// No description provided for @rechargeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Add money to your wallet'**
+  String get rechargeTitle;
+
+  /// No description provided for @rechargeAmountLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Amount to add (₹)'**
+  String get rechargeAmountLabel;
+
+  /// No description provided for @rechargeRange.
+  ///
+  /// In en, this message translates to:
+  /// **'Between ₹{min} and ₹{max} at a time'**
+  String rechargeRange(String min, String max);
+
+  /// No description provided for @rechargeInvalidAmount.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter an amount between ₹{min} and ₹{max}'**
+  String rechargeInvalidAmount(String min, String max);
+
+  /// No description provided for @rechargeAddedToWallet.
+  ///
+  /// In en, this message translates to:
+  /// **'Added to your wallet'**
+  String get rechargeAddedToWallet;
+
+  /// No description provided for @rechargeGatewayFee.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment gateway fee'**
+  String get rechargeGatewayFee;
+
+  /// No description provided for @rechargeYouPay.
+  ///
+  /// In en, this message translates to:
+  /// **'You pay'**
+  String get rechargeYouPay;
+
+  /// No description provided for @rechargePayButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Pay {amount}'**
+  String rechargePayButton(String amount);
+
+  /// No description provided for @rechargeUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Adding money isn\'t available right now'**
+  String get rechargeUnavailable;
+
+  /// No description provided for @rechargeCreating.
+  ///
+  /// In en, this message translates to:
+  /// **'Getting your payment ready…'**
+  String get rechargeCreating;
+
+  /// No description provided for @rechargePaying.
+  ///
+  /// In en, this message translates to:
+  /// **'Complete the payment in the payment window'**
+  String get rechargePaying;
+
+  /// No description provided for @rechargeConfirming.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirming your payment…'**
+  String get rechargeConfirming;
+
+  /// No description provided for @rechargeDone.
+  ///
+  /// In en, this message translates to:
+  /// **'{amount} added to your wallet'**
+  String rechargeDone(String amount);
+
+  /// No description provided for @rechargePending.
+  ///
+  /// In en, this message translates to:
+  /// **'We\'re still confirming your payment. Your balance will update shortly. You don\'t need to pay again.'**
+  String get rechargePending;
+
+  /// No description provided for @rechargeFailedGeneric.
+  ///
+  /// In en, this message translates to:
+  /// **'The payment didn\'t go through. You haven\'t been charged.'**
+  String get rechargeFailedGeneric;
+
+  /// No description provided for @rechargeClose.
+  ///
+  /// In en, this message translates to:
+  /// **'Close'**
+  String get rechargeClose;
 }
 
 class _AppLocalizationsDelegate

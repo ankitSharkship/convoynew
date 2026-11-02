@@ -11,6 +11,11 @@ GetMyUploadsUseCase getMyUploadsUseCase(GetMyUploadsUseCaseRef ref) {
   return GetMyUploadsUseCase(ref.watch(reelsRepositoryProvider));
 }
 
+@riverpod
+DeleteReelUseCase deleteReelUseCase(DeleteReelUseCaseRef ref) {
+  return DeleteReelUseCase(ref.watch(reelsRepositoryProvider));
+}
+
 /// The signed-in user's own uploads (every status) plus creator totals.
 @riverpod
 Future<MyUploadsEntity> myUploads(MyUploadsRef ref) {

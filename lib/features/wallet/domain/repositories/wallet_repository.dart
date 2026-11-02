@@ -10,4 +10,10 @@ abstract class WalletRepository {
     required String upiId,
     required String idempotencyKey,
   });
+
+  Future<void> devCredit({
+    required String userId,
+    required int amount,
+    required String idempotencyKey,
+  });
 }

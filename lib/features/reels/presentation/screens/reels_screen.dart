@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:video_player/video_player.dart';
 
@@ -14,7 +15,6 @@ import '../widgets/reel_action_rail.dart';
 import '../widgets/reel_avatar.dart';
 import '../widgets/reel_comments_sheet.dart';
 import '../widgets/reel_formatters.dart';
-import '../widgets/reel_source_sheet.dart';
 
 /// How long a reel must play before it counts as a view (or its whole
 /// length, if shorter) — the API asks for roughly 2–3 seconds.
@@ -321,7 +321,7 @@ class _ReelsScreenState extends ConsumerState<ReelsScreen> {
   Widget _buildFab() {
     return FloatingActionButton(
       backgroundColor: AppColors.primaryBlue,
-      onPressed: () => openCreateReelFlow(context),
+      onPressed: () => context.push('/reels/create/record'),
       child: const Icon(Icons.add, color: Colors.white),
     );
   }

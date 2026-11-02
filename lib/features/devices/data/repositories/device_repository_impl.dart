@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
 import '../../../../core/services/fcm_token_service.dart';
+import '../../../../core/services/voip_token_source.dart';
 import '../../domain/repositories/device_repository.dart';
 import '../datasources/device_local_datasource.dart';
 import '../datasources/device_remote_datasource.dart';
@@ -13,8 +14,14 @@ class DeviceRepositoryImpl implements DeviceRepository {
   final DeviceRemoteDataSource _remote;
   final DeviceLocalDataSource _local;
   final FcmTokenService _fcm;
+  final VoipTokenSource _voip;
 
-  DeviceRepositoryImpl(this._remote, this._local, this._fcm);
+  DeviceRepositoryImpl(
+    this._remote,
+    this._local,
+    this._fcm, [
+    this._voip = const NoVoipTokenSource(),
+  ]);
 
   @override
   Future<void> registerDevice(String userId) async {
@@ -29,7 +36,12 @@ class DeviceRepositoryImpl implements DeviceRepository {
     if (token == null) return;
 
     final lastSynced = await _local.getLastSyncedFcmToken();
-    if (token == lastSynced) return;
+    // The iPhone's VoIP token arrives separately (and later) than the FCM one:
+    // a new one on its own is reason enough to tell the server.
+    final voip = await _safeVoipToken();
+    final voipChanged =
+        voip != null && voip != await _local.getLastSyncedVoipToken();
+    if (token == lastSynced && !voipChanged) return;
 
     await _sendRegister(userId, token);
   }
@@ -48,6 +60,7 @@ class DeviceRepositoryImpl implements DeviceRepository {
   Future<void> _sendRegister(String userId, String token) async {
     final deviceId = await _local.getOrCreateDeviceId();
     final packageInfo = await PackageInfo.fromPlatform();
+    final voip = await _safeVoipToken();
     await _remote.registerDevice(
       userId: userId,
       deviceId: deviceId,
@@ -55,8 +68,28 @@ class DeviceRepositoryImpl implements DeviceRepository {
       fcmToken: token,
       appVersion: packageInfo.version,
       deviceName: await _deviceName(),
+      voipToken: voip,
+      voipSandbox: voip == null ? null : await _safeSandbox(),
     );
     await _local.saveLastSyncedFcmToken(token);
+    if (voip != null) await _local.saveLastSyncedVoipToken(voip);
+  }
+
+  /// Never lets a VoIP lookup problem block the ordinary push registration.
+  Future<String?> _safeVoipToken() async {
+    try {
+      return await _voip.currentVoipToken();
+    } catch (_) {
+      return null;
+    }
+  }
+
+  Future<bool?> _safeSandbox() async {
+    try {
+      return await _voip.isVoipSandbox();
+    } catch (_) {
+      return null;
+    }
   }
 
   String get _platform {

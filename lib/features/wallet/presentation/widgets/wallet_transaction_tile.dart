@@ -16,6 +16,10 @@ class WalletTransactionTile extends StatelessWidget {
     'reserve_redeem' => l10n.walletTxnReserveRedeem,
     'confirm_payout' => l10n.walletTxnConfirmPayout,
     'release_reserve' => l10n.walletTxnReleaseReserve,
+    'call_hold' => l10n.walletTxnCallHold,
+    'call_release' => l10n.walletTxnCallRelease,
+    'call_debit' => l10n.walletTxnCallDebit,
+    'call_earning' => l10n.walletTxnCallEarning,
     _ => type,
   };
 

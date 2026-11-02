@@ -69,4 +69,7 @@ class ReelsRepositoryImpl implements ReelsRepository {
 
   @override
   Future<MyUploadsEntity> getMyUploads() => _remote.getMyUploads();
+
+  @override
+  Future<void> deleteReel(String reelId) => _remote.deleteReel(reelId);
 }

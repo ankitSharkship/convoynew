@@ -9,6 +9,13 @@ import '../../features/auth/presentation/screens/enter_name_screen.dart';
 import '../../features/auth/presentation/screens/otp_screen.dart';
 import '../../features/auth/presentation/screens/phone_screen.dart';
 import '../../features/call/presentation/screens/call_screen.dart';
+import '../../features/call_request/domain/entities/call_request_entity.dart';
+import '../../features/call_request/presentation/call/call_request_loader.dart';
+import '../../features/call_request/presentation/call/call_routes.dart';
+import '../../features/call_request/presentation/call/feedback_screen.dart';
+import '../../features/call_request/presentation/call/incoming_call_screen.dart';
+import '../../features/call_request/presentation/call/live_call_screen.dart';
+import '../../features/call_request/presentation/call/rejoin_screen.dart';
 import '../../features/heatmap/presentation/screens/heatmap_screen.dart';
 import '../../features/home/presentation/screens/home_screen.dart';
 import '../../features/home/presentation/screens/manage_history_screen.dart';
@@ -25,6 +32,8 @@ import '../constants/feature_flags.dart';
 import '../../features/scratch_cards/domain/entities/scratch_card_entity.dart';
 import '../../features/scratch_cards/presentation/screens/post_scratch_card_screen.dart';
 import '../../features/profile/presentation/screens/profile_screen.dart';
+import '../../features/reels/domain/entities/reel_entity.dart';
+import '../../features/reels/presentation/screens/my_reel_viewer_screen.dart';
 import '../../features/reels/presentation/screens/my_uploads_screen.dart';
 import '../../features/reels/presentation/screens/reel_details_screen.dart';
 import '../../features/reels/presentation/screens/reel_record_screen.dart';
@@ -42,6 +51,10 @@ import '../network/dio_client.dart';
 part 'app_router.g.dart';
 
 const _publicPaths = {'/splash', '/onboarding', '/auth/phone', '/auth/otp'};
+
+/// Whether [path] is a screen past splash/onboarding/login, i.e. the app is up
+/// and running rather than still starting or signing in.
+bool isPastLaunchAndLogin(String path) => !_publicPaths.contains(path);
 
 @riverpod
 GoRouter appRouter(AppRouterRef ref) {
@@ -81,6 +94,42 @@ GoRouter appRouter(AppRouterRef ref) {
           final initials = state.uri.queryParameters['initials'] ?? '';
           return CallScreen(driverName: name, phone: phone, initials: initials);
         },
+      ),
+      // The paid 1:1 video call: the call itself, the requester's ring screen,
+      // the "still in a call" prompt and the satisfaction question.
+      GoRoute(
+        path: '${CallRoutes.prefix}/:id',
+        builder: (context, state) => LiveCallScreen(
+          requestId: state.pathParameters['id']!,
+          entry: CallEntry.parse(state.uri.queryParameters['mode']),
+          isProvider: state.uri.queryParameters['driver'] == '1',
+        ),
+        routes: [
+          GoRoute(
+            path: 'incoming',
+            builder: (context, state) => CallRequestLoader(
+              requestId: state.pathParameters['id']!,
+              initial: state.extra as CallRequestEntity?,
+              builder: (request) => IncomingCallScreen(request: request),
+            ),
+          ),
+          GoRoute(
+            path: 'rejoin',
+            builder: (context, state) => CallRequestLoader(
+              requestId: state.pathParameters['id']!,
+              initial: state.extra as CallRequestEntity?,
+              builder: (request) => RejoinScreen(request: request),
+            ),
+          ),
+          GoRoute(
+            path: 'feedback',
+            builder: (context, state) => CallRequestLoader(
+              requestId: state.pathParameters['id']!,
+              initial: state.extra as CallRequestEntity?,
+              builder: (request) => FeedbackScreen(request: request),
+            ),
+          ),
+        ],
       ),
       GoRoute(
         path: '/post',
@@ -164,6 +213,11 @@ GoRouter appRouter(AppRouterRef ref) {
       GoRoute(
         path: '/profile/uploads',
         builder: (_, __) => const MyUploadsScreen(),
+      ),
+      GoRoute(
+        path: '/reels/view',
+        builder: (context, state) =>
+            MyReelViewerScreen(reel: state.extra as ReelEntity),
       ),
       GoRoute(
         path: '/reels/create/record',

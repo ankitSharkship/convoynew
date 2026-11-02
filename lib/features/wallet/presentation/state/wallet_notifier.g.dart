@@ -100,6 +100,23 @@ final redeemWalletUseCaseProvider =
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef RedeemWalletUseCaseRef = AutoDisposeProviderRef<RedeemWalletUseCase>;
+String _$devCreditWalletUseCaseHash() => r'2230a26c0f44b0d6d1eb4bd50cbdee6c03c242f1';
+
+/// See also [devCreditWalletUseCase].
+@ProviderFor(devCreditWalletUseCase)
+final devCreditWalletUseCaseProvider = AutoDisposeProvider<DevCreditWalletUseCase>.internal(
+  devCreditWalletUseCase,
+  name: r'devCreditWalletUseCaseProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$devCreditWalletUseCaseHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef DevCreditWalletUseCaseRef = AutoDisposeProviderRef<DevCreditWalletUseCase>;
 String _$walletNotifierHash() => r'791756adc01108a345b5e346e012ed20ee4f68ec';
 
 /// See also [WalletNotifier].

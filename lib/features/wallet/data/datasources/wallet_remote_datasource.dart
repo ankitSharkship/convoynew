@@ -15,6 +15,14 @@ abstract class WalletRemoteDataSource {
     required String upiId,
     required String idempotencyKey,
   });
+
+  /// DEV ONLY: test money into the caller's own wallet. The server answers 404
+  /// unless it runs with DEV_WALLET_CREDIT_ENABLED=true.
+  Future<void> devCredit({
+    required String userId,
+    required int amount,
+    required String idempotencyKey,
+  });
 }
 
 class WalletRemoteDataSourceImpl implements WalletRemoteDataSource {
@@ -67,6 +75,24 @@ class WalletRemoteDataSourceImpl implements WalletRemoteDataSource {
       );
       return RedeemRequestModel.fromJson(
         response.data['redeemRequest'] as Map<String, dynamic>,
+      );
+    } on DioException catch (e) {
+      throw ApiException.fromDioException(e);
+    } catch (_) {
+      throw const ApiException();
+    }
+  }
+
+  @override
+  Future<void> devCredit({
+    required String userId,
+    required int amount,
+    required String idempotencyKey,
+  }) async {
+    try {
+      await _dio.post(
+        '/api/wallet/$userId/dev-credit',
+        data: {'amount': amount.toString(), 'idempotencyKey': idempotencyKey},
       );
     } on DioException catch (e) {
       throw ApiException.fromDioException(e);
