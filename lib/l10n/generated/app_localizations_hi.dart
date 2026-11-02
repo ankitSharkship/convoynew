@@ -1653,6 +1653,13 @@ class AppLocalizationsHi extends AppLocalizations {
   }
 
   @override
+  String get callOnAnotherDevice => 'यह कॉल आपके दूसरे डिवाइस पर चल रही है।';
+
+  @override
+  String get callAnsweredElsewhere =>
+      'आपने यह कॉल अपने दूसरे डिवाइस पर उठा ली है।';
+
+  @override
   String get callRejoinTitle => 'आप अभी भी कॉल में हैं';
 
   @override

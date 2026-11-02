@@ -93,6 +93,14 @@ void main() {
       );
     });
 
+    test('a call that is on my OTHER phone is not offered here', () {
+      expect(next(outgoing: [request('live', onAnotherDevice: true)]), isNull);
+      expect(
+        next(incoming: [request('live', role: 'provider', onAnotherDevice: true)]),
+        isNull,
+      );
+    });
+
     test('so is a driver whose call is still ringing', () {
       expect(
         next(incoming: [request('ringing', role: 'provider')])?.prompt,

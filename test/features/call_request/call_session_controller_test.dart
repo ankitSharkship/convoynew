@@ -552,6 +552,47 @@ void main() {
       await h.close(tester);
     });
 
+    testWidgets('another phone taking the call over makes this one leave quietly', (
+      tester,
+    ) async {
+      final repo = requesterRepo()
+        ..heartbeats = [
+          const CallRequestException(
+            code: 'CALL_ON_ANOTHER_DEVICE',
+            message: 'This call is on another one of your devices',
+            statusCode: 409,
+          ),
+        ];
+      final h = boot(repo: repo);
+      await h.run(tester, () => h.ctl.answerAsRequester());
+      await h.elapse(tester, const Duration(seconds: 1));
+      await h.elapse(tester, callHeartbeatInterval);
+
+      expect(h.state.phase, CallPhase.failed);
+      expect(h.state.failure?.kind, CallFailureKind.onAnotherDevice);
+      expect(repo.endCalls, 0, reason: 'the call goes on, on the other phone');
+      expect(h.engine.left || h.engine.disposed, isTrue);
+      await h.close(tester);
+    });
+
+    testWidgets('answering a call another phone already answered says so', (
+      tester,
+    ) async {
+      final repo = requesterRepo()
+        ..joinResult = const CallRequestException(
+          code: 'CALL_ON_ANOTHER_DEVICE',
+          message: 'This call is on another one of your devices',
+          statusCode: 409,
+        );
+      final h = boot(repo: repo);
+      await h.run(tester, () => h.ctl.answerAsRequester());
+
+      expect(h.state.failure?.kind, CallFailureKind.onAnotherDevice);
+      expect(h.engine.joinedWith, isNull, reason: 'never joined the channel');
+      expect(repo.endCalls, 0, reason: 'must not hang up the other phone\'s call');
+      await h.close(tester);
+    });
+
     testWidgets('hanging up ends the call and shows the server\'s verdict', (
       tester,
     ) async {

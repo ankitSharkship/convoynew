@@ -2963,6 +2963,18 @@ abstract class AppLocalizations {
   /// **'You missed the call. {name} can try again, or you can cancel your request.'**
   String callMissed(String name);
 
+  /// No description provided for @callOnAnotherDevice.
+  ///
+  /// In en, this message translates to:
+  /// **'This call is on another of your devices.'**
+  String get callOnAnotherDevice;
+
+  /// No description provided for @callAnsweredElsewhere.
+  ///
+  /// In en, this message translates to:
+  /// **'You answered this call on your other device.'**
+  String get callAnsweredElsewhere;
+
   /// No description provided for @callRejoinTitle.
   ///
   /// In en, this message translates to:

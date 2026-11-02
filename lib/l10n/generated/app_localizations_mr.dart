@@ -1654,6 +1654,14 @@ class AppLocalizationsMr extends AppLocalizations {
   }
 
   @override
+  String get callOnAnotherDevice =>
+      'हा कॉल तुमच्या दुसऱ्या डिव्हाइसवर सुरू आहे.';
+
+  @override
+  String get callAnsweredElsewhere =>
+      'तुम्ही हा कॉल तुमच्या दुसऱ्या डिव्हाइसवर घेतला आहे.';
+
+  @override
   String get callRejoinTitle => 'तुम्ही अजूनही कॉलमध्ये आहात';
 
   @override

@@ -1662,6 +1662,14 @@ class AppLocalizationsKn extends AppLocalizations {
   }
 
   @override
+  String get callOnAnotherDevice =>
+      'ಈ ಕರೆ ನಿಮ್ಮ ಇನ್ನೊಂದು ಸಾಧನದಲ್ಲಿ ನಡೆಯುತ್ತಿದೆ.';
+
+  @override
+  String get callAnsweredElsewhere =>
+      'ನೀವು ಈ ಕರೆಯನ್ನು ನಿಮ್ಮ ಇನ್ನೊಂದು ಸಾಧನದಲ್ಲಿ ಸ್ವೀಕರಿಸಿದ್ದೀರಿ.';
+
+  @override
   String get callRejoinTitle => 'ನೀವು ಇನ್ನೂ ಕರೆಯಲ್ಲಿದ್ದೀರಿ';
 
   @override

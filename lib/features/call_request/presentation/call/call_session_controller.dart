@@ -501,8 +501,12 @@ class CallSessionNotifier
         state = state.copyWith(serverUnreachable: false);
       }
       await _apply(beat);
-    } catch (_) {
+    } catch (e) {
       if (_closed) return;
+      if (_isOnAnotherDevice(e)) {
+        await _movedToAnotherDevice(e as CallRequestException);
+        return;
+      }
       _beatFailures++;
       if (_beatFailures >= _unreachableAfterFailures &&
           !state.serverUnreachable) {
@@ -538,6 +542,29 @@ class CallSessionNotifier
         // failed, completed, expired ...: the call is over.
         await _finish(beat.status);
     }
+  }
+
+  static bool _isOnAnotherDevice(Object error) =>
+      error is CallRequestException && error.code == 'CALL_ON_ANOTHER_DEVICE';
+
+  /// Another phone of this person took the call over (the server refuses this
+  /// phone's heartbeats now). Leave quietly: the call itself goes on there, so
+  /// it is NOT ended, and this phone must not offer to rejoin it.
+  Future<void> _movedToAnotherDevice(CallRequestException error) async {
+    _callLog(arg, 'the call is on another device now: leaving it here');
+    _live = false;
+    ref.read(handledCallPromptsProvider).add(CallPromptKeys.rejoin(arg));
+    _beat?.cancel();
+    _flush?.cancel();
+    _flush = null;
+    _fail(
+      CallFailure(
+        CallFailureKind.onAnotherDevice,
+        error.message,
+        code: error.code,
+      ),
+    );
+    await _dropEngine();
   }
 
   /// The ring ran out with no answer: take the call back to "accepted" (the
@@ -648,7 +675,15 @@ class CallSessionNotifier
 
   void _failFrom(Object error) {
     _callLog(arg, 'failed: $error');
-    if (error is CallRequestException) {
+    if (_isOnAnotherDevice(error)) {
+      _fail(
+        CallFailure(
+          CallFailureKind.onAnotherDevice,
+          (error as CallRequestException).message,
+          code: error.code,
+        ),
+      );
+    } else if (error is CallRequestException) {
       _fail(CallFailure(CallFailureKind.server, error.message, code: error.code));
     } else {
       _fail(CallFailure(CallFailureKind.network, ApiException.messageFor(error)));

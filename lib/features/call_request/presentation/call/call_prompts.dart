@@ -68,7 +68,8 @@ CallPromptTarget? nextCallPrompt({
         r.status == CallStatus.live ||
         // A driver who started a call and lost the app while it rings.
         (r.isProvider && r.status == CallStatus.ringing);
-    if (!inCall) continue;
+    // On the person's other phone: that phone holds it, this one must not offer to join.
+    if (!inCall || r.onAnotherDevice) continue;
     final key = CallPromptKeys.rejoin(r.id);
     if (!handled.contains(key) && onCallScreenFor != r.id) {
       return CallPromptTarget(CallPrompt.rejoin, r, key);

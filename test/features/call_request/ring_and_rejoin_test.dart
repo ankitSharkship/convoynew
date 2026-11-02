@@ -356,6 +356,31 @@ void main() {
       await unmount(tester);
     });
 
+    testWidgets('answered on my other phone: says so instead of "missed"', (
+      tester,
+    ) async {
+      final clock = FakeClock();
+      final r = ringing(clock);
+      final repo = FakeRepository([r])..outgoing = [r];
+      await pump(
+        tester,
+        repo: repo,
+        clock: clock,
+        screen: IncomingCallScreen(request: r),
+      );
+
+      // The other phone answered: the call is live there.
+      repo.outgoing = [request('live', onAnotherDevice: true)];
+      clock.advance(const Duration(seconds: 3));
+      await tester.pump(const Duration(seconds: 3));
+      await tester.pump();
+
+      expect(find.text('You answered this call on your other device.'), findsOneWidget);
+      expect(find.text('Answer'), findsNothing);
+      expect(find.textContaining('You missed the call'), findsNothing);
+      await unmount(tester);
+    });
+
     testWidgets('if the driver hangs up first, the buttons go away', (
       tester,
     ) async {

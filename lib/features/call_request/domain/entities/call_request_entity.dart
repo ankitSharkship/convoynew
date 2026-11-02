@@ -56,6 +56,10 @@ class CallRequestEntity {
   final bool? satisfied;
   final String? settledAmount;
 
+  /// The call is on this person's OTHER phone (they are signed in on several):
+  /// this phone must not offer to join, rejoin or decline it.
+  final bool onAnotherDevice;
+
   const CallRequestEntity({
     required this.id,
     required this.role,
@@ -77,6 +81,7 @@ class CallRequestEntity {
     this.feedbackDeadline,
     this.satisfied,
     this.settledAmount,
+    this.onAnotherDevice = false,
   });
 
   bool get isRequester => role == 'requester';
@@ -110,5 +115,6 @@ class CallRequestEntity {
     feedbackDeadline: feedbackDeadline,
     satisfied: satisfied,
     settledAmount: settledAmount,
+    onAnotherDevice: onAnotherDevice,
   );
 }

@@ -30,6 +30,9 @@ enum CallFailureKind {
   /// [CallFailure.message] is the server's plain-language reason.
   server,
 
+  /// Another of this person's phones is on this call (answered it, or took it over).
+  onAnotherDevice,
+
   /// The phone could not start the audio/video.
   media,
 

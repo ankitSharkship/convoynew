@@ -621,6 +621,8 @@
   "@callRingSeconds": { "placeholders": { "seconds": { "type": "int" } } },
   "callMissed": "You missed the call. {name} can try again, or you can cancel your request.",
   "@callMissed": { "placeholders": { "name": { "type": "String" } } },
+  "callOnAnotherDevice": "This call is on another of your devices.",
+  "callAnsweredElsewhere": "You answered this call on your other device.",
   "callRejoinTitle": "You're still in a call",
   "callRejoinBody": "Your call with {name} is still going. Rejoin to carry on.",
   "@callRejoinBody": { "placeholders": { "name": { "type": "String" } } },

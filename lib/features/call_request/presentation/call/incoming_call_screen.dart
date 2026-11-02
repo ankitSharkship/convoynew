@@ -189,6 +189,16 @@ class _IncomingCallScreenState extends ConsumerState<IncomingCallScreen> {
                       fontSize: 13,
                     ),
                   )
+                else if (r.onAnotherDevice)
+                  Text(
+                    l10n.callAnsweredElsewhere,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      color: AppColors.white,
+                      fontSize: 14,
+                      height: 1.4,
+                    ),
+                  )
                 else
                   Text(
                     l10n.callMissed(name),

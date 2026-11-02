@@ -39,6 +39,7 @@ class CallRequestModel extends CallRequestEntity {
     super.feedbackDeadline,
     super.satisfied,
     super.settledAmount,
+    super.onAnotherDevice,
   });
 
   factory CallRequestModel.fromJson(Map<String, dynamic> json) =>
@@ -63,5 +64,6 @@ class CallRequestModel extends CallRequestEntity {
         feedbackDeadline: parseServerTime(json['feedbackDeadline']),
         satisfied: json['satisfied'] as bool?,
         settledAmount: json['settledAmount'] as String?,
+        onAnotherDevice: json['onAnotherDevice'] as bool? ?? false,
       );
 }

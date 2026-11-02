@@ -273,6 +273,7 @@ class _FailedPanel extends StatelessWidget {
       CallFailureKind.microphoneBlocked => l10n.callPermissionMic,
       CallFailureKind.cameraDenied ||
       CallFailureKind.cameraBlocked => l10n.callPermissionCamera,
+      CallFailureKind.onAnotherDevice => l10n.callOnAnotherDevice,
       _ => failure.message,
     };
     return SafeArea(

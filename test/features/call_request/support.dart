@@ -31,6 +31,7 @@ CallRequestEntity request(
   DateTime? feedbackDeadline,
   int? connectedSeconds,
   String providerName = 'Vikram',
+  bool onAnotherDevice = false,
 }) => CallRequestEntity(
   id: id,
   role: role,
@@ -47,6 +48,7 @@ CallRequestEntity request(
   ringEndsAt: ringEndsAt,
   feedbackDeadline: feedbackDeadline,
   connectedSeconds: connectedSeconds,
+  onAnotherDevice: onAnotherDevice,
 );
 
 /// Answers `get` from a script, one entry per call (the last one repeats).

@@ -1653,6 +1653,13 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String get callOnAnotherDevice => 'This call is on another of your devices.';
+
+  @override
+  String get callAnsweredElsewhere =>
+      'You answered this call on your other device.';
+
+  @override
   String get callRejoinTitle => 'You\'re still in a call';
 
   @override

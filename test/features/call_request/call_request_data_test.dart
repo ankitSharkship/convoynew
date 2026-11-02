@@ -86,6 +86,12 @@ void main() {
       expect(r.satisfied, isNull);
     });
 
+    test('knows when the call is on the person\'s other phone', () {
+      expect(CallRequestModel.fromJson(requestJson()).onAnotherDevice, isFalse);
+      final json = requestJson()..['onAnotherDevice'] = true;
+      expect(CallRequestModel.fromJson(json).onAnotherDevice, isTrue);
+    });
+
     test('timestamps without a zone are read as UTC', () {
       final r = CallRequestModel.fromJson(requestJson());
       expect(r.expiresAt.isUtc, isTrue);
